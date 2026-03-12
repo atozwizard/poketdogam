@@ -1,0 +1,1018 @@
+URL: https://pokemondb.net/evolution
+STATUS: ok
+
+Pokémon evolution charts | Pokémon Database
+Skip to main content
+Data
+Pokémon data
+Pokédex
+Moves
+Type chart
+Abilities
+Items
+Evolution chains
+Pokémon locations
+Sprite gallery
+Quick links
+National Pokédex
+Pokémon list with stats
+Legends: Arceus Pokédex
+Scarlet & Violet Pokédex
+Mechanics
+Game mechanics
+Breeding & egg groups
+Move Tutors
+Dual type chart
+Effort Values (EVs)
+Natures
+IVs/Personality
+Useful tools
+Moveset searcher
+Type coverage checker
+Text list generator
+Games
+Pokémon games
+Winds & Waves
+Pokémon GO
+Legends: Z-A
+Scarlet & Violet
+Legends: Arceus
+Brilliant Diamond & Shining Pearl
+Sword & Shield
+Let's Go Pikachu & Let's Go Eevee
+Ultra Sun & Ultra Moon
+Sun & Moon
+Omega Ruby & Alpha Sapphire
+X & Y
+Black 2 & White 2
+Black & White
+HeartGold & SoulSilver
+Platinum
+Diamond & Pearl
+Emerald
+FireRed & LeafGreen
+Ruby & Sapphire
+Crystal
+Gold & Silver
+Yellow
+Red & Blue
+Spin-off games
+Other
+Community/Other
+Pokémon Q&A
+Pokémon Rate My Team
+Chat Room
+Meta (Suggestion Box)
+Other pages
+Pokémon News
+Maps/Puzzles
+Pokémon name origins
+About/Contact us
+Search
+Pokémon evolution guide
+Jump to
+Gen 1
+Gen 2
+Gen 3
+Gen 4
+Gen 5
+Gen 6
+Gen 7
+Gen 8
+Gen 9
+Below is a list of Pokémon grouped into their evolutionary chains for easy browsing. The
+charts also specify the conditions by which they evolve. Note that for most conditional
+evolutions (such as Friendship), the Pokémon needs to level up once the condition is met in
+order to evolve. You can quickly search for a Pokémon name using the box below, or use the
+menu below right to view evolutions by certain conditions.
+Pokémon with cross-generation evolutions are shown in the earliest generation its Pokémon appear -
+for example Pichu is shown in Generation 1 because Pikachu/Raichu are Gen 1. Alolan Forms from
+Pokémon Sun & Moon are also listed in Generation 1, alongside their
+non-Alolan counterparts.
+About Pokémon evolution
+Evolution is a key part of the Pokémon games. Evolving Pokémon makes them stronger and often
+gives them a wider movepool. Several species of Pokémon are only obtainable through
+evolution.
+There are several methods of evolution, with more variations being added with each game. In
+Red/Blue/Yellow, a Pokémon might evolve by training it to a certain level , applying
+an elemental stone , or trading via cable link.
+In Gold/Silver/Crystal, additional methods were added, namely friendship level and
+trading with a held item. Later games added yet more based on things such as
+gender , time of day or after a certain move is learned.
+Evolution pages
+Evolution by level
+Evolution by elemental stones
+Evolution by trading
+Evolution by friendship
+Evolution by other condition
+Pokémon without evolutions
+Filter Pokémon:
+Generation 1
+#0001 Bulbasaur Grass · Poison
+(Level 16) #0002 Ivysaur Grass · Poison
+(Level 32) #0003 Venusaur Grass · Poison
+#0004 Charmander Fire
+(Level 16) #0005 Charmeleon Fire
+(Level 36) #0006 Charizard Fire · Flying
+#0007 Squirtle Water
+(Level 16) #0008 Wartortle Water
+(Level 36) #0009 Blastoise Water
+#0010 Caterpie Bug
+(Level 7) #0011 Metapod Bug
+(Level 10) #0012 Butterfree Bug · Flying
+#0013 Weedle Bug · Poison
+(Level 7) #0014 Kakuna Bug · Poison
+(Level 10) #0015 Beedrill Bug · Poison
+#0016 Pidgey Normal · Flying
+(Level 18) #0017 Pidgeotto Normal · Flying
+(Level 36) #0018 Pidgeot Normal · Flying
+#0019 Rattata Normal
+(Level 20) #0020 Raticate Normal
+#0019 Rattata Alolan Rattata Dark · Normal
+(Level 20, Nighttime) #0020 Raticate Alolan Raticate Dark · Normal
+#0021 Spearow Normal · Flying
+(Level 20) #0022 Fearow Normal · Flying
+#0023 Ekans Poison
+(Level 22) #0024 Arbok Poison
+#0172 Pichu Electric
+(high Friendship ) #0025 Pikachu Electric
+(use Thunder Stone , outside Alola) #0026 Raichu Electric
+(use Thunder Stone , in Alola) #0026 Raichu Alolan Raichu Electric · Psychic
+#0027 Sandshrew Ground
+(Level 22) #0028 Sandslash Ground
+#0027 Sandshrew Alolan Sandshrew Ice · Steel
+(use Ice Stone ) #0028 Sandslash Alolan Sandslash Ice · Steel
+#0029 Nidoran♀ Poison
+(Level 16) #0030 Nidorina Poison
+(use Moon Stone ) #0031 Nidoqueen Poison · Ground
+#0032 Nidoran♂ Poison
+(Level 16) #0033 Nidorino Poison
+(use Moon Stone ) #0034 Nidoking Poison · Ground
+#0173 Cleffa Fairy
+(high Friendship ) #0035 Clefairy Fairy
+(use Moon Stone ) #0036 Clefable Fairy
+#0037 Vulpix Fire
+(use Fire Stone ) #0038 Ninetales Fire
+#0037 Vulpix Alolan Vulpix Ice
+(use Ice Stone ) #0038 Ninetales Alolan Ninetales Ice · Fairy
+#0174 Igglybuff Normal · Fairy
+(high Friendship ) #0039 Jigglypuff Normal · Fairy
+(use Moon Stone ) #0040 Wigglytuff Normal · Fairy
+#0041 Zubat Poison · Flying
+(Level 22) #0042 Golbat Poison · Flying
+(high Friendship ) #0169 Crobat Poison · Flying
+#0043 Oddish Grass · Poison
+(Level 21) #0044 Gloom Grass · Poison
+(use Leaf Stone ) #0045 Vileplume Grass · Poison
+(use Sun Stone ) #0182 Bellossom Grass
+#0046 Paras Bug · Grass
+(Level 24) #0047 Parasect Bug · Grass
+#0048 Venonat Bug · Poison
+(Level 31) #0049 Venomoth Bug · Poison
+#0050 Diglett Ground
+(Level 26) #0051 Dugtrio Ground
+#0050 Diglett Alolan Diglett Ground · Steel
+(Level 26) #0051 Dugtrio Alolan Dugtrio Ground · Steel
+#0052 Meowth Normal
+(Level 28) #0053 Persian Normal
+#0052 Meowth Alolan Meowth Dark
+(high Friendship ) #0053 Persian Alolan Persian Dark
+#0052 Meowth Galarian Meowth Steel
+(Level 28) #0863 Perrserker Steel
+#0054 Psyduck Water
+(Level 33) #0055 Golduck Water
+#0056 Mankey Fighting
+(Level 28) #0057 Primeape Fighting
+(Use Rage Fist 20 times) #0979 Annihilape Fighting · Ghost
+#0058 Growlithe Fire
+(use Fire Stone ) #0059 Arcanine Fire
+#0058 Growlithe Hisuian Growlithe Fire · Rock
+(use Fire Stone ) #0059 Arcanine Hisuian Arcanine Fire · Rock
+#0060 Poliwag Water
+(Level 25) #0061 Poliwhirl Water
+(use Water Stone ) #0062 Poliwrath Water · Fighting
+(trade holding Kings Rock ) #0186 Politoed Water
+#0063 Abra Psychic
+(Level 16) #0064 Kadabra Psychic
+(Trade) #0065 Alakazam Psychic
+#0066 Machop Fighting
+(Level 28) #0067 Machoke Fighting
+(Trade) #0068 Machamp Fighting
+#0069 Bellsprout Grass · Poison
+(Level 21) #0070 Weepinbell Grass · Poison
+(use Leaf Stone ) #0071 Victreebel Grass · Poison
+#0072 Tentacool Water · Poison
+(Level 30) #0073 Tentacruel Water · Poison
+#0074 Geodude Rock · Ground
+(Level 25) #0075 Graveler Rock · Ground
+(Trade) #0076 Golem Rock · Ground
+#0074 Geodude Alolan Geodude Rock · Electric
+(Level 25) #0075 Graveler Alolan Graveler Rock · Electric
+(Trade) #0076 Golem Alolan Golem Rock · Electric
+#0077 Ponyta Fire
+(Level 40) #0078 Rapidash Fire
+#0077 Ponyta Galarian Ponyta Psychic
+(Level 40) #0078 Rapidash Galarian Rapidash Psychic · Fairy
+#0079 Slowpoke Water · Psychic
+(Level 37) #0080 Slowbro Water · Psychic
+(trade holding Kings Rock ) #0199 Slowking Water · Psychic
+#0079 Slowpoke Galarian Slowpoke Psychic
+(use Galarica Cuff ) #0080 Slowbro Galarian Slowbro Poison · Psychic
+(use Galarica Wreath ) #0199 Slowking Galarian Slowking Poison · Psychic
+#0081 Magnemite Electric · Steel
+(Level 30) #0082 Magneton Electric · Steel
+(use Thunder Stone , in Gen 8+, or level up in a Magnetic Field area) #0462 Magnezone Electric · Steel
+#0084 Doduo Normal · Flying
+(Level 31) #0085 Dodrio Normal · Flying
+#0086 Seel Water
+(Level 34) #0087 Dewgong Water · Ice
+#0088 Grimer Poison
+(Level 38) #0089 Muk Poison
+#0088 Grimer Alolan Grimer Poison · Dark
+(Level 38) #0089 Muk Alolan Muk Poison · Dark
+#0090 Shellder Water
+(use Water Stone ) #0091 Cloyster Water · Ice
+#0092 Gastly Ghost · Poison
+(Level 25) #0093 Haunter Ghost · Poison
+(Trade) #0094 Gengar Ghost · Poison
+#0095 Onix Rock · Ground
+(trade holding Metal Coat ) #0208 Steelix Steel · Ground
+#0096 Drowzee Psychic
+(Level 26) #0097 Hypno Psychic
+#0098 Krabby Water
+(Level 28) #0099 Kingler Water
+#0100 Voltorb Electric
+(Level 30) #0101 Electrode Electric
+#0100 Voltorb Hisuian Voltorb Electric · Grass
+(use Leaf Stone ) #0101 Electrode Hisuian Electrode Electric · Grass
+#0102 Exeggcute Grass · Psychic
+(use Leaf Stone , outside Alola) #0103 Exeggutor Grass · Psychic
+(use Leaf Stone , in Alola) #0103 Exeggutor Alolan Exeggutor Grass · Dragon
+#0104 Cubone Ground
+(Level 28, outside Alola) #0105 Marowak Ground
+(Level 28, Nighttime, in Alola) #0105 Marowak Alolan Marowak Fire · Ghost
+#0236 Tyrogue Fighting
+(Level 20, Attack > Defense ) #0106 Hitmonlee Fighting
+(Level 20, Attack < Defense ) #0107 Hitmonchan Fighting
+(Level 20, Attack = Defense ) #0237 Hitmontop Fighting
+#0108 Lickitung Normal
+(after Rollout learned) #0463 Lickilicky Normal
+#0109 Koffing Poison
+(Level 35, outside Galar) #0110 Weezing Poison
+(Level 35, in Galar) #0110 Weezing Galarian Weezing Poison · Fairy
+#0111 Rhyhorn Ground · Rock
+(Level 42) #0112 Rhydon Ground · Rock
+(trade holding Protector ) #0464 Rhyperior Ground · Rock
+#0440 Happiny Normal
+(hold Oval Stone , Daytime) #0113 Chansey Normal
+(high Friendship ) #0242 Blissey Normal
+#0114 Tangela Grass
+(after Ancient Power learned) #0465 Tangrowth Grass
+#0116 Horsea Water
+(Level 32) #0117 Seadra Water
+(trade holding Dragon Scale ) #0230 Kingdra Water · Dragon
+#0118 Goldeen Water
+(Level 33) #0119 Seaking Water
+#0120 Staryu Water
+(use Water Stone ) #0121 Starmie Water · Psychic
+#0439 Mime Jr. Psychic · Fairy
+(after Mimic learned, outside Galar) #0122 Mr. Mime Psychic · Fairy
+(after Mimic learned, in Galar) #0122 Mr. Mime Galarian Mr. Mime Ice · Psychic
+(Level 42) #0866 Mr. Rime Ice · Psychic
+#0123 Scyther Bug · Flying
+(trade holding Metal Coat ) #0212 Scizor Bug · Steel
+(use Black Augurite ) #0900 Kleavor Bug · Rock
+#0238 Smoochum Ice · Psychic
+(Level 30) #0124 Jynx Ice · Psychic
+#0239 Elekid Electric
+(Level 30) #0125 Electabuzz Electric
+(trade holding Electirizer ) #0466 Electivire Electric
+#0240 Magby Fire
+(Level 30) #0126 Magmar Fire
+(trade holding Magmarizer ) #0467 Magmortar Fire
+#0129 Magikarp Water
+(Level 20) #0130 Gyarados Water · Flying
+#0133 Eevee Normal
+(use Water Stone ) #0134 Vaporeon Water
+(use Thunder Stone ) #0135 Jolteon Electric
+(use Fire Stone ) #0136 Flareon Fire
+#0133 Eevee Normal
+(high Friendship , Daytime) #0196 Espeon Psychic
+(high Friendship , Nighttime) #0197 Umbreon Dark
+#0133 Eevee Normal
+(use Leaf Stone , or level up near a Moss-rock ) #0470 Leafeon Grass
+(use Ice Stone , or level up near an Ice-rock ) #0471 Glaceon Ice
+#0133 Eevee Normal
+(after Fairy-type move learned, and either ♥♥ Affection in Gen 6-7 or high friendship in Gen 8+) #0700 Sylveon Fairy
+#0137 Porygon Normal
+(trade holding Upgrade ) #0233 Porygon2 Normal
+(trade holding Dubious Disc ) #0474 Porygon-Z Normal
+#0138 Omanyte Rock · Water
+(Level 40) #0139 Omastar Rock · Water
+#0140 Kabuto Rock · Water
+(Level 40) #0141 Kabutops Rock · Water
+#0446 Munchlax Normal
+(high Friendship ) #0143 Snorlax Normal
+#0147 Dratini Dragon
+(Level 30) #0148 Dragonair Dragon
+(Level 55) #0149 Dragonite Dragon · Flying
+Generation 2
+#0152 Chikorita Grass
+(Level 16) #0153 Bayleef Grass
+(Level 32) #0154 Meganium Grass
+#0155 Cyndaquil Fire
+(Level 14, or Level 17 in Legends: Arceus) #0156 Quilava Fire
+(Level 36) #0157 Typhlosion Fire
+(Level 36, in Legends: Arceus) #0157 Typhlosion Hisuian Typhlosion Fire · Ghost
+#0158 Totodile Water
+(Level 18) #0159 Croconaw Water
+(Level 30) #0160 Feraligatr Water
+#0161 Sentret Normal
+(Level 15) #0162 Furret Normal
+#0163 Hoothoot Normal · Flying
+(Level 20) #0164 Noctowl Normal · Flying
+#0165 Ledyba Bug · Flying
+(Level 18) #0166 Ledian Bug · Flying
+#0167 Spinarak Bug · Poison
+(Level 22) #0168 Ariados Bug · Poison
+#0170 Chinchou Water · Electric
+(Level 27) #0171 Lanturn Water · Electric
+#0175 Togepi Fairy
+(high Friendship ) #0176 Togetic Fairy · Flying
+(use Shiny Stone ) #0468 Togekiss Fairy · Flying
+#0177 Natu Psychic · Flying
+(Level 25) #0178 Xatu Psychic · Flying
+#0179 Mareep Electric
+(Level 15) #0180 Flaaffy Electric
+(Level 30) #0181 Ampharos Electric
+#0298 Azurill Normal · Fairy
+(high Friendship ) #0183 Marill Water · Fairy
+(Level 18) #0184 Azumarill Water · Fairy
+#0438 Bonsly Rock
+(after Mimic learned) #0185 Sudowoodo Rock
+#0187 Hoppip Grass · Flying
+(Level 18) #0188 Skiploom Grass · Flying
+(Level 27) #0189 Jumpluff Grass · Flying
+#0190 Aipom Normal
+(after Double Hit learned) #0424 Ambipom Normal
+#0191 Sunkern Grass
+(use Sun Stone ) #0192 Sunflora Grass
+#0193 Yanma Bug · Flying
+(after Ancient Power learned) #0469 Yanmega Bug · Flying
+#0194 Wooper Water · Ground
+(Level 20) #0195 Quagsire Water · Ground
+#0194 Wooper Paldean Wooper Poison · Ground
+(Level 20) #0980 Clodsire Poison · Ground
+#0198 Murkrow Dark · Flying
+(use Dusk Stone ) #0430 Honchkrow Dark · Flying
+#0200 Misdreavus Ghost
+(use Dusk Stone ) #0429 Mismagius Ghost
+#0360 Wynaut Psychic
+(Level 15) #0202 Wobbuffet Psychic
+#0204 Pineco Bug
+(Level 31) #0205 Forretress Bug · Steel
+#0207 Gligar Ground · Flying
+(hold Razor Fang , Nighttime) #0472 Gliscor Ground · Flying
+#0209 Snubbull Fairy
+(Level 23) #0210 Granbull Fairy
+#0215 Sneasel Dark · Ice
+(hold Razor Claw , Nighttime) #0461 Weavile Dark · Ice
+#0215 Sneasel Hisuian Sneasel Fighting · Poison
+(use Razor Claw , Daytime) #0903 Sneasler Fighting · Poison
+#0216 Teddiursa Normal
+(Level 30) #0217 Ursaring Normal
+(use Peat Block , under a full moon, in Legends: Arceus) #0901 Ursaluna Ground · Normal
+#0218 Slugma Fire
+(Level 38) #0219 Magcargo Fire · Rock
+#0220 Swinub Ice · Ground
+(Level 33) #0221 Piloswine Ice · Ground
+(after Ancient Power learned) #0473 Mamoswine Ice · Ground
+#0223 Remoraid Water
+(Level 25) #0224 Octillery Water
+#0458 Mantyke Water · Flying
+(with Remoraid in party) #0226 Mantine Water · Flying
+#0228 Houndour Dark · Fire
+(Level 24) #0229 Houndoom Dark · Fire
+#0231 Phanpy Ground
+(Level 25) #0232 Donphan Ground
+#0246 Larvitar Rock · Ground
+(Level 30) #0247 Pupitar Rock · Ground
+(Level 55) #0248 Tyranitar Rock · Dark
+#0234 Stantler Normal
+(use Psyshield Bash 20 times in Agile Style) #0899 Wyrdeer Normal · Psychic
+#0203 Girafarig Normal · Psychic
+(after Twin Beam learned) #0981 Farigiraf Normal · Psychic
+#0206 Dunsparce Normal
+(after Hyper Drill learned) #0982 Dudunsparce Two-Segment Form Normal
+(after Hyper Drill learned, rare) #0982 Dudunsparce Three-Segment Form Normal
+Generation 3
+#0252 Treecko Grass
+(Level 16) #0253 Grovyle Grass
+(Level 36) #0254 Sceptile Grass
+#0255 Torchic Fire
+(Level 16) #0256 Combusken Fire · Fighting
+(Level 36) #0257 Blaziken Fire · Fighting
+#0258 Mudkip Water
+(Level 16) #0259 Marshtomp Water · Ground
+(Level 36) #0260 Swampert Water · Ground
+#0261 Poochyena Dark
+(Level 18) #0262 Mightyena Dark
+#0263 Zigzagoon Normal
+(Level 20) #0264 Linoone Normal
+#0263 Zigzagoon Galarian Zigzagoon Dark · Normal
+(Level 20) #0264 Linoone Galarian Linoone Dark · Normal
+(Level 35, Nighttime) #0862 Obstagoon Dark · Normal
+#0265 Wurmple Bug
+(Level 7, random based on personality) #0266 Silcoon Bug
+(Level 10) #0267 Beautifly Bug · Flying
+(Level 7, random based on personality) #0268 Cascoon Bug
+(Level 10) #0269 Dustox Bug · Poison
+#0270 Lotad Water · Grass
+(Level 14) #0271 Lombre Water · Grass
+(use Water Stone ) #0272 Ludicolo Water · Grass
+#0273 Seedot Grass
+(Level 14) #0274 Nuzleaf Grass · Dark
+(use Leaf Stone ) #0275 Shiftry Grass · Dark
+#0276 Taillow Normal · Flying
+(Level 22) #0277 Swellow Normal · Flying
+#0278 Wingull Water · Flying
+(Level 25) #0279 Pelipper Water · Flying
+#0280 Ralts Psychic · Fairy
+(Level 20) #0281 Kirlia Psychic · Fairy
+(Level 30) #0282 Gardevoir Psychic · Fairy
+(use Dawn Stone , Male) #0475 Gallade Psychic · Fighting
+#0283 Surskit Bug · Water
+(Level 22) #0284 Masquerain Bug · Flying
+#0285 Shroomish Grass
+(Level 23) #0286 Breloom Grass · Fighting
+#0287 Slakoth Normal
+(Level 18) #0288 Vigoroth Normal
+(Level 36) #0289 Slaking Normal
+#0290 Nincada Bug · Ground
+(Level 20) #0291 Ninjask Bug · Flying
+(Level 20, empty spot in party, Pokéball in bag) #0291 Ninjask Bug · Flying
++ #0292 Shedinja Bug · Ghost
+#0293 Whismur Normal
+(Level 20) #0294 Loudred Normal
+(Level 40) #0295 Exploud Normal
+#0296 Makuhita Fighting
+(Level 24) #0297 Hariyama Fighting
+#0299 Nosepass Rock
+(use Thunder Stone , in Gen 8+, or level up in a Magnetic Field area) #0476 Probopass Rock · Steel
+#0300 Skitty Normal
+(use Moon Stone ) #0301 Delcatty Normal
+#0304 Aron Steel · Rock
+(Level 32) #0305 Lairon Steel · Rock
+(Level 42) #0306 Aggron Steel · Rock
+#0307 Meditite Fighting · Psychic
+(Level 37) #0308 Medicham Fighting · Psychic
+#0309 Electrike Electric
+(Level 26) #0310 Manectric Electric
+#0406 Budew Grass · Poison
+(high Friendship , Daytime) #0315 Roselia Grass · Poison
+(use Shiny Stone ) #0407 Roserade Grass · Poison
+#0316 Gulpin Poison
+(Level 26) #0317 Swalot Poison
+#0318 Carvanha Water · Dark
+(Level 30) #0319 Sharpedo Water · Dark
+#0320 Wailmer Water
+(Level 40) #0321 Wailord Water
+#0322 Numel Fire · Ground
+(Level 33) #0323 Camerupt Fire · Ground
+#0325 Spoink Psychic
+(Level 32) #0326 Grumpig Psychic
+#0328 Trapinch Ground
+(Level 35) #0329 Vibrava Ground · Dragon
+(Level 45) #0330 Flygon Ground · Dragon
+#0331 Cacnea Grass
+(Level 32) #0332 Cacturne Grass · Dark
+#0333 Swablu Normal · Flying
+(Level 35) #0334 Altaria Dragon · Flying
+#0339 Barboach Water · Ground
+(Level 30) #0340 Whiscash Water · Ground
+#0341 Corphish Water
+(Level 30) #0342 Crawdaunt Water · Dark
+#0343 Baltoy Ground · Psychic
+(Level 36) #0344 Claydol Ground · Psychic
+#0345 Lileep Rock · Grass
+(Level 40) #0346 Cradily Rock · Grass
+#0347 Anorith Rock · Bug
+(Level 40) #0348 Armaldo Rock · Bug
+#0349 Feebas Water
+(trade holding Prism Scale , or level up with max Beauty) #0350 Milotic Water
+#0353 Shuppet Ghost
+(Level 37) #0354 Banette Ghost
+#0355 Duskull Ghost
+(Level 37) #0356 Dusclops Ghost
+(trade holding Reaper Cloth ) #0477 Dusknoir Ghost
+#0433 Chingling Psychic
+(high Friendship , Nighttime) #0358 Chimecho Psychic
+#0361 Snorunt Ice
+(Level 42) #0362 Glalie Ice
+(use Dawn Stone , Female) #0478 Froslass Ice · Ghost
+#0363 Spheal Ice · Water
+(Level 32) #0364 Sealeo Ice · Water
+(Level 44) #0365 Walrein Ice · Water
+#0366 Clamperl Water
+(trade holding Deep Sea Tooth ) #0367 Huntail Water
+(trade holding Deep Sea Scale ) #0368 Gorebyss Water
+#0371 Bagon Dragon
+(Level 30) #0372 Shelgon Dragon
+(Level 50) #0373 Salamence Dragon · Flying
+#0374 Beldum Steel · Psychic
+(Level 20) #0375 Metang Steel · Psychic
+(Level 45) #0376 Metagross Steel · Psychic
+Generation 4
+#0387 Turtwig Grass
+(Level 18) #0388 Grotle Grass
+(Level 32) #0389 Torterra Grass · Ground
+#0390 Chimchar Fire
+(Level 14) #0391 Monferno Fire · Fighting
+(Level 36) #0392 Infernape Fire · Fighting
+#0393 Piplup Water
+(Level 16) #0394 Prinplup Water
+(Level 36) #0395 Empoleon Water · Steel
+#0396 Starly Normal · Flying
+(Level 14) #0397 Staravia Normal · Flying
+(Level 34) #0398 Staraptor Normal · Flying
+#0399 Bidoof Normal
+(Level 15) #0400 Bibarel Normal · Water
+#0401 Kricketot Bug
+(Level 10) #0402 Kricketune Bug
+#0403 Shinx Electric
+(Level 15) #0404 Luxio Electric
+(Level 30) #0405 Luxray Electric
+#0408 Cranidos Rock
+(Level 30) #0409 Rampardos Rock
+#0410 Shieldon Rock · Steel
+(Level 30) #0411 Bastiodon Rock · Steel
+#0412 Burmy All forms Bug
+(Level 20, Male) #0414 Mothim Bug · Flying
+#0412 Burmy Plant Cloak Bug
+(Level 20, Female, in grass) #0413 Wormadam Plant Cloak Bug · Grass
+#0412 Burmy Sandy Cloak Bug
+(Level 20, Female, in caves) #0413 Wormadam Sandy Cloak Bug · Ground
+#0412 Burmy Trash Cloak Bug
+(Level 20, Female, in buildings) #0413 Wormadam Trash Cloak Bug · Steel
+#0415 Combee Bug · Flying
+(Level 21, Female) #0416 Vespiquen Bug · Flying
+#0418 Buizel Water
+(Level 26) #0419 Floatzel Water
+#0420 Cherubi Grass
+(Level 25) #0421 Cherrim Grass
+#0422 Shellos Water
+(Level 30) #0423 Gastrodon Water · Ground
+#0425 Drifloon Ghost · Flying
+(Level 28) #0426 Drifblim Ghost · Flying
+#0427 Buneary Normal
+(high Friendship ) #0428 Lopunny Normal
+#0431 Glameow Normal
+(Level 38) #0432 Purugly Normal
+#0434 Stunky Poison · Dark
+(Level 34) #0435 Skuntank Poison · Dark
+#0436 Bronzor Steel · Psychic
+(Level 33) #0437 Bronzong Steel · Psychic
+#0443 Gible Dragon · Ground
+(Level 24) #0444 Gabite Dragon · Ground
+(Level 48) #0445 Garchomp Dragon · Ground
+#0447 Riolu Fighting
+(high Friendship , Daytime) #0448 Lucario Fighting · Steel
+#0449 Hippopotas Ground
+(Level 34) #0450 Hippowdon Ground
+#0451 Skorupi Poison · Bug
+(Level 40) #0452 Drapion Poison · Dark
+#0453 Croagunk Poison · Fighting
+(Level 37) #0454 Toxicroak Poison · Fighting
+#0456 Finneon Water
+(Level 31) #0457 Lumineon Water
+#0459 Snover Grass · Ice
+(Level 40) #0460 Abomasnow Grass · Ice
+Generation 5
+#0495 Snivy Grass
+(Level 17) #0496 Servine Grass
+(Level 36) #0497 Serperior Grass
+#0498 Tepig Fire
+(Level 17) #0499 Pignite Fire · Fighting
+(Level 36) #0500 Emboar Fire · Fighting
+#0501 Oshawott Water
+(Level 17) #0502 Dewott Water
+(Level 36) #0503 Samurott Water
+(Level 36, in Legends: Arceus) #0503 Samurott Hisuian Samurott Water · Dark
+#0504 Patrat Normal
+(Level 20) #0505 Watchog Normal
+#0506 Lillipup Normal
+(Level 16) #0507 Herdier Normal
+(Level 32) #0508 Stoutland Normal
+#0509 Purrloin Dark
+(Level 20) #0510 Liepard Dark
+#0511 Pansage Grass
+(use Leaf Stone ) #0512 Simisage Grass
+#0513 Pansear Fire
+(use Fire Stone ) #0514 Simisear Fire
+#0515 Panpour Water
+(use Water Stone ) #0516 Simipour Water
+#0517 Munna Psychic
+(use Moon Stone ) #0518 Musharna Psychic
+#0519 Pidove Normal · Flying
+(Level 21) #0520 Tranquill Normal · Flying
+(Level 32) #0521 Unfezant Normal · Flying
+#0522 Blitzle Electric
+(Level 27) #0523 Zebstrika Electric
+#0524 Roggenrola Rock
+(Level 25) #0525 Boldore Rock
+(Trade) #0526 Gigalith Rock
+#0527 Woobat Psychic · Flying
+(high Friendship ) #0528 Swoobat Psychic · Flying
+#0529 Drilbur Ground
+(Level 31) #0530 Excadrill Ground · Steel
+#0532 Timburr Fighting
+(Level 25) #0533 Gurdurr Fighting
+(Trade) #0534 Conkeldurr Fighting
+#0535 Tympole Water
+(Level 25) #0536 Palpitoad Water · Ground
+(Level 36) #0537 Seismitoad Water · Ground
+#0540 Sewaddle Bug · Grass
+(Level 20) #0541 Swadloon Bug · Grass
+(high Friendship ) #0542 Leavanny Bug · Grass
+#0543 Venipede Bug · Poison
+(Level 22) #0544 Whirlipede Bug · Poison
+(Level 30) #0545 Scolipede Bug · Poison
+#0546 Cottonee Grass · Fairy
+(use Sun Stone ) #0547 Whimsicott Grass · Fairy
+#0548 Petilil Grass
+(use Sun Stone ) #0549 Lilligant Grass
+(use Sun Stone , in Legends: Arceus) #0549 Lilligant Hisuian Lilligant Grass · Fighting
+#0551 Sandile Ground · Dark
+(Level 29) #0552 Krokorok Ground · Dark
+(Level 40) #0553 Krookodile Ground · Dark
+#0554 Darumaka Fire
+(Level 35) #0555 Darmanitan Standard Mode Fire
+#0554 Darumaka Galarian Darumaka Ice
+(use Ice Stone ) #0555 Darmanitan Galarian Standard Mode Ice
+#0557 Dwebble Bug · Rock
+(Level 34) #0558 Crustle Bug · Rock
+#0559 Scraggy Dark · Fighting
+(Level 39) #0560 Scrafty Dark · Fighting
+#0562 Yamask Ghost
+(Level 34) #0563 Cofagrigus Ghost
+#0562 Yamask Galarian Yamask Ground · Ghost
+(near Dusty Bowl) #0867 Runerigus Ground · Ghost
+#0564 Tirtouga Water · Rock
+(Level 37) #0565 Carracosta Water · Rock
+#0566 Archen Rock · Flying
+(Level 37) #0567 Archeops Rock · Flying
+#0568 Trubbish Poison
+(Level 36) #0569 Garbodor Poison
+#0570 Zorua Dark
+(Level 30) #0571 Zoroark Dark
+#0570 Zorua Hisuian Zorua Normal · Ghost
+(Level 30, in Legends: Arceus) #0571 Zoroark Hisuian Zoroark Normal · Ghost
+#0572 Minccino Normal
+(use Shiny Stone ) #0573 Cinccino Normal
+#0574 Gothita Psychic
+(Level 32) #0575 Gothorita Psychic
+(Level 41) #0576 Gothitelle Psychic
+#0577 Solosis Psychic
+(Level 32) #0578 Duosion Psychic
+(Level 41) #0579 Reuniclus Psychic
+#0580 Ducklett Water · Flying
+(Level 35) #0581 Swanna Water · Flying
+#0582 Vanillite Ice
+(Level 35) #0583 Vanillish Ice
+(Level 47) #0584 Vanilluxe Ice
+#0585 Deerling Normal · Grass
+(Level 34) #0586 Sawsbuck Normal · Grass
+#0588 Karrablast Bug
+(Trade with Shelmet ) #0589 Escavalier Bug · Steel
+#0590 Foongus Grass · Poison
+(Level 39) #0591 Amoonguss Grass · Poison
+#0592 Frillish Water · Ghost
+(Level 40) #0593 Jellicent Water · Ghost
+#0595 Joltik Bug · Electric
+(Level 36) #0596 Galvantula Bug · Electric
+#0597 Ferroseed Grass · Steel
+(Level 40) #0598 Ferrothorn Grass · Steel
+#0599 Klink Steel
+(Level 38) #0600 Klang Steel
+(Level 49) #0601 Klinklang Steel
+#0602 Tynamo Electric
+(Level 39) #0603 Eelektrik Electric
+(use Thunder Stone ) #0604 Eelektross Electric
+#0605 Elgyem Psychic
+(Level 42) #0606 Beheeyem Psychic
+#0607 Litwick Ghost · Fire
+(Level 41) #0608 Lampent Ghost · Fire
+(use Dusk Stone ) #0609 Chandelure Ghost · Fire
+#0610 Axew Dragon
+(Level 38) #0611 Fraxure Dragon
+(Level 48) #0612 Haxorus Dragon
+#0613 Cubchoo Ice
+(Level 37) #0614 Beartic Ice
+#0616 Shelmet Bug
+(Trade with Karrablast ) #0617 Accelgor Bug
+#0619 Mienfoo Fighting
+(Level 50) #0620 Mienshao Fighting
+#0622 Golett Ground · Ghost
+(Level 43) #0623 Golurk Ground · Ghost
+#0624 Pawniard Dark · Steel
+(Level 52) #0625 Bisharp Dark · Steel
+(defeat 3 Bisharp that are holding Leader's Crest) #0983 Kingambit Dark · Steel
+#0627 Rufflet Normal · Flying
+(Level 54) #0628 Braviary Normal · Flying
+(Level 54, in Legends: Arceus) #0628 Braviary Hisuian Braviary Psychic · Flying
+#0629 Vullaby Dark · Flying
+(Level 54) #0630 Mandibuzz Dark · Flying
+#0633 Deino Dark · Dragon
+(Level 50) #0634 Zweilous Dark · Dragon
+(Level 64) #0635 Hydreigon Dark · Dragon
+#0636 Larvesta Bug · Fire
+(Level 59) #0637 Volcarona Bug · Fire
+Generation 6
+#0650 Chespin Grass
+(Level 16) #0651 Quilladin Grass
+(Level 36) #0652 Chesnaught Grass · Fighting
+#0653 Fennekin Fire
+(Level 16) #0654 Braixen Fire
+(Level 36) #0655 Delphox Fire · Psychic
+#0656 Froakie Water
+(Level 16) #0657 Frogadier Water
+(Level 36) #0658 Greninja Water · Dark
+#0659 Bunnelby Normal
+(Level 20) #0660 Diggersby Normal · Ground
+#0661 Fletchling Normal · Flying
+(Level 17) #0662 Fletchinder Fire · Flying
+(Level 35) #0663 Talonflame Fire · Flying
+#0664 Scatterbug Bug
+(Level 9) #0665 Spewpa Bug
+(Level 12) #0666 Vivillon Bug · Flying
+#0667 Litleo Fire · Normal
+(Level 35) #0668 Pyroar Fire · Normal
+#0669 Flabébé Fairy
+(Level 19) #0670 Floette Fairy
+(use Shiny Stone ) #0671 Florges Fairy
+#0672 Skiddo Grass
+(Level 32) #0673 Gogoat Grass
+#0674 Pancham Fighting
+(Level 32, Dark type Pokémon in party) #0675 Pangoro Fighting · Dark
+#0677 Espurr Psychic
+(Level 25, Male) #0678 Meowstic Male Psychic
+(Level 25, Female) #0678 Meowstic Female Psychic
+#0679 Honedge Steel · Ghost
+(Level 35) #0680 Doublade Steel · Ghost
+(use Dusk Stone ) #0681 Aegislash Steel · Ghost
+#0682 Spritzee Fairy
+(trade holding Sachet ) #0683 Aromatisse Fairy
+#0684 Swirlix Fairy
+(trade holding Whipped Dream ) #0685 Slurpuff Fairy
+#0686 Inkay Dark · Psychic
+(Level 30, holding console upside down) #0687 Malamar Dark · Psychic
+#0688 Binacle Rock · Water
+(Level 39) #0689 Barbaracle Rock · Water
+#0690 Skrelp Poison · Water
+(Level 48) #0691 Dragalge Poison · Dragon
+#0692 Clauncher Water
+(Level 37) #0693 Clawitzer Water
+#0694 Helioptile Electric · Normal
+(use Sun Stone ) #0695 Heliolisk Electric · Normal
+#0696 Tyrunt Rock · Dragon
+(Level 39, Daytime) #0697 Tyrantrum Rock · Dragon
+#0698 Amaura Rock · Ice
+(Level 39, Nighttime) #0699 Aurorus Rock · Ice
+#0704 Goomy Dragon
+(Level 40) #0705 Sliggoo Dragon
+(Level 50, during rain) #0706 Goodra Dragon
+(Level 40, in Legends: Arceus) #0705 Sliggoo Hisuian Sliggoo Steel · Dragon
+(Level 50, during rain, in Legends: Arceus) #0706 Goodra Hisuian Goodra Steel · Dragon
+#0708 Phantump Ghost · Grass
+(Trade) #0709 Trevenant Ghost · Grass
+#0710 Pumpkaboo Ghost · Grass
+(Trade) #0711 Gourgeist Ghost · Grass
+#0712 Bergmite Ice
+(Level 37) #0713 Avalugg Ice
+(Level 37, in Legends: Arceus) #0713 Avalugg Hisuian Avalugg Ice · Rock
+#0714 Noibat Flying · Dragon
+(Level 48) #0715 Noivern Flying · Dragon
+Generation 7
+#0722 Rowlet Grass · Flying
+(Level 17) #0723 Dartrix Grass · Flying
+(Level 34) #0724 Decidueye Grass · Ghost
+(Level 36, in Legends: Arceus) #0724 Decidueye Hisuian Decidueye Grass · Fighting
+#0725 Litten Fire
+(Level 17) #0726 Torracat Fire
+(Level 34) #0727 Incineroar Fire · Dark
+#0728 Popplio Water
+(Level 17) #0729 Brionne Water
+(Level 34) #0730 Primarina Water · Fairy
+#0731 Pikipek Normal · Flying
+(Level 14) #0732 Trumbeak Normal · Flying
+(Level 28) #0733 Toucannon Normal · Flying
+#0734 Yungoos Normal
+(Level 20, Daytime) #0735 Gumshoos Normal
+#0736 Grubbin Bug
+(Level 20) #0737 Charjabug Bug · Electric
+(use Thunder Stone , in Gen 8+, or level up in a Magnetic Field area) #0738 Vikavolt Bug · Electric
+#0739 Crabrawler Fighting
+(use Ice Stone , or at Mount Lanakila in Alola) #0740 Crabominable Fighting · Ice
+#0742 Cutiefly Bug · Fairy
+(Level 25) #0743 Ribombee Bug · Fairy
+#0744 Rockruff Rock
+(Level 25, Daytime) #0745 Lycanroc Midday Form Rock
+(Level 25, Nighttime) #0745 Lycanroc Midnight Form Rock
+#0744 Rockruff Own Tempo Rockruff Rock
+(Level 25, Dusk) #0745 Lycanroc Dusk Form Rock
+#0747 Mareanie Poison · Water
+(Level 38) #0748 Toxapex Poison · Water
+#0749 Mudbray Ground
+(Level 30) #0750 Mudsdale Ground
+#0751 Dewpider Water · Bug
+(Level 22) #0752 Araquanid Water · Bug
+#0753 Fomantis Grass
+(Level 34, Daytime) #0754 Lurantis Grass
+#0755 Morelull Grass · Fairy
+(Level 24) #0756 Shiinotic Grass · Fairy
+#0757 Salandit Poison · Fire
+(Level 33, Female) #0758 Salazzle Poison · Fire
+#0759 Stufful Normal · Fighting
+(Level 27) #0760 Bewear Normal · Fighting
+#0761 Bounsweet Grass
+(Level 18) #0762 Steenee Grass
+(after Stomp learned) #0763 Tsareena Grass
+#0767 Wimpod Bug · Water
+(Level 30) #0768 Golisopod Bug · Water
+#0769 Sandygast Ghost · Ground
+(Level 42) #0770 Palossand Ghost · Ground
+#0772 Type: Null Normal
+(high Friendship ) #0773 Silvally Normal
+#0782 Jangmo-o Dragon
+(Level 35) #0783 Hakamo-o Dragon · Fighting
+(Level 45) #0784 Kommo-o Dragon · Fighting
+#0789 Cosmog Psychic
+(Level 43) #0790 Cosmoem Psychic
+(Level 53, in Pokémon Sun or Ultra Sun) #0791 Solgaleo Psychic · Steel
+(Level 53, in Pokémon Moon or Ultra Moon) #0792 Lunala Psychic · Ghost
+#0803 Poipole Poison
+(after Dragon Pulse learned) #0804 Naganadel Poison · Dragon
+#0808 Meltan Steel
+(Pokémon GO only, 400 Meltan Candies) #0809 Melmetal Steel
+Generation 8
+#0810 Grookey Grass
+(Level 16) #0811 Thwackey Grass
+(Level 35) #0812 Rillaboom Grass
+#0813 Scorbunny Fire
+(Level 16) #0814 Raboot Fire
+(Level 35) #0815 Cinderace Fire
+#0816 Sobble Water
+(Level 16) #0817 Drizzile Water
+(Level 35) #0818 Inteleon Water
+#0824 Blipbug Bug
+(Level 10) #0825 Dottler Bug · Psychic
+(Level 30) #0826 Orbeetle Bug · Psychic
+#0821 Rookidee Flying
+(Level 18) #0822 Corvisquire Flying
+(Level 38) #0823 Corviknight Flying · Steel
+#0819 Skwovet Normal
+(Level 24) #0820 Greedent Normal
+#0827 Nickit Dark
+(Level 18) #0828 Thievul Dark
+#0831 Wooloo Normal
+(Level 24) #0832 Dubwool Normal
+#0833 Chewtle Water
+(Level 22) #0834 Drednaw Water · Rock
+#0835 Yamper Electric
+(Level 25) #0836 Boltund Electric
+#0829 Gossifleur Grass
+(Level 20) #0830 Eldegoss Grass
+#0850 Sizzlipede Fire · Bug
+(Level 28) #0851 Centiskorch Fire · Bug
+#0837 Rolycoly Rock
+(Level 18) #0838 Carkol Rock · Fire
+(Level 34) #0839 Coalossal Rock · Fire
+#0846 Arrokuda Water
+(Level 26) #0847 Barraskewda Water
+#0868 Milcery Fairy
+(spin around holding Sweet) #0869 Alcremie Fairy
+#0840 Applin Grass · Dragon
+(use Tart Apple ) #0841 Flapple Grass · Dragon
+(use Sweet Apple ) #0842 Appletun Grass · Dragon
+(use Syrupy Apple ) #1011 Dipplin Grass · Dragon
+(after Dragon Cheer learned) #1019 Hydrapple Grass · Dragon
+#0083 Farfetch'd Galarian Farfetch'd Fighting
+(achieve 3 critical hits in one battle) #0865 Sirfetch'd Fighting
+#0222 Corsola Galarian Corsola Ghost
+(Level 38) #0864 Cursola Ghost
+#0859 Impidimp Dark · Fairy
+(Level 32) #0860 Morgrem Dark · Fairy
+(Level 42) #0861 Grimmsnarl Dark · Fairy
+#0856 Hatenna Psychic
+(Level 32) #0857 Hattrem Psychic
+(Level 42) #0858 Hatterene Psychic · Fairy
+#0878 Cufant Steel
+(Level 34) #0879 Copperajah Steel
+#0848 Toxel Electric · Poison
+(Level 30, with an amped Nature) #0849 Toxtricity Amped Form Electric · Poison
+(Level 30, with a low key Nature) #0849 Toxtricity Low Key Form Electric · Poison
+#0843 Silicobra Ground
+(Level 36) #0844 Sandaconda Ground
+#0854 Sinistea Ghost
+(use Cracked Pot ) #0855 Polteageist Ghost
+#0872 Snom Ice · Bug
+(high Friendship , Nighttime) #0873 Frosmoth Ice · Bug
+#0852 Clobbopus Fighting
+(after Taunt learned) #0853 Grapploct Fighting
+#0885 Dreepy Dragon · Ghost
+(Level 50) #0886 Drakloak Dragon · Ghost
+(Level 60) #0887 Dragapult Dragon · Ghost
+#0891 Kubfu Fighting
+(use Scroll Of Darkness , or in Tower of Darkness in Galar) #0892 Urshifu Single Strike Style Fighting · Dark
+(use Scroll Of Waters , or in Tower of Water in Galar) #0892 Urshifu Rapid Strike Style Fighting · Water
+#0550 Basculin White-Striped Form Water
+(Male, receive 294 recoil damage in battle) #0902 Basculegion Male Water · Ghost
+(Female, receive 294 recoil damage in battle) #0902 Basculegion Female Water · Ghost
+#0211 Qwilfish Hisuian Qwilfish Dark · Poison
+(use Barb Barrage 20 times in Strong Style) #0904 Overqwil Dark · Poison
+#0884 Duraludon Steel · Dragon
+(use Metal Alloy ) #1018 Archaludon Steel · Dragon
+Generation 9
+#0906 Sprigatito Grass
+(Level 16) #0907 Floragato Grass
+(Level 36) #0908 Meowscarada Grass · Dark
+#0909 Fuecoco Fire
+(Level 16) #0910 Crocalor Fire
+(Level 36) #0911 Skeledirge Fire · Ghost
+#0912 Quaxly Water
+(Level 16) #0913 Quaxwell Water
+(Level 36) #0914 Quaquaval Water · Fighting
+#0915 Lechonk Normal
+(Level 18, Male) #0916 Oinkologne Male Normal
+(Level 18, Female) #0916 Oinkologne Female Normal
+#0917 Tarountula Bug
+(Level 15) #0918 Spidops Bug
+#0919 Nymble Bug
+(Level 24) #0920 Lokix Bug · Dark
+#0953 Rellor Bug
+(walk 1,000 steps in Let's Go mode) #0954 Rabsca Bug · Psychic
+#0971 Greavard Ghost
+(Level 30, Nighttime) #0972 Houndstone Ghost
+#0955 Flittle Psychic
+(Level 35) #0956 Espathra Psychic
+#0960 Wiglett Water
+(Level 26) #0961 Wugtrio Water
+#0963 Finizen Water
+(Level 38, while in multiplayer) #0964 Palafin Zero Form Water
+#0928 Smoliv Grass · Normal
+(Level 25) #0929 Dolliv Grass · Normal
+(Level 35) #0930 Arboliva Grass · Normal
+#0951 Capsakid Grass
+(use Fire Stone ) #0952 Scovillain Grass · Fire
+#0938 Tadbulb Electric
+(use Thunder Stone ) #0939 Bellibolt Electric
+#0965 Varoom Steel · Poison
+(Level 40) #0966 Revavroom Steel · Poison
+#0924 Tandemaus Normal
+(Level 25, rare) #0925 Maushold Family of Three Normal
+(Level 25) #0925 Maushold Family of Four Normal
+#0974 Cetoddle Ice
+(use Ice Stone ) #0975 Cetitan Ice
+#0996 Frigibax Dragon · Ice
+(Level 35) #0997 Arctibax Dragon · Ice
+(Level 54) #0998 Baxcalibur Dragon · Ice
+#0921 Pawmi Electric
+(Level 18) #0922 Pawmo Electric · Fighting
+(walk 1,000 steps in Let's Go mode) #0923 Pawmot Electric · Fighting
+#0940 Wattrel Electric · Flying
+(Level 25) #0941 Kilowattrel Electric · Flying
+#0932 Nacli Rock
+(Level 24) #0933 Naclstack Rock
+(Level 38) #0934 Garganacl Rock
+#0969 Glimmet Rock · Poison
+(Level 35) #0970 Glimmora Rock · Poison
+#0944 Shroodle Poison · Normal
+(Level 28) #0945 Grafaiai Poison · Normal
+#0926 Fidough Fairy
+(Level 26) #0927 Dachsbun Fairy
+#0942 Maschiff Dark
+(Level 30) #0943 Mabosstiff Dark
+#0946 Bramblin Grass · Ghost
+(walk 1,000 steps in Let's Go mode) #0947 Brambleghast Grass · Ghost
+#0999 Gimmighoul Chest Form Ghost
+(collect 999 Coins from Roaming Form) #1000 Gholdengo Steel · Ghost
+#0957 Tinkatink Fairy · Steel
+(Level 24) #0958 Tinkatuff Fairy · Steel
+(Level 38) #0959 Tinkaton Fairy · Steel
+#0935 Charcadet Fire
+(use Auspicious Armor ) #0936 Armarouge Fire · Psychic
+(use Malicious Armor ) #0937 Ceruledge Fire · Ghost
+#0948 Toedscool Ground · Grass
+(Level 30) #0949 Toedscruel Ground · Grass
+#1012 Poltchageist Grass · Ghost
+(use Unremarkable Teacup ) #1013 Sinistcha Grass · Ghost
+That's all the Pokémon evolution charts! See also:
+Evolution by level
+Evolution by elemental stones
+Evolution by trading
+Evolution by friendship
+Evolution by other condition
+Pokémon that do not evolve
+Privacy Policy
+All content & design © Pokémon Database, 2008-2026.
+Pokémon images & names © 1995-2026 Nintendo/Game Freak.

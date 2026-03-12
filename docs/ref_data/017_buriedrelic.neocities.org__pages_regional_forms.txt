@@ -1,0 +1,581 @@
+URL: https://buriedrelic.neocities.org/pages/regional_forms
+STATUS: ok
+
+Regional Forms and where to find them - Buried Relic
+">
+Tools
+Move PP Tracker
+Mirage Island Activator
+Altering Cave Target Modifier
+Emerald Battle Frontier Sets
+Battle Pyramid Layout
+PokÃ©block Calculator
+Unown shiny odds calculator
+Gen 3 PC Box Planner
+Wurmple evolution calculator
+Dangerous moves checker
+Guides
+Old-Gen Shiny hunter manual:
+-Main page
+-Generations 1 and 2
+-Generation 3
+-Generation 4
+-Generation 5
+Hunting Shiny Shadow PokÃ©mon
+Shiny hunting in Gale of Darkness
+Shadow PokÃ©mon Transferability
+Utility PokÃ©mon
+National Park field research
+Regional Forms
+Community
+Frontier Frenzy event
+Resources
+Gen 3 style Gamecube shiny sprites
+Pinball shiny sprites
+PokÃ©mon Channel font
+About
+Contact
+Site updates
+Tools
+Move PP Tracker New!
+Mirage Island Activator
+Altering Cave Target Modifier
+Emerald Battle Frontier Sets
+Battle Pyramid Layout
+PokÃ©block Calculator
+Unown shiny odds calculator
+Gen 3 PC Box Planner
+Wurmple evolution calculator
+Dangerous moves checker
+Guides
+Old-Gen Shiny hunter manual:
+-Main page
+-Generations 1 and 2
+-Generation 3
+-Generation 4
+-Generation 5
+Hunting Shiny Shadow PokÃ©mon
+Shiny hunting in Gale of Darkness
+Shadow PokÃ©mon Transferability
+Utility PokÃ©mon
+National Park field research
+Regional Forms
+Community
+Frontier Frenzy event New!
+Resources
+Gen 3 style Gamecube shiny sprites
+Pinball shiny sprites
+PokÃ©mon Channel font
+About
+Contact
+Site updates
+ð¥ Buried Relic is hosting its first community event: Frontier Frenzy !
+-->
+REGIONAL FORMS AND WHERE TO FIND THEM
+-Regional Forms guide-
+Regional Forms, originally introduced in Sun and Moon in the Alola region, have been some of the most anticipated reveals every time a new
+game comes out. Exeggutor, Vulpix, Ninetales, Sandshrew, and Sandslash were the first ever revealed Regional Forms, and so started a new
+trend that many players have been looking forward to.
+The concept of Regional Forms gets a bit confusing when you try to find out how to obtain specific forms or breed them. The limited number of
+PokÃ©mon in the newest releases is also something to take into consideration, as someone may not always know who is available.
+In this guide, Regional Forms will be analysed and categorised for each game, focusing on their availability and any special circumstances.
+-Table of contents-
+Regional Forms categories.
+Full regional line.
+Evolution-exclusive regional.
+Regional form with new evolution.
+Regional Forms availability.
+Regional lines available in each game.
+Where to find them.
+Regional lines breeding.
+Special cases.
+White Stripe Basculin.
+Convergent evolution.
+1. Regional Forms categories.
+1.1. Full regional line.
+Alola: Rattata, Raticate, Sandshrew, Sandslash, Vulpix, Ninetales, Diglett, Dugtrio, Meowth, Persian, Geodude, Graveler, Golem, Grimer, Muk.
+Galar: Ponyta, Rapidash, Slowpoke, Slowbro, Slowking, Articuno, Zapdos, Moltres, Darumaka, Darmanitan, Stunfisk.
+Hisui: Growlithe, Arcanine, Voltorb, Electrode, Zorua, Zoroark.
+Paldea: Tauros.
+Evolution lines are fully comprised of regional forms. These PokÃ©mon will always evolve into their next stageâs regional form, no matter in which
+region they are in, except (obviously) those with no evolution, like Stunfisk.
+Outside of their region of origin, they will lay eggs that will hatch into the regionâs current form (for example, an Alolan Meowthâs eggs will
+normally hatch into regular Meowths in Paldea). On the other hand, if they hold an everstone, their offspring will always have the same form as
+the parent (an Alolan Meowth holding an everstone will result in more Alolan Meowths, no matter the region).
+Articuno, Zapdos, and Moltres canât be replicated, as they are part of the "No Eggs Discovered" egg group.
+1.2. Evolution-exclusive regional.
+Alola: Raichu, Exeggutor, Marowak.
+Galar: Weezing.
+Hisui: Decidueye, Typhlosion, Samurott, Lilligant, Braviary, Sliggoo, Avalugg.
+Paldea: ---
+Evolution lines where one or more members have a regional form but not the others. These PokÃ©mon will only evolve into these forms if they are
+in their region of origin (for example, a Pikachu will only evolve into Alolan Raichu in Alola). They cannot be replicated in other regions.
+1.3. Regional form with new evolution.
+Alola: ---
+Galar: Meowth (Perrserker), Farfetchâd (Sirfetchâd), Mr. Mime (Mr. Rime), Corsola (Cursola), Linoone (Obstagoon), Yamask (Runerigus).
+Hisui: Qwilfish (Overqwil), Sneasel (Sneasler).
+Paldea: Wooper (Clodsire).
+Similarly to the first type, all of its members have regional forms, with the addition of a completely new evolution. These PokÃ©mon will always
+evolve into their new stage, no matter which region they are in (with some exceptions that will be mentioned later).
+Outside of their region of origin, they will lay eggs that will hatch into the regionâs current form (for example, a Galarian Meowthâs eggs will
+normally hatch into regular Meowths in Paldea). On the other hand, if they hold an everstone, their offspring will always have the same form as
+the parent (a Galarian Meowth holding an everstone will result in more Galarian Meowths, no matter the region).
+2. Regional Forms availability.
+2.1. Regional lines available in each game.
+The PokÃ©mon that are only obtainable through HOME are highlighted .
+Sun/Moon & Ultra Sun/Ultra Moon:
+Alolan: Rattata, Raticate, Raichu, Sandshrew, Sandslash, Vulpix, Ninetales, Diglett, Dugtrio, Meowth, Persian, Geodude, Graveler,
+Golem, Grimer, Muk, Exeggutor, and Marowak.
+Sword/Shield:
+Alolan: Raichu, Sandshrew, Sandslash, Vulpix, Ninetales, Diglett, Dugtrio, Meowth, Persian, Exeggutor, and Marowak.
+Galarian: Meowth, Perrserker, Ponyta, Rapidash, Slowpoke, Slowbro, Slowking, Farfetchâd, Sirfetchâd, Weezing, Mr. Mime, Mr. Rime,
+Articuno, Zapdos, Moltres, Corsola, Cursola, Zigzagoon, Linoone, Obstagoon, Darumaka, Darmanitan, Yamask, Runerigus, and Stunfisk.
+Legends: Arceus:
+Alolan: Vulpix.
+Hisuian: Growlithe, Arcanine, Voltorb, Electrode, Typhlosion, Qwilfish, Overqwil, Sneasel, Sneasler, Samurott, Lilligant, Zorua,
+Zoroark, Braviary, Sliggoo, Goodra, Avalugg, and Decidueye.
+Scarlet/Violet:
+Alolan: Raichu, Sandshrew, Sandslash, Vulpix, Ninetales, Diglett, Dugtrio,
+Meowth, Persian, Geodude, Graveler, Golem, Grimer,
+and Muk.
+Galarian: Meowth, Perrserker, Slowpoke, Slowbro, Slowking,
+Weezing, Articuno, Zapdos, and Moltres.
+Hisuian: Growlithe, Arcanine, Voltorb, Electrode, Typhlosion, Qwilfish, Overqwil,
+Sneasel, Sneasler, Samurott, Lilligant, Zorua,
+Zoroark, Braviary, Sliggoo, Goodra, Avalugg, and Decidueye.
+Paldean: Tauros Combat Breed, Tauros Blaze Breed, Tauros Aqua Breed, Wooper, and Clodsire.
+2.2. Where to find them.
+The following tables show where to find each Regional Form in every game. They are divided by generation. If a PokÃ©mon has more than one form,
+they appear in the same cell with their respective names. An empty space means that the Regional Form is unobtainable in that game.
+GENERATION 7
+PokÃ©mon
+Sun & Moon
+UltraSun & UltraMoon
+Ratatta
+Routes 1, 2, 3, 4, 6, 8, Hau'oli City, Kala'e Bay (night), and Verdant Cavern (Moon)
+Routes 1, 2, 4, 6, 8, Kala'e Bay (night), and Verdant Cavern (UltraMoon)
+Raticate
+Routes 10, 11, 15, 16, 17, Akala Outskirts, Ancient Poni Path, Malie City, Poni Gauntlet, Poni Grove, Poni Plains, Poni Wilds, and Tapu Village (night)
+Routes 8 (night, SOS), 10, 15, 16, 17, Akala Outskirts, Tapu Village, Mount Lanakila, and Poni Plains (night)
+Raichu
+Evolution
+Evolution
+Sandshrew
+Mount Lanakila (Moon) and Tapu Village (Moon)
+Mount Lanakila (Moon) and Tapu Village (Moon)
+Sandslash
+Evolution
+Evolution
+Vulpix
+Mount Lanakila (Sun) and Tapu Village (Sun)
+Mount Lanakila (Sun) and Tapu Village (Sun)
+Ninetales
+Evolution
+Evolution
+Diglett
+Routes 5 and 7, Diglett's Tunnel, Lush Jungle, Seaward Cave, Ten Carat Hill, and Verdant Cavern
+Routes 5 and 7, Diglett's Tunnel, and Verdant Cavern
+Dugtrio
+Haina Desert, Poni Coast, Resolution Cave, and Vast Poni Canyon
+Haina Desert, Poni Coast, Resolution Cave, Vast Poni Canyon, and Lush Jungle
+Meowth
+Route 2, Trainers' School, Hau'oli City, and Malie Garden
+Route 2, Trainers' School, Hau'oli City, and Malie Garden
+Persian
+Evolution
+Malie Garden (SOS)
+Geodude
+Route 12 and Blush Mountain
+Breeding
+Graveler
+Route 17 and trade in Tapu Village (evolves during trade)
+Routes 12 and 17, and Blush Mountain
+Golem
+Trade in Tapu Village (Graveler evolves during trade)
+Evolution
+Grimer
+Trainers' School, Hau'oli City, and Malie City
+Trainers' School, Hau'oli City, and Malie City
+Muk
+Evolution
+Evolution
+Exeggutor
+Exeggutor Island
+Exeggutor Island
+Marowak
+Evolution
+Evolution and Totem-sized from Samson Oak at Heahea Beach
+GENERATION 8
+PokÃ©mon
+Sword & Shield
+Legends: Arceus
+Raichu
+Reward for finding at least 40 Alolan Diglett (DLC), Max Lair (Dynamax Adventure, DLC)
+Sandshrew
+Reward for finding at least 30 Alolan Diglett (DLC)
+Sandslash
+Max Lair (Dynamax Adventure, DLC)
+Vulpix
+Reward for finding at least 20 Alolan Diglett (DLC)
+Gift after completing Request 83: "Snow-White Vulpix in the Snow"
+Ninetales
+Evolution
+Evolution
+Diglett
+Reward for finding 150 Alolan Diglett (DLC)
+Dugtrio
+Max Lair (Dynamax Adventure, DLC)
+Meowth
+Galarian: Route 4, in Max Raid Battles: Dusty Bowl, Giant's Seat, Stony Wilderness,
+Brawlers' Cave (DLC), Courageous Cavern (DLC), Stepping-Stone Sea (DLC), Snowslide Slope (DLC), Path to the Peak (DLC),
+Giant's Bed (DLC), and Frigid Sea (DLC)
+Alolan: Reward for finding at least 5 Alolan Diglett (DLC)
+Persian
+Max Lair (Dynamax Adventure, DLC)
+Perrserker
+Routes 7 and 9, Giant's Mirror, Lake of Outrage, in Max Raid Battles: Dusty Bowl, Giant's Seat, and Stony Wilderness, Max Lair (Dynamax Adventure, DLC)
+Growlithe
+Windbreak Stand, Veilstone Cape, and massive mass outbreaks: Cobalt Coastlands
+Arcanine
+Massive mass outbreaks: Cobalt Coastlands
+Ponyta
+Glimwood Tangle (Shield), and Bridge Field (Max Raid Battle, Shield)
+Rapidash
+Max Raid Battles (DLC): Bridge Field, Hammerlocke Hills, Lake of Outrage, and Rolling Fields
+Slowpoke
+Wedgehurst Station, Fields of Honor, in Max Raid Battles (DLC): Soothing Wetlands, Challenge Beach, Training Lowlands,
+Snowslide Slope, Path to the Peak, Giant's Bed, Frigid Sea, Ballimere Lake
+Slowbro
+Evolution
+Slowking
+Evolution
+Farfetchâd
+Route 5, Giant's Mirror, in Max Raid Battles: Dusty Bowl, North Lake Miloch, and Stony Wilderness, in Max Raid Battles (DLC):
+Frostpoint Field, Snowslide Slope, Giant's Bed, Frigid Sea, and Ballimere Lake
+Sirfetchâd
+Max Raid Battles (Sword): North Lake Miloch, Stony Wilderness, and Dusty Bowl
+Voltorb
+Sacred Plaza
+Electrode
+Evolution
+Exeggutor
+Reward for finding at least 75 Alolan Diglett (DLC) and trade Exeggutor with Regina in Isle of Armor (DLC)
+Marowak
+Reward for finding at least 50 Alolan Diglett (DLC), trade Marowak with Regina in Isle of Armor (DLC), and Max Lair (Dynamax Adventure, DLC)
+Weezing
+East Lake Axewell, Lake of Outrage, Slumbering Weald, in Max Raid Battles: East Lake Axewell, Giant's Cap, Hammerlocke Hills, Motostoke Riverbank, North Lake Miloch,
+and Max Lair (Dynamax Adventure, DLC)
+Mr. Mime
+Route 10, Lake of Outrage, in Max Raid Battles: Dusty Bowl, Giant's Cap, Giant's Seat (Shield), Hammerlocke Hills, Motostoke Riverbank,
+Stony Wilderness, and Watchtower Ruins, and Max Lair (Dynamax Adventure, DLC)
+Mr. Rime
+Max Raid Battles: Giant's Seat (Shield), Dusty Bowl, Giant's Cap, Hammerlocke Hills, Motostoke Riverbank, Stony Wilderness,
+and Watchtower Ruins, in Max Raid Battles (DLC): Giant's Bed, Snowslide Slope, Path to the Peak, and Ballimere Lake
+Articuno
+Roaming Crown Tundra (DLC)
+Zapdos
+Roaming Wild Area (DLC)
+Moltres
+Roaming Isle of Armor (DLC)
+Typhlosion
+Space-time distortions: Crimson Mirelands (after Mission 18), and massive mass outbreaks
+Qwilfish
+Ramanas Island, Tranquility Cove, Lunker's Lair, and Islespy Shore
+Overqwil
+Valor Cavern (alpha) and massive mass outbreaks: Cobalt Coastlands
+Sneasel
+Celestica Trail, Primeval Grotto, Avalugg's Legacy, and Glacier Terrace
+Sneasler
+Massive mass outbreak: Coronet Highlands
+Corsola
+Giant's Mirror (Shield), and in Max Raid Battles (Shield): Giant's Mirror, South Lake Miloch, Stony Wilderness, and Watchtower Ruins
+Cursola
+Max Raid Battles (Shield): Giant's Mirror, South Lake Miloch, Stony Wilderness, and Watchtower Ruins
+Zigzagoon
+Routes 2 and 3, Bridge Field, Giant's Cap, Stony Wilderness, and in Max Raid Battles:
+Bridge Field, Dusty Bowl, Giant's Mirror, Motostoke Riverbank, Stony Wilderness, and West Lake Axewell
+Linoone
+Giant's Cap, Giant's Bed (DLC), Ballimere Lake (DLC), in Max Raid Battles: Bridge Field, Dusty Bowl, Giant's Mirror, Motostoke Riverbank,
+Stony Wilderness, and West Lake Axewell, Max Lair (Dynamax Adventure, DLC)
+Obstagoon
+Lake of Outrage, Route 2 (one), Bridge Field (wanderer), Giant's Bed (DLC), Ballimere Lake (wanderer, DLC) in Max Raid Battles: Bridge Field, Dusty Bowl, Giant's Mirror, Stony Wilderness, and West Lake Axewell,
+Max Lair (Dynamax Adventure, DLC)
+Samurott
+Space-time distortions: Alabaster Icelands (after Mission 18), and massive mass outbreaks
+Lilligant
+Massive mass outbreaks: Crimson Mirelands
+Darumaka
+Routes 8 (Sword) and 10 (Sword), Snowslide Slope (Sword, DLC), and in Max Raid Battles (Sword): Dusty Bowl, Giant's Cap, Hammerlocke Hills, Lake of Outrage,
+and Stony Wilderness
+Darmanitan
+Snowslide Slope (wanderer, Sword, DLC), and in Max Raid Battles (Sword): Dusty Bowl, Giant's Cap, Hammerlocke Hills, Lake of Outrage, and Stony Wilderness
+Yamask
+Route 6, and in Max Raid Battles: Bridge Field, Dusty Bowl, Giant's Mirror, Rolling Fields, South Lake Miloch, Stony Wilderness (Shield),
+and Watchtower Ruins
+Runerigus
+Max Raid Battles: Bridge Field, Dusty Bowl, Giant's Mirror, Rolling Fields, South Lake Miloch, Stony Wilderness, Watchtower Ruins, and Dusty Bowl
+Zorua
+Bonechill Wastes, Icepeak Cavern, in mass outbreaks: Bonechill Wastes, and in massive mass outbreaks: Obsidian Fieldlands, and Alabaster Icelands
+Zoroark
+Bonechill Wastes, Icepeak Cavern, Valor Cavern (alpha), in mass outbreaks: Bonechill Wastes, and in massive mass outbreaks:
+Obsidian Fieldlands, and Alabaster Icelands
+Stunfisk
+Slumbering Weald, Galar Mine No. 2, Dusty Bowl, Lake of Outrage, in Max Raid Battles: Rolling Fields, Giant's Seat, Stony Wilderness,
+and Dusty Bowl, Max Lair (Dynamax Adventure, DLC)
+Braviary
+Lake Acuity, in mass outbreaks: Lake Acuity, in massive mass outbreaks: Alabaster Icelands
+Sliggoo
+Holm of Trials, Ancient Quarry, and in massive mass outbreaks: Crimson Mirelands
+Goodra
+Verity Cavern (alpha), Ancient Quarry (alpha), and in massive mass outbreaks: Crimson Mirelands
+Avalugg
+Avalugg's Legacy (after beating the story), and in massive mass outbreaks: Alabaster Icelands
+Decidueye
+Space-time distortions: Coronet Highlands (after Mission 18), and massive mass outbreaks
+GENERATION 9
+PokÃ©mon
+Scarlet & Violet
+Raichu
+PokÃ©mon HOME
+Sandshrew
+The Indigo Disk DLC (Violet): Chargestone Cavern, Polar Biome
+Sandslash
+The Indigo Disk DLC (Violet): Tera Raid Battles (6â
+)
+Vulpix
+The Indigo Disk DLC (Scarlet): Chargestone Cavern, Polar Biome
+Ninetales
+TThe Indigo Disk DLC (Scarlet): Tera Raid Battles (6â
+)
+Diglett
+The Indigo Disk DLC: Coastal Biome, Torchlit Labyrinth, and Tera Raid Battles (3â
+)
+Dugtrio
+The Indigo Disk DLC: Coastal Biome, Torchlit Labyrinth, and Tera Raid Battles (6â
+)
+Meowth
+Alolan: PokÃ©mon HOME
+Galarian: Gift from Salvatore after finishing his story
+Persian
+PokÃ©mon HOME
+Perrserker
+Evolution
+Growlithe
+The Teal Mask DLC: Gift from Perrin after finishing her story
+Arcanine
+Evolution
+Geodude
+The Indigo Disk DLC: Canyon Biome, Chargestone Cavern, and Tera Raid Battles (3â
+)
+Graveler
+The Indigo Disk DLC: Canyon Biome, Chargestone Cavern, and Tera Raid Battles (4â
+)
+Golem
+The Indigo Disk DLC: Tera Raid Battles (6â
+)
+Slowpoke
+The Indigo Disk DLC: Coastal Biome, Torchlit Labyrinth, and Tera Raid Battles (3â
+)
+Slowbro
+The Indigo Disk DLC: Tera Raid Battles (6â
+)
+Slowking
+The Indigo Disk DLC: Tera Raid Battles (6â
+)
+Grimer
+The Indigo Disk DLC: Coastal Biome, Torchlit Labyrinth, and Tera Raid Battles (3â
+)
+Muk
+The Indigo Disk DLC: Coastal Biome, Torchlit Labyrinth, and Tera Raid Battles (6â
+)
+Voltorb
+PokÃ©mon HOME
+Electrode
+PokÃ©mon HOME
+Exeggutor
+The Indigo Disk DLC: Coastal Biome, and Tera Raid Battles (6â
+)
+Weezing
+PokÃ©mon HOME
+Tauros Combat Breed
+East Province: Area One, East Province: Area Two and Area Three, West Province: Area Two and Asado Desert,
+East Province: Area Two (tera), and Tera Raid Battles (4â
+and 6â
+)
+Tauros Blaze Breed
+Scarlet exclusive. East Province: Area Two and Area Three, West Province: Area Two and Asado Desert,
+and Tera Raid Battles (5â
+and 6â
+)
+Tauros Aqua Breed
+Violet Exclusive. East Province: Area Two and Area Three, West Province: Area Two and Asado Desert,
+and Tera Raid Battles (5â
+and 6â
+)
+Articuno
+PokÃ©mon HOME
+Zapdos
+PokÃ©mon HOME
+Moltres
+PokÃ©mon HOME
+Typhlosion
+PokÃ©mon HOME
+Wooper
+South Province: Area One, Area Four, Area Five, Area Six, and Alfornada Cavern, East Province: Area Three, and Tagtree Thicket,
+West Province: Area Three, North Province: Area One and Glaseado Mountain, and Tera Raid Battles (1â
+)
+Clodsire
+South Province: Area Five and Area Six, East Province: Area Three, West Province: Area Three, North Province: Area One and
+Glaseado Mountain, and Tera Raid Battles (4â
+and 6â
+)
+Qwilfish
+The Indigo Disk DLC: Polar Biome
+Overqwil
+The Indigo Disk DLC: Tera Raid Battles (6â
+)
+Sneasel
+PokÃ©mon HOME
+Sneasler
+PokÃ©mon HOME
+Samurott
+PokÃ©mon HOME
+Lilligant
+PokÃ©mon HOME
+Zorua
+Breed Zoroark from The Hidden Treasure of Area Zero purchase event
+Zoroark
+The Hidden Treasure of Area Zero purchase event
+Braviary
+PokÃ©mon HOME
+Sliggoo
+PokÃ©mon HOME
+Goodra
+PokÃ©mon HOME
+Avalugg
+PokÃ©mon HOME
+Decidueye
+PokÃ©mon HOME
+2.3. Regional lines breeding.
+All of the PokÃ©mon in the next list are assumed to be in the Regional Form. The entire evolution line is included if they also have a form.
+PokÃ©mon
+Replicable outside of their region of origin
+Ratatta
+Eggs (holding an everstone)
+Raichu
+Evolution on region of origin
+Sandshrew
+Eggs (holding an everstone)
+Vulpix
+Eggs (holding an everstone)
+Diglett
+Eggs (holding an everstone)
+Meowth
+Eggs (holding an everstone)
+Growlithe
+Eggs (holding an everstone)
+Geodude
+Eggs (holding an everstone)
+Ponyta
+Eggs (holding an everstone)
+Slowpoke
+Eggs (holding an everstone)
+Farfetchâd
+Eggs (holding an everstone)
+Grimer
+Eggs (holding an everstone)
+Voltorb
+Eggs (holding an everstone)
+Exeggutor
+Evolution on region of origin
+Marowak
+Evolution on region of origin
+Weezing
+Evolution on region of origin
+Mr. Mime*
+Read notes below
+Tauros
+Eggs (holding an everstone)
+Articuno
+Zapdos
+Moltres
+Typhlosion
+Evolution on region of origin
+Wooper
+Eggs (holding an everstone)
+Qwilfish
+Eggs (holding an everstone)
+Sneasel
+Eggs (holding an everstone)
+Corsola
+Eggs (holding an everstone)
+Zigzagoon
+Eggs (holding an everstone)
+Samurott
+Evolution on region of origin
+Lilligant
+Evolution on region of origin
+Darumaka
+Eggs (holding an everstone)
+Yamask
+Eggs (holding an everstone)
+Zorua
+Eggs (holding an everstone)
+Stunfisk
+Eggs (holding an everstone)
+Braviary
+Evolution on region of origin
+Sliggoo
+Evolution on region of origin
+Avalugg
+Evolution on region of origin
+Decidueye
+Evolution on region of origin
+* In Generation 9, incenses were removed, and therefore they arenât needed anymore to get baby pokÃ©mon from eggs. Every egg from these pokÃ©mon
+will hatch into the baby stage. Previously, a Galarian Mr. Mimeâs eggs would always result in another Galarian Mr. Mime, unless it was holding
+an odd incense (Mime Jr.). With this change, it means that Galarian Mr. Mime is no longer replicable outside of Galar, although it is currently
+unavailable in other regions.
+3. Special cases.
+In Generation 9, some regional evolutions are currently unobtainable: Wyrdeer and Ursaluna.
+Stantler needs to use its signature move (psyshield bash) 20 times in order to evolve.
+In Legends: Arceus, it also needed to do so in Agile styles, but this was removed in generation 9. Still,
+this evolution is deliberately locked, so it donât take place even if the requirements are met.
+Ursaring needs an item to evolve into Ursaluna that is currently unobtainable in the Generation 9 games.
+Starting on The Hidden Treasure of Area Zero: The Indigo Disk DLC, Hisuian Qwilfish can now evolve to Overqwil by levelling up while knowing the move
+Barb Barrage. Galarian Slowpoke can also evolve into either of its next stages, as the items to do so are available in the Generation 9 games
+thanks to this DLC. The same can't be said about Scyther evolving into Kleavor, as its item is unobtainable in these games, but Kleavor can now
+appear in the wild on the Blueberry Academy's Terrarium.
+Although the Hidden Treasure of Area Zero DLC takes place in the Scarlet and Violet games, the areas where the story unfolds are considered different regions from
+Paldea. This means that any Paldean Taruos will have the regular Tauros from Kanto as their offspring in this place and will need an everstone
+to get the Paldean form. This is also the case for Paldean Wooper. The Blueberry Academy's Terrarium holds Alolan Sandshrew and Alolan Vulpix
+in the wild, but the offspring will still result in the original forms, as this is considered a place in the Unova region.
+3.1. White Stripe Basculin.
+Even if itâs not programmed as one, White Stripe Basculin has been mentioned as a Regional Form multiple times. The Legends: Arceus PokÃ©dex implies
+itâs one, and Professor Laventon categorises it as such. In the TCG, its name is âHisuian Basculinâ. The PokÃ©mon HOME PokÃ©dex shows it while using
+the âRegional Formâ search filter. Its status as a Regional Form is very inconsistent.
+Contrary to the previously mentioned PokÃ©mon and their regional evolutions, Basculin can evolve into Basculegion
+in other regions. It also does not need to hold any items to have an egg hatch into another White Stripe Basculin.
+4. Convergent evolution.
+This new concept was introduced in Scarlet and Violet. Convergent evolution refers to the development of a physical resemblance between two species
+that are not related and do not share a common ancestor. One real-life example of this is sugar gliders and flying squirrels, which belong to two
+different groups of mammals but both developed the ability to glide.
+In the world of PokÃ©mon, these species usually have a few characteristics that make them similar (like their physical appearance and body shape),
+but other than that, they are mostly completely unrelated PokÃ©mon when it comes to things like PokÃ©dex category, colour, typing, size and weight,
+moveset, etc.
+Wiglett/Wugtrio: an eel PokÃ©mon that closely resembles Diglett and Dugtrio, sharing some anatomical traits like its shape and movement.
+They are water-type, marine PokÃ©mon, and because of these similarities, researchers thought they were a regional form of Diglett and
+Dugtrio, but they turned out to be completely different species. The only common thing between these PokÃ©mon is their body shape and
+stats. Wiglett and Wugtrio usually live in water, as opposed to Diglett and Dugtrio, although they can be occasionally seen on beaches.
+Toedscool/Toedscruel: a fungus PokÃ©mon that can be easily mistaken as a Tentacool or Tentacruel regional form. They have developed tentacles
+as their preferred way of movement, just like the two previously mentioned, but in this case, they are used for running. Toedscool and
+Toedscruel live on land, as opposed to Tentacool and Tentacruel.
+The differences between regional forms and convergent evolution are simple:
+Regional forms happen when a PokÃ©mon adapts to a new environment and develops new traits that give them an advantage under these
+conditions. For example, Sandshrew and Vulpix have a coat of ice to resist the cold on Mount Lanakila, as Sandshrews were driven
+away from the desert due to the constant volcanic eruptions, and Vulpix avoided the habitat of other PokÃ©mon. These PokÃ©mon share
+the same ancestor as their regular form and are the same species. The PokÃ©dex number doesnât change from the original form.
+Convergent evolution, although it makes PokÃ©mon have physical resemblances like regional forms do, happens in PokÃ©mon that are from
+unrelated species that happened to develop those similar traits. They have different ancestors and different PokÃ©dex numbers.
+All PokÃ©mon characters or other official PokÃ©mon content © 1995-2025 Nintendo, GAME FREAK and Creatures, Inc.
+All non official artwork and content © 2025 BuriedRelic unless stated otherwise
+Back to top

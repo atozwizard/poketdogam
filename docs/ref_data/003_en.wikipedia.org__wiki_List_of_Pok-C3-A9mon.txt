@@ -1,0 +1,2778 @@
+URL: https://en.wikipedia.org/wiki/List_of_Pok%C3%A9mon
+STATUS: ok
+
+List of Pokémon - Wikipedia
+Jump to content
+Main menu
+Main menu
+move to sidebar
+hide
+Navigation
+Main page Contents Current events Random article About Wikipedia Contact us
+Contribute
+Help Learn to edit Community portal Recent changes Upload file Special pages
+Search
+Search
+Appearance
+Donate
+Create account
+Log in
+Personal tools
+Donate Create account Log in
+Contents
+move to sidebar
+hide
+(Top)
+1
+Concept
+2
+Design and development
+3
+List of Pokémon
+Toggle List of Pokémon subsection
+3.1
+List of species
+3.2
+Glitch species
+4
+Notes
+5
+References
+6
+External links
+Toggle the table of contents
+List of Pokémon
+39 languages
+Asturianu Bosanski Català Čeština Deutsch Zazaki Esperanto Español Suomi Français Galego Hawaiʻi Hrvatski Magyar Bahasa Indonesia Italiano 日本語 한국어 Latviešu Bahasa Melayu Nederlands Norsk bokmål ਪੰਜਾਬੀ Polski Português Română Русский Scots Simple English Slovenčina Slovenščina Svenska ไทย Tagalog Türkçe Tiếng Việt 閩南語 / Bân-lâm-gí 粵語 中文
+Edit links
+Article Talk
+English
+Read Edit View history
+Tools
+Tools
+move to sidebar
+hide
+Actions
+Read Edit View history
+General
+What links here Related changes Upload file Permanent link Page information Cite this page Get shortened URL
+Print/export
+Download as PDF Printable version
+In other projects
+Wikimedia Commons Wikidata item
+Appearance
+move to sidebar
+hide
+From Wikipedia, the free encyclopedia
+This article is about the fictional creatures known as "Pokémon". For other Pokémon lists, see Lists about Pokémon .
+The first 150 Pokémon as they appear in Pokémon Stadium , it begins with Bulbasaur in the top left corner and ends with Mewtwo in the bottom right corner
+The Pokémon franchise features 1,028 fictional species of collectible creatures, each with unique designs, skills, and powers. Conceived by Satoshi Tajiri in early 1989, Pokémon (or Pocket Monsters) are fictional creatures that inhabit the fictional Pokémon World. The designs for the multitude of species can draw inspiration from anything, such as animals , plants , and legendary creatures . Many Pokémon are capable of evolving into more powerful species, while others can undergo form changes and achieve similar results. Originally, only a handful of artists, led by Ken Sugimori designed Pokémon. However, by 2013 a team of 20 artists worked together to create new species designs. Sugimori and Hironobu Yoshida lead the team and determine the final designs.
+The vast array of creatures is commonly divided into "generations", with each division primarily encompassing new titles in the main video game series and often a change of handheld platform . Generation I with 151 Pokémon refers to Red , Blue , and Yellow ; generation II with 100 Pokémon refers to Gold , Silver , and Crystal ; generation III with 135 Pokémon refers to Ruby , Sapphire , FireRed , LeafGreen , and Emerald ; generation IV with 107 Pokémon refers to Diamond , Pearl , Platinum , HeartGold , and SoulSilver ; generation V with 156 Pokémon refers to Black , White , Black 2 , and White 2 ; generation VI with 72 Pokémon refers to X , Y , Omega Ruby , and Alpha Sapphire ; generation VII with 88 Pokémon refers to Sun , Moon , Ultra Sun , Ultra Moon , Let's Go, Pikachu! , and Let's Go, Eevee! ; generation VIII with 96 Pokémon refers to Sword , Shield , Brilliant Diamond , Shining Pearl , and Legends: Arceus ; generation IX with 120 Pokémon refers to Scarlet , Violet , and Legends: Z-A ; and generation X with currently 3 known Pokémon refers to Winds and Waves .
+Due to the large number of Pokémon, a listing of each species is divided into articles by generation . The 1028 Pokémon are organized by their number in the National Pokédex—an electronic encyclopedia that provides various information on Pokémon. The National Pokédex is subdivided into regional Pokédex series, each revolving around species introduced at the time of their respective generations along with older generations. For example, the Johto Pokédex, generation II, covers the 100 species introduced in Gold and Silver in addition to the original 151 species. The encyclopedias follow a general ordering: first partner Pokémon [ 1 ] are listed first, followed by species obtainable early in the respective games, and are concluded with Legendary and Mythical Pokémon. Generation V is the sole exception, as Victini is the first Pokémon in the Unova Pokédex.
+Concept [ edit ]
+Satoshi Tajiri —who later founded Game Freak —conceived the premise of Pokémon in general in 1989, when the Game Boy was released. The creatures that inhabit the world of Pokémon are also called Pokémon. [ 2 ] The word "Pokémon" is a romanized contraction of the Japanese brand Pocket Monsters ( ポケットモンスター , Poketto Monsutā ) . [ 3 ] The concept of the Pokémon universe, in both the video games and the general fictional world of Pokémon, stems most notably from Tajiri's childhood hobby of insect collecting . Other influences on the concept include Ultraman , anime , and playing video games in general. Throughout his early life, Tajiri saw his rural, nature-filled hometown transform into an urban centre. The urbanization of his town drove away wildlife, and he and others living in the area were eventually unable to collect insects. Through Pokémon, Tajiri sought to bring back this outdoor pastime and share it with the world. [ 2 ] The first games in the franchise, Red and Green , were released on 27 February 1996 in Japan for the Game Boy . [ 4 ] The games were internationally released as Red and Blue in September 1998. [ 5 ] The ability to capture, battle, trade, and care for numerous creatures catapulted Pokémon to international popularity, [ 3 ] and it has become a multibillion-dollar franchise and the second-best selling video game series after the Mario franchise . [ 6 ]
+At the start of a main series Pokémon game, the player character receives one of three Pokémon to become their first partner, [ a ] with which they can battle and catch other Pokémon. Each Pokémon has one or two "types", such as Fire, Water, or Grass. In battle, certain types are strong against other types. For example, a Fire-type attack will do more damage to a Grass-type Pokémon, rather than a Water-type attack. [ 7 ] This form of gameplay is frequently compared to that of rock-paper-scissors , though players have to strategize which Pokémon and which of their attacks to use against various opponents. [ 8 ] [ 9 ]
+Many species of Pokémon can evolve into a larger and more powerful creature. The change is accompanied by stat changes—generally a modest increase—and access to a wider variety of attacks. There are multiple ways to trigger an evolution, including reaching a particular level, using a special stone, or learning a specific attack. For example, at level 16, Bulbasaur can evolve into Ivysaur . Most notably, the Normal-type Eevee can evolve into eight different Pokémon: Jolteon (Electric), Flareon (Fire), Vaporeon (Water), Umbreon (Dark), Espeon (Psychic), Leafeon (Grass), Glaceon (Ice), and Sylveon (Fairy). In generation VI, the games introduced a new mechanic called Mega Evolution, as well as a subset of Mega Evolution called Primal Reversion. Unlike normal evolution, Mega Evolution and Primal Reversion last only for the duration of a battle during the generation VI and VII games, with the Pokémon reverting to its normal form at the end. In the 2025 generation IX game Pokémon Legends: Z-A , Mega Evolution can last through multiple battles, and runs out after a period of time. As of Pokémon Legends: Z-A , 73 Pokémon can undergo Mega Evolution or Primal Reversion. In contrast, some species such as Castform , Rotom , Unown , and Lycanroc undergo form changes, which may provide stat buffs or changes and type alterations but are not considered new species. Some Pokémon have differences in appearance due to gender . Pokémon can be male or female , male-only, female-only, or of an unknown gender. [ 10 ]
+The Pokémon franchise is primarily intended for younger players. However, each Pokémon has various complex attributes such as natures, characteristic traits, Individual Values (IVs) and Effort Values (EVs). These are intended for people "who enjoy battling and want to go more in depth", according to Game Freak Board Director Junichi Masuda . These individual statistics were also included, because the basic concept of the franchise is to train one's Pokémon. Designer Takeshi Kawachimaru stated that IVs and EVs "help to make each Pokémon in the game individual", as it adds unique aspects to them. [ 11 ] Each Pokémon game introduces a few "Legendary" and "Mythical" Pokémon that are powerful, rare, and hard to catch. [ 12 ] Pokémon Sun and Moon introduced "Ultra Beasts", which are described as "beings from another dimension" that appeared in the Alola region, and are similarly powerful and rare. [ 13 ]
+Design and development [ edit ]
+The evolution mechanic is most prominently displayed through Eevee (center) and its eight evolutions. Each one requires a different method to evolve. [ 14 ]
+Throughout development of Red and Green , all Pokémon were designed by Ken Sugimori who was a long-time friend of Tajiri, and by a team of fewer than ten people, [ 15 ] including Atsuko Nishida who is credited as the designer of Pikachu . [ 16 ] [ 17 ] By 2013, a team of 20 artists worked together to create new species designs. A committee of five people determine which designs are incorporated into the games, with Sugimori and Hironobu Yoshida finalizing the look of each creature. [ 15 ] [ 18 ] Sugimori is also responsible for the " Box Art " Legendary Pokémon and all of the official artwork for the games. [ 15 ] [ 19 ] According to Yoshida, the number of rejected Pokémon designs is five to ten times more than the number that are finalized in each game. [ 18 ] In rare cases, rejected designs are brought back and released in a later generation. [ 20 ] Shigeru Ohmori , director of Sun and Moon , admitted that creating new Pokémon has become a difficult task with the sheer number of creatures designed over the franchise's 20-year history. [ 21 ] Each iteration of the series has brought both praise and criticism over the numerous creatures. [ 22 ]
+The designs for Pokémon are often highly analogous to real-life creatures but also encompass inanimate objects. [ 22 ] Director Junichi Masuda and graphic designer Takao Unno have stated that inspiration for Pokémon designs can come from anything. The variety of animals and culture around the world provide the basis for having countless ideas incorporated into the franchise. [ 23 ] The environment that a Pokémon would live in is taken into account when they are designed. [ 24 ] The lei -like Comfey fits appropriately in the Hawaii-inspired Alola region of Sun and Moon . [ 21 ] Masuda has stated that each element of a design has a functioning reason. [ 24 ] In some cases, the design team creates a footprint that a Pokémon could make and designs a creature around that. [ 25 ] Some designers look to game mechanics for inspiration and see where particular typing combinations could be interesting. [ 21 ] Typing assignment varies during the design process; sometimes a Pokémon receives a type after it is created and other times they are designed around a particular type. [ 26 ] Each Pokémon has a specific height and weight. [ 27 ]
+The simpler roots of designs in generation I prompted greater complexity in later games. [ 22 ] Designs in general have become increasingly complex and thematic in newer games. [ 19 ] Sneasel , for example, draws inspiration from the Japanese yōkai kamaitachi , mythical creatures with fast, razor-sharp claws that hunt in packs. These elements are all found in Sneasel's design and characteristics. [ 28 ] New Pokémon introduced in generation VI, for example, are heavily influenced by the culture and fauna of Europe (namely France ). [ 19 ] However, by the release of X and Y in 2013, Sugimori stated that he wishes for Pokémon design to return to the simpler roots of the franchise. [ 29 ]
+Masuda considers the first partner Pokémon among the most important in the franchise. Yoshida goes further and calls them "the face of that generation" and says that "they're the ones that should be on the packaging". [ 18 ] The three Pokémon players start out with in each generation are always Grass-, Water-, and Fire-types, a trio that Masuda considers the easiest to understand for new players. [ 26 ] Their designs are based on recognizable animals and made to stand out from pre-existing Pokémon. Each are also given distinct personalities to further define them. [ 30 ] In an interview with GamesRadar in 2009, Masuda stated that simple Pokémon take around six months to design and develop, and that Pokémon that play a more important part in the games may take over a year. Masuda added, "We also want the designer to have as much freedom as possible; we don't want to narrow their imagination by saying, 'We want this kind of Pokemon.' When we talk to the designer we always stress that they shouldn't think of Pokemon necessarily, but should instead just be as creative as they can." After the Pokémon is designed, it is sent to the "Battle Producer", who decides which moves and stats the Pokémon should have. [ 11 ]
+List of Pokémon [ edit ]
+List of Pokémon generations
+Generation
+Years
+Region
+Titles
+Platforms
+Number of Pokémon
+New in games
+New in generation
+Total
+I
+1996–1999
+Kanto
+Red , Green , Blue , and Yellow
+Game Boy , Nintendo 3DS [ b ]
+151
+II
+1999–2002
+Johto, Kanto
+Gold , Silver , and Crystal
+Game Boy Color , Nintendo 3DS [ b ]
+100
+251
+III
+2002–2006
+Hoenn
+Ruby , Sapphire , and Emerald
+Game Boy Advance
+135
+135
+386
+Kanto
+FireRed and LeafGreen
+None
+IV
+2006–2010
+Sinnoh
+Diamond , Pearl , and Platinum
+Nintendo DS
+107
+107
+493
+Johto, Kanto
+HeartGold and SoulSilver
+None
+V
+2010–2013
+Unova
+Black and White
+156
+156
+649
+Black 2 and White 2
+None
+VI
+2013–2016
+Kalos
+X and Y
+Nintendo 3DS
+72
+72
+721
+Hoenn
+Omega Ruby and Alpha Sapphire
+None
+VII
+2016–2019
+Alola
+Sun and Moon
+81
+88
+809
+Ultra Sun and Ultra Moon
+5
+Kanto
+Let's Go, Pikachu! and Let's Go, Eevee!
+Nintendo Switch
+2 [ c ]
+VIII
+2019–2022
+Galar
+Sword and Shield
+81
+96
+905
+The Isle of Armor expansion
+3
+The Crown Tundra expansion
+5
+Sinnoh
+Brilliant Diamond and Shining Pearl
+None
+Hisui [ d ]
+Legends: Arceus
+7
+IX
+2022–2027
+Paldea
+Scarlet and Violet
+105 [ e ]
+120
+1,025
+Kitakami
+The Teal Mask expansion
+7
+Unova, Paldea
+The Indigo Disk expansion
+7
+Kitakami
+Mochi Mayhem expansion
+1
+Kalos
+Legends: Z-A
+Nintendo Switch , Nintendo Switch 2 [ 33 ] [ 34 ]
+None
+Mega Dimension expansion
+None
+X
+2027
+???
+Winds and Waves
+Nintendo Switch 2
+≥3
+≥1,028
+List of species [ edit ]
+Pokémon species glossary
+Key
+Color / Letter
+Meaning
+Description
+S
+Starter Pokémon (known officially as First Partner Pokémon) [ a ]
+The first Pokémon a player is able to obtain in the main-line games.
+F
+Fossil Pokémon [ 35 ]
+Ancient Pokémon only obtained by resurrecting fossils and their evolutions.
+B
+Baby Pokémon [ 36 ]
+Infant Pokémon primarily obtained by breeding their evolved forms.
+L
+Legendary Pokémon
+Powerful Pokémon associated with the legends and lore of the Pokémon world.
+M
+Mythical Pokémon
+Pokémon only obtainable through rare circumstances, such as distribution events. [ f ]
+UB
+Ultra Beast
+Certain Pokémon from another dimension.
+P
+Paradox Pokémon
+Pokémon resembling ancient or futuristic relatives of a modern-day Pokémon.
+List of Pokémon species names by generation [ 45 ]
+Generation I
+Generation II
+Generation III
+Generation IV
+Generation V
+Generation VI
+Generation VII
+Generation VIII
+Generation IX
+Generation X
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+Dex #
+Name
+1
+Bulbasaur S
+152
+Chikorita S
+252
+Treecko S
+387
+Turtwig S
+494
+Victini M
+650
+Chespin S
+722
+Rowlet S
+810
+Grookey S
+906
+Sprigatito S
+???
+Browt S
+2
+Ivysaur
+153
+Bayleef
+253
+Grovyle
+388
+Grotle
+495
+Snivy S
+651
+Quilladin
+723
+Dartrix
+811
+Thwackey
+907
+Floragato
+???
+Pombon S
+3
+Venusaur
+154
+Meganium
+254
+Sceptile
+389
+Torterra
+496
+Servine
+652
+Chesnaught
+724
+Decidueye
+812
+Rillaboom
+908
+Meowscarada
+???
+Gecqua S
+4
+Charmander S
+155
+Cyndaquil S
+255
+Torchic S
+390
+Chimchar S
+497
+Serperior
+653
+Fennekin S
+725
+Litten S
+813
+Scorbunny S
+909
+Fuecoco S
+No additional Pokémon (as of 27 February 2026 [update] )
+5
+Charmeleon
+156
+Quilava
+256
+Combusken
+391
+Monferno
+498
+Tepig S
+654
+Braixen
+726
+Torracat
+814
+Raboot
+910
+Crocalor
+6
+Charizard
+157
+Typhlosion
+257
+Blaziken
+392
+Infernape
+499
+Pignite
+655
+Delphox
+727
+Incineroar
+815
+Cinderace
+911
+Skeledirge
+7
+Squirtle S
+158
+Totodile S
+258
+Mudkip S
+393
+Piplup S
+500
+Emboar
+656
+Froakie S
+728
+Popplio S
+816
+Sobble S
+912
+Quaxly S
+8
+Wartortle
+159
+Croconaw
+259
+Marshtomp
+394
+Prinplup
+501
+Oshawott S
+657
+Frogadier
+729
+Brionne
+817
+Drizzile
+913
+Quaxwell
+9
+Blastoise
+160
+Feraligatr
+260
+Swampert
+395
+Empoleon
+502
+Dewott
+658
+Greninja
+730
+Primarina
+818
+Inteleon
+914
+Quaquaval
+10
+Caterpie
+161
+Sentret
+261
+Poochyena
+396
+Starly
+503
+Samurott
+659
+Bunnelby
+731
+Pikipek
+819
+Skwovet
+915
+Lechonk
+11
+Metapod
+162
+Furret
+262
+Mightyena
+397
+Staravia
+504
+Patrat
+660
+Diggersby
+732
+Trumbeak
+820
+Greedent
+916
+Oinkologne
+12
+Butterfree
+163
+Hoothoot
+263
+Zigzagoon
+398
+Staraptor
+505
+Watchog
+661
+Fletchling
+733
+Toucannon
+821
+Rookidee
+917
+Tarountula
+13
+Weedle
+164
+Noctowl
+264
+Linoone
+399
+Bidoof
+506
+Lillipup
+662
+Fletchinder
+734
+Yungoos
+822
+Corvisquire
+918
+Spidops
+14
+Kakuna
+165
+Ledyba
+265
+Wurmple
+400
+Bibarel
+507
+Herdier
+663
+Talonflame
+735
+Gumshoos
+823
+Corviknight
+919
+Nymble
+15
+Beedrill
+166
+Ledian
+266
+Silcoon
+401
+Kricketot
+508
+Stoutland
+664
+Scatterbug
+736
+Grubbin
+824
+Blipbug
+920
+Lokix
+16
+Pidgey
+167
+Spinarak
+267
+Beautifly
+402
+Kricketune
+509
+Purrloin
+665
+Spewpa
+737
+Charjabug
+825
+Dottler
+921
+Pawmi
+17
+Pidgeotto
+168
+Ariados
+268
+Cascoon
+403
+Shinx
+510
+Liepard
+666
+Vivillon
+738
+Vikavolt
+826
+Orbeetle
+922
+Pawmo
+18
+Pidgeot
+169
+Crobat
+269
+Dustox
+404
+Luxio
+511
+Pansage
+667
+Litleo
+739
+Crabrawler
+827
+Nickit
+923
+Pawmot
+19
+Rattata
+170
+Chinchou
+270
+Lotad
+405
+Luxray
+512
+Simisage
+668
+Pyroar
+740
+Crabominable
+828
+Thievul
+924
+Tandemaus
+20
+Raticate
+171
+Lanturn
+271
+Lombre
+406
+Budew B [ g ]
+513
+Pansear
+669
+Flabébé
+741
+Oricorio
+829
+Gossifleur
+925
+Maushold
+21
+Spearow
+172
+Pichu B [ g ]
+272
+Ludicolo
+407
+Roserade
+514
+Simisear
+670
+Floette
+742
+Cutiefly
+830
+Eldegoss
+926
+Fidough
+22
+Fearow
+173
+Cleffa B [ g ]
+273
+Seedot
+408
+Cranidos F [ h ]
+515
+Panpour
+671
+Florges
+743
+Ribombee
+831
+Wooloo
+927
+Dachsbun
+23
+Ekans
+174
+Igglybuff B
+274
+Nuzleaf
+409
+Rampardos F [ h ]
+516
+Simipour
+672
+Skiddo
+744
+Rockruff
+832
+Dubwool
+928
+Smoliv
+24
+Arbok
+175
+Togepi B [ g ]
+275
+Shiftry
+410
+Shieldon F [ h ]
+517
+Munna
+673
+Gogoat
+745
+Lycanroc
+833
+Chewtle
+929
+Dolliv
+25
+Pikachu S
+176
+Togetic
+276
+Taillow
+411
+Bastiodon F [ h ]
+518
+Musharna
+674
+Pancham
+746
+Wishiwashi
+834
+Drednaw
+930
+Arboliva
+26
+Raichu
+177
+Natu
+277
+Swellow
+412
+Burmy
+519
+Pidove
+675
+Pangoro
+747
+Mareanie
+835
+Yamper
+931
+Squawkabilly
+27
+Sandshrew
+178
+Xatu
+278
+Wingull
+413
+Wormadam
+520
+Tranquill
+676
+Furfrou
+748
+Toxapex
+836
+Boltund
+932
+Nacli
+28
+Sandslash
+179
+Mareep
+279
+Pelipper
+414
+Mothim
+521
+Unfezant
+677
+Espurr
+749
+Mudbray
+837
+Rolycoly
+933
+Naclstack
+29
+Nidoran♀
+180
+Flaaffy
+280
+Ralts
+415
+Combee
+522
+Blitzle
+678
+Meowstic
+750
+Mudsdale
+838
+Carkol
+934
+Garganacl
+30
+Nidorina
+181
+Ampharos
+281
+Kirlia
+416
+Vespiquen
+523
+Zebstrika
+679
+Honedge
+751
+Dewpider
+839
+Coalossal
+935
+Charcadet
+31
+Nidoqueen
+182
+Bellossom
+282
+Gardevoir
+417
+Pachirisu
+524
+Roggenrola
+680
+Doublade
+752
+Araquanid
+840
+Applin
+936
+Armarouge
+32
+Nidoran♂
+183
+Marill
+283
+Surskit
+418
+Buizel
+525
+Boldore
+681
+Aegislash
+753
+Fomantis
+841
+Flapple
+937
+Ceruledge
+33
+Nidorino
+184
+Azumarill
+284
+Masquerain
+419
+Floatzel
+526
+Gigalith
+682
+Spritzee
+754
+Lurantis
+842
+Appletun
+938
+Tadbulb
+34
+Nidoking
+185
+Sudowoodo
+285
+Shroomish
+420
+Cherubi
+527
+Woobat
+683
+Aromatisse
+755
+Morelull
+843
+Silicobra
+939
+Bellibolt
+35
+Clefairy
+186
+Politoed
+286
+Breloom
+421
+Cherrim
+528
+Swoobat
+684
+Swirlix
+756
+Shiinotic
+844
+Sandaconda
+940
+Wattrel
+36
+Clefable
+187
+Hoppip
+287
+Slakoth
+422
+Shellos
+529
+Drilbur
+685
+Slurpuff
+757
+Salandit
+845
+Cramorant
+941
+Kilowattrel
+37
+Vulpix
+188
+Skiploom
+288
+Vigoroth
+423
+Gastrodon
+530
+Excadrill
+686
+Inkay
+758
+Salazzle
+846
+Arrokuda
+942
+Maschiff
+38
+Ninetales
+189
+Jumpluff
+289
+Slaking
+424
+Ambipom
+531
+Audino
+687
+Malamar
+759
+Stufful
+847
+Barraskewda
+943
+Mabosstiff
+39
+Jigglypuff
+190
+Aipom
+290
+Nincada
+425
+Drifloon
+532
+Timburr
+688
+Binacle
+760
+Bewear
+848
+Toxel B
+944
+Shroodle
+40
+Wigglytuff
+191
+Sunkern
+291
+Ninjask
+426
+Drifblim
+533
+Gurdurr
+689
+Barbaracle
+761
+Bounsweet
+849
+Toxtricity
+945
+Grafaiai
+41
+Zubat
+192
+Sunflora
+292
+Shedinja
+427
+Buneary
+534
+Conkeldurr
+690
+Skrelp
+762
+Steenee
+850
+Sizzlipede
+946
+Bramblin
+42
+Golbat
+193
+Yanma
+293
+Whismur
+428
+Lopunny
+535
+Tympole
+691
+Dragalge
+763
+Tsareena
+851
+Centiskorch
+947
+Brambleghast
+43
+Oddish
+194
+Wooper
+294
+Loudred
+429
+Mismagius
+536
+Palpitoad
+692
+Clauncher
+764
+Comfey
+852
+Clobbopus
+948
+Toedscool
+44
+Gloom
+195
+Quagsire
+295
+Exploud
+430
+Honchkrow
+537
+Seismitoad
+693
+Clawitzer
+765
+Oranguru
+853
+Grapploct
+949
+Toedscruel
+45
+Vileplume
+196
+Espeon
+296
+Makuhita
+431
+Glameow
+538
+Throh
+694
+Helioptile
+766
+Passimian
+854
+Sinistea
+950
+Klawf
+46
+Paras
+197
+Umbreon
+297
+Hariyama
+432
+Purugly
+539
+Sawk
+695
+Heliolisk
+767
+Wimpod
+855
+Polteageist
+951
+Capsakid
+47
+Parasect
+198
+Murkrow
+298
+Azurill B
+433
+Chingling B [ g ]
+540
+Sewaddle
+696
+Tyrunt F [ h ]
+768
+Golisopod
+856
+Hatenna
+952
+Scovillain
+48
+Venonat
+199
+Slowking
+299
+Nosepass
+434
+Stunky
+541
+Swadloon
+697
+Tyrantrum F [ h ]
+769
+Sandygast
+857
+Hattrem
+953
+Rellor
+49
+Venomoth
+200
+Misdreavus
+300
+Skitty
+435
+Skuntank
+542
+Leavanny
+698
+Amaura F [ h ]
+770
+Palossand
+858
+Hatterene
+954
+Rabsca
+50
+Diglett
+201
+Unown
+301
+Delcatty
+436
+Bronzor
+543
+Venipede
+699
+Aurorus F [ h ]
+771
+Pyukumuku
+859
+Impidimp
+955
+Flittle
+51
+Dugtrio
+202
+Wobbuffet
+302
+Sableye
+437
+Bronzong
+544
+Whirlipede
+700
+Sylveon
+772
+Type: Null L
+860
+Morgrem
+956
+Espathra
+52
+Meowth
+203
+Girafarig
+303
+Mawile
+438
+Bonsly B [ g ]
+545
+Scolipede
+701
+Hawlucha
+773
+Silvally L
+861
+Grimmsnarl
+957
+Tinkatink
+53
+Persian
+204
+Pineco
+304
+Aron
+439
+Mime Jr. B [ g ]
+546
+Cottonee
+702
+Dedenne
+774
+Minior
+862
+Obstagoon
+958
+Tinkatuff
+54
+Psyduck
+205
+Forretress
+305
+Lairon
+440
+Happiny B [ g ]
+547
+Whimsicott
+703
+Carbink
+775
+Komala
+863
+Perrserker
+959
+Tinkaton
+55
+Golduck
+206
+Dunsparce
+306
+Aggron
+441
+Chatot
+548
+Petilil
+704
+Goomy
+776
+Turtonator
+864
+Cursola
+960
+Wiglett
+56
+Mankey
+207
+Gligar
+307
+Meditite
+442
+Spiritomb
+549
+Lilligant
+705
+Sliggoo
+777
+Togedemaru
+865
+Sirfetch'd
+961
+Wugtrio
+57
+Primeape
+208
+Steelix
+308
+Medicham
+443
+Gible
+550
+Basculin
+706
+Goodra
+778
+Mimikyu
+866
+Mr. Rime
+962
+Bombirdier
+58
+Growlithe
+209
+Snubbull
+309
+Electrike
+444
+Gabite
+551
+Sandile
+707
+Klefki
+779
+Bruxish
+867
+Runerigus
+963
+Finizen
+59
+Arcanine
+210
+Granbull
+310
+Manectric
+445
+Garchomp
+552
+Krokorok
+708
+Phantump
+780
+Drampa
+868
+Milcery
+964
+Palafin
+60
+Poliwag
+211
+Qwilfish
+311
+Plusle
+446
+Munchlax B [ g ]
+553
+Krookodile
+709
+Trevenant
+781
+Dhelmise
+869
+Alcremie
+965
+Varoom
+61
+Poliwhirl
+212
+Scizor
+312
+Minun
+447
+Riolu B [ g ]
+554
+Darumaka
+710
+Pumpkaboo
+782
+Jangmo-o
+870
+Falinks
+966
+Revavroom
+62
+Poliwrath
+213
+Shuckle
+313
+Volbeat
+448
+Lucario
+555
+Darmanitan
+711
+Gourgeist
+783
+Hakamo-o
+871
+Pincurchin
+967
+Cyclizar
+63
+Abra
+214
+Heracross
+314
+Illumise
+449
+Hippopotas
+556
+Maractus
+712
+Bergmite
+784
+Kommo-o
+872
+Snom
+968
+Orthworm
+64
+Kadabra
+215
+Sneasel
+315
+Roselia
+450
+Hippowdon
+557
+Dwebble
+713
+Avalugg
+785
+Tapu Koko L
+873
+Frosmoth
+969
+Glimmet
+65
+Alakazam
+216
+Teddiursa
+316
+Gulpin
+451
+Skorupi
+558
+Crustle
+714
+Noibat
+786
+Tapu Lele L
+874
+Stonjourner
+970
+Glimmora
+66
+Machop
+217
+Ursaring
+317
+Swalot
+452
+Drapion
+559
+Scraggy
+715
+Noivern
+787
+Tapu Bulu L
+875
+Eiscue
+971
+Greavard
+67
+Machoke
+218
+Slugma
+318
+Carvanha
+453
+Croagunk
+560
+Scrafty
+716
+Xerneas L
+788
+Tapu Fini L
+876
+Indeedee
+972
+Houndstone
+68
+Machamp
+219
+Magcargo
+319
+Sharpedo
+454
+Toxicroak
+561
+Sigilyph
+717
+Yveltal L
+789
+Cosmog L
+877
+Morpeko
+973
+Flamigo
+69
+Bellsprout
+220
+Swinub
+320
+Wailmer
+455
+Carnivine
+562
+Yamask
+718
+Zygarde L
+790
+Cosmoem L
+878
+Cufant
+974
+Cetoddle
+70
+Weepinbell
+221
+Piloswine
+321
+Wailord
+456
+Finneon
+563
+Cofagrigus
+719
+Diancie M
+791
+Solgaleo L
+879
+Copperajah
+975
+Cetitan
+71
+Victreebel
+222
+Corsola
+322
+Numel
+457
+Lumineon
+564
+Tirtouga F
+720
+Hoopa M
+792
+Lunala L
+880
+Dracozolt F
+976
+Veluza
+72
+Tentacool
+223
+Remoraid
+323
+Camerupt
+458
+Mantyke B [ g ]
+565
+Carracosta F
+721
+Volcanion M
+793
+Nihilego UB
+881
+Arctozolt F
+977
+Dondozo
+73
+Tentacruel
+224
+Octillery
+324
+Torkoal
+459
+Snover
+566
+Archen F
+No additional Pokémon
+794
+Buzzwole UB
+882
+Dracovish F
+978
+Tatsugiri
+74
+Geodude
+225
+Delibird
+325
+Spoink
+460
+Abomasnow
+567
+Archeops F
+795
+Pheromosa UB
+883
+Arctovish F
+979
+Annihilape
+75
+Graveler
+226
+Mantine
+326
+Grumpig
+461
+Weavile
+568
+Trubbish
+796
+Xurkitree UB
+884
+Duraludon
+980
+Clodsire
+76
+Golem
+227
+Skarmory
+327
+Spinda
+462
+Magnezone
+569
+Garbodor
+797
+Celesteela UB
+885
+Dreepy
+981
+Farigiraf
+77
+Ponyta
+228
+Houndour
+328
+Trapinch
+463
+Lickilicky
+570
+Zorua
+798
+Kartana UB
+886
+Drakloak
+982
+Dudunsparce
+78
+Rapidash
+229
+Houndoom
+329
+Vibrava
+464
+Rhyperior
+571
+Zoroark
+799
+Guzzlord UB
+887
+Dragapult
+983
+Kingambit
+79
+Slowpoke
+230
+Kingdra
+330
+Flygon
+465
+Tangrowth
+572
+Minccino
+800
+Necrozma L
+888
+Zacian L
+984
+Great Tusk P
+80
+Slowbro
+231
+Phanpy
+331
+Cacnea
+466
+Electivire
+573
+Cinccino
+801
+Magearna M
+889
+Zamazenta L
+985
+Scream Tail P
+81
+Magnemite
+232
+Donphan
+332
+Cacturne
+467
+Magmortar
+574
+Gothita
+802
+Marshadow M
+890
+Eternatus L
+986
+Brute Bonnet P
+82
+Magneton
+233
+Porygon2
+333
+Swablu
+468
+Togekiss
+575
+Gothorita
+803
+Poipole UB
+891
+Kubfu L
+987
+Flutter Mane P
+83
+Farfetch'd
+234
+Stantler
+334
+Altaria
+469
+Yanmega
+576
+Gothitelle
+804
+Naganadel UB
+892
+Urshifu L
+988
+Slither Wing P
+84
+Doduo
+235
+Smeargle
+335
+Zangoose
+470
+Leafeon
+577
+Solosis
+805
+Stakataka UB
+893
+Zarude M
+989
+Sandy Shocks P
+85
+Dodrio
+236
+Tyrogue B
+336
+Seviper
+471
+Glaceon
+578
+Duosion
+806
+Blacephalon UB
+894
+Regieleki L
+990
+Iron Treads P
+86
+Seel
+237
+Hitmontop
+337
+Lunatone
+472
+Gliscor
+579
+Reuniclus
+807
+Zeraora M
+895
+Regidrago L
+991
+Iron Bundle P
+87
+Dewgong
+238
+Smoochum B
+338
+Solrock
+473
+Mamoswine
+580
+Ducklett
+808
+Meltan M
+896
+Glastrier L
+992
+Iron Hands P
+88
+Grimer
+239
+Elekid B [ g ]
+339
+Barboach
+474
+Porygon-Z
+581
+Swanna
+809
+Melmetal M
+897
+Spectrier L
+993
+Iron Jugulis P
+89
+Muk
+240
+Magby B [ g ]
+340
+Whiscash
+475
+Gallade
+582
+Vanillite
+No additional Pokémon
+898
+Calyrex L
+994
+Iron Moth P
+90
+Shellder
+241
+Miltank
+341
+Corphish
+476
+Probopass
+583
+Vanillish
+899
+Wyrdeer
+995
+Iron Thorns P
+91
+Cloyster
+242
+Blissey
+342
+Crawdaunt
+477
+Dusknoir
+584
+Vanilluxe
+900
+Kleavor
+996
+Frigibax
+92
+Gastly
+243
+Raikou L
+343
+Baltoy
+478
+Froslass
+585
+Deerling
+901
+Ursaluna
+997
+Arctibax
+93
+Haunter
+244
+Entei L
+344
+Claydol
+479
+Rotom
+586
+Sawsbuck
+902
+Basculegion
+998
+Baxcalibur
+94
+Gengar
+245
+Suicune L
+345
+Lileep F
+480
+Uxie L
+587
+Emolga
+903
+Sneasler
+999
+Gimmighoul
+95
+Onix
+246
+Larvitar
+346
+Cradily F
+481
+Mesprit L
+588
+Karrablast
+904
+Overqwil
+1000
+Gholdengo
+96
+Drowzee
+247
+Pupitar
+347
+Anorith F
+482
+Azelf L
+589
+Escavalier
+905
+Enamorus L
+1001
+Wo-Chien L
+97
+Hypno
+248
+Tyranitar
+348
+Armaldo F
+483
+Dialga L
+590
+Foongus
+No additional Pokémon
+1002
+Chien-Pao L
+98
+Krabby
+249
+Lugia L
+349
+Feebas
+484
+Palkia L
+591
+Amoonguss
+1003
+Ting-Lu L
+99
+Kingler
+250
+Ho-oh L
+350
+Milotic
+485
+Heatran L
+592
+Frillish
+1004
+Chi-Yu L
+100
+Voltorb
+251
+Celebi M
+351
+Castform
+486
+Regigigas L
+593
+Jellicent
+1005
+Roaring Moon P
+101
+Electrode
+No additional Pokémon
+352
+Kecleon
+487
+Giratina L
+594
+Alomomola
+1006
+Iron Valiant P
+102
+Exeggcute
+353
+Shuppet
+488
+Cresselia L
+595
+Joltik
+1007
+Koraidon LP
+103
+Exeggutor
+354
+Banette
+489
+Phione M
+596
+Galvantula
+1008
+Miraidon LP
+104
+Cubone
+355
+Duskull
+490
+Manaphy M
+597
+Ferroseed
+1009
+Walking Wake P
+105
+Marowak
+356
+Dusclops
+491
+Darkrai M
+598
+Ferrothorn
+1010
+Iron Leaves P
+106
+Hitmonlee
+357
+Tropius
+492
+Shaymin M
+599
+Klink
+1011
+Dipplin
+107
+Hitmonchan
+358
+Chimecho
+493
+Arceus M
+600
+Klang
+1012
+Poltchageist
+108
+Lickitung
+359
+Absol
+No additional Pokémon
+601
+Klinklang
+1013
+Sinistcha
+109
+Koffing
+360
+Wynaut B
+602
+Tynamo
+1014
+Okidogi L
+110
+Weezing
+361
+Snorunt
+603
+Eelektrik
+1015
+Munkidori L
+111
+Rhyhorn
+362
+Glalie
+604
+Eelektross
+1016
+Fezandipiti L
+112
+Rhydon
+363
+Spheal
+605
+Elgyem
+1017
+Ogerpon L
+113
+Chansey
+364
+Sealeo
+606
+Beheeyem
+1018
+Archaludon
+114
+Tangela
+365
+Walrein
+607
+Litwick
+1019
+Hydrapple
+115
+Kangaskhan
+366
+Clamperl
+608
+Lampent
+1020
+Gouging Fire P
+116
+Horsea
+367
+Huntail
+609
+Chandelure
+1021
+Raging Bolt P
+117
+Seadra
+368
+Gorebyss
+610
+Axew
+1022
+Iron Boulder P
+118
+Goldeen
+369
+Relicanth
+611
+Fraxure
+1023
+Iron Crown P
+119
+Seaking
+370
+Luvdisc
+612
+Haxorus
+1024
+Terapagos L
+120
+Staryu
+371
+Bagon
+613
+Cubchoo
+1025
+Pecharunt M
+121
+Starmie
+372
+Shelgon
+614
+Beartic
+No additional Pokémon
+122
+Mr. Mime
+373
+Salamence
+615
+Cryogonal
+123
+Scyther
+374
+Beldum
+616
+Shelmet
+124
+Jynx
+375
+Metang
+617
+Accelgor
+125
+Electabuzz
+376
+Metagross
+618
+Stunfisk
+126
+Magmar
+377
+Regirock L
+619
+Mienfoo
+127
+Pinsir
+378
+Regice L
+620
+Mienshao
+128
+Tauros
+379
+Registeel L
+621
+Druddigon
+129
+Magikarp
+380
+Latias L
+622
+Golett
+130
+Gyarados
+381
+Latios L
+623
+Golurk
+131
+Lapras
+382
+Kyogre L
+624
+Pawniard
+132
+Ditto
+383
+Groudon L
+625
+Bisharp
+133
+Eevee S
+384
+Rayquaza L
+626
+Bouffalant
+134
+Vaporeon
+385
+Jirachi M
+627
+Rufflet
+135
+Jolteon
+386
+Deoxys M
+628
+Braviary
+136
+Flareon
+No additional Pokémon
+629
+Vullaby
+137
+Porygon
+630
+Mandibuzz
+138
+Omanyte F
+631
+Heatmor
+139
+Omastar F
+632
+Durant
+140
+Kabuto F
+633
+Deino
+141
+Kabutops F
+634
+Zweilous
+142
+Aerodactyl F
+635
+Hydreigon
+143
+Snorlax
+636
+Larvesta
+144
+Articuno L
+637
+Volcarona
+145
+Zapdos L
+638
+Cobalion L
+146
+Moltres L
+639
+Terrakion L
+147
+Dratini
+640
+Virizion L
+148
+Dragonair
+641
+Tornadus L
+149
+Dragonite
+642
+Thundurus L
+150
+Mewtwo L
+643
+Reshiram L
+151
+Mew M
+644
+Zekrom L
+No additional Pokémon
+645
+Landorus L
+646
+Kyurem L
+647
+Keldeo M
+648
+Meloetta M
+649
+Genesect M
+Glitch species [ edit ]
+In the Game Boy Pokémon games, Pokémon Red , Green , Blue , and Yellow , players were able to access a set of 105 glitch Pokémon. These species were not designed by the games' designers but could be encountered via the use of several glitches. Among them is a glitch dubbed MissingNo. , which became highly notorious. [ 48 ]
+Notes [ edit ]
+^ a b Official promotional sources have preferred the use of first partner or first partner Pokémon since at least 2019. [ 1 ]
+^ a b The Generation I and II main series games were later re-released via the Nintendo 3DS eShop in 2016–2018, with the Generation I titles being in celebration of the franchise's 20th anniversary.
+^ Two Pokémon, Meltan and Melmetal, were introduced in a 2018 update to the spin-off game Pokémon Go . Let's Go, Pikachu! and Let's Go, Eevee! include Meltan and Melmetal as playable Pokémon only through being transferred over from Pokémon Go . [ 31 ]
+^ Hisui was the ancient name for the region of Sinnoh
+^ Two Paradox Pokémon, Walking Wake and Iron Leaves, were added post-release in an online event starting 27 February 2023. [ 32 ]
+^ Certain mythical Pokémon are permanently obtainable in-game, being Deoxys in Omega Ruby and Alpha Sapphire , [ 37 ] Magearna in Sun , Moon , Ultra Sun and Ultra Moon , [ 38 ] Celebi in the Virtual Console version of Crystal , [ 39 ] Keldeo in Sword and Shield 's The Crown Tundra expansion, [ 40 ] Mew, Jirachi, Darkrai and Arceus in Brilliant Diamond and Shining Pearl , [ 41 ] [ 42 ] Manaphy, Phione, Shaymin, Darkrai and Arceus in Legends: Arceus , [ 43 ] and Meloetta in Scarlet and Violet 's The Indigo Disk expansion. [ 44 ]
+^ a b c d e f g h i j k l m Legends: Arceus and Legends: Z-A have no breeding mechanic. [ 46 ] [ 47 ] Consequently Pichu, Cleffa, Budew, and Riolu can only be found in the wild in either game, and Togepi, Elekid, Magby, Chingling, Bonsly, Mime Jr., Happiny, Munchlax, and Mantyke can only be found in the wild in Legends: Arceus .
+^ a b c d e f g h Although Cranidos, Rampardos, Shieldon and Bastiodon are Fossil Pokémon, they are obtainable in the wild in Legends: Arceus and Tyrunt, Tyrantrum, Amaura and Aurorus are obtanable in the wild in Legends Z-A . [ 43 ]
+References [ edit ]
+^ a b Masuda, Junichi (5 June 2019). "Pokémon Direct 6.5.2019" . Nintendo of America . Event occurs at 3:37–3:45 . Retrieved 3 September 2025 – via YouTube .
+^ a b Tajiri, Satoshi (22 November 1999). "The Ultimate Game Freak" . Time . New York, New York. Archived from the original on 1 February 2016 . Retrieved 13 January 2026 .
+^ a b King, Sharon R. (26 April 1999). "Mania for 'Pocket Monsters' Yields Billions for Nintendo" . The New York Times . Langhorne, Pennsylvania. Archived from the original on 24 December 2016 . Retrieved 11 February 2016 .
+^ "ポケットモンスター レッド・グリーン" (in Japanese). The Pokémon Company . 2017. Archived from the original on 1 July 2017 . Retrieved 13 July 2017 .
+^ "Game Boy's Pokémon Unleashed on September 28!" (Press release). Redmond, Washington: Nintendo. 28 September 1998. Archived from the original on 1 May 1999 . Retrieved 13 July 2017 .
+^ Jarvis, Matthew (2 December 2014). "Margin Makers: Guide to Pokémon merchandise" . MCV . Archived from the original on 27 January 2016 . Retrieved 11 February 2016 .
+^ "Type Matchup Chart" (PDF) . PokemonXY.com . Archived from the original (PDF) on 15 December 2017 . Retrieved 7 January 2018 .
+^ Loveridge, Sam (25 July 2016). "Pokémon Go Types explained: how to win Pokémon Go Gym battles" . Digital Spy . Archived from the original on 25 December 2016.
+^ Julien-Rohman, Damion (24 November 2014). " 'Pokémon Alpha Sapphire and Omega Ruby' deliver" . The State Press . Archived from the original on 24 December 2016.
+^ Mulkerin, Tim (20 January 2017). " 'Pokémon Go' Update: The definitive guide to gender politics in the new Pokémon universe" . Mic . Archived from the original on 27 July 2017 . Retrieved 28 March 2018 .
+^ a b Grimm, Michael (20 March 2009). "How Pokemon are born" . GamesRadar . Future plc . Archived from the original on 10 March 2016.
+^ Martinez, Phillips (18 November 2016). " 'Pokemon Sun And Moon': How To Catch Every Legendary In Alola" . iDigitalTimes . Archived from the original on 24 December 2016 . Retrieved 24 December 2016 .
+^ Martinez, Phillip (18 November 2016). " 'Pokémon Sun And Moon' Ultra Beasts: Everything You Need To Know" . iDigitalTimes . Archived from the original on 24 December 2016 . Retrieved 24 December 2016 .
+^ Drake, Audrey (14 February 2013). "Pokémon X and Y's New Eeveelution Revealed" . IGN . Ziff Davis . Archived from the original on 3 January 2024 . Retrieved 23 June 2017 .
+^ a b c Plunkett, Luke (24 May 2011). "The Man Who Creates Pokémon For a Living" . Kotaku . Gawker Media . Archived from the original on 25 October 2015 . Retrieved 19 October 2015 .
+^ Sarkar, Samit (29 May 2013). "Harvest Moon creator's Hometown Story leads Natsume's E3 slate" . Polygon . Vox Media . Archived from the original on 28 November 2022 . Retrieved 18 June 2017 .
+^ Bailey, Kat (16 September 2015). "The New Zygarde Form is a Reminder of How Hard it is to Design a Good Pokémon" . USGamer.net . Gamer Network. Archived from the original on 1 March 2016 . Retrieved 18 June 2017 .
+^ a b c Nutt, Christian (10 October 2013). "How Pokemon are born: Designing the series' iconic monsters" . Gamasutra . UBM plc . Archived from the original on 4 March 2016 . Retrieved 28 January 2016 .
+^ a b c Watts, Steve (24 October 2013). "How Europe inspired Pokemon X and Y's creature designs" . Shacknews . GameFly . Archived from the original on 19 July 2016 . Retrieved 18 June 2017 .
+^ Masuda, Junichi; Yoshida, Hironobu (24 September 2013). "Pokémon X and Y Interview with Game Freak" (Interview). Interviewed by Justin Berube and Josh Max. Nintendo World Report. Archived from the original on 26 January 2016 . Retrieved 30 January 2016 .
+^ a b c Loveridge, Sam (20 October 2016). "Want to know how The Pokémon Company designs Pokémon?" . Digital Spy . Archived from the original on 7 November 2016 . Retrieved 7 July 2017 .
+^ a b c Hernandez, Patricia (17 December 2012). "Pokémon Designs Aren't Getting Worse, They May Be Getting Better" . Kotaku . Gawker Media. Archived from the original on 21 January 2016 . Retrieved 28 January 2016 .
+^ Cundy, Matt (9 October 2012). "Pokemon developer confident it can keep making new pokemon forever" . GamesRadar . Future plc. Archived from the original on 24 December 2016 . Retrieved 28 January 2016 .
+^ a b Masuda, Junichi; Yoshida, Hironobu (20 September 2013). "Junichi Masuda and Hironobu Yoshida Discuss Pokémon X and Y, Mega Evolutions and the 2DS" (Interview). Interviewed by Katy Ellis. Nintendo Life . p. 2. Archived from the original on 5 March 2016 . Retrieved 30 January 2016 .
+^ Masuda, Junichi; Yoshida, Hironobu (19 September 2013). "Men are from Mars, Pokemon X and Y are from France" . IGN (Interview). Interviewed by Heidi Kemps. Ziff Davis. Archived from the original on 15 December 2015 . Retrieved 30 January 2016 .
+^ a b Hernandez, Patricia (25 September 2013). " Pokemon Hasn't Really Felt Exciting In A Long While...Until Now" . Kotaku . Gawker Media. Archived from the original on 26 September 2013 . Retrieved 1 February 2013 .
+^ Staff, Pokémon Company International; Whitehill, Simcha; Neves, Lawrence; Frang, Katherine; Silvestri, Chris (17 November 2016). Encyclopedia . Hachette Children's Group. p. 30. ISBN   978-1-40834-9-953 . Archived from the original on 9 April 2023 . Retrieved 7 January 2018 – via Google Books.
+^ Sullivan, Lucas (4 February 2014). "17 Pokemon based on real-world mythology" . GamesRadar . Future plc. Archived from the original on 5 March 2016 . Retrieved 18 June 2017 .
+^ Sato (7 November 2013). "Pokémon Art Director Wants The Next Generation To Be Simpler" . Siliconera . Curse . Archived from the original on 2 March 2016 . Retrieved 28 January 2016 .
+^ Sugimori, Ken; Unno, Takao; Ohmura, Yusuke (January 2011). "[Designs of Generation V Pokémon]". Nintendo Dream (in Japanese). Vol. 201.
+^ Frank, Allegra (23 October 2018). "Pokémon: Let's Go! legendary Meltan's evolution revealed" . Polygon . Vox Media. Archived from the original on 27 July 2019 . Retrieved 24 October 2018 .
+^ "Happy Pokémon Day! Catch the latest news, including DLC for Pokémon Scarlet and Pokémon Violet" . Nintendo. 27 February 2023. Archived from the original on 28 February 2023 . Retrieved 28 February 2023 .
+^ Grassl, Zion (15 August 2025). "First Impressions: Pokémon Legends: Z-A Is An Attempt To Catch The Hardcore Again" . Nintendo Life . Retrieved 12 September 2025 .
+^ "New Nintendo Direct Kicks off the Super Mario Bros. 40th Anniversary and Brings Slate of New Announcements" . Business Wire . San Francisco: Berkshire Hathaway . 12 September 2025 . Retrieved 12 September 2025 .
+^ Staff, RPG Site. "Pokemon Ultra Sun & Moon Fossils Guide: How to get every Pokemon fossil and revive Pokemon from them" . www.rpgsite.net . Archived from the original on 10 March 2018 . Retrieved 2 March 2018 .
+^ Staff, Pokémon Company International; Whitehill, Simcha; Neves, Lawrence; Frang, Katherine; Silvestri, Chris (17 November 2016). Encyclopedia . Hachette Children's Group. p. 151. ISBN   978-1-40834-9-953 . Archived from the original on 5 April 2023 . Retrieved 28 December 2017 – via Google Books.
+^ Hernandez, Patricia (21 November 2014). "One Big Reason To Finish The New Pokémon Games" . Kotaku . Gawker Media. Archived from the original on 7 June 2023 . Retrieved 15 October 2020 .
+^ Tapsell, Chris (23 June 2017). "Pokémon Sun and Moon Magearna QR Code - event details and how to catch the mythical Pokémon Magearna" . Eurogamer . Gamer Network . Archived from the original on 7 December 2023 . Retrieved 15 October 2022 .
+^ Skrebels, Joe (14 December 2017). "Pokemon Crystal Coming to 3DS eShop in January" . IGN . Ziff Davis. Archived from the original on 9 February 2023 . Retrieved 15 October 2022 .
+^ Lynn, Lottie (28 October 2020). "Pokémon Crown Tundra Keldeo: How to find and catch Keldeo, including its moveset in Crown Tundra explained" . Eurogamer . Gamer Network. Archived from the original on 21 March 2023 . Retrieved 15 October 2022 .
+^ Knezevic, Kevin (6 January 2022). "Pokemon Brilliant Diamond and Shining Pearl: How to get Mew and Jirachi" . CNET . Archived from the original on 16 October 2023 . Retrieved 15 October 2022 .
+^ Knezevic, Kevin (29 April 2022). "Pokemon Brilliant Diamond and Shining Pearl: How to Get Arceus and Darkrai" . CNET . Archived from the original on 7 June 2023 . Retrieved 15 October 2022 .
+^ a b Lynn, Lottie (16 March 2022). "Pokémon Legends Arceus Pokédex: All Pokémon locations in the Hisui Pokédex listed" . Eurogamer . Gamer Network. Archived from the original on 28 November 2023 . Retrieved 15 October 2022 .
+^ Diaz, Ana (20 December 2023). "How to catch Meloetta in Pokémon Scarlet and Violet: The Indigo Disk" . Polygon .
+^ "Pokédex" . The Pokémon Company International. 2017. Archived from the original on 3 January 2024 . Retrieved 16 June 2017 .
+^ Gray, Laura (12 March 2022). "Why Legends: Arceus Is Missing Pokémon Breeding" . ScreenRant . Retrieved 13 September 2025 .
+^ Yonezawa, Bruno (28 October 2025). "Pokémon Legends: Z-A Lacks Breeding System Like Arceus" . ScreenRant . Retrieved 24 November 2025 .
+^ Hernandez, Patricia (4 February 2016). " Pokémon ' s Famous Missingno Glitch, Explained" . Kotaku . Gawker Media. Archived from the original on 24 January 2018 . Retrieved 27 December 2017 .
+External links [ edit ]
+Pokémon official Pokédex Archived 14 October 2018 at the Wayback Machine
+Pokémon species Archived 26 September 2018 at the Wayback Machine on Bulbapedia
+Pokémon India Official Pokédex Archived 1 June 2022 at the Wayback Machine
+v t e Pokémon by the Pokémon Company , owned by Nintendo , Creatures Inc. and Game Freak Video games Main series Generation I
+Red / Blue / Yellow
+Lavender Town
+Pokémon Bulbasaur Charmander Charizard Squirtle Blastoise Butterfree Pikachu Raichu Ninetales Jigglypuff Diglett and Dugtrio Meowth Psyduck Slowpoke Haunter Gengar Voltorb Cubone Weezing Starmie Mr. Mime Jynx Pinsir Magikarp and Gyarados Ditto Eevee Snorlax Dragonite Mewtwo Mew MissingNo.
+Generation II Generation III Generation IV Generation V
+Gold / Silver
+Crystal
+Pokémon
+Typhlosion
+Sudowoodo
+Wooper
+Unown
+Wobbuffet
+Heracross
+Delibird
+Smeargle
+Ruby / Sapphire
+Emerald
+FireRed / LeafGreen
+Pokémon
+Blaziken
+Gardevoir
+Shedinja
+Mawile
+Regirock, Regice, and Registeel
+Diamond / Pearl
+Platinum
+HeartGold / SoulSilver
+Pokémon
+Pachirisu
+Garchomp
+Lucario
+Regigigas
+Arceus
+Black / White
+Black 2 / White 2
+Pokémon
+Zoroark
+Chandelure
+Generation VI Generation VII Generation VIII Generation IX Generation X
+X / Y
+Omega Ruby / Alpha Sapphire
+Pokémon
+Talonflame
+Malamar
+Klefki
+Sun / Moon
+Ultra Sun / Ultra Moon
+Let's Go, Pikachu! / Let's Go, Eevee!
+Pokémon
+Popplio, Brionne, and Primarina
+Mimikyu
+Meltan
+Sword / Shield
+Expansion Pass
+Brilliant Diamond / Shining Pearl
+Legends: Arceus
+Pokémon
+Scorbunny
+Sobble
+Wooloo
+Fossil Pokémon
+Regieleki and Regidrago
+Kleavor
+Scarlet / Violet
+Hidden Treasure of Area Zero
+" Celestial "
+" Biri-Biri "
+Legends: Z-A
+Pokémon
+Sprigatito, Floragato, and Meowscarada
+Fuecoco
+Tinkaton
+Gholdengo
+Winds / Waves
+Related
+Pocket Monsters Stadium
+Stadium
+Stadium 2
+Colosseum
+XD: Gale of Darkness
+Battle Revolution
+My Pokémon Ranch
+Go
+live events
+Champions
+Characters
+Professor Oak
+Brock
+Misty
+Team Rocket
+Hex Maniac
+Cynthia
+Serena
+Lillie
+Team Skull
+Hop
+Ball Guy
+Nessa
+Nemona
+Larry
+Rika
+Lebanne
+Rivals
+List of Pokémon
+Shiny Pokémon
+Spin-offs Mystery Dungeon
+Red and Blue Rescue Team
+Rescue Team DX
+Explorers of Time and Darkness
+Explorers of Sky
+Gates to Infinity
+Super Mystery Dungeon
+Rumble
+Rumble
+Blast
+U
+World
+Rush
+Puzzle
+Puzzle League
+Puzzle Challenge
+Trozei!
+Battle Trozei
+Shuffle
+Picross
+Café ReMix
+Friends
+Educational
+Project Studio
+Typing Adventure
+Art Academy
+Smile
+Hey You, Pikachu!
+Snap
+New Snap
+Pinball
+Ruby & Sapphire
+Channel
+Dash
+Ranger
+Shadows of Almia
+Guardian Signs
+PokéPark
+Wonders Beyond
+Conquest
+Pokkén Tournament
+Detective Pikachu
+Returns
+Duel
+Magikarp Jump
+Quest
+Masters EX
+Unite
+Sleep
+Pokopia Competitive play
+World Championships ( 2023 )
+Wolfe Glick
+Ray Rizzo
+Park Se-jun
+Trading Card Game
+Sets
+Base Set (1996)
+Most expensive cards
+Video games
+Pokémon Trading Card Game
+TCG Online
+TCG Pocket
+Other
+Pokémon Pikachu
+Pokémon Mini
+Poké Ball Plus
+Box: Ruby and Sapphire
+Bank
+Super Smash Bros.
+Twitch Plays Pokémon
+Unofficial
+Pokémon fan games
+Prism
+Showdown
+Uranium
+PETA satirical browser games
+Micromon
+Pocket Mortys
+Media TV series Episodes Seasons 1–9
+Indigo League
+" Pokémon, I Choose You! "
+2.B.A. Master
+" Pokémon Theme "
+Adventures in the Orange Islands
+The Johto Journeys
+Johto League Champions
+Master Quest
+Advanced
+Advanced Challenge
+Advanced Battle
+Battle Frontier
+Seasons 10–19
+Diamond and Pearl
+Battle Dimension
+Galactic Battles
+Sinnoh League Victors
+Black & White
+Rival Destinies
+Adventures in Unova and Beyond
+" Te o Tsunagō "
+XY
+Kalos Quest
+XYZ
+Seasons 20– present
+Sun & Moon
+Ultra Adventures
+Ultra Legends
+Journeys
+Master Journeys
+Ultimate Journeys
+Horizons
+The Search for Laqua
+Rising Hope
+Removed from rotation
+" Dennō Senshi Porygon "
+Chronicles
+Characters
+Ash Ketchum
+Brock
+Misty
+Team Rocket
+Professor Oak
+Serena
+Lillie
+Liko
+Films Animated
+The First Movie
+soundtrack
+" Don't Say You Love Me "
+Mewtwo Strikes Back – Evolution
+2000
+" The Power of One "
+" Toi et Moi "
+" Flying Without Wings "
+3: The Movie
+4Ever
+Heroes
+Jirachi, Wish Maker
+Destiny Deoxys
+Lucario and the Mystery of Mew
+Ranger and the Temple of the Sea
+The Rise of Darkrai
+Giratina & the Sky Warrior
+" One "
+Arceus and the Jewel of Life
+Zoroark: Master of Illusions
+Black—Victini and Reshiram / White—Victini and Zekrom
+" Sora/Koe "
+Kyurem vs. the Sword of Justice
+Genesect and the Legend Awakened
+Diancie and the Cocoon of Destruction
+Hoopa and the Clash of Ages
+Volcanion and the Mechanical Marvel
+I Choose You!
+The Power of Us
+Secrets of the Jungle
+Live-action
+Detective Pikachu
+score
+" Carry On "
+Manga
+Pocket Monsters
+Adventures
+volumes
+1–20
+20–40
+41–current
+The Electric Tale of Pikachu
+Magical Pokémon Journey
+Miniseries
+Origins
+Generations
+Twilight Wings
+Pokétoon
+Evolutions
+Concierge
+Music
+Theme songs
+" Pokémon Theme "
+" Biri-Biri "
+" Carry On "
+" Celestial "
+" Electric "
+" Flying Without Wings "
+" One "
+Pokémon 2.B.A. Master
+Pokémon: The First Movie
+" Don't Say You Love Me "
+" The Power of One "
+Project Voltage
+" Sora/Koe "
+" Te o Tsunagō / Kindan no Karma "
+" Toi et Moi "
+Related
+4Kids Entertainment
+Media Factory
+OLM
+Pokémon Live!
+Pokémon Apokélypse
+Symphonic Evolutions
+Related People
+Tsunekazu Ishihara
+Sayuri Ichiishi
+Junichi Masuda
+Shigeki Morimoto
+Atsuko Nishida
+Shigeru Ohmori
+Naoki Saito
+Takeshi Shudo
+Ken Sugimori
+Satoshi Tajiri
+Kunihiko Yuyama
+Organizations
+Ambrella
+Genius Sonority
+ILCA
+Wizards of the Coast
+Community
+MissJirachi
+pChal
+Nuzlocke
+Marketing
+Pokémon Center
+Pokémon Jet
+Burger King Pokémon container recall
+Pokéfuta
+Pokémon 25th Anniversary
+Pokémon Fossil Museum
+Project Voltage
+PokéPark
+PokéPark Kanto
+Pop culture
+Pikachu virus
+Tía Pikachu
+Pokémon and pornography
+doujinshi incident
+Fakemon
+Chinpokomon
+Eponymous
+Zbtb7
+Bulbasaurus
+Chilicola charizard
+Stentorceps weedlei
+Pikachurin
+Mazuca strigicincta
+Alistra pikachu
+Hiperantha pikachu
+Aerodactylus
+Binburrum articuno
+Binburrum moltres
+Anyphaena treecko
+Anyphaena grovyle
+Anyphaena sceptile
+Nocticola pheromosa
+Phrynarachne dreepy
+Category
+Portal : Video games
+Retrieved from " https://en.wikipedia.org/w/index.php?title=List_of_Pokémon&oldid=1342125709 "
+Category : Lists of Pokémon Hidden categories: CS1 Japanese-language sources (ja) Articles with short description Short description is different from Wikidata Featured lists Use dmy dates from October 2025 Articles containing Japanese-language text Articles containing potentially dated statements from February 2026 All articles containing potentially dated statements Webarchive template wayback links
+This page was last edited on 7 March 2026, at 04:26  (UTC) .
+Text is available under the Creative Commons Attribution-ShareAlike 4.0 License ;
+additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy . Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc. , a non-profit organization.
+Privacy policy
+About Wikipedia
+Disclaimers
+Contact Wikipedia
+Legal & safety contacts
+Code of Conduct
+Developers
+Statistics
+Cookie statement
+Mobile view
+Search
+Search
+Toggle the table of contents
+List of Pokémon
+39 languages
+Add topic

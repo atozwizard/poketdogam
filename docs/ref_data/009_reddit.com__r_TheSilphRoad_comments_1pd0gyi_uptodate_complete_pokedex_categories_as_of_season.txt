@@ -1,0 +1,457 @@
+URL: https://www.reddit.com/r/TheSilphRoad/comments/1pd0gyi/uptodate_complete_pokedex_categories_as_of_season/
+STATUS: ok
+
+Reddit - The heart of the internet
+Skip to main content
+Open menu
+Open navigation
+Go to Reddit Home
+r/TheSilphRoad
+Get App
+Get the Reddit app
+Log In
+Log in to Reddit
+Expand user menu
+Open settings menu
+:first-child]:h-full [&>:first-child]:w-full [&>:first-child]:mb-0 [&>:first-child]:rounded-[inherit] h-full w-full
+[&>:first-child]:overflow-hidden [&>:first-child]:max-h-full">
+Go to TheSilphRoad
+r/TheSilphRoad
+•
+Tyviebrock
+[UP-TO-DATE] Complete Pokedex Categories as of Season 21: Precious Paths
+Credit to u/ZekromFPS for the original list, this wouldn't exist without you, credit to u/simon3873 for the original spreadsheet, and finally credit to u/FailsAtSuccess for originally continuing this before getting suspended.
+Here are the numbers for the Season of Tales of Transformation: 12 new Pokemon (5 Galar, 7 Paldea), 19 new shinies (1 Unova, 3 Alola, 11 Galar, 4 Paldea), 3 new megas, 7 new costumes, 25 new D-Max, 28 new shiny D-Max, 16 new shadows, 8 new shiny shadows, 2 new G-Max, 1 new alternate form
+And here are the numbers for the Season of Precious Paths (currently): 14 new Pokemon (5 Galar, 9 Paldea), 14 new shinies (6, Kalos, 1 Alola, 3 Galar, 4 Paldea), 16 new shadows, 6 new shiny shadows, 12 new D-Max, 15 new shiny D-Max, and 9 new costumes, 1 new alternate form, 1 new alternate form shiny, 1 new G-Max, 3 Megas, 4 Mega shinies
+Thanks to a friend, the spreadsheet was recovered and is being updated by me for the current season! You can download (you just need to click "File" and then "Make a Copy") so you can keep track of your own collection or simply check it every now and then!
+Complete Pokédex and ShinyDex:
+Region
+Released
+Shiny
+Region Exclusive*
+Kanto
+151/151
+151/151
+0
+Johto
+100/100
+100/100
+0
+Hoenn
+135/135
+135/135
+9
+Sinnoh
+104/107
+104/107
+7
+Unova
+156/156
+155/156
+13
+Kalos
+72/72
+69/72
+2
+Alola
+78/86
+70/86
+5
+Galar
+66/89
+34/89
+1
+Hisui
+6/7
+5/7
+0
+Paldea
+70/120
+46/120
+0
+Unknown
+2/2
+2/2
+0
+Total
+940/1025
+871/1025
+37
+These are NOT including Pokémon that can be filled out via Megas or Regional Forms
+Missing Pokémon from each region:
+SINNOH (3):
+Phione (#0489)
+Manaphy (#0490)
+Arceus (#0493)
+ALOLA (8):
+Wishiwashi (#0746)
+Pyukumuku (#0771)
+Type: Null and Silvally (#0772, #0773)
+Minior (#0774)
+Mimikyu (#0778)
+Magearna (#0801)
+Zeraora (#0807)
+GALAR (23):
+Blipbug, Dottler, and Orbeetle (#0824, #0825, #0826)
+Chewtle and Drednaw (#0833, #0834)
+Silicobra and Sandaconda (#0843, #0844)
+Cramorant (#0845)
+Arrokuda and Barraskewda (#0846, #0847)
+Milcery and Alcremie (#0868, #0869)
+Pincurchin (#0871)
+Eiscue (#0875)
+Cufant and Copperajah (#0878, #0879)
+Dracozolt (#0880)
+Arctozolt (#0881)
+Dracovish (#0882)
+Arctovish (#0883)
+Glastrier (#0896)
+Spectrier (#0897)
+Calyrex (#0898)
+HISUI (1):
+Basculegion (#0902)
+PALDEA (50):
+Squawkabilly (#0931)
+Maschiff and Mabosstiff (#0942, #0943)
+Bramblin and Brambleghast (#0946, #0947)
+Capsakid and Scovillain (#0951, #0952)
+Rellor and Rabsca (#0953, #0954)
+Flittle and Espathra (#0955, #0956)
+Finizen and Palafin (#0963, #0964)
+Cyclizar (#0967)
+Orthworm (#0968)
+Veluza (#0976)
+Farigiraf (#0981)
+Great Tusk (#0984)
+Scream Tail (#0985)
+Brute Bonnet (#0986)
+Flutter Mane (#0987)
+Slither Wing (#0988)
+Sandy Shocks (#0989)
+Iron Treads (#0990)
+Iron Bundle (#0991)
+Iron Hands (#0992)
+Iron Jugulis (#0993)
+Iron Moth (#0994)
+Iron Thorns (#0995)
+Wo-Chien (#1001)
+Chien-Pao (#1002)
+Ting-Lu (#1003)
+Chi-Yu (#1004)
+Roaring Moon (#1005)
+Iron Valiant (#1006)
+Koraidon (#1007)
+Miraidon (#1008)
+Walking Wake (#1009)
+Iron Leaves (#1010)
+Okidogi (#1014)
+Munkidori (#1015)
+Fezandipiti (#1016)
+Ogerpon (#1017)
+Archaludon (#1018)
+Gouging Fire (#1020)
+Raging Bolt (#1021)
+Iron Boulder (#1022)
+Iron Crown (#1023)
+Terapagos (#1024)
+Pecharunt (#1025)
+Unreleased ALTERNATIVE forms for existing Pokémon:
+Spinda Pattern 10-20
+Zen Mode Darmanitan and Zen Mode Galarian Darmanitan
+Pirouette Form Meloetta
+Ash-Greninja
+Poké Ball and Fancy Patterns Vivillon
+Eternal Flower Floette
+Hisuian Sliggoo and Goodra
+Ultra Necrozma
+Regular Form Duraludon (No D-Max)
+Regular Form Kubfu (No D-Max)
+Regular Form Urshifu (Both Forms) (No D-Max)
+Dada Zarude
+Bloodmoon Ursaluna
+Chest Form Gimmighoul
+Unreleased SHINY for existing Shiny Alternative Forms:
+Paldean Tauros (Combat, Blaze, and Aqua Breeds)
+Unown Q
+Rotom Mow, Frost, Wash, Heat, and Fan
+Hisuian Zorua and Zoroark
+Unreleased Mega forms:
+Note: Below are spoilers for the newest released game Pokémon Legends: Z-A DLC, Please do not reveal them if you do not wished to be spoiled! Spoiler block will be removed on (03/10/2026, March 10th, 2026).
+Mega Raichu X
+Mega Raichu Y
+Mega Clefable
+Mega Starmie
+Mega Mewtwo X
+Mega Mewtwo Y
+Mega Meganium
+Mega Feraligatr
+Mega Skarmory
+Mega Chimecho
+Mega Absol Z
+Mega Staraptor
+Mega Garchomp Z
+Mega Lucario Z
+Mega Froslass
+Mega Heatran
+Mega Darkrai
+Mega Emboar
+Mega Excadrill
+Mega Scolipede
+Mega Scrafty
+Mega Eelektross
+Mega Chandelure
+Mega Golurk
+Mega Chesnaught
+Mega Delphox
+Mega Greninja
+Mega Pyroar
+Mega Eternal Flower Floette
+Mega Meowstic
+Mega Barbaracle
+Mega Dragalge
+Mega Hawlucha
+Mega Complete Zygarde
+Mega Crabominable
+Mega Golisopod
+Mega Drampa
+Mega Magearna
+Mega Original Color Magearna
+Mega Zeraora
+Mega Falinks
+Mega Scovillain
+Mega Glimmora
+Mega Tatsugiri
+Mega Baxcalibur
+Unreleased Gigantamax forms:
+Gigantamax Pikachu
+Gigantamax Eevee
+Gigantamax Melmetal
+Gigantamax Corviknight
+Gigantamax Orbeetle
+Gigantamax Drednaw
+Gigantamax Coalossal
+Gigantamax Flapple
+Gigantamax Appletun
+Gigantamax Sandaconda
+Gigantamax Centiskorch
+Gigantamax Hatterene
+Gigantamax Alcremie
+Gigantamax Copperajah
+Gigantamax Duraludon
+Gigantamax Urshifu Single Strike
+Gigantamax Urshifu Rapid Strike
+Released REGIONAL forms:
+Region
+Released
+Shiny
+Alolans
+18/18
+18/18
+Galarians
+19/19
+19/19
+Hisuians
+15/17
+13/17
+Paldeans
+4/4
+1/4
+Mega & Primal Evolutions Released:
+Region
+Mega & Primal
+Shiny
+Kanto
+15/21
+15/21
+Johto
+6/9
+6/9
+Hoenn
+22/24
+22/24
+Sinnoh
+5/11
+5/11
+Unova
+1/8
+1/8
+Kalos
+2/12
+2/12
+Alola
+0/6
+0/6
+Galar
+0/1
+0/1
+Paldea
+0/4
+0/4
+Total
+51/96
+51/96
+Gigantamax Released:
+Region
+Gigantamax
+Shiny
+Kanto
+10/12
+10/12
+Unova
+1/1
+1/1
+Galar
+5/19
+2/19
+Unknown
+0/1
+0/1
+Total
+16/33
+13/33
+Released Shadow Pokémon + Shiny:
+Region
+Shadow
+Shiny
+Kanto
+122/151
+68/151
+Johto
+63 (+ 2 Apex Shadow)/100
+34/100
+Hoenn
+87/135
+37/135
+Sinnoh
+61/107
+15/107
+Unova
+71/156
+0/156
+Kalos
+22/72
+0/72
+Alola
+6/86
+0/86
+Galar
+1/89
+1/89
+Hisui
+2/7
+1/7
+Paldea
+1/120
+0/120
+Total
+436 (+ 2 Apex Shadow)/1023
+156/1023
+Released REGIONAL Shadow forms:
+Region
+Shadow
+Shiny
+Alolan
+15/18
+4/18
+Galarians
+3/19
+3/19
+Hisuians
+1/17
+0/17
+Paldeans
+0/4
+0/4
+Released Dynamax Pokémon + Shiny:
+Region
+Dynamax
+Shiny
+Kanto
+39/151
+39/151
+Johto
+9/100
+9/100
+Hoenn
+14/135
+14/135
+Sinnoh
+3/107
+3/107
+Unova
+15/156
+15/156
+Kalos
+3/72
+3/72
+Alola
+5/86
+5/86
+Galar
+24/86
+16/86
+Total
+112/893
+104/893
+Galar is at 86, cause in MSG Zacian, Zamazenta, and Eternatus are unable to Dynamax
+Event, Shiny Event and Lucky Dex :
+(Please let me know if these numbers seem inaccurate!)
+Event Dex
+Shiny
+Shadow Event
+Lucky
+Total
+285 (+1)
+277
+9
+923 (+1)
+Remember :
+The "+1" in the Event Dex is GOFest-Lugia .
+The Shiny Count includes the Shiny Detective Hat 2019 Pikachu/Raichu mistake.
+The "+1" in the Lucky Dex is the Lucky Deoxys mistake!
+Glitchu is NOT included due to this pokémon being fixed, however it's not fixed in the event dex yet.
+RELEASES:
+December 2nd, 2025: Nacli + Naclstack + Garganacl and Shiny Shadow Heatran
+December 11th, 2025: D-Max Hitmonlee (+shiny) and D-Max Hitmonchan (+shiny)
+December 13th, 2025: Clobbopus + Grapploct
+December 18th, 2025: Holiday Sudowoodo (+shiny), Holiday Charjabug + Vikavolt (+shiny)
+December 22nd, 2025: D-Max Spheal + Sealeo + Walrein (+shiny)
+December 24th, 2025: Rolycoly + Carkol + Coalossal
+January 5th, 2026: D-Max Drampa (+shiny)
+January 6th, 2026: Klawf and shiny Dhelmise
+January 13th, 2026: Shiny Tadbulb + Bellibolt
+January 14th, 2026: Wattrel + Kilowattrel
+January 18th, 2026: Shiny Grookey + Thwackey + Rillaboom (+DMax)
+January 20th, 2026: Shiny Fidough + Dachsbun
+January 23rd, 2026: Shadow Ponyta + Rapidash, Shadow Krabby + Kingler, Shadow Kabuto + Kabutops, Shadow Incarnate Thundurus, Shadow Chespin + Quilladin + Chesnaught, Shadow Fennekin + Braixen + Delphox, Shadow Froakie + Frogadier + Greninja, Shadow Shiny Magikarp + Gyarados, Shadow Shiny Hoppip + Skiploom + Jumpluff
+January 26th, 2026: D-Max Roggenrola + Boldore + Gigalith (+shiny)
+January 27th, 2026: Glimmet + Glimmora
+January 31st, 2026: D-Max Ho-Oh (+shiny)
+February 3rd, 2026: Flamigo
+February 9th, 2026: D-Max Growlithe + Arcanine (+shiny)
+February 14th, 2026: Therian Forme Enamorus
+February 15th, 2026: G-Max Meowth (+shiny)
+February 20th, 2026: Mega Victreebel (+shiny), Mega Dragonite (+shiny), Mega Malamar (+shiny), Shiny Unown Z, Shiny Honedge + Doublade + Aegislash, Shiny Hawlucha, Shiny Klefki, Shiny Diancie (+mega), Calem's hat Pikachu (+shiny), and Serena's hat Pikachu (+shiny)
+February 23rd, 2026: Red's Cap Pikachu (+shiny) and Leaf's Hat Pikachu (+shiny)
+February 24th, 2026: Ethan's Cap Pikachu (+shiny) and Lyra's Hat Pikachu (+shiny)
+Read more
+Share
+New to Reddit?
+Create your account and connect with a world of communities.
+Continue with Email
+Continue With Phone Number
+By continuing, you agree to our
+User Agreement
+and acknowledge that you understand the
+Privacy Policy .
+Public
+Anyone can view, post, and comment to this community
+0
+0
+Reddit Rules
+Privacy Policy
+User Agreement
+Accessibility
+Reddit, Inc. © 2026. All rights reserved.
+Expand Navigation
+Collapse Navigation

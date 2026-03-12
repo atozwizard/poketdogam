@@ -1,0 +1,434 @@
+[
+  {
+    "index": 1,
+    "url": "https://www.wargamer.com/pokemon-trading-card-game/how-many-pokemon-are-there",
+    "status": "ok",
+    "output_file": "docs/ref_data/001_wargamer.com__pokemon-trading-card-game_how-many-pokemon-are-there.txt",
+    "ui_file": "docs/ref_data/001_UI_REF_wargamer.com__pokemon-trading-card-game_how-many-pokemon-are-there.txt",
+    "ui_line_count": 50,
+    "note": ""
+  },
+  {
+    "index": 2,
+    "url": "https://www.ign.com/articles/pokemon-gen-10-winds-and-waves-every-pokemon-confirmed-so-far",
+    "status": "ok",
+    "output_file": "docs/ref_data/002_ign.com__articles_pokemon-gen-10-winds-and-waves-every-pokemon-confirmed-so-far.txt",
+    "ui_file": "docs/ref_data/002_UI_REF_ign.com__articles_pokemon-gen-10-winds-and-waves-every-pokemon-confirmed-so-far.txt",
+    "ui_line_count": 1,
+    "note": ""
+  },
+  {
+    "index": 3,
+    "url": "https://en.wikipedia.org/wiki/List_of_Pok%C3%A9mon",
+    "status": "ok",
+    "output_file": "docs/ref_data/003_en.wikipedia.org__wiki_List_of_Pok-C3-A9mon.txt",
+    "ui_file": "docs/ref_data/003_UI_REF_en.wikipedia.org__wiki_List_of_Pok-C3-A9mon.txt",
+    "ui_line_count": 28,
+    "note": ""
+  },
+  {
+    "index": 4,
+    "url": "https://www.gosugamers.net/entertainment/news/78066-pokemon-winds-and-waves-new-region-seems-to-be-inspired-by-the-philippines-indonesia-and-malaysia",
+    "status": "ok",
+    "output_file": "docs/ref_data/004_gosugamers.net__entertainment_news_78066-pokemon-winds-and-waves-new-region-seems-to-be-inspired-by-the-philippines-indo.txt",
+    "ui_file": "docs/ref_data/004_UI_REF_gosugamers.net__entertainment_news_78066-pokemon-winds-and-waves-new-region-seems-to-be-inspired-by-the-philippines-indo.txt",
+    "ui_line_count": 1,
+    "note": ""
+  },
+  {
+    "index": 5,
+    "url": "https://www.eurogamer.net/pokemon-sword-shield-gigantamax-pokemon-g-max-moves-possible-gigantamax-locations-6017",
+    "status": "ok",
+    "output_file": "docs/ref_data/005_eurogamer.net__pokemon-sword-shield-gigantamax-pokemon-g-max-moves-possible-gigantamax-locations-6017.txt",
+    "ui_file": "docs/ref_data/005_UI_REF_eurogamer.net__pokemon-sword-shield-gigantamax-pokemon-g-max-moves-possible-gigantamax-locations-6017.txt",
+    "ui_line_count": 15,
+    "note": ""
+  },
+  {
+    "index": 6,
+    "url": "https://pokemondb.net/evolution",
+    "status": "ok",
+    "output_file": "docs/ref_data/006_pokemondb.net__evolution.txt",
+    "ui_file": "docs/ref_data/006_UI_REF_pokemondb.net__evolution.txt",
+    "ui_line_count": 31,
+    "note": ""
+  },
+  {
+    "index": 7,
+    "url": "https://www.ign.com/articles/all-pokemon-games-on-nintendo-switch",
+    "status": "ok",
+    "output_file": "docs/ref_data/007_ign.com__articles_all-pokemon-games-on-nintendo-switch.txt",
+    "ui_file": "docs/ref_data/007_UI_REF_ign.com__articles_all-pokemon-games-on-nintendo-switch.txt",
+    "ui_line_count": 1,
+    "note": ""
+  },
+  {
+    "index": 8,
+    "url": "https://pokemon.fandom.com/wiki/Paradox_Pok%C3%A9mon",
+    "status": "error",
+    "output_file": "docs/ref_data/008_pokemon.fandom.com__wiki_Paradox_Pok-C3-A9mon.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pokemon.fandom.com/wiki/Paradox_Pok%C3%A9mon"
+  },
+  {
+    "index": 9,
+    "url": "https://www.reddit.com/r/TheSilphRoad/comments/1pd0gyi/uptodate_complete_pokedex_categories_as_of_season/",
+    "status": "ok",
+    "output_file": "docs/ref_data/009_reddit.com__r_TheSilphRoad_comments_1pd0gyi_uptodate_complete_pokedex_categories_as_of_season.txt",
+    "ui_file": "docs/ref_data/009_UI_REF_reddit.com__r_TheSilphRoad_comments_1pd0gyi_uptodate_complete_pokedex_categories_as_of_season.txt",
+    "ui_line_count": 14,
+    "note": ""
+  },
+  {
+    "index": 10,
+    "url": "https://www.eurogamer.net/pokemon-scarlet-violet-pokedex-all-locations-paldea-listed-9015",
+    "status": "ok",
+    "output_file": "docs/ref_data/010_eurogamer.net__pokemon-scarlet-violet-pokedex-all-locations-paldea-listed-9015.txt",
+    "ui_file": "docs/ref_data/010_UI_REF_eurogamer.net__pokemon-scarlet-violet-pokedex-all-locations-paldea-listed-9015.txt",
+    "ui_line_count": 18,
+    "note": ""
+  },
+  {
+    "index": 11,
+    "url": "https://www.ign.com/wikis/pokemon-scarlet-violet/Pokedex_-_All_Pokemon_in_Scarlet_and_Violet",
+    "status": "ok",
+    "output_file": "docs/ref_data/011_ign.com__wikis_pokemon-scarlet-violet_Pokedex_-_All_Pokemon_in_Scarlet_and_Violet.txt",
+    "ui_file": "docs/ref_data/011_UI_REF_ign.com__wikis_pokemon-scarlet-violet_Pokedex_-_All_Pokemon_in_Scarlet_and_Violet.txt",
+    "ui_line_count": 10,
+    "note": ""
+  },
+  {
+    "index": 12,
+    "url": "https://www.nintendolife.com/guides/pokemon-scarlet-and-violet-pokedex-complete-paldea-pokedex-all-pokemon-locations",
+    "status": "ok",
+    "output_file": "docs/ref_data/012_nintendolife.com__guides_pokemon-scarlet-and-violet-pokedex-complete-paldea-pokedex-all-pokemon-locations.txt",
+    "ui_file": "docs/ref_data/012_UI_REF_nintendolife.com__guides_pokemon-scarlet-and-violet-pokedex-complete-paldea-pokedex-all-pokemon-locations.txt",
+    "ui_line_count": 13,
+    "note": ""
+  },
+  {
+    "index": 13,
+    "url": "https://www.gamespot.com/articles/pokemon-scarlet-and-violet-all-special-evolutions/1100-6509547/",
+    "status": "error",
+    "output_file": "docs/ref_data/013_gamespot.com__articles_pokemon-scarlet-and-violet-all-special-evolutions_1100-6509547.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://www.gamespot.com/articles/pokemon-scarlet-and-violet-all-special-evolutions/1100-6509547/"
+  },
+  {
+    "index": 14,
+    "url": "https://pokemondb.net/pokedex/pecharunt",
+    "status": "ok",
+    "output_file": "docs/ref_data/014_pokemondb.net__pokedex_pecharunt.txt",
+    "ui_file": "docs/ref_data/014_UI_REF_pokemondb.net__pokedex_pecharunt.txt",
+    "ui_line_count": 2,
+    "note": ""
+  },
+  {
+    "index": 15,
+    "url": "https://www.pokemon.com/uk/pokedex/pecharunt",
+    "status": "ok",
+    "output_file": "docs/ref_data/015_pokemon.com__uk_pokedex_pecharunt.txt",
+    "ui_file": "docs/ref_data/015_UI_REF_pokemon.com__uk_pokedex_pecharunt.txt",
+    "ui_line_count": 3,
+    "note": ""
+  },
+  {
+    "index": 16,
+    "url": "https://pokemon-characters.fandom.com/wiki/Pecharunt",
+    "status": "error",
+    "output_file": "docs/ref_data/016_pokemon-characters.fandom.com__wiki_Pecharunt.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pokemon-characters.fandom.com/wiki/Pecharunt"
+  },
+  {
+    "index": 17,
+    "url": "https://buriedrelic.neocities.org/pages/regional_forms",
+    "status": "ok",
+    "output_file": "docs/ref_data/017_buriedrelic.neocities.org__pages_regional_forms.txt",
+    "ui_file": "docs/ref_data/017_UI_REF_buriedrelic.neocities.org__pages_regional_forms.txt",
+    "ui_line_count": 21,
+    "note": ""
+  },
+  {
+    "index": 18,
+    "url": "https://pokemon-neo.fandom.com/wiki/Regional_Forms",
+    "status": "error",
+    "output_file": "docs/ref_data/018_pokemon-neo.fandom.com__wiki_Regional_Forms.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pokemon-neo.fandom.com/wiki/Regional_Forms"
+  },
+  {
+    "index": 19,
+    "url": "https://pkmnrisu.miraheze.org/wiki/Regional_form",
+    "status": "ok",
+    "output_file": "docs/ref_data/019_pkmnrisu.miraheze.org__wiki_Regional_form.txt",
+    "ui_file": "docs/ref_data/019_UI_REF_pkmnrisu.miraheze.org__wiki_Regional_form.txt",
+    "ui_line_count": 22,
+    "note": ""
+  },
+  {
+    "index": 20,
+    "url": "https://www.gamesradar.com/pokemon-scarlet-violet-paradox-pokemon/",
+    "status": "ok",
+    "output_file": "docs/ref_data/020_gamesradar.com__pokemon-scarlet-violet-paradox-pokemon.txt",
+    "ui_file": "docs/ref_data/020_UI_REF_gamesradar.com__pokemon-scarlet-violet-paradox-pokemon.txt",
+    "ui_line_count": 17,
+    "note": ""
+  },
+  {
+    "index": 21,
+    "url": "https://screenrant.com/paradox-pokemon-violet-exclusives-complete-list-pokedex/",
+    "status": "ok",
+    "output_file": "docs/ref_data/021_screenrant.com__paradox-pokemon-violet-exclusives-complete-list-pokedex.txt",
+    "ui_file": "docs/ref_data/021_UI_REF_screenrant.com__paradox-pokemon-violet-exclusives-complete-list-pokedex.txt",
+    "ui_line_count": 7,
+    "note": ""
+  },
+  {
+    "index": 22,
+    "url": "https://www.ign.com/wikis/pokemon-scarlet-violet/Paradox_Pokemon",
+    "status": "ok",
+    "output_file": "docs/ref_data/022_ign.com__wikis_pokemon-scarlet-violet_Paradox_Pokemon.txt",
+    "ui_file": "docs/ref_data/022_UI_REF_ign.com__wikis_pokemon-scarlet-violet_Paradox_Pokemon.txt",
+    "ui_line_count": 2,
+    "note": ""
+  },
+  {
+    "index": 23,
+    "url": "https://pokemondb.net/pokedex/game/legends-z-a",
+    "status": "ok",
+    "output_file": "docs/ref_data/023_pokemondb.net__pokedex_game_legends-z-a.txt",
+    "ui_file": "docs/ref_data/023_UI_REF_pokemondb.net__pokedex_game_legends-z-a.txt",
+    "ui_line_count": 4,
+    "note": ""
+  },
+  {
+    "index": 24,
+    "url": "https://comicbook.com/gaming/list/all-26-new-mega-evolutions-in-pokemon-legends-z-a-ranked-from-worst-to-best/",
+    "status": "ok",
+    "output_file": "docs/ref_data/024_comicbook.com__gaming_list_all-26-new-mega-evolutions-in-pokemon-legends-z-a-ranked-from-worst-to-best.txt",
+    "ui_file": "docs/ref_data/024_UI_REF_comicbook.com__gaming_list_all-26-new-mega-evolutions-in-pokemon-legends-z-a-ranked-from-worst-to-best.txt",
+    "ui_line_count": 5,
+    "note": ""
+  },
+  {
+    "index": 25,
+    "url": "https://www.serebii.net/legendsz-a/availablepokemon.shtml",
+    "status": "ok",
+    "output_file": "docs/ref_data/025_serebii.net__legendsz-a_availablepokemon.shtml.txt",
+    "ui_file": "docs/ref_data/025_UI_REF_serebii.net__legendsz-a_availablepokemon.shtml.txt",
+    "ui_line_count": 9,
+    "note": ""
+  },
+  {
+    "index": 26,
+    "url": "https://pokemongohub.net/post/guide/pokemon-legends-z-a-full-pokedex-all-pokemon-abilities-and-stats/",
+    "status": "error",
+    "output_file": "docs/ref_data/026_pokemongohub.net__post_guide_pokemon-legends-z-a-full-pokedex-all-pokemon-abilities-and-stats.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pokemongohub.net/post/guide/pokemon-legends-z-a-full-pokedex-all-pokemon-abilities-and-stats/"
+  },
+  {
+    "index": 27,
+    "url": "https://pokemongohub.net/post/guide/mega-evolutions-legends-z-a/",
+    "status": "error",
+    "output_file": "docs/ref_data/027_pokemongohub.net__post_guide_mega-evolutions-legends-z-a.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pokemongohub.net/post/guide/mega-evolutions-legends-z-a/"
+  },
+  {
+    "index": 28,
+    "url": "https://www.serebii.net/legendsz-a/megaevolutions.shtml",
+    "status": "ok",
+    "output_file": "docs/ref_data/028_serebii.net__legendsz-a_megaevolutions.shtml.txt",
+    "ui_file": "docs/ref_data/028_UI_REF_serebii.net__legendsz-a_megaevolutions.shtml.txt",
+    "ui_line_count": 6,
+    "note": ""
+  },
+  {
+    "index": 29,
+    "url": "https://www.reddit.com/r/stunfisk/comments/1oawqu9/competitive_analysis_of_the_za_megas/",
+    "status": "ok",
+    "output_file": "docs/ref_data/029_reddit.com__r_stunfisk_comments_1oawqu9_competitive_analysis_of_the_za_megas.txt",
+    "ui_file": "docs/ref_data/029_UI_REF_reddit.com__r_stunfisk_comments_1oawqu9_competitive_analysis_of_the_za_megas.txt",
+    "ui_line_count": 7,
+    "note": ""
+  },
+  {
+    "index": 30,
+    "url": "https://www.ign.com/wikis/pokemon-legends-z-a/New_Mega_Pokemon_in_Legends_Z-A",
+    "status": "ok",
+    "output_file": "docs/ref_data/030_ign.com__wikis_pokemon-legends-z-a_New_Mega_Pokemon_in_Legends_Z-A.txt",
+    "ui_file": "docs/ref_data/030_UI_REF_ign.com__wikis_pokemon-legends-z-a_New_Mega_Pokemon_in_Legends_Z-A.txt",
+    "ui_line_count": 19,
+    "note": ""
+  },
+  {
+    "index": 31,
+    "url": "https://www.digitalspy.com/tech/a70544719/pokemon-winds-and-waves-gen-10-starters/",
+    "status": "ok",
+    "output_file": "docs/ref_data/031_digitalspy.com__tech_a70544719_pokemon-winds-and-waves-gen-10-starters.txt",
+    "ui_file": "docs/ref_data/031_UI_REF_digitalspy.com__tech_a70544719_pokemon-winds-and-waves-gen-10-starters.txt",
+    "ui_line_count": 1,
+    "note": ""
+  },
+  {
+    "index": 32,
+    "url": "https://mynintendonews.com/2026/02/28/ign-pokemon-winds-and-waves-region-based-on-southeast-asia/",
+    "status": "ok",
+    "output_file": "docs/ref_data/032_mynintendonews.com__2026_02_28_ign-pokemon-winds-and-waves-region-based-on-southeast-asia.txt",
+    "ui_file": "docs/ref_data/032_UI_REF_mynintendonews.com__2026_02_28_ign-pokemon-winds-and-waves-region-based-on-southeast-asia.txt",
+    "ui_line_count": 2,
+    "note": ""
+  },
+  {
+    "index": 33,
+    "url": "https://www.ign.com/articles/pokemon-winds-and-waves-region-is-indeed-based-on-southeast-asia",
+    "status": "ok",
+    "output_file": "docs/ref_data/033_ign.com__articles_pokemon-winds-and-waves-region-is-indeed-based-on-southeast-asia.txt",
+    "ui_file": "docs/ref_data/033_UI_REF_ign.com__articles_pokemon-winds-and-waves-region-is-indeed-based-on-southeast-asia.txt",
+    "ui_line_count": 1,
+    "note": ""
+  },
+  {
+    "index": 34,
+    "url": "https://nintendowire.com/news/2026/03/04/pokemon-winds-and-waves-looks-to-be-inspired-by-southeast-asian-culture/",
+    "status": "error",
+    "output_file": "docs/ref_data/034_nintendowire.com__news_2026_03_04_pokemon-winds-and-waves-looks-to-be-inspired-by-southeast-asian-culture.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://nintendowire.com/news/2026/03/04/pokemon-winds-and-waves-looks-to-be-inspired-by-southeast-asian-culture/"
+  },
+  {
+    "index": 35,
+    "url": "https://opencritic.com/news/27202/pokemon-winds-and-waves-share-more-starter-details",
+    "status": "ok",
+    "output_file": "docs/ref_data/035_opencritic.com__news_27202_pokemon-winds-and-waves-share-more-starter-details.txt",
+    "ui_file": "docs/ref_data/035_UI_REF_opencritic.com__news_27202_pokemon-winds-and-waves-share-more-starter-details.txt",
+    "ui_line_count": 1,
+    "note": ""
+  },
+  {
+    "index": 36,
+    "url": "https://www.ign.com/wikis/pokemon-winds-pokemon-waves/Browt",
+    "status": "ok",
+    "output_file": "docs/ref_data/036_ign.com__wikis_pokemon-winds-pokemon-waves_Browt.txt",
+    "ui_file": "docs/ref_data/036_UI_REF_ign.com__wikis_pokemon-winds-pokemon-waves_Browt.txt",
+    "ui_line_count": 2,
+    "note": ""
+  },
+  {
+    "index": 37,
+    "url": "https://www.ign.com/wikis/pokemon-winds-pokemon-waves/Pombon",
+    "status": "ok",
+    "output_file": "docs/ref_data/037_ign.com__wikis_pokemon-winds-pokemon-waves_Pombon.txt",
+    "ui_file": "docs/ref_data/037_UI_REF_ign.com__wikis_pokemon-winds-pokemon-waves_Pombon.txt",
+    "ui_line_count": 2,
+    "note": ""
+  },
+  {
+    "index": 38,
+    "url": "https://www.gamesradar.com/games/pokemon-winds-and-waves-guide/",
+    "status": "ok",
+    "output_file": "docs/ref_data/038_gamesradar.com__games_pokemon-winds-and-waves-guide.txt",
+    "ui_file": "docs/ref_data/038_UI_REF_gamesradar.com__games_pokemon-winds-and-waves-guide.txt",
+    "ui_line_count": 14,
+    "note": ""
+  },
+  {
+    "index": 39,
+    "url": "https://nintendowire.com/news/2026/02/27/meet-pokemon-winds-and-waves-starters-browt-pombon-and-gecqua/",
+    "status": "error",
+    "output_file": "docs/ref_data/039_nintendowire.com__news_2026_02_27_meet-pokemon-winds-and-waves-starters-browt-pombon-and-gecqua.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://nintendowire.com/news/2026/02/27/meet-pokemon-winds-and-waves-starters-browt-pombon-and-gecqua/"
+  },
+  {
+    "index": 40,
+    "url": "https://screenrant.com/pokemon-gen-10-pokedex-leak-100-new-monsters/",
+    "status": "ok",
+    "output_file": "docs/ref_data/040_screenrant.com__pokemon-gen-10-pokedex-leak-100-new-monsters.txt",
+    "ui_file": "docs/ref_data/040_UI_REF_screenrant.com__pokemon-gen-10-pokedex-leak-100-new-monsters.txt",
+    "ui_line_count": 11,
+    "note": ""
+  },
+  {
+    "index": 41,
+    "url": "https://technave.com/gadget/Pok-mon-Winds-and-Waves-regions-could-be-inspired-by-Southeast-Asia-That-includes-Malaysia-too-45855.html",
+    "status": "error",
+    "output_file": "docs/ref_data/041_technave.com__gadget_Pok-mon-Winds-and-Waves-regions-could-be-inspired-by-Southeast-Asia-That-includes-Malaysia-too-4585.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://technave.com/gadget/Pok-mon-Winds-and-Waves-regions-could-be-inspired-by-Southeast-Asia-That-includes-Malaysia-too-45855.html"
+  },
+  {
+    "index": 42,
+    "url": "https://auraboltsgameblog.wordpress.com/pokemon-evolution-methods/",
+    "status": "ok",
+    "output_file": "docs/ref_data/042_auraboltsgameblog.wordpress.com__pokemon-evolution-methods.txt",
+    "ui_file": "docs/ref_data/042_UI_REF_auraboltsgameblog.wordpress.com__pokemon-evolution-methods.txt",
+    "ui_line_count": 5,
+    "note": ""
+  },
+  {
+    "index": 43,
+    "url": "https://pocketmegaverse.fandom.com/wiki/List_of_Methods_of_Evolution",
+    "status": "error",
+    "output_file": "docs/ref_data/043_pocketmegaverse.fandom.com__wiki_List_of_Methods_of_Evolution.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pocketmegaverse.fandom.com/wiki/List_of_Methods_of_Evolution"
+  },
+  {
+    "index": 44,
+    "url": "https://www.nintendolife.com/guides/pokemon-scarlet-and-violet-blueberry-pokedex-all-pokemon-locations-in-the-indigo-disk-dlc",
+    "status": "ok",
+    "output_file": "docs/ref_data/044_nintendolife.com__guides_pokemon-scarlet-and-violet-blueberry-pokedex-all-pokemon-locations-in-the-indigo-disk-dlc.txt",
+    "ui_file": "docs/ref_data/044_UI_REF_nintendolife.com__guides_pokemon-scarlet-and-violet-blueberry-pokedex-all-pokemon-locations-in-the-indigo-disk-dlc.txt",
+    "ui_line_count": 16,
+    "note": ""
+  },
+  {
+    "index": 45,
+    "url": "https://scarletviolet.pokemon.com/en-gb/trainers-guide/complete-your-paldea-region-pokedex/",
+    "status": "ok",
+    "output_file": "docs/ref_data/045_scarletviolet.pokemon.com__en-gb_trainers-guide_complete-your-paldea-region-pokedex.txt",
+    "ui_file": "docs/ref_data/045_UI_REF_scarletviolet.pokemon.com__en-gb_trainers-guide_complete-your-paldea-region-pokedex.txt",
+    "ui_line_count": 3,
+    "note": ""
+  },
+  {
+    "index": 46,
+    "url": "https://www.pokeos.com/pokedex/1025",
+    "status": "ok",
+    "output_file": "docs/ref_data/046_pokeos.com__pokedex_1025.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": ""
+  },
+  {
+    "index": 47,
+    "url": "https://pokemoninritum.wiki.gg/wiki/Pecharunt",
+    "status": "error",
+    "output_file": "docs/ref_data/047_pokemoninritum.wiki.gg__wiki_Pecharunt.txt",
+    "ui_file": "",
+    "ui_line_count": 0,
+    "note": "403 Client Error: Forbidden for url: https://pokemoninritum.wiki.gg/wiki/Pecharunt"
+  },
+  {
+    "index": 48,
+    "url": "https://www.ign.com/wikis/pokemon-sword-shield/List_of_Every_Gigantamax_Pokemon",
+    "status": "ok",
+    "output_file": "docs/ref_data/048_ign.com__wikis_pokemon-sword-shield_List_of_Every_Gigantamax_Pokemon.txt",
+    "ui_file": "docs/ref_data/048_UI_REF_ign.com__wikis_pokemon-sword-shield_List_of_Every_Gigantamax_Pokemon.txt",
+    "ui_line_count": 5,
+    "note": ""
+  }
+]

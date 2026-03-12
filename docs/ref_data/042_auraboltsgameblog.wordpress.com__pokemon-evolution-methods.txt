@@ -1,0 +1,412 @@
+URL: https://auraboltsgameblog.wordpress.com/pokemon-evolution-methods/
+STATUS: ok
+
+Pokemon Evolution Methods | Aurabolt's Game Blog
+Aurabolt's Game Blog
+Connecting the Present to the Past
+Skip to content
+Discord
+Donate via PayPal
+Patreon
+Serene Adventure on WordPress
+AMC: Asian Media and Culture
+Aurabolt’s Fanfiction
+Aurabolt’s Fiction Press
+Serene Adventure Video Games Forum
+Disclaimer
+Contact Info
+Aurabolt’s Top 10 Lists
+Fire Emblem Awakening Tips and Strategies
+Pokemon Evolution Methods
+Pokemon Gold, Silver, and Crystal: Return to the 2nd Gen Pokemon Games
+Pokemon Evolution Methods
+Update 3/23/2024:
+Now that I have the Nintendo Switch-era Pokemon games (Let’s Go Pikachu, Sword, Brilliant Diamond, Pokemon Legends: Arceus and Violet) as well as Pokemon Go and Pokemon HOME, I’m gonna go back and give this page some much-needed updating. Moving forward, the evolution info will be as of the current gen. The current Gen includes Scarlet, Violet and the upcoming Pokemon Legends Z-A as well as Pokemon Go and Pokemon Home.
+Moving on:
+I made this page for personal use but then I figured someone else might find use of it ^_^
+Every Pokemon listed on this page is a Pokemon that evolves in ways other than just reaching a specific level. Considering there are 1025 Pokemon out there as of the 9th Gen…yeah, I thought you’d find this interesting. As a bonus, I will provide extra info for Pokemon that evolve in specific areas in the older Gen games such as Nosepass (Magnetic Field).
+…You can thank me by sharing this page with others =D
+Trade Evolution
+Machoke, Kadabra, Haunter, Graveler, Gurdurr, Boldore, Phantump and Pumpkaboo will all evolve simply by trading them. All the rest listed below require a specific held item or in 2 cases, to be traded with each other:
+Karrablast and Shelmet must be traded for each other for them to evolve.
+Onix and Scyther must be traded while holding the Metal Coat.
+Slowpoke and Poliwhirl must be traded while holding the King’s Rock.
+Porygon must be traded while holding the Up Grade.
+Seadra must be traded while holding the Dragon Scale.
+Clamperl must be traded while holding the Deepsea Fang to get Gorebyss.
+Clamperl must be traded while holding the Deepsea Scale to get Huntail.
+Porygon2 must be traded while holding the Dubious Disc.
+Sneasel must be traded while holding the Sharp Claw.
+Gligar must be traded while holding the Sharp Fang.
+Dusknoir must be traded while holding the Reaper Cloth.
+Rhydon must be traded while holding the Protector.
+Electabuzz must be traded while holding the Electrizer.
+Magmar must be traded while holding the Magmarizer.
+Feebas can be evolved by using the Prism Scale on it (Sword/Shield and Scarlet/Violet) OR raising its Beauty Stat to 170+ and the leveling it up (Brilliant Diamond/Shining Pearl).
+Spritzee must be traded while holding the Sachel.
+Swirlix must be traded while holding the Whipped Dream (not a typo, that’s the name of the item).
+…And there you have it. Speaking for myself, I’ve evolved ALL of the Pokemon on this list except the last two at least once. I have the means but just haven’t gotten around to it. Yet.
+Stone Evolution
+You know how it works: Use the corresponding stone and the Pokemon evolves. For those who started playing the games in the 6th, 7th, 8th or 9th gen, I’m sure the first part of this list will be very useful. It’s been updated to reflect some evolution methods in past gens were phased out.
+Thunder Stone: Pikachu, Magneton, Eevee (Jolteon), Nosepass, Elektrik, Charjabug and Tadbulb.
+Fire Stone: Growlithe, Vulpix, Eevee (Flareon), Pansear, Lampent and Capsakid.
+Water Stone: Staryu, Shellder, Eevee (Vaporeon), Lombre and Panpour.
+Leaf Stone: Gloom, Weepinbell, Eevee (Leafeon), Nuzleaf.
+Ice Stone: Galarian Darumaka, Crabrawler and Cetoddle.
+Moon Stone: Clefairy, Jigglypuff, Nidorino, Nidorina and Munna.
+Sun Stone: Gloom, Sunkern
+Dawn Stone: Male Kirlia, Female Snorunt
+Dusk Stone: Murkkrow
+Shiny Stone: Togetic, Roselia
+Oval Stone: Happiny must hold it while leveling up to evolve into Chansey
+Except for Eevee’s Evolutions, Gallade and Froslass, once a Pokemon has a stone used on it the resulting Pokemon will no longer learn moves outside a TM, HM or Move Tutor. You could also use the Move Reminder in Galar or Remember Moves via Pokemon Home or Paldea to access all moves a Pokemon would know for free.
+Happiness Evolution
+Introduced in the Second Gen with the advent of pre-evolutions, once a Pokemon’s Happiness Value reaches 220+ (hidden value though there is a person in each region who will tell you how close a Pokemon is to you) it will evolve. Some Pokemon also have the additional requirement of only evolving during the Day or Night. Things that can boost happiness include having a Pokemon hold the Soothe Bell and having them get a massage or a haircut. The methods for making a Pokemon happy is super-easy in OmegaRuby/Alpha Sapphire thanks to the Secret Base so…yeah.
+Chansey, Cleffa, Igglybuff, Pichu and Munchlax anytime
+Budew during the Day/Morning
+Riolu During the Day/Morning
+Eevee (Espeon) During the Day/Morning
+Eevee (Umbreon) During the Night
+Eevee (Sylveon) + Fairy-Type move learned (Baby-Doll Eyes is learned via level up early on).
+Clingling During the Night
+I actually had to double check Serebii.net to confirm Sylveon’s evolution method in the 8th and 9th gen games.
+Additional Pokemon in Party Evolution
+The concept was introduced in the 4th Gen with Mantyke: In order for it to evolve into Mantine, you need to have a Remoraid in your party. Up until the 4th gen, you may have noticed Remoraid is shown attached to it in past gens. This is why. Interestingly, Shellder is not a precondition for Slowpoke to evolve into Slowbro even though the Pokedex specifically states it evolves when a Shellder bites its tail.
+The only other Pokemon that evolves this way is Pancham (Fighting). It will be able to evolve into Pangoro (Fighting/Dark) starting at level 32 if there is a Dark-type Pokemon in the Party. Otherwise, it wil never evolve.
+Environment-Based Evolution
+These were all phased out after the 7th Gen but I am leaving this section here for those who may have the 4th, 5th, 6th or 7th gen Pokemon games.
+Introduced in the 4th Gen, these Pokemon must level up in a specific location for them to evolve. All of them are familiar Pokemon who now have new evolutions. I reccommend using a Rare Candy for the first Pokemon on the list. As for the last one, turn your 3DS upside down right when it hits 30+ and do not turn it right side up until you see the Evolution screen.
+Magneton and Nosepass in a place with a strong Magnetic Field.
+Eevee (Glaceon) near the Ice Rock.
+Eevee (Leafeon) near the Moss Rock.
+Inkay Level 30+ while holding the 3DS/2DS/Switch upside down.
+That last one can be done anywhere as long as you remember to keep your 3DS upside down when Inkay levels up. It makes sense when you take into consideration its Ability Contrary reverses stat changes in battle: Moves that would lower a stat will boost it instead and vice versa. Malamar is a great Pokemon to use in Inverse Battles for this reason alone so…yeah.
+…Before I forget, here is where you can find a Magnetic Field, Ice Rock and Moss Rock in the 4th, 5th, 6th and 7th Gens:
+4th Gen (Sinnoh Only): Ironworks Valley Works (Magnetic Field), Eterna Forest (Moss Rock) and Route 216 (Ice Rock).
+5th Gen (Unova): Chargestone Cave (Magnetic Field), Pinwheel Forest (Moss Rock) and the basement of Twisted Mountain (Ice Rock).
+6th Gen – Kalos: Route 13 (Magnetic Field), Route 20 (Moss Rock) and the basement of the Frost Cavern (Ice Rock).
+6th Gen – Hoenn: New Mauville (Magnetic Field), Petalburg Woods (Moss Rock) and the basement of Shoal Cave (Ice Rock).
+7th Gen (Alola):
+So you will find all of the areas needed to evolve Magneton (Magnezone), Nosepass (Probopass) and Eevee (Glaceon and Leafeon) in Sinnoh, Unova, Kalos, 6th Gen Hoenn and Alola. If you have HeartGold or SoulSilver you will need to trade the Pokemon to Diamond, Pearl or Platinum to evolve them.
+As an aside–and I meant to say this at the top–the Kalos region marks the first time you can catch wild Eevee. This drastically reduces its rarity and that of all but its newest evolution, Sylveon. The two boxes I have full of Eevee on Poke Bank really do highlight this!
+Share this:
+Share on X (Opens in new window)
+X
+Share on Facebook (Opens in new window)
+Facebook
+Share on Tumblr (Opens in new window)
+Tumblr
+Email a link to a friend (Opens in new window)
+Email
+More
+Share on Pinterest (Opens in new window)
+Pinterest
+Like Loading...
+2 Responses to Pokemon Evolution Methods
+Blaize Bernon Augustine says:
+March 23, 2024 at 7:47 pm
+So, I have a lot of knowledge of Pokemon and a few of your evolution details are actually wrong. To evolve gligar and sneasel, they don’t have to be traded, just level them up at night holding their specified items. With the magnetic field in sinnoh for magneton and nosepass, go to Mount Coronet and level it up there. As far as catching Eevee in the wild, you’re able to do so in Pokemon black and white 2 as well, not just in x and y.
+Reply
+Lavon Samuel Davis says:
+March 23, 2024 at 9:58 pm
+Actually the page is outdated by two gens.
+I first wrote it in 2015 (the 7th Gen games didn’t exist yet) and although I updated it in 2022, I didn’t own the 8th and 9th Gen Pokemon games until last summer (2023). If you read my blog posts from last summer you’d know that already.
+All that said. I will be updating this post right now. I am also going to note generational changes to some evolutions since how certain Pokemon like Feebas evolve was changed in later Gens.
+Oh and I checked my info with Serebii.net. I actually just noticed while writing this comment that Eevee’s evolution method is changed for the 8th and 9th Gens which is good for me to know since I’ve yet to evolve Eevee into Sylveon in the 8th or 9th Gens yet.
+Anywho, clearly I’ve got some work to do to say the least. I expect to have all the major updates done by the end of the weekend. I’ll also make sure to clarify a lot of the info as well due to the generational shifts from 7th Gen to 8th and 9th Gens.
+Reply
+Leave a comment Cancel reply
+This site uses Akismet to reduce spam. Learn how your comment data is processed.
+PayPal Payments
+Follow Blog via Email
+Enter your email address to follow this blog and receive notifications of new posts by email.
+Email Address:
+Follow
+Join 440 other subscribers
+Blog Stats
+89,979 hits
+Search for:
+Discord
+Donate via PayPal
+Patreon
+Serene Adventure on WordPress
+AMC: Asian Media and Culture
+Aurabolt’s Fanfiction
+Aurabolt’s Fiction Press
+Serene Adventure Video Games Forum
+Disclaimer
+Contact Info
+Aurabolt’s Top 10 Lists
+Fire Emblem Awakening Tips and Strategies
+Pokemon Evolution Methods
+Pokemon Gold, Silver, and Crystal: Return to the 2nd Gen Pokemon Games
+Recent Posts
+Here’s some things you might not know or remember about the 3rd Gen Kanto games
+Confirmed: Pokemon FireRed and Pokemon LeafGreen ARE coming to the Switch and Switch 2 on February 28!
+Valve’s newly announced Steam Machine is a game-changer but the potential price is a huge concern
+I started playing WoW Remix: Legion at the halfway mark but I don’t feel like I missed out on anything
+First Look Review: Dragon Quest VII Reimagined (Switch 1 Version)
+Archives
+February 2026
+January 2026
+November 2025
+October 2025
+August 2025
+July 2025
+June 2025
+May 2025
+April 2025
+February 2025
+January 2025
+December 2024
+November 2024
+October 2024
+September 2024
+August 2024
+July 2024
+May 2024
+April 2024
+March 2024
+January 2024
+December 2023
+November 2023
+October 2023
+September 2023
+August 2023
+July 2023
+June 2023
+May 2023
+April 2023
+March 2023
+February 2023
+January 2023
+December 2022
+November 2022
+October 2022
+September 2022
+August 2022
+June 2022
+May 2022
+April 2022
+March 2022
+December 2021
+November 2021
+September 2021
+August 2021
+July 2021
+June 2021
+May 2021
+April 2021
+March 2021
+February 2021
+January 2021
+November 2020
+October 2020
+September 2020
+June 2020
+April 2020
+March 2020
+December 2019
+November 2019
+August 2019
+July 2019
+June 2019
+May 2019
+April 2019
+March 2019
+February 2019
+January 2019
+December 2018
+November 2018
+October 2018
+September 2018
+August 2018
+July 2018
+June 2018
+February 2018
+January 2018
+December 2017
+September 2017
+August 2017
+July 2017
+June 2017
+May 2017
+April 2017
+March 2017
+February 2017
+January 2017
+November 2016
+October 2016
+September 2016
+August 2016
+July 2016
+June 2016
+May 2016
+April 2016
+March 2016
+February 2016
+January 2016
+December 2015
+November 2015
+October 2015
+September 2015
+August 2015
+July 2015
+June 2015
+May 2015
+April 2015
+March 2015
+February 2015
+January 2015
+December 2014
+November 2014
+October 2014
+September 2014
+August 2014
+July 2014
+June 2014
+May 2014
+April 2014
+March 2014
+February 2014
+January 2014
+December 2013
+November 2013
+October 2013
+September 2013
+August 2013
+July 2013
+June 2013
+May 2013
+April 2013
+March 2013
+February 2013
+December 2012
+November 2012
+September 2012
+August 2012
+July 2012
+Categories
+Ace Attorney
+Anime
+Anime Boston
+Atlus
+Blizzard Entertainment
+Blog
+Brendan Aurabolt
+Browser Games
+Dragon Quest
+Dragon Warrior
+E3
+Fan Fiction
+Final Fantasy
+Fire Emblem
+Game Boy Advance
+Gamecube
+Grand Theft Auto
+Guild Wars 2
+Inaba
+InnoGames
+Metal Gear Solid
+Microsoft
+MMO
+MMORPG
+NES
+New Nintendo 3DS
+News
+Nintendo
+Nintendo 3DS
+Nintendo DS
+Nintendo Switch
+Nintendo Switch 2
+Nintendo Wii
+Nintendo Wii U
+PC
+Persona 3 Portable
+Persona 4 Golden
+Persona 5
+Persona 5 Royal
+Playstation
+Playstation 3
+Playstation 4
+Playstation 5
+Playstation Vita
+Pokemon
+Preview
+PS Vita
+Retro Gaming
+Review
+RPG
+Sega
+Sega Genesis
+Serene Adventure
+Shin Megami Tensei
+Simulation
+Skyrim
+SNES
+Sonic The Hedgehog
+Sony
+Star Ocean
+Star Wars The Old Republic
+Steam
+Super Smash Bros.
+Tales of Hearts R
+Tales of Symphonia
+Tales of Symphonia Dawn of the New World
+The Legend of Heroes
+The Legend of Zelda
+The Sims
+Uncategorized
+Valve
+Video Games
+Violent Games
+Visual Novels
+Vita
+Way Back When
+Wii U
+World of Warcraft
+Xbox
+Xbox 360
+Xbox Live
+Xbox One
+Xbox Series X
+Xbox Studios
+Yu Narakami
+Meta
+Create account Log in
+Entries feed
+Comments feed
+WordPress.com
+Twitter Updates Tweets by Brendan2k5
+Fantasy Anime
+Discord
+Donate via PayPal
+Patreon
+Serene Adventure on WordPress
+AMC: Asian Media and Culture
+Aurabolt’s Fanfiction
+Aurabolt’s Fiction Press
+Serene Adventure Video Games Forum
+Disclaimer
+Contact Info
+Aurabolt’s Top 10 Lists
+Fire Emblem Awakening Tips and Strategies
+Pokemon Evolution Methods
+Pokemon Gold, Silver, and Crystal: Return to the 2nd Gen Pokemon Games
+Subscribe
+Subscribed
+Aurabolt's Game Blog
+Join 43 other subscribers
+Sign me up
+Already have a WordPress.com account? Log in now.
+Aurabolt's Game Blog
+Subscribe
+Subscribed
+Sign up
+Log in
+Copy shortlink
+Report this content
+View post in Reader
+Manage subscriptions
+Collapse this bar
+%d

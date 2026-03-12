@@ -1,0 +1,34 @@
+URL: https://pokemondb.net/evolution
+STATUS: ok
+
+Quick links
+Pokémon evolution guide
+order to evolve. You can quickly search for a Pokémon name using the box below, or use the
+menu below right to view evolutions by certain conditions.
+#0007 Squirtle Water
+#0058 Growlithe Hisuian Growlithe Fire · Rock
+(use Fire Stone ) #0059 Arcanine Hisuian Arcanine Fire · Rock
+#0100 Voltorb Hisuian Voltorb Electric · Grass
+(use Leaf Stone ) #0101 Electrode Hisuian Electrode Electric · Grass
+#0155 Cyndaquil Fire
+(Level 14, or Level 17 in Legends: Arceus) #0156 Quilava Fire
+(Level 36, in Legends: Arceus) #0157 Typhlosion Hisuian Typhlosion Fire · Ghost
+#0215 Sneasel Hisuian Sneasel Fighting · Poison
+(Level 15) #0404 Luxio Electric
+(Level 30) #0405 Luxray Electric
+(Level 20, Female, in buildings) #0413 Wormadam Trash Cloak Bug · Steel
+#0418 Buizel Water
+(Level 36, in Legends: Arceus) #0503 Samurott Hisuian Samurott Water · Dark
+(Level 21) #0520 Tranquill Normal · Flying
+(use Sun Stone , in Legends: Arceus) #0549 Lilligant Hisuian Lilligant Grass · Fighting
+#0570 Zorua Hisuian Zorua Normal · Ghost
+(Level 30, in Legends: Arceus) #0571 Zoroark Hisuian Zoroark Normal · Ghost
+(Level 47) #0584 Vanilluxe Ice
+(Level 54, in Legends: Arceus) #0628 Braviary Hisuian Braviary Psychic · Flying
+(Level 16) #0651 Quilladin Grass
+(Level 40, in Legends: Arceus) #0705 Sliggoo Hisuian Sliggoo Steel · Dragon
+(Level 50, during rain, in Legends: Arceus) #0706 Goodra Hisuian Goodra Steel · Dragon
+(Level 37, in Legends: Arceus) #0713 Avalugg Hisuian Avalugg Ice · Rock
+(Level 36, in Legends: Arceus) #0724 Decidueye Hisuian Decidueye Grass · Fighting
+(Level 18) #0822 Corvisquire Flying
+#0211 Qwilfish Hisuian Qwilfish Dark · Poison

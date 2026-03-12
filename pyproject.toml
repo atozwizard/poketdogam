@@ -1,0 +1,21 @@
+[project]
+name = "poketdogam"
+version = "0.1.0"
+description = "Pokedex voice and scan MVP scaffold"
+readme = "docs/specs/MVP_기능_명세서.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.116.0",
+  "httpx>=0.28.0",
+  "litellm>=1.74.0",
+  "pydantic-settings>=2.10.0",
+  "python-multipart>=0.0.20",
+  "uvicorn>=0.35.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true

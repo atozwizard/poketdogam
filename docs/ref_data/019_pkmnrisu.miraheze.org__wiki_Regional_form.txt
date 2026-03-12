@@ -1,0 +1,1036 @@
+URL: https://pkmnrisu.miraheze.org/wiki/Regional_form
+STATUS: ok
+
+Regional form - Pokémon Rising Sun Project
+☰ Navigation Main page
+Recent changes
+Random page
+Help about MediaWiki
+Pokémon List of Pokémon
+Pokémon types
+Pokémon moves
+Pokémon items
+Berries
+Medicine
+Key items
+Game mechanics
+Regions List of regions
+Verela
+Zantaru
+Irada
+Isgrønn
+Explore Recent changes
+Random page
+New files
+Wanted pages
+Anonymous English Not logged in My talk Dark mode Contributions Create account Log in × Create a new article Write your page title here: We currently have 848 articles on Pokémon Rising Sun Project. Type your article name above or create one of the articles listed here ! Pokémon Rising Sun Project 848 Articles Add new page Navigation Main page
+Recent changes
+Random page
+Help about MediaWiki
+Pokémon List of Pokémon
+Pokémon types
+Pokémon moves
+Pokémon items
+Berries
+Medicine
+Key items
+Game mechanics
+Regions List of regions
+Verela
+Zantaru
+Irada
+Isgrønn
+Explore Recent changes
+Random page
+New files
+Wanted pages
+in: Pages with broken file links , Lists of Pokémon , Pokémon world , and 3 more Pokémon with different forms Variant Pokémon Regional forms Regional form
+Edit View history Purge Discussion File:Vulpix anime.png Kantonian and Alolan Vulpix in the anime
+A regional form (Japanese: リージョンフォーム region form ), also known as a regional variant , is an alternate form of a Pokémon species that is found in a specific region . These forms differ from those found in the region where the Pokémon was introduced — even, in most cases so far, to the point of having a different type .
+The following regional forms are currently known:
+Alolan form in Alola .
+Galarian form in Galar .
+Hisuian form in Hisui .
+Paldean form in Paldea .
+54 Pokémon currently have regional forms, and 57 regional forms currently exist in total (55 and 58, respectively, if White-Striped Basculin is counted as a regional form). Apart from Meowth and Tauros , which have two and three respectively, each Pokémon with a regional form has only one.
+Contents
+1 Terminology
+2 List of regional forms
+3 In the core series games
+4 In the spin-off games
+4.1 Super Smash Bros. Ultimate
+4.2 Pokémon Shuffle
+4.3 Pokémon GO
+4.4 Pokémon Duel
+4.5 Pokémon Masters EX
+4.6 New Pokémon Snap
+4.7 Pokémon UNITE
+5 Similar concepts
+5.1 Variant Pokémon
+5.2 δ Delta Species
+6 Trivia
+7 In other languages
+8 See also
+Terminology [ edit ]
+Main article: Terminology of regional forms
+In Generation VII , they were introduced as regional variants , which is also mentioned in some Pokémon GO Community Day events from 2023. From Generation VIII onwards, they have been consistently known as regional forms in the core series games.
+The place name adjective (such as "Alolan") is used before the Pokémon species. In running text, both the original form and the new regional forms are sometimes treated this way, such as "Kantonian Meowth " and "Alolan Meowth ". Conversely, sometimes the Pokémon species are simply mentioned in running text without using the regional adjective. For instance, if the player encounters a wild Galarian Meowth , the battle dialogue would simply indicate "You encountered a wild Meowth !"
+In Generation VII games, the Pokédex displays "Alola Form" as the title of this form. From Generation VIII onwards (including in Pokémon HOME ), the adjectives for the place names are consistently used instead. For instance, "Alolan Form", "Galarian Form", "Hisuian Form", and "Paldean Form". The original form (such as Kantonian Meowth) is not named in the Pokédex.
+In running text (as seen on Pokémon.com ), the word "form" has been consistently written in lowercase. In the Generation VII era, this used to be "Alola form". From Generation VIII onwards, this includes "Kantonian form", "Alolan form", "Galarian form", etc.
+List of regional forms [ edit ]
+Ndex
+Pokémon
+Original form
+Region ( Gen. )
+Regional form
+Regional evolution
+#0019
+Rattata
+File:0019Rattata.png  Normal
+Alola VII
+File:0019Rattata-Alola.png  Dark   Normal
+—
+—
+#0020
+Raticate
+File:0020Raticate.png  Normal
+Alola VII
+File:0020Raticate-Alola.png  Dark   Normal
+—
+—
+#0026
+Raichu
+Electric
+Alola VII
+Electric   Psychic
+—
+—
+#0027
+Sandshrew
+File:0027Sandshrew.png  Ground
+Alola VII
+File:0027Sandshrew-Alola.png  Ice   Steel
+—
+—
+#0028
+Sandslash
+File:0028Sandslash.png  Ground
+Alola VII
+File:0028Sandslash-Alola.png  Ice   Steel
+—
+—
+#0029
+Nidoran
+Poison
+File:Silati symbol.png Silati AN-III
+File:0029Nidoran-Silati.png  Ground
+—
+—
+#0030
+Nidorina
+File:0030Nidorina.png  Poison
+File:Silati symbol.png Silati AN-III
+File:0030Nidorina-Silati.png  Ground
+—
+—
+#0031
+Nidoqueen
+File:0031Nidoqueen.png  Poison   Ground
+File:Silati symbol.png Silati AN-III
+File:0031Nidoqueen-Silati.png  Ground   Fighting
+—
+—
+#0032
+Nidoran
+Poison
+File:Silati symbol.png Silati AN-III
+File:0032Nidoran-Silati.png  Ground
+—
+—
+#0033
+Nidorino
+File:0033Nidorino.png  Poison
+File:Silati symbol.png Silati AN-III
+File:0033Nidorino-Silati.png  Ground
+—
+—
+#0034
+Nidoking
+File:0034Nidoking.png  Poison   Ground
+File:Silati symbol.png Silati AN-III
+File:0034Nidoking-Silati.png  Ground   Fighting
+—
+—
+#0037
+Vulpix
+Fire
+Alola VII
+File:0037Vulpix-Alola.png  Ice
+—
+—
+#0038
+Ninetales
+Fire
+Alola VII
+File:0038Ninetales-Alola.png  Ice
+—
+—
+#0050
+Diglett
+File:0050Diglett.png  Ground
+Alola VII
+File:0050Diglett-Alola.png  Ground   Steel
+—
+—
+#0051
+Dugtrio
+File:0051Dugtrio.png  Ground
+Alola VII
+File:0051Dugtrio-Alola.png  Ground   Steel
+—
+—
+#0052
+Meowth
+File:0052Meowth.png  Normal
+Alola VII
+File:0052Meowth-Alola.png  Dark
+—
+—
+Galar VIII
+File:0052Meowth-Galar.png  Steel
+Perrserker
+File:0863Perrserker.png  Steel
+#0053
+Persian
+File:0053Persian.png  Normal
+Alola VII
+File:0053Persian-Alola.png  Dark
+—
+—
+#0058
+Growlithe
+File:0058Growlithe.png  Fire
+Hisui VIII
+File:0058Growlithe-Hisui.png  Fire   Rock
+—
+—
+#0059
+Arcanine
+File:0059Arcanine.png  Fire
+Hisui VIII
+File:0059Arcanine-Hisui.png  Fire   Rock
+—
+—
+#0074
+Geodude
+File:0074Geodude.png  Rock   Ground
+Alola VII
+File:0074Geodude-Alola.png  Rock   Electric
+—
+—
+#0075
+Graveler
+File:0075Graveler.png  Rock   Ground
+Alola VII
+File:0075Graveler-Alola.png  Rock   Electric
+—
+—
+#0076
+Golem
+File:0076Golem.png  Rock   Ground
+Alola VII
+File:0076Golem-Alola.png  Rock   Electric
+—
+—
+#0077
+Ponyta
+File:0077Ponyta.png  Fire
+Galar VIII
+File:0077Ponyta-Galar.png  Psychic
+—
+—
+#0078
+Rapidash
+File:0078Rapidash.png  Fire
+Galar VIII
+File:0078Rapidash-Galar.png  Psychic   Fairy
+—
+—
+#0079
+Slowpoke
+File:0079Slowpoke.png  Water   Psychic
+Galar VIII
+File:0079Slowpoke-Galar.png  Psychic
+—
+—
+#0080
+Slowbro
+File:0080Slowbro.png  Water   Psychic
+Galar VIII
+File:0080Slowbro-Galar.png  Poison   Psychic
+—
+—
+#0083
+Farfetch'd
+File:0083Farfetch'd.png  Normal   Flying
+Galar VIII
+File:0083Farfetch'd-Galar.png  Fighting
+Sirfetch'd
+File:0865Sirfetch'd.png  Fighting
+#0088
+Grimer
+File:0088Grimer.png  Poison
+Alola VII
+File:0088Grimer-Alola.png  Poison   Dark
+—
+—
+#0089
+Muk
+File:0089Muk.png  Poison
+Alola VII
+File:0089Muk-Alola.png  Poison   Dark
+—
+—
+#0100
+Voltorb
+File:0100Voltorb.png  Electric
+Hisui VIII
+File:0100Voltorb-Hisui.png  Electric   Grass
+—
+—
+#0101
+Electrode
+File:0101Electrode.png  Electric
+Hisui VIII
+File:0101Electrode-Hisui.png  Electric   Grass
+—
+—
+#0103
+Exeggutor
+File:0103Exeggutor.png  Grass   Psychic
+Alola VII
+File:0103Exeggutor-Alola.png  Grass   Dragon
+—
+—
+#0105
+Marowak
+Ground
+Alola VII
+Fire   Ghost
+—
+—
+#0110
+Weezing
+File:0110Weezing.png  Poison
+Galar VIII
+File:0110Weezing-Galar.png  Poison   Fairy
+—
+—
+#0122
+Mr. Mime
+File:0122Mr. Mime.png  Psychic   Fairy
+Galar VIII
+File:0122Mr. Mime-Galar.png  Ice   Psychic
+Mr. Rime
+File:0866Mr. Rime.png  Ice   Psychic
+#0128
+Tauros
+File:0128Tauros.png  Normal
+Paldea IX
+File:0128Tauros-Paldea.png Combat Breed  Fighting
+—
+—
+Paldea IX
+File:0128Tauros-Paldea Blaze.png Blaze Breed  Fighting   Fire
+—
+—
+Paldea IX
+File:0128Tauros-Paldea Aqua.png Aqua Breed  Fighting   Water
+—
+—
+#0133
+Eevee
+Normal
+File:Xureen symbol.png Arcadia AN-IV
+Glitch
+Pixeleon
+File:S000Pixeleon.png  Glitch
+#0144
+Articuno
+File:0144Articuno.png  Ice   Flying
+Galar VIII
+File:0144Articuno-Galar.png  Psychic   Flying
+—
+—
+#0145
+Zapdos
+File:0145Zapdos.png  Electric   Flying
+Galar VIII
+File:0145Zapdos-Galar.png  Fighting   Flying
+—
+—
+#0146
+Moltres
+File:0146Moltres.png  Fire   Flying
+Galar VIII
+File:0146Moltres-Galar.png  Dark   Flying
+—
+—
+#0157
+Typhlosion
+File:0157Typhlosion.png  Fire
+Hisui VIII
+File:0157Typhlosion-Hisui.png  Fire   Ghost
+—
+—
+#0176
+Togetic
+Fairy   Flying
+File:Verela symbol.png Verela AN-I
+Dark   Fairy
+—
+—
+#0187
+Hoppip
+File:0187Hoppip.png  Grass   Flying
+File:Verela symbol.png Verela AN-I
+File:0187Hoppip-Verela.png  Water   Poison
+—
+—
+#0188
+Skiploom
+File:0188Skiploom.png  Grass   Flying
+File:Verela symbol.png Verela AN-I
+File:0188Skiploom-Verela.png  Water   Poison
+—
+—
+#0189
+Jumpluff
+File:0189Jumpluff.png  Grass   Flying
+File:Verela symbol.png Verela AN-I
+File:0189Jumpluff-Verela.png  Water   Poison
+—
+—
+#0194
+Wooper
+File:0194Wooper.png  Water   Ground
+Paldea IX
+File:0194Wooper-Paldea.png  Poison   Ground
+Clodsire
+File:0980Clodsire.png  Poison   Ground
+#0199
+Slowking
+File:0199Slowking.png  Water   Psychic
+Galar VIII
+File:0199Slowking-Galar.png  Poison   Psychic
+—
+—
+#0203
+Girafarig
+File:0203Girafarig.png  Normal   Psychic
+File:Xureen symbol.png Xureen AN-IV
+File:0203Girafarig-Xureen.png  Normal   Dark
+Equiniuke
+File:S040Equiniuke.png  Normal   Dark
+#0211
+Qwilfish
+File:0211Qwilfish.png  Water   Poison
+Hisui VIII
+File:0211Qwilfish-Hisui.png  Dark   Poison
+Overqwil
+File:0904Overqwil.png  Dark   Poison
+#0215
+Sneasel
+Dark   Ice
+Hisui VIII
+Fighting   Poison
+Sneasler
+Fighting   Poison
+#0215
+Sneasel
+Dark   Ice
+File:Irada symbol.png Irada JC-I
+File:0215Sneasel-Irada.png  Dark   Fire
+—
+—
+#0217
+Ursaring
+File:0217Ursaring.png  Normal
+File:Verela symbol.png Verela AN-I
+File:0217Ursaring-Verela.png  Normal   Celestial
+—
+—
+#0222
+Corsola
+File:0222Corsola.png  Water   Rock
+Galar VIII
+File:0222Corsola-Galar.png  Ghost
+Cursola
+File:0864Cursola.png  Ghost
+#0231
+Stantler
+File:0231Stantler.png  Normal
+File:Zantaru symbol.png Zantaru AN-II
+File:0231Stantler-Zantaru.png  Ice   Normal
+—
+—
+#0263
+Zigzagoon
+Normal
+Galar VIII
+Dark   Normal
+—
+—
+#0264
+Linoone
+Normal
+Galar VIII
+Dark   Normal
+Obstagoon
+File:0864Obstagoon.png  Dark   Normal
+#0280
+Ralts
+File:0280Ralts.png  Psychic   Fairy
+File:Xureen symbol.png Xureen AN-IV
+File:0280Ralts-Xureen.png  Poison   Fairy
+—
+—
+#0281
+Kirlia
+File:0281Kirlia.png  Psychic   Fairy
+File:Xureen symbol.png Xureen AN-IV
+File:0281Kirlia-Xureen.png  Poison   Fairy
+—
+—
+#0282
+Gardevoir
+File:0282Gardevoir.png  Psychic   Fairy
+File:Xureen symbol.png Xureen AN-IV
+File:0282Gardevoir-Xureen.png  Poison   Fairy
+—
+—
+#0283
+Surskit
+File:0283Surskit.png  Bug   Water
+File:Zantaru symbol.png Zantaru AN-II
+File:0283Surskit-Zantaru.png  Bug   Rock
+Vulcantern
+File:L202Vulcantern.png  Bug   Fire
+#0303
+Mawile
+File:0303Mawile.png  Steel   Fairy
+File:Xureen symbol.png Xureen AN-IV
+File:0303Mawile-Xureen.png  Ground   Fairy
+—
+—
+#0353
+Shuppet
+File:0353Shuppet.png  Ghost
+File:Verela symbol.png Verela AN-I
+File:0353Shuppet-Verela.png  Ghost   Steel
+—
+—
+#0354
+Banette
+File:0354Banette.png  Ghost
+File:Verela symbol.png Verela AN-I
+File:0354Banette-Verela.png  Ghost   Steel
+—
+—
+#0355
+Duskull
+File:0355Duskull.png  Ghost
+File:Silati symbol.png Syraik AN-III
+File:0355Duskull-Syraik.png  Fairy
+—
+—
+#0356
+Dusclops
+File:0356Dusclops.png  Ghost
+File:Silati symbol.png Syraik AN-III
+File:0356Dusclops-Syraik.png  Fairy
+—
+—
+#0401
+Kricketot
+File:0401Kricketot.png  Bug
+File:Xureen symbol.png Xureen AN-IV
+File:0401Kricketot-Xureen.png  Dark   Electric
+Cerambstep
+File:S035Cerambstep.png  Dark   Electric
+#0420
+Cherubi
+File:0420Cherubi.png  Grass
+File:Silati symbol.png Syraik AN-III
+File:0420Cherubi-Syraik.png  Grass   Ground
+—
+—
+#0421
+Cherrim
+File:0421Cherrim.png  Grass
+File:Silati symbol.png Syraik AN-III
+File:0421Cherrim-Syraik.png Overcast Form  Grass   Ground
+—
+—
+File:0421Cherrim-Sun.png Sunny Form  Grass
+File:0421Cherrim-Syraik Sun.png Sunny Form  Grass   Ground
+—
+—
+#0427
+Buneary
+Normal
+File:Irada symbol.png Irada JC-I
+File:0427Buneary-Irada.png  Fighting
+—
+—
+#0428
+Lopunny
+Normal
+File:Irada symbol.png Irada JC-I
+File:0428Lopunny-Irada.png  Fighting
+—
+—
+#0461
+Weavile
+Dark   Ice
+File:Irada symbol.png Irada JC-I
+File:0461Weavile-Irada.png  Dark   Fire
+—
+—
+#0468
+Togekiss
+Fairy   Flying
+File:Verela symbol.png Verela AN-I
+Dark   Fairy
+—
+—
+#0477
+Dusknoir
+File:0477Dusknoir.png  Ghost
+File:Silati symbol.png Syraik AN-III
+File:0477Dusknoir-Syraik.png  Fairy
+—
+—
+#0503
+Samurott
+Water
+Hisui VIII
+Water   Dark
+—
+—
+#0509
+Purrloin
+File:0509Purrloin.png  Dark
+File:Zantaru symbol.png Zantaru AN-II
+File:0509Purrloin-Zantaru.png  Ghost
+—
+—
+#0510
+Liepard
+File:0510Liepard.png  Dark
+File:Zantaru symbol.png Zantaru AN-II
+File:0510Liepard-Zantaru.png  Ghost
+—
+—
+#0527
+Woobat
+File:0527Woobat.png  Psychic   Flying
+File:Verela symbol.png Verela AN-I
+File:0527Woobat-Verela.png  Ice   Flying
+—
+—
+#0528
+Swoobat
+File:0528Swoobat.png  Psychic   Flying
+File:Verela symbol.png Verela AN-I
+File:0528Swoobat-Verela.png  Ice   Flying
+—
+—
+#0531
+Audino
+File:0531Audino.png  Normal
+File:Silati symbol.png Syraik AN-III
+File:0531Audino-Syraik.png  Fighting
+—
+—
+#0546
+Cottonee
+File:0546Cottonee.png  Grass   Fairy
+File:Zantaru symbol.png Zantaru AN-II
+File:0546Cottonee-Zantaru.png  Fire
+—
+—
+#0547
+Whimsicott
+File:0547Whimsicott.png  Grass   Fairy
+File:Zantaru symbol.png Zantaru AN-II
+File:0547Whimsicott-Zantaru.png  Fire   Grass
+—
+—
+#0548
+Petilil
+Grass
+File:Zantaru symbol.png Zantaru AN-II
+File:0548Petilil-Zantaru.png  Electric
+—
+—
+#0549
+Lilligant
+Grass
+Hisui VIII
+File:0549Lilligant-Hisui.png  Grass   Fighting
+—
+—
+File:Zantaru symbol.png Zantaru AN-II
+File:0549Lilligant-Zantaru.png  Electric   Grass
+—
+—
+#0550
+Basculin
+File:0550Basculin.png  Water
+File:Verela symbol.png Verela AN-I
+File:0550Basculin-Verela.png  Steel
+—
+—
+#0554
+Darumaka
+File:0554Darumaka.png  Fire
+Galar VIII
+File:0554Darumaka-Galar.png  Ice
+—
+—
+#0555
+Darmanitan
+File:0555Darmanitan.png  Fire
+Galar VIII
+File:0555Darmanitan-Galar.png Standard Mode  Ice
+—
+—
+File:0555Darmanitan-Zen.png Standard Mode  Fire   Psychic
+File:0555Darmanitan-Galar Zen.png Standard Mode  Ice   Fire
+—
+—
+#0562
+Yamask
+File:0562Yamask.png  Ghost
+Galar VIII
+File:0562Yamask-Galar.png  Ground   Ghost
+Runerigus
+File:0867Runerigus.png  Ground   Ghost
+#0570
+Zorua
+Dark
+Hisui VIII
+Normal   Ghost
+—
+—
+#0571
+Zoroark
+Dark
+Hisui VIII
+Normal   Ghost
+—
+—
+#0592
+Frillish
+File:0592Frillish.png  Water   Ghost
+File:Zantaru symbol.png Zantaru AN-II
+File:0592Frillish-Zantaru.png  Ghost   Flying
+Jelliloon
+File:L286Jelliloon.png  Ghost   Flying
+#0618
+Stunfisk
+File:0618Stunfisk.png  Ground   Electric
+Galar VIII
+File:0618Stunfisk-Galar.png  Ground   Steel
+—
+—
+#0622
+Golett
+File:0622Golett.png  Ghost   Ground
+File:Verela symbol.png Verela AN-I
+File:0622Golett-Verela.png  Rock   Fairy
+—
+—
+#0623
+Golurk
+File:0623Golurk.png  Ghost   Ground
+File:Verela symbol.png Verela AN-I
+File:0623Golurk-Verela.png  Rock   Fairy
+—
+—
+#0628
+Braviary
+File:0628Braviary.png  Normal   Flying
+Hisui VIII
+File:0628Braviary-Hisui.png  Psychic   Flying
+—
+—
+#0629
+Vullaby
+File:0629Vullaby.png  Dark   Flying
+File:Verela symbol.png Verela AN-I
+File:0629Vullaby-Verela.png  Ghost   Ground
+—
+—
+#0630
+Mandibuzz
+File:0630Mandibuzz.png  Dark   Flying
+File:Verela symbol.png Verela AN-I
+File:0630Mandibuzz-Verela.png  Ghost   Ground
+—
+—
+#0705
+Sliggoo
+Dragon
+Hisui VIII
+Steel   Dragon
+—
+—
+#0706
+Goodra
+Dragon
+Hisui VIII
+Steel   Dragon
+—
+—
+#0708
+Phantump
+Ghost   Grass
+File:Zantaru symbol.png Zantaru AN-II
+File:0708Phantump-Zantaru.png  Grass   Dark
+Trevillain
+File:L287Trevillain.png  Grass   Dark
+#0713
+Avalugg
+File:0713Avalugg.png  Ice
+Hisui VIII
+File:0713Avalugg-Hisui.png  Ice   Rock
+—
+—
+#0724
+Decidueye
+Grass   Ghost
+Hisui VIII
+Grass   Fighting
+—
+—
+#0747
+Mareanie
+File:0747Mareanie.png  Water   Poison
+File:Verela symbol.png Verela AN-I
+File:0747Mareanie-Verela.png  Ice
+Crowndra
+File:L063Crowndra.png  Ice   Poison
+#0762
+Steenee
+Grass
+File:Xureen symbol.png Xureen AN-IV
+File:0762Steenee-Xureen.png  Grass   Fighting
+—
+—
+#0763
+Tsareena
+Grass
+File:Xureen symbol.png Xureen AN-IV
+File:0763Tsareena-Xureen.png  Grass   Fighting
+—
+—
+#0778
+Mimikyu
+Ghost   Fairy
+File:Zantaru symbol.png Zantaru AN-II
+File:0778Mimikyu-Zantaru.png  Ghost   Fire
+—
+—
+#0778
+Mimikyu
+Ghost   Fairy
+File:Irada symbol.png Irada JC-I
+File:0778Mimikyu-Irada.png  Ghost   Normal
+—
+—
+#0868
+Milcery
+Fairy
+File:Verela symbol.png Verela AN-I
+File:0868Milcery-Verela.png  Poison
+—
+—
+#0869
+Alcremie
+Fairy
+File:Verela symbol.png Verela AN-I
+File:0869Alcremie-Verela.png  Poison
+—
+—
+#0899
+Wyrdeer
+File:0899Wyrdeer.png  Normal   Psychic
+File:Zantaru symbol.png Zantaru AN-II
+File:0899Wyrdeer-Zantaru.png  Ice   Normal
+—
+—
+#0901
+Ursaluna
+File:0901Ursaluna.png  Ground   Normal
+File:Verela symbol.png Verela AN-I
+File:0901Ursaluna-Verela.png  Normal   Celestial
+—
+—
+#0902
+Basculegion
+File:0902Basculegion.png  Water   Ghost
+File:Verela symbol.png Verela AN-I
+File:0902Basculegion-Verela.png  Steel   Fighting
+—
+—
+#L085
+Voltylph
+File:L085Voltylph.png  Electric   Fairy
+File:Xureen symbol.png Xureen AN-IV
+File:L085Voltylph-Xureen.png  Electric   Water
+—
+—
+#L086
+Thundixie
+File:L086Thundixie.png  Electric   Fairy
+File:Xureen symbol.png Xureen AN-IV
+File:L086Thundixie-Xureen.png  Electric   Water
+—
+—
+#L144
+Sketchadet
+File:L144Sketchadet.png  Dark
+File:Xureen symbol.png Xureen AN-IV
+File:L144Sketchadet-Xureen.png  Ghost
+—
+—
+#L145
+Guerrapel
+File:L145Guerrapel.png  Dark
+File:Xureen symbol.png Xureen AN-IV
+File:L145Guerrapel-Xureen.png  Ghost
+—
+—
+In the core series games [ edit ]
+In the Alola , Galar , Hisui , and Paldea regions, certain Pokémon species have regional forms.
+Pokémon with regional forms have uniquely adapted to habitats that are different than those where its species naturally live in other parts of the world . As such, many things may be different about them, from their appearance and way of living to even their type , moves , Template:Abilities , base stats , height , and weight . This is analogous to a form of real-world evolution known as peripatric speciation , where a population that is isolated from the rest of the species develops unique traits and may eventually evolve into a new species.
+When breeding Pokémon whose offspring have a regional form, the offspring will normally take on the form corresponding to the region in which it was bred, regardless of its parents' forms. However, if one of the parents of the same evolutionary family held an Everstone when the Egg was produced, the offspring will be the same form as that parent. This does not apply to White-Striped Basculin and Basculegion , which will always produce White-Striped Basculin regardless of region or held Everstones. If the parents are the same species but different forms and in different balls, then the offspring has a 50 percent chance of inheriting either parent's ball regardless of what form the offspring takes.
+If a Kantonian Tauros is bred in Paldea and isn't holding an Everstone, then the resulting offspring will always be Combat Breed Paldean Tauros and never the Blaze Breed or Aqua Breed Paldean Tauros.
+If a Pokémon without a regional form evolves into a Pokémon with a regional form, it will evolve into the form native to the region it is currently in.
+From Generation VIII onward, regional forms may have an evolution that their regular form does not have, or evolve into a different species than the regular form, becoming something similar to a branched evolution .
+In the spin-off games [ edit ]
+Super Smash Bros. Ultimate [ edit ]
+Alolan Raichu, Vulpix, and Exeggutor appear as Pokémon that can appear from Poké Balls in Super Smash Bros. Ultimate .
+Pokémon Shuffle [ edit ]
+Main articles: Alolan form and Alolan form → Pokémon Shuffle
+Alolan forms appear in Pokémon Shuffle .
+Pokémon GO [ edit ]
+For a list of the regional forms, see Alolan form → Pokémon GO , Galarian form → Pokémon GO , and Hisuian form → Pokémon GO
+In Pokémon GO , they are referred to in the game dialogue as regional variants . They often have special requirements to be obtained as opposed to simply encountering them in the wild .
+Alolan Pokémon first appeared in Pokémon GO on May 30, 2018, with the appearance of Alolan Exeggutor . Initially, Alolan Pokémon were exclusive to 7 km Eggs and Raid Battles , but have occasionally reappeared in the wild since their debuts.
+Galarian Pokémon first appeared on November 16, 2019, with the appearance of Galarian Weezing .
+Hisuian Pokémon first appeared on January 30, 2022, with the appearance of Hisuian Voltorb .
+Pokémon Duel [ edit ]
+Main articles: Alolan form and Alolan form → Pokémon Duel
+Certain Alolan forms were included in Pokémon Duel .
+Pokémon Masters EX [ edit ]
+Main articles: Alolan form → Pokémon Masters EX and Galarian form → Pokémon Masters EX
+In Pokémon Masters EX , the regional forms currently available are from Alola and Galar . However, they inconsistently use different naming systems: "Alola Form" and "Galarian Form".
+New Pokémon Snap [ edit ]
+Alolan Raichu , Sandslash , and Vulpix can be found and photographed in the Lental region.
+Pokémon UNITE [ edit ]
+Alolan Ninetales is a playable Pokémon in Pokémon UNITE . Alolan Meowth and Persian also appear as Wild Pokémon in the Shivre City stage.
+Similar concepts [ edit ]
+Variant Pokémon [ edit ]
+Main article: Variant Pokémon
+File:Orange Islands Butterfree.png A Valencia Island Butterfree
+Prior to Generation VII , there were already certain Pokémon that had variations depending on their native geographical area, but, unlike regional forms, these Pokémon do not appear to have any functional difference from their original forms; rather, their differences are purely aesthetic, with their type , moves , Template:Abilities , height , and weight remaining the same.
+The Generation I Pokédex entries for Arbok state that there are six variations of its face-like hood markings that differ between areas. Eight designs are known, but only three have appeared in the core series games (with a fourth in Pokémon Ranger ). In Pokémon Adventures , Arbok gains a special ability depending on its pattern.
+In Sinnoh , Shellos and Gastrodon have different appearances on each side of Mt. Coronet . East Sea Shellos and Gastrodon only appear east of Mt. Coronet, whereas West Sea Shellos and Gastrodon only appear on the west side.
+Mantyke 's Pokédex entry in Pokémon Pearl says that the pattern on its back varies from region to region. While it has the same appearance in all Generation IV games (due to using the same sprites), the "face" from Generation V onward appears wider.
+Vivillon , which was introduced in Generation VI, has a different appearance depending on where the game it was created in is from in the real world.
+In the anime episode Poké Ball Peril , a number of alternately colored Pokémon were seen on Valencia Island , including Butterfree , Raticate , Nidoran♂ , Nidoran♀ , Vileplume , Paras , and Weepinbell . Professor Ivy , the Pokémon Professor of the Orange Archipelago , studies these variations.
+The episode Fly Me to the Moon featured Pidgey native to Pudgy Pidgey Isle that were too heavy to fly due to an abundance of food and a lack of predators.
+In the Pikachu short Snorlax Snowman , several ice-blue Snorlax adapted to more frigid climates appeared.
+In the Pokémon Adventures chapter Off Course with Corsola , Template:Adv mentioned that Kanto and Johto share many of the same Pokémon, but their colors and patterns are different between regions.
+δ Delta Species [ edit ]
+Main article: δ Delta Species (TCG)
+File:PikachuEXHolonPhantoms79.jpg A Template:TCG type Pikachu
+The Pokémon Trading Card Game introduced Delta Species Pokémon in Generation III . Like regional forms, these Pokémon would undergo a type change, but their appearance would stay generally the same. The backstory of Template:TCG states that these changes were not due to natural adaptation but rather a mutation brought on by exposure to electromagnetic waves.
+This seems to be an exclusive phenomenon on the island of Holon , the aforementioned waves a product of experiments by scientists in the area searching for the Mythical Pokémon Mew . Delta Species Pokémon appeared in the TCG from Template:TCG to Template:TCG .
+Trivia [ edit ]
+All known regions with regional forms have been introduced in alphabetical order ( Alola , Galar , Hisui , and Paldea ).
+The only type currently not represented by a regional form is Bug .
+Additionally, there are no Flying-type regional forms that weren't already that type in their original form.
+Dark is the most common type among regional forms, with 11, while Water , Dragon , and Fairy are tied for the least common type, with only 3 regional forms each.
+Out of the generations that introduced Pokémon that would later have regional forms, Generation I introduced the most, at 33, while Generation VII introduced the fewest, at one.
+Generations IV , VIII , and IX are the only generations to not introduce any Pokémon that have regional forms.
+Out of the generations that introduced regional forms, Generation VIII introduced the most, with 36, while Generation IX introduced the fewest, with four (or only two if all three Paldean Tauros breeds are counted as a single regional form).
+Pokémon Brilliant Diamond and Shining Pearl are the only core series games following the introduction of regional forms to not feature them.
+Pokémon Legends: Arceus is the only core series game in which some regional form Pokémon are available but their respective original forms are unobtainable, with Vulpix , Ninetales , and Sneasel being the only exceptions to this.
+According to the Pokédex , researchers initially believed Wiglett and Wugtrio to be regional forms of Diglett and Dugtrio , respectively, before concluding they were separate species entirely .
+Bloodmoon Ursaluna, a unique form of Ursaluna exclusively found in Kitakami , has a very similar concept to the regional forms, being a Pokémon that moved away from their original region and adapted to the new environment.
+In other languages [ edit ]
+Language
+Title
+Chinese
+Cantonese
+地區形態 Deihkēui Yìhngtaai * 地區型態 Deihkēui Yìhngtaai *
+Mandarin
+地區形態 / 地区形态 Dìqū Xíngtài * 地區型態 Dìqū Xíngtài *
+File:The Czech Republic Flag.png Czech
+Regionální varianta
+Danish
+Regional variation * Alola-variant *
+Dutch
+Regionale variant S M US UM Regionale vorm Sw Sh
+Finnish
+Alueellinen muunnos * Alueellinen muoto *
+French
+Forme régionale Variante régionale *
+German
+Regionalform
+File:Hungary Flag.png Hungarian
+Regionális változat
+Italian
+Forma regionale
+Korean
+리전폼 Region Forme
+File:Norway Flag.png Norwegian
+Regional variasjon
+Polish
+Forma regionalna * Regionalny wariant *
+Portuguese
+Brazil
+Forma regional * Variante regional * Variação regional *
+Portugal
+Variante regional S M US UM Forma regional Sw Sh
+Russian
+Региональный вариант Regional'nyy variant S M US UM Sw Sh Региональная формa Regional'naya forma Sw Sh
+Spanish
+Forma regional
+Swedish
+Regional variant
+File:Turkey Flag.png Turkish
+Bölgesel çeşitlilik
+Vietnamese
+Hình thái địa phương
+See also [ edit ]
+Template:Forms
+de:Regionalform
+es:Forma regional
+fr:Forme régionale
+it:Forme regionali
+ja:リージョンフォーム
+zh:地区形态
+Retrieved from " https://pkmnrisu.miraheze.org/wiki/Regional_form?oldid=8238 "
+Categories : Pages with broken file links Lists of Pokémon Pokémon world Pokémon with different forms Variant Pokémon Regional forms Lists of Pokémon
+Maintenance > Pages with broken file links
+Pokémon > Pokémon with different forms
+Pokémon world
+Regional forms
+Variant Pokémon
+Cookies help us deliver our services. By using our services, you agree to our use of cookies. More information OK
+Recent changes Crystode (Pokémon) Astralnekomimi • 1 day ago Crystode (Pokémon) Astralnekomimi • 1 day ago Overclock (move) Astralnekomimi • 1 day ago Overclock (move) Astralnekomimi • 1 day ago This page was last edited on 23 February 2025, at 22:52. Content is available under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) unless otherwise noted. Privacy policy About Pokémon Rising Sun Project Disclaimers Terms of Use Donate to Miraheze Mobile view What links here Related changes Printable version Permanent link Page information Cite this page Get shortened URL Create Redirect Create Redirect Cookies help us deliver our services. By using our services, you agree to our use of cookies. More information OK
