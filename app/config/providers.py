@@ -23,7 +23,7 @@ def build_providers() -> ProviderBundle:
     }
     return ProviderBundle(
         settings=settings,
-        http_client=httpx.Client(timeout=settings.litellm_timeout),
+        http_client=httpx.Client(timeout=settings.request_timeout),
         models=models,
     )
 

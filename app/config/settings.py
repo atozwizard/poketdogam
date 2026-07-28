@@ -10,17 +10,19 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
 
-    upstage_api_key: str = ""
-    gemini_api_key: str = ""
-    openai_api_key: str = ""
-    openweathermap_api_key: str = ""
+    llm_model: str = "template"
+    local_llm_provider: str = "ollama"
+    local_llm_model: str = "llama3.2:1b"
+    ollama_base_url: str = "http://127.0.0.1:11434"
+    local_llm_timeout: int = 20
+    scan_primary_model: str = "os-ocr"
+    scan_fallback_model: str = "manual-search"
+    request_timeout: int = 30
 
-    llm_model: str = "solar-pro2"
-    scan_primary_model: str = "gemini"
-    scan_fallback_model: str = "gpt-4.1-mini"
-    use_litellm: bool = True
-    litellm_num_retries: int = 3
-    litellm_timeout: int = 30
+    dex_sqlite_path: str = "data/dex.sqlite"
+    dex_meta_path: str = "data/dex.meta.json"
+    local_match_top_k: int = 3
+    local_match_threshold: float = 0.72
 
     supabase_url: str = ""
     supabase_key: str = ""
@@ -49,8 +51,11 @@ def main() -> None:
         {
             "environment": settings.environment,
             "chat_model": settings.llm_model,
+            "local_llm_provider": settings.local_llm_provider,
+            "local_llm_model": settings.local_llm_model,
             "scan_primary_model": settings.scan_primary_model,
             "scan_fallback_model": settings.scan_fallback_model,
+            "dex_sqlite_path": settings.dex_sqlite_path,
         }
     )
 
