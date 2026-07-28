@@ -6,7 +6,12 @@ class ScanCandidate(BaseModel):
     form_id: str
     pokemon_id: int | None = None
     name_ko: str
+    name_en: str | None = None
+    form_name: str = "base"
+    types: list[str] = Field(default_factory=list)
     confidence: float = Field(ge=0.0, le=1.0)
+    matched_alias: str | None = None
+    match_reason: str | None = None
 
 
 class WeatherInfo(BaseModel):

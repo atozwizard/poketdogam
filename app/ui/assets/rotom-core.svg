@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Rotom Dex OS abstract core">
+  <defs>
+    <linearGradient id="body" x1="24" x2="216" y1="24" y2="156" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6a2a"/>
+      <stop offset="0.48" stop-color="#f4384f"/>
+      <stop offset="1" stop-color="#17c9d4"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path d="M52 24h136c18 0 32 14 32 32v68c0 18-14 32-32 32H52c-18 0-32-14-32-32V56c0-18 14-32 32-32Z" fill="url(#body)" filter="url(#glow)"/>
+  <path d="M63 43h114c14 0 25 11 25 25v41c0 14-11 25-25 25H63c-14 0-25-11-25-25V68c0-14 11-25 25-25Z" fill="#fff8ea" opacity=".94"/>
+  <path d="M22 72 4 58l26-8" fill="none" stroke="#08c7c9" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m218 72 18-14-26-8" fill="none" stroke="#08c7c9" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 33 30 10l31 13" fill="none" stroke="#ff7a25" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m194 33 16-23-31 13" fill="none" stroke="#ff7a25" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="84" cy="90" r="20" fill="#2e1c1d"/>
+  <circle cx="156" cy="90" r="20" fill="#2e1c1d"/>
+  <circle cx="91" cy="85" r="7" fill="#08c7c9"/>
+  <circle cx="149" cy="85" r="7" fill="#08c7c9"/>
+  <path d="M91 120c17 12 41 12 58 0" fill="none" stroke="#2e1c1d" stroke-width="8" stroke-linecap="round"/>
+  <path d="m110 14 9-13 8 13 12-9-2 18 18 2-13 10" fill="none" stroke="#ffe66a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

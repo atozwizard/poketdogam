@@ -1,0 +1,5 @@
+{"id":"ko-pikachu-typo","ocr_text":"피카추\nHP 60\n전광석화","expected_pokemon_id":25}
+{"id":"ko-pichu-space","ocr_text":"피 추 HP 30 작은번개","expected_pokemon_id":172}
+{"id":"ko-eevee-card","ocr_text":"이브이 HP 70 빠른진화","expected_pokemon_id":133}
+{"id":"ko-squirtle-variant","ocr_text":"꼬북이\n물대포","expected_pokemon_id":7}
+{"id":"ko-pecharunt-space","ocr_text":"복숭 악동 특성 독꼭두각시","expected_pokemon_id":1025}

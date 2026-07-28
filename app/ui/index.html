@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Poketdogam Rotom Dex OS</title>
+    <link rel="icon" href="/ui/assets/rotom-core.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/ui/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="system-header">
+        <div class="core-wrap" aria-hidden="true">
+          <img class="core-mark" src="/ui/assets/rotom-core.svg" alt="">
+          <span class="pulse-ring"></span>
+        </div>
+        <div class="system-copy">
+          <p class="eyebrow">Rotom Dex OS</p>
+          <h1>포켓덱스</h1>
+          <p id="rotomLine" class="rotom-line">렌즈 대기 중이다-로.</p>
+        </div>
+        <dl class="system-meta">
+          <div>
+            <dt>Dataset</dt>
+            <dd id="datasetVersion">checking</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd id="systemStatus">idle</dd>
+          </div>
+          <div>
+            <dt>LLM</dt>
+            <dd id="llmRuntime">template</dd>
+          </div>
+        </dl>
+      </header>
+
+      <nav class="section-nav" aria-label="작업 영역">
+        <button class="nav-button is-active" type="button" data-target="scanPanel">스캔</button>
+        <button class="nav-button" type="button" data-target="detailPanel">상세</button>
+        <button class="nav-button" type="button" data-target="chatPanel">대화</button>
+        <button class="nav-button" type="button" data-target="voicePanel">음성</button>
+        <button class="nav-button" type="button" data-target="collectionPanel">저장</button>
+      </nav>
+
+      <div class="workspace">
+        <section id="scanPanel" class="tool-panel scan-panel" aria-labelledby="scanTitle">
+          <div class="panel-heading">
+            <p class="eyebrow">Scan Lens</p>
+            <h2 id="scanTitle">로토무 렌즈</h2>
+          </div>
+
+          <div class="lens" id="lens">
+            <div class="scan-beam"></div>
+            <div class="reticle">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="lens-readout">
+              <strong id="lensState">READY</strong>
+              <small id="lensScore">match --</small>
+            </div>
+          </div>
+
+          <div class="fixture-row">
+            <button type="button" class="chip" data-sample="피카추&#10;HP 60&#10;전광석화">피카추</button>
+            <button type="button" class="chip" data-sample="꼬북이&#10;물대포">꼬북이</button>
+            <button type="button" class="chip" data-sample="복숭 악동 특성 독꼭두각시">복숭악동</button>
+          </div>
+
+          <label class="field-label" for="ocrText">OCR Text</label>
+          <textarea id="ocrText" spellcheck="false">피카추
+HP 60
+전광석화</textarea>
+
+          <div class="command-row">
+            <button id="scanButton" class="primary-command" type="button">스캔</button>
+            <button id="clearButton" class="secondary-command" type="button">초기화</button>
+          </div>
+
+          <div class="candidate-zone">
+            <div class="panel-heading compact">
+              <p class="eyebrow">Top Candidates</p>
+              <h3>후보</h3>
+            </div>
+            <div id="candidateList" class="candidate-list"></div>
+          </div>
+        </section>
+
+        <section id="detailPanel" class="tool-panel detail-panel" aria-labelledby="detailTitle">
+          <div class="panel-heading">
+            <p class="eyebrow">Memory Folder</p>
+            <h2 id="detailTitle">도감 상세</h2>
+          </div>
+          <div id="detailEmpty" class="empty-state">LOCK-ON 없음</div>
+          <article id="detailCard" class="detail-card" hidden>
+            <div>
+              <p class="dex-number" id="detailNumber">No.---</p>
+              <h3 id="detailName">-</h3>
+              <p id="detailEnglish" class="muted">-</p>
+            </div>
+            <div id="typeBadges" class="type-badges"></div>
+            <dl class="detail-grid">
+              <div>
+                <dt>Height</dt>
+                <dd id="detailHeight">-</dd>
+              </div>
+              <div>
+                <dt>Weight</dt>
+                <dd id="detailWeight">-</dd>
+              </div>
+              <div>
+                <dt>Form</dt>
+                <dd id="detailForm">-</dd>
+              </div>
+              <div>
+                <dt>Version</dt>
+                <dd id="detailVersion">-</dd>
+              </div>
+            </dl>
+            <div id="statBars" class="stat-bars"></div>
+            <button id="saveButton" class="secondary-command full-width" type="button">컬렉션 저장</button>
+          </article>
+        </section>
+
+        <section id="chatPanel" class="tool-panel chat-panel" aria-labelledby="chatTitle">
+          <div class="panel-heading">
+            <p class="eyebrow">Rotom Talk</p>
+            <h2 id="chatTitle">로토 대화</h2>
+            <span id="llmBadge" class="status-pill">template</span>
+          </div>
+          <div id="chatLog" class="chat-log" aria-live="polite">
+            <div class="speech is-rotom">무엇이 궁금한지 말해줘-로.</div>
+          </div>
+          <div class="chat-input-row">
+            <input id="chatInput" type="text" value="피카츄 알려줘" aria-label="대화 입력">
+            <button id="chatButton" class="primary-command" type="button">전송</button>
+          </div>
+        </section>
+
+        <section id="voicePanel" class="tool-panel voice-panel" aria-labelledby="voiceTitle">
+          <div class="panel-heading">
+            <p class="eyebrow">Voice Core</p>
+            <h2 id="voiceTitle">STS 보이스</h2>
+            <span id="voiceStatus" class="status-pill is-waiting">preview</span>
+          </div>
+          <div class="voice-core" aria-hidden="true">
+            <span class="voice-wave"></span>
+            <span class="voice-wave"></span>
+            <span class="voice-wave"></span>
+          </div>
+          <dl class="voice-grid">
+            <div>
+              <dt>Source</dt>
+              <dd>허가 음성</dd>
+            </div>
+            <div>
+              <dt>Mode</dt>
+              <dd id="voiceMode">preview</dd>
+            </div>
+            <div>
+              <dt>Style</dt>
+              <dd id="voiceStyleLabel">전기 디바이스</dd>
+            </div>
+            <div>
+              <dt>Policy</dt>
+              <dd id="voicePolicy">독자 합성</dd>
+            </div>
+          </dl>
+          <div class="voice-controls">
+            <label class="field-label" for="voiceScript">Preview Text</label>
+            <textarea id="voiceScript" spellcheck="false">분석 완료다-로. 로컬 도감 메모리와 연결됐다-로.</textarea>
+            <div class="segmented-row" role="group" aria-label="보이스 스타일">
+              <button class="voice-option is-active" type="button" data-voice-style="electric_device">전기</button>
+              <button class="voice-option" type="button" data-voice-style="bright_guide">맑음</button>
+              <button class="voice-option" type="button" data-voice-style="machine_pulse">기계</button>
+            </div>
+            <div class="range-grid">
+              <label class="range-control" for="voicePitch">
+                <span>Pitch</span>
+                <input id="voicePitch" type="range" min="0.7" max="1.7" step="0.05" value="1.18">
+              </label>
+              <label class="range-control" for="voiceSpeed">
+                <span>Speed</span>
+                <input id="voiceSpeed" type="range" min="0.75" max="1.35" step="0.05" value="1.08">
+              </label>
+            </div>
+            <div class="voice-actions">
+              <button id="voicePreviewButton" class="primary-command" type="button">프리뷰</button>
+              <button id="voiceStopButton" class="secondary-command" type="button">정지</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="collectionPanel" class="tool-panel collection-panel" aria-labelledby="collectionTitle">
+          <div class="panel-heading">
+            <p class="eyebrow">Local Box</p>
+            <h2 id="collectionTitle">컬렉션</h2>
+          </div>
+          <div id="collectionList" class="collection-list"></div>
+        </section>
+      </div>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/ui/app.js"></script>
+  </body>
+</html>
