@@ -1,10 +1,14 @@
+> **상태: 이력 문서 (superseded)**  
+> 2026-07-27 기준 구현 기준은 `docs/specs/온디바이스_무료티어_계획.md` 및 `docs/specs/구현_아키텍처_확정안.md`로 대체되었다.  
+> 본 문서는 Solar/Upstage/Gemini 유료 API 전제 시기 설계로 보관하며, MVP 구현에 직접 사용하지 않는다.
+
 제시해주신 기획안과 **Upstage Solar API**의 강력한 성능을 결합하여, 실물 인식부터 지능형 대화까지 아우르는 **[차세대 멀티미디어 포켓몬 도감: V&S] 시스템 상세 설계 사양서**를 작성해 드립니다.
 
 ---
 
 # [시스템 상세 설계 사양서] 포켓덱스: 보이스 & 스캔 (Solar AI 기반)
 
-**버전:** 1.0 (2026년 3월 기준 데이터 반영)  
+**버전:** 1.0 (2026년 3월 기준 데이터 반영) — superseded  
 **핵심 엔진:** Upstage Solar LLM + Upstage Document OCR + Gemini / GPT-4.1 mini  
 **주요 대상:** 포켓몬 굿즈(인형, 피규어), TCG 카드, 30주년 기념 데이터
 
@@ -129,4 +133,5 @@ OCR로 읽어온 파편화된 텍스트(예: "HP 60", "십만볼트", "피카.."
 
 | 수정일자 | 수정자 | 변경 대상 문서 | 수정 요약 | 반영 상태 |
 | :-- | :-- | :-- | :-- | :-- |
-| 2026-03-11 21:55 +09:00 | Codex | `docs/specs/solar상세 설계계획서.md` | Solar Vision 전제를 제거하고 Upstage Document OCR + Gemini + GPT-4.1 mini fallback, 챗은 Solar Pro 2로 기준선을 재정의 | 완료 |
+| 2026-07-27 16:59 +09:00 | Cursor | `docs/specs/solar상세 설계계획서.md` | 유료 Solar 전제 폐기. 온디바이스·무료 티어 계획으로 superseded 표기 | 완료 |
+| 2026-03-11 21:55 +09:00 | Codex | `docs/specs/solar상세 설계계획서.md` | Solar Vision 전제를 제거하고 Upstage Document OCR + Gemini + GPT-4.1 mini fallback, 챗은 Solar Pro 2로 기준선을 재정의 | 대체됨 |
