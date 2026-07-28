@@ -10,3 +10,5 @@ __pycache__/
 dist/
 build/
 data/raw/
+data/sessions.sqlite
+data/sessions_demo.sqlite

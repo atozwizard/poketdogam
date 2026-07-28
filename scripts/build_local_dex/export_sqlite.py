@@ -25,6 +25,7 @@ def export_sqlite(
     evolutions: list[dict[str, object]],
     aliases: list[dict[str, object]],
     type_chart: list[dict[str, object]],
+    passages: list[dict[str, object]] | None = None,
 ) -> None:
     db_path.parent.mkdir(parents=True, exist_ok=True)
     if db_path.exists():
@@ -39,6 +40,7 @@ def export_sqlite(
         _insert_rows(conn, "evolution_rules", evolutions)
         _insert_rows(conn, "name_aliases", aliases)
         _insert_rows(conn, "type_chart", type_chart)
+        _insert_rows(conn, "dex_passages", passages or [])
         conn.execute(
             """
             insert into dataset_meta(dataset_version, species_count, built_at, sources_json)
@@ -150,6 +152,19 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             built_at text not null,
             sources_json text not null
         );
+
+        create table dex_passages (
+            passage_id text primary key,
+            form_id text not null references pokemon_forms(form_id),
+            facet text not null,
+            title text not null,
+            body text not null,
+            searchable_text text not null,
+            embedding_csv text not null,
+            updated_at text not null
+        );
+        create index idx_dex_passages_form on dex_passages(form_id);
+        create index idx_dex_passages_facet on dex_passages(facet);
         """
     )
 

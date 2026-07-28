@@ -37,9 +37,42 @@ def build_template_answer(state: AgentState, detail: dict[str, object]) -> str:
     generation = detail.get("generation")
     stats = detail.get("stats") if isinstance(detail.get("stats"), dict) else {}
     bst = stats.get("bst")
-
     generation_text = f"{generation}세대" if generation else "세대 미상"
     bst_text = f" 종족값 합계는 {bst}." if bst else ""
+
+    facet = str(state.retrieval_context.get("facet") or "profile")
+    hops = state.retrieval_context.get("hops") if isinstance(state.retrieval_context, dict) else {}
+    hops = hops if isinstance(hops, dict) else {}
+
+    if facet == "weakness":
+        weak = [
+            str(item.get("attack_type"))
+            for item in hops.get("type_relations", [])
+            if isinstance(item, dict) and item.get("relation") == "weak_to"
+        ]
+        weak_text = ", ".join(list(dict.fromkeys(weak))[:5]) if weak else "로컬 상성표에서 강한 약점 신호가 약해"
+        return f"찌릿! {name} 약점 타입은 {weak_text} 쪽이야-로!"
+
+    if facet == "evolution":
+        evo = hops.get("evolutions") if isinstance(hops.get("evolutions"), list) else []
+        if not evo:
+            return f"{name} 진화 규칙은 로컬 메모리에 아직 얇아-로. 기본 정보만 잠금!"
+        bits = []
+        for item in evo[:3]:
+            if not isinstance(item, dict):
+                continue
+            bits.append(f"{item.get('from_name')}→{item.get('to_name')}")
+        return f"찌릿! {name} 진화 연결: {' / '.join(bits)}-로!"
+
+    if facet == "stats" and bst:
+        return f"찌릿! {name} 종족값 합계는 {bst}. 타입은 {types}-로!"
+
+    passages = state.retrieval_context.get("passages") if isinstance(state.retrieval_context, dict) else []
+    if isinstance(passages, list) and passages:
+        body = str(passages[0].get("body") or "")
+        if body:
+            return f"찌릿! {body} {bst_text}".strip() + "-로!"
+
     return f"찌릿! {name}는 {generation_text} 포켓몬이고 타입은 {types}야.{bst_text} 도감 메모리에 잠금-로!"
 
 

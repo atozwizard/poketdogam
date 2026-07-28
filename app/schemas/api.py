@@ -14,8 +14,11 @@ class ChatResponse(BaseModel):
     answer: str
     confidence: float
     trace_id: str
+    session_id: str | None = None
     llm_runtime: str = "template"
     llm_model: str = "template"
+    facet: str = "profile"
+    suggested_actions: list[str] = Field(default_factory=list)
     citations: list[dict[str, str]] = Field(default_factory=list)
 
 

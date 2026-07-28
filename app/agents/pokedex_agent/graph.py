@@ -19,7 +19,7 @@ from app.schemas.domain import ScanCandidate
 
 class PokedexAgentGraph:
     def run_chat(self, message: str, form_id: str | None = None) -> AgentState:
-        state = AgentState()
+        state = AgentState(input_text=message)
         state.entities = {"form_id": form_id or ""}
         ingest_input(state, message)
         retrieve_context(state, form_id or message)
