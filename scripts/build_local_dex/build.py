@@ -13,6 +13,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.build_local_dex.build_aliases import build_alias_rows
+from scripts.build_local_dex.build_passages import build_passage_rows
 from scripts.build_local_dex.build_type_chart import build_type_chart_rows
 from scripts.build_local_dex.export_sqlite import export_sqlite
 from scripts.build_local_dex.fetch_pokeapi import fetch_pokeapi_cache
@@ -67,6 +68,13 @@ def build_local_dex(
 
     aliases = build_alias_rows(normalized["forms"], built_at)
     type_chart = build_type_chart_rows()
+    passages = build_passage_rows(
+        normalized["species"],
+        normalized["forms"],
+        normalized["stats"],
+        normalized["evolutions"],
+        built_at,
+    )
 
     export_sqlite(
         db_path,
@@ -79,6 +87,7 @@ def build_local_dex(
         evolutions=normalized["evolutions"],
         aliases=aliases,
         type_chart=type_chart,
+        passages=passages,
     )
 
     meta = {
@@ -89,6 +98,7 @@ def build_local_dex(
         "species_count": len(normalized["species"]),
         "form_count": len(normalized["forms"]),
         "alias_count": len(aliases),
+        "passage_count": len(passages),
         "type_chart_count": len(type_chart),
         "sources": sources,
     }

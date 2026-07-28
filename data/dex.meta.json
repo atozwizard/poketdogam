@@ -1,11 +1,12 @@
 {
   "dataset_version": "pokeapi-gen1-9-2026-07-28",
-  "built_at": "2026-07-28T06:50:59+00:00",
+  "built_at": "2026-07-28T07:13:28+00:00",
   "source": "pokeapi",
   "limit": 1025,
   "species_count": 1025,
   "form_count": 1025,
   "alias_count": 3093,
+  "passage_count": 3532,
   "type_chart_count": 324,
   "sources": [
     {

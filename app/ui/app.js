@@ -25,6 +25,10 @@ const elements = {
   chatLog: document.querySelector("#chatLog"),
   chatInput: document.querySelector("#chatInput"),
   chatButton: document.querySelector("#chatButton"),
+  suggestRow: document.querySelector("#suggestRow"),
+  rotomFace: document.querySelector("#rotomFace"),
+  faceScreen: document.querySelector(".face-screen"),
+  dexShell: document.querySelector(".dex-shell"),
   llmBadge: document.querySelector("#llmBadge"),
   voiceStatus: document.querySelector("#voiceStatus"),
   voiceMode: document.querySelector("#voiceMode"),
@@ -46,6 +50,7 @@ const appState = {
   collection: loadCollection(),
   voiceStyle: "electric_device",
   audioContext: null,
+  sessionId: localStorage.getItem("poketdogam.sessionId") || null,
 };
 
 const statLabels = {
@@ -226,6 +231,7 @@ async function streamChat(message, bubble) {
     body: JSON.stringify({
       message,
       form_id: appState.selected?.form_id || null,
+      session_id: appState.sessionId,
     }),
   });
   if (!response.ok || !response.body) {
@@ -263,14 +269,20 @@ async function completeChat(message, bubble) {
     body: JSON.stringify({
       message,
       form_id: appState.selected?.form_id || null,
+      session_id: appState.sessionId,
     }),
   });
   if (!response.ok) {
     throw new Error(`chat failed: ${response.status}`);
   }
   const data = await response.json();
+  if (data.session_id) {
+    appState.sessionId = data.session_id;
+    localStorage.setItem("poketdogam.sessionId", data.session_id);
+  }
   bubble.textContent = data.answer;
   setLlmRuntime(data.llm_runtime || "template", data.llm_model || "template");
+  renderSuggestions(data.suggested_actions || []);
   setStatus("idle", "답변 완료다-로.", "READY");
   elements.chatLog.scrollTop = elements.chatLog.scrollHeight;
 }
@@ -293,8 +305,13 @@ function consumeSseBuffer(buffer, bubble, flush = false) {
 }
 
 function applyChatStreamEvent(event, bubble) {
+  if (event.session_id) {
+    appState.sessionId = event.session_id;
+    localStorage.setItem("poketdogam.sessionId", event.session_id);
+  }
   if (event.event === "meta") {
     setLlmRuntime(event.runtime || "template", event.model || "template");
+    setMood("think");
     return false;
   }
   if (event.event === "delta") {
@@ -312,11 +329,38 @@ function applyChatStreamEvent(event, bubble) {
       bubble.textContent = event.answer;
     }
     setLlmRuntime(event.runtime || "template", event.model || "template");
+    renderSuggestions(event.suggested_actions || []);
     setStatus("idle", "답변 완료다-로.", "READY");
     elements.chatLog.scrollTop = elements.chatLog.scrollHeight;
     return true;
   }
   return false;
+}
+
+function renderSuggestions(actions) {
+  if (!elements.suggestRow) {
+    return;
+  }
+  elements.suggestRow.innerHTML = "";
+  actions.forEach((action) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = action;
+    button.addEventListener("click", () => {
+      elements.chatInput.value = action;
+      sendChat();
+    });
+    elements.suggestRow.appendChild(button);
+  });
+}
+
+function setMood(expression) {
+  if (elements.faceScreen) {
+    elements.faceScreen.dataset.expression = expression;
+  }
+  if (elements.dexShell) {
+    elements.dexShell.dataset.mood = expression;
+  }
 }
 
 function renderCandidates() {
@@ -443,12 +487,15 @@ function setStatus(status, line, lensText) {
   elements.lens.classList.remove("is-scanning", "is-locked", "is-error");
   if (status === "scanning") {
     elements.lens.classList.add("is-scanning");
-  }
-  if (status === "locked" || status === "low_confidence") {
+    setMood("think");
+  } else if (status === "locked" || status === "low_confidence") {
     elements.lens.classList.add("is-locked");
-  }
-  if (status === "error") {
+    setMood(status === "locked" ? "lock" : "surprise");
+  } else if (status === "error") {
     elements.lens.classList.add("is-error");
+    setMood("error");
+  } else {
+    setMood("happy");
   }
 }
 
