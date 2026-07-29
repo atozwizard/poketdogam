@@ -14,7 +14,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from app.agents.pokedex_agent.rag.analyze_query import QueryAnalysis
-from app.agents.pokedex_agent.rag.embeddings import cosine, hash_embed
+from app.agents.pokedex_agent.rag.embeddings import cosine, decode_embedding, hash_embed
 from app.agents.pokedex_agent.rag.expand_hops import expand_hops
 from app.agents.pokedex_agent.tools.tool_local_dex import LocalDexStore
 
@@ -97,18 +97,19 @@ def _vector_passage_ids(db_path: Path, queries: list[str], *, form_id: str | Non
     scored: list[tuple[str, float]] = []
     with closing(sqlite3.connect(db_path)) as conn:
         conn.row_factory = sqlite3.Row
-        sql = "select passage_id, embedding_csv, form_id from dex_passages"
-        rows = conn.execute(sql).fetchall()
+        columns = {row["name"] for row in conn.execute("pragma table_info(dex_passages)").fetchall()}
+        embedding_column = "embedding_blob" if "embedding_blob" in columns else "embedding_csv"
+        sql = f"select passage_id, {embedding_column} as embedding, form_id from dex_passages"
+        params: tuple[object, ...] = ()
+        if form_id:
+            sql += " where form_id = ?"
+            params = (form_id,)
+        rows = conn.execute(sql, params).fetchall()
         for row in rows:
-            if form_id and row["form_id"] != form_id:
-                # still allow some global recall, but soft-prioritize later via RRF lists
-                pass
-            emb = [float(part) for part in str(row["embedding_csv"] or "").split(",") if part]
+            emb = decode_embedding(row["embedding"])
             if not emb:
                 continue
             score = cosine(query_vec, emb)
-            if form_id and row["form_id"] == form_id:
-                score += 0.05
             scored.append((row["passage_id"], score))
     scored.sort(key=lambda item: item[1], reverse=True)
     return [passage_id for passage_id, _ in scored[:20]]

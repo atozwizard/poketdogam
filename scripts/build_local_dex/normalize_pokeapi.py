@@ -36,6 +36,7 @@ def normalize_pokeapi_cache(
     form_rows: list[dict[str, object]] = []
     stat_rows: list[dict[str, object]] = []
     form_index: dict[int, str] = {}
+    variety_index: dict[str, str] = {}
 
     for pokemon_id in ids:
         species_path = species_dir / f"{pokemon_id}.json"
@@ -49,6 +50,7 @@ def normalize_pokeapi_cache(
         generation = _extract_generation(species)
         form_id = form_uuid(pokemon_id, "base")
         form_index[pokemon_id] = form_id
+        variety_index[str(pokemon.get("name") or species.get("name") or pokemon_id)] = form_id
         types = _extract_types(pokemon)
         stats = _extract_stats(pokemon)
 
@@ -94,26 +96,59 @@ def normalize_pokeapi_cache(
             }
         )
 
-    evolution_rows: list[dict[str, object]] = []
-    for form in form_rows:
-        evolves_from_id = form.get("evolves_from_id")
-        if not isinstance(evolves_from_id, int):
-            continue
-        from_form_id = form_index.get(evolves_from_id)
-        to_form_id = str(form["form_id"])
-        if not from_form_id:
-            continue
-        evolution_rows.append(
-            {
-                "rule_id": rule_uuid(from_form_id, to_form_id, "pokeapi_chain", "evolves_from"),
-                "from_form_id": from_form_id,
-                "to_form_id": to_form_id,
-                "trigger_type": "pokeapi_chain",
-                "trigger_value": "evolves_from",
-                "condition_json": "{}",
-                "updated_at": built_at,
-            }
-        )
+        for variety in species.get("varieties", []):
+            if not isinstance(variety, dict) or variety.get("is_default"):
+                continue
+            pokemon_ref = variety.get("pokemon")
+            if not isinstance(pokemon_ref, dict):
+                continue
+            variety_url = str(pokemon_ref.get("url") or "")
+            variety_resource_id = _url_resource_id(variety_url)
+            variety_path = cache_dir / "pokemon-varieties" / f"{variety_resource_id}.json"
+            if not variety_path.exists():
+                continue
+            variety_pokemon = json.loads(variety_path.read_text(encoding="utf-8"))
+            variety_name = str(variety_pokemon.get("name") or pokemon_ref.get("name") or "")
+            form_name = _form_name(str(species.get("name") or ""), variety_name)
+            if not form_name or any(
+                row["pokemon_id"] == pokemon_id and row["form_name"] == form_name for row in form_rows
+            ):
+                form_name = f"{form_name or 'variant'}-{variety_resource_id}"
+            variety_form_id = form_uuid(pokemon_id, form_name)
+            variety_index[variety_name] = variety_form_id
+            variety_types = _extract_types(variety_pokemon)
+            variety_stats = _extract_stats(variety_pokemon)
+            form_rows.append(
+                {
+                    "form_id": variety_form_id,
+                    "pokemon_id": pokemon_id,
+                    "form_name": form_name,
+                    "type1": variety_types[0] if variety_types else "unknown",
+                    "type2": variety_types[1] if len(variety_types) > 1 else None,
+                    "height_m": round(int(variety_pokemon.get("height") or 0) / 10, 2),
+                    "weight_kg": round(int(variety_pokemon.get("weight") or 0) / 10, 2),
+                    "source": "pokeapi:variety",
+                    "updated_at": built_at,
+                    "names": names,
+                    "aliases": _variant_aliases(names, form_name, variety_name),
+                }
+            )
+            stat_rows.append(
+                {
+                    "form_id": variety_form_id,
+                    "hp": variety_stats["hp"],
+                    "attack": variety_stats["attack"],
+                    "defense": variety_stats["defense"],
+                    "sp_attack": variety_stats["sp_attack"],
+                    "sp_defense": variety_stats["sp_defense"],
+                    "speed": variety_stats["speed"],
+                    "bst": sum(variety_stats.values()),
+                }
+            )
+
+    evolution_rows = _normalize_evolution_chains(cache_dir, form_index, variety_index, built_at)
+    if not evolution_rows:
+        evolution_rows = _fallback_evolutions(form_rows, form_index, built_at)
 
     return {
         "species": species_rows,
@@ -199,6 +234,188 @@ def _evolves_from_id(species: dict[str, object]) -> int | None:
         return int(url.rstrip("/").split("/")[-1])
     except (TypeError, ValueError):
         return None
+
+
+def _url_resource_id(url: str) -> str:
+    return url.rstrip("/").split("/")[-1]
+
+
+def _form_name(species_name: str, variety_name: str) -> str:
+    prefix = f"{species_name}-"
+    if variety_name.startswith(prefix):
+        return variety_name[len(prefix) :]
+    return variety_name or "variant"
+
+
+FORM_LABELS_KO = {
+    "alola": "알로라",
+    "galar": "가라르",
+    "hisui": "히스이",
+    "paldea": "팔데아",
+    "mega": "메가",
+    "gmax": "거다이맥스",
+    "origin": "오리진",
+    "therian": "영물",
+    "attack": "어택",
+    "defense": "디펜스",
+    "speed": "스피드",
+}
+
+
+def _variant_aliases(names: dict[str, str], form_name: str, variety_name: str) -> list[str]:
+    ko_name = str(names.get("ko") or "")
+    tokens = form_name.split("-")
+    ko_form = " ".join(FORM_LABELS_KO.get(token, token) for token in tokens)
+    aliases = [variety_name, f"{ko_name} {ko_form}".strip(), f"{ko_form} {ko_name}".strip()]
+    return list(dict.fromkeys(alias for alias in aliases if alias))
+
+
+def _normalize_evolution_chains(
+    cache_dir: Path,
+    form_index: dict[int, str],
+    variety_index: dict[str, str],
+    built_at: str,
+) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    seen: set[str] = set()
+    for path in sorted((cache_dir / "evolution-chain").glob("*.json")):
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        chain = payload.get("chain")
+        if isinstance(chain, dict):
+            _walk_evolution_chain(chain, None, form_index, variety_index, built_at, rows, seen)
+    return rows
+
+
+def _walk_evolution_chain(
+    node: dict[str, object],
+    parent_species_id: int | None,
+    form_index: dict[int, str],
+    variety_index: dict[str, str],
+    built_at: str,
+    rows: list[dict[str, object]],
+    seen: set[str],
+) -> None:
+    species = node.get("species")
+    current_species_id = _species_id(species)
+    if parent_species_id and current_species_id:
+        default_from_form_id = form_index.get(parent_species_id)
+        default_to_form_id = form_index.get(current_species_id)
+        if default_from_form_id and default_to_form_id:
+            details = node.get("evolution_details")
+            normalized_details = details if isinstance(details, list) and details else [{}]
+            for detail in normalized_details:
+                detail = detail if isinstance(detail, dict) else {}
+                from_form_id = variety_index.get(
+                    str(detail.get("from_form") or ""),
+                    default_from_form_id,
+                )
+                to_form_id = variety_index.get(
+                    str(detail.get("evolved_form") or ""),
+                    default_to_form_id,
+                )
+                trigger = detail.get("trigger")
+                trigger_type = (
+                    str(trigger.get("name") or "unknown") if isinstance(trigger, dict) else "unknown"
+                )
+                condition = _evolution_condition(detail)
+                trigger_value = _trigger_summary(trigger_type, condition)
+                identifier_value = json.dumps(condition, ensure_ascii=False, sort_keys=True)
+                rule_id = rule_uuid(from_form_id, to_form_id, trigger_type, identifier_value)
+                if rule_id in seen:
+                    continue
+                seen.add(rule_id)
+                rows.append(
+                    {
+                        "rule_id": rule_id,
+                        "from_form_id": from_form_id,
+                        "to_form_id": to_form_id,
+                        "trigger_type": trigger_type,
+                        "trigger_value": trigger_value,
+                        "condition_json": json.dumps(condition, ensure_ascii=False, sort_keys=True),
+                        "updated_at": built_at,
+                    }
+                )
+    children = node.get("evolves_to")
+    if not isinstance(children, list):
+        return
+    for child in children:
+        if isinstance(child, dict):
+            _walk_evolution_chain(
+                child,
+                current_species_id,
+                form_index,
+                variety_index,
+                built_at,
+                rows,
+                seen,
+            )
+
+
+def _species_id(species: object) -> int | None:
+    if not isinstance(species, dict):
+        return None
+    try:
+        return int(_url_resource_id(str(species.get("url") or "")))
+    except (TypeError, ValueError):
+        return None
+
+
+def _evolution_condition(detail: dict[str, object]) -> dict[str, object]:
+    condition: dict[str, object] = {}
+    for key, value in detail.items():
+        if key == "trigger" or value in (None, False, "", 0):
+            continue
+        if isinstance(value, dict):
+            normalized = value.get("name") or value.get("url")
+        else:
+            normalized = value
+        if normalized not in (None, False, "", 0):
+            condition[key] = normalized
+    return condition
+
+
+def _trigger_summary(trigger_type: str, condition: dict[str, object]) -> str:
+    if condition.get("item"):
+        return str(condition["item"])
+    if condition.get("min_level"):
+        return f"level {condition['min_level']}"
+    if condition.get("held_item"):
+        return f"hold {condition['held_item']}"
+    if condition.get("known_move"):
+        return f"know {condition['known_move']}"
+    if condition.get("location"):
+        return f"at {condition['location']}"
+    if condition.get("time_of_day"):
+        return f"{condition['time_of_day']} {trigger_type}"
+    return trigger_type
+
+
+def _fallback_evolutions(
+    form_rows: list[dict[str, object]],
+    form_index: dict[int, str],
+    built_at: str,
+) -> list[dict[str, object]]:
+    rows = []
+    for form in form_rows:
+        evolves_from_id = form.get("evolves_from_id")
+        if not isinstance(evolves_from_id, int):
+            continue
+        from_form_id = form_index.get(evolves_from_id)
+        to_form_id = str(form["form_id"])
+        if not from_form_id:
+            continue
+        rows.append(
+            {
+                "rule_id": rule_uuid(from_form_id, to_form_id, "unknown", "evolves_from"),
+                "from_form_id": from_form_id,
+                "to_form_id": to_form_id,
+                "trigger_type": "unknown",
+                "trigger_value": "condition unavailable",
+                "condition_json": "{}",
+                "updated_at": built_at,
+            }
+        )
+    return rows
 
 
 def _seed_ocr_aliases() -> dict[int, list[str]]:

@@ -1,0 +1,5 @@
+{"id":"seed-pikachu","ocr_text":"피카추 HP 60","expected_pokemon_id":25,"fixture_type":"automated_test_only"}
+{"id":"seed-pichu","ocr_text":"피 추 HP 30","expected_pokemon_id":172,"fixture_type":"automated_test_only"}
+{"id":"seed-eevee","ocr_text":"이브이 HP 70","expected_pokemon_id":133,"fixture_type":"automated_test_only"}
+{"id":"seed-squirtle","ocr_text":"꼬북이 물대포","expected_pokemon_id":7,"fixture_type":"automated_test_only"}
+{"id":"seed-pecharunt","ocr_text":"복숭 악동","expected_pokemon_id":1025,"fixture_type":"automated_test_only"}

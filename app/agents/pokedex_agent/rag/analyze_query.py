@@ -7,7 +7,7 @@ import re
 
 FACET_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("weakness", re.compile(r"약점|약하|불리|weak", re.I)),
-    ("resistance", re.compile(r"저항|버티|resist", re.I)),
+    ("resistance", re.compile(r"저항|반감|무효|버티|resist", re.I)),
     ("evolution", re.compile(r"진화|evol", re.I)),
     ("stats", re.compile(r"종족값|스탯|능력치|stats?", re.I)),
     ("type", re.compile(r"타입|type", re.I)),

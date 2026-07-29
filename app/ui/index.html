@@ -3,17 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Poketdogam Rotom Dex OS</title>
-    <link rel="icon" href="/ui/assets/rotomu/rotom-phone.png" type="image/png">
+    <title>포켓도감 PoC · 로컬 카드 스캔</title>
+    <meta name="description" content="이미지 OCR과 로컬 도감으로 카드 속 포켓몬을 찾는 비상업 PoC">
+    <link rel="icon" href="/ui/assets/rotom-core.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/ui/styles.css">
   </head>
   <body>
     <div class="dex-stage">
-      <aside class="ref-rail" aria-hidden="true">
-        <img src="/ui/assets/rotomu/pokedex-kanto.png" alt="">
-        <img src="/ui/assets/rotomu/pokedex-sinnoh.png" alt="">
-      </aside>
-
       <main class="dex-shell" data-mood="idle">
         <header class="dex-lid">
           <div class="lens-cluster">
@@ -23,29 +19,25 @@
             <span class="status-dot is-green"></span>
           </div>
           <div class="rotom-face" id="rotomFace" aria-hidden="true">
-            <img class="rotom-device" src="/ui/assets/rotomu/rotom-phone.png" alt="">
-            <div class="face-screen" data-expression="idle">
-              <span class="eye left"></span>
-              <span class="eye right"></span>
-              <span class="mouth"></span>
-            </div>
+            <img class="rotom-device" src="/ui/assets/rotom-core.svg" alt="">
           </div>
           <div class="lid-copy">
-            <p class="eyebrow">Rotom Dex OS</p>
-            <h1>포켓덱스</h1>
-            <p id="rotomLine" class="rotom-line">렌즈 대기 중이다-로.</p>
+            <p class="eyebrow">Local Scan PoC</p>
+            <h1>포켓도감</h1>
+            <p id="rotomLine" class="rotom-line">카드 이름이 선명한 이미지를 준비해줘-로.</p>
+            <span class="poc-badge">비상업 PoC · 정식 라이선스 신청 전</span>
           </div>
           <dl class="system-meta">
             <div>
-              <dt>Dataset</dt>
+              <dt>데이터</dt>
               <dd id="datasetVersion">checking</dd>
             </div>
             <div>
-              <dt>Status</dt>
-              <dd id="systemStatus">idle</dd>
+              <dt>상태</dt>
+              <dd id="systemStatus">준비</dd>
             </div>
             <div>
-              <dt>LLM</dt>
+              <dt>답변 엔진</dt>
               <dd id="llmRuntime">template</dd>
             </div>
           </dl>
@@ -64,11 +56,22 @@
         <div class="workspace">
           <section id="scanPanel" class="tool-panel scan-panel" aria-labelledby="scanTitle">
             <div class="panel-heading">
-              <p class="eyebrow">Scan Lens</p>
-              <h2 id="scanTitle">로토무 렌즈</h2>
+              <div>
+                <p class="eyebrow">1 · 이미지 스캔</p>
+                <h2 id="scanTitle">카드에서 이름 찾기</h2>
+              </div>
+              <span class="status-pill">원본 미저장</span>
+            </div>
+            <p class="panel-lead">카드 이름 영역이 크고 반사광 없이 보이도록 촬영하면 인식률이 높아집니다.</p>
+
+            <div class="upload-zone">
+              <label class="primary-command upload-command" for="cameraInput">카드 촬영·이미지 선택</label>
+              <input id="cameraInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/heic,image/heif,image/tiff" capture="environment">
+              <p id="uploadHint" class="upload-hint">PNG·JPEG·WebP·HEIC·TIFF, 최대 8MB</p>
             </div>
 
             <div class="lens" id="lens">
+              <img id="scanPreview" class="scan-preview" alt="선택한 카드 이미지 미리보기" hidden>
               <div class="scan-beam"></div>
               <div class="reticle">
                 <span></span><span></span><span></span><span></span>
@@ -79,40 +82,51 @@
               </div>
             </div>
 
-            <div class="fixture-row">
-              <button type="button" class="chip" data-sample="피카추&#10;HP 60&#10;전광석화">피카추</button>
-              <button type="button" class="chip" data-sample="꼬북이&#10;물대포">꼬북이</button>
-              <button type="button" class="chip" data-sample="복숭 악동 특성 독꼭두각시">복숭악동</button>
-            </div>
-
-            <label class="field-label" for="ocrText">OCR Text</label>
-            <textarea id="ocrText" spellcheck="false">피카추
-HP 60
-전광석화</textarea>
-
             <div class="command-row">
-              <button id="scanButton" class="primary-command" type="button">스캔</button>
-              <button id="clearButton" class="secondary-command" type="button">초기화</button>
+              <button id="imageScanButton" class="primary-command" type="button" disabled>선택 이미지 분석</button>
+              <button id="clearButton" class="secondary-command" type="button">다시 시작</button>
             </div>
+
+            <label class="field-label" for="searchInput">이름으로 바로 찾기</label>
+            <div class="search-row">
+              <input id="searchInput" type="search" placeholder="예: 피카츄, 알로라 라이츄" autocomplete="off">
+              <button id="searchButton" class="secondary-command" type="button">검색</button>
+            </div>
+
+            <details class="developer-tools">
+              <summary>개발용 OCR 텍스트 테스트</summary>
+              <p>아래 입력은 실제 이미지 OCR 성능 지표에 포함되지 않습니다.</p>
+              <div class="fixture-row">
+                <button type="button" class="chip" data-sample="피카추&#10;HP 60&#10;전광석화">피카추 샘플</button>
+                <button type="button" class="chip" data-sample="꼬북이&#10;물대포">꼬부기 샘플</button>
+                <button type="button" class="chip" data-sample="복숭 악동 특성 독꼭두각시">복숭악동 샘플</button>
+              </div>
+              <label class="field-label" for="ocrText">테스트 텍스트</label>
+              <textarea id="ocrText" spellcheck="false" placeholder="테스트할 OCR 텍스트"></textarea>
+              <button id="scanButton" class="secondary-command full-width" type="button">텍스트 매처 테스트</button>
+            </details>
 
             <div class="candidate-zone">
               <div class="panel-heading compact">
-                <p class="eyebrow">Top Candidates</p>
-                <h3>후보</h3>
+                <p class="eyebrow">2 · 사용자 확인</p>
+                <h3>인식 후보</h3>
               </div>
               <div id="candidateList" class="candidate-list"></div>
+              <p id="scanGuidance" class="save-hint">이미지를 선택하거나 이름을 검색하면 후보가 표시됩니다.</p>
             </div>
           </section>
 
           <section id="detailPanel" class="tool-panel detail-panel" aria-labelledby="detailTitle">
             <div class="panel-heading">
-              <p class="eyebrow">Memory Folder</p>
-              <h2 id="detailTitle">도감 상세</h2>
+              <div>
+                <p class="eyebrow">3 · 사실 확인</p>
+                <h2 id="detailTitle">도감 상세</h2>
+              </div>
             </div>
-            <div id="detailEmpty" class="empty-state">LOCK-ON 없음</div>
+            <div id="detailEmpty" class="empty-state">확정된 포켓몬이 없습니다.</div>
             <article id="detailCard" class="detail-card" hidden>
               <div class="detail-hero">
-                <img src="/ui/assets/rotomu/rotom-expressions.png" alt="" class="detail-stamp">
+                <img src="/ui/assets/rotom-core.svg" alt="" class="detail-stamp">
                 <div>
                   <p class="dex-number" id="detailNumber">No.---</p>
                   <h3 id="detailName">-</h3>
@@ -121,36 +135,56 @@ HP 60
               </div>
               <div id="typeBadges" class="type-badges"></div>
               <dl class="detail-grid">
-                <div><dt>Height</dt><dd id="detailHeight">-</dd></div>
-                <div><dt>Weight</dt><dd id="detailWeight">-</dd></div>
-                <div><dt>Form</dt><dd id="detailForm">-</dd></div>
-                <div><dt>Version</dt><dd id="detailVersion">-</dd></div>
+                <div><dt>키</dt><dd id="detailHeight">-</dd></div>
+                <div><dt>몸무게</dt><dd id="detailWeight">-</dd></div>
+                <div><dt>폼</dt><dd id="detailForm">-</dd></div>
+                <div><dt>세대</dt><dd id="detailGeneration">-</dd></div>
+                <div><dt>데이터 버전</dt><dd id="detailVersion">-</dd></div>
               </dl>
               <div id="statBars" class="stat-bars"></div>
+              <section class="detail-section" aria-labelledby="matchupTitle">
+                <h4 id="matchupTitle">방어 상성</h4>
+                <div id="typeMatchups" class="matchup-list"></div>
+              </section>
+              <section class="detail-section" aria-labelledby="evolutionTitle">
+                <h4 id="evolutionTitle">진화 조건</h4>
+                <div id="evolutionList" class="evolution-list"></div>
+              </section>
+              <aside class="source-card" aria-label="데이터 출처">
+                <strong>데이터 사용 범위</strong>
+                <span id="detailSource">-</span>
+                <span id="detailUpdated">-</span>
+                <span>사실 필드 기반 비상업 PoC · 공식 미디어 미포함</span>
+              </aside>
               <button id="saveButton" class="secondary-command full-width" type="button">컬렉션 저장</button>
+              <p id="saveHint" class="save-hint">후보를 확정하면 저장할 수 있습니다.</p>
             </article>
           </section>
 
           <section id="chatPanel" class="tool-panel chat-panel" aria-labelledby="chatTitle">
             <div class="panel-heading">
-              <p class="eyebrow">Rotom Talk</p>
-              <h2 id="chatTitle">로토 대화</h2>
+              <div>
+                <p class="eyebrow">4 · 근거 기반 질문</p>
+                <h2 id="chatTitle">도감 파트너</h2>
+              </div>
               <span id="llmBadge" class="status-pill">template</span>
             </div>
             <div id="chatLog" class="chat-log" aria-live="polite">
-              <div class="speech is-rotom">무엇이 궁금한지 말해줘-로.</div>
+              <div class="speech is-rotom">포켓몬을 선택한 뒤 약점·진화·종족값을 물어봐-로.</div>
             </div>
             <div id="suggestRow" class="suggest-row"></div>
             <div class="chat-input-row">
-              <input id="chatInput" type="text" value="피카츄 알려줘" aria-label="대화 입력">
+              <input id="chatInput" type="text" placeholder="예: 약점은 뭐야?" aria-label="대화 입력">
               <button id="chatButton" class="primary-command" type="button">전송</button>
             </div>
           </section>
 
           <section id="voicePanel" class="tool-panel voice-panel" aria-labelledby="voiceTitle">
             <div class="panel-heading">
-              <p class="eyebrow">Voice Core</p>
-              <h2 id="voiceTitle">STS 보이스</h2>
+              <div>
+                <p class="eyebrow">선택 기능 · PoC</p>
+                <h2 id="voiceTitle">브라우저 음성 프리뷰</h2>
+              </div>
               <span id="voiceStatus" class="status-pill is-waiting">preview</span>
             </div>
             <div class="voice-core" aria-hidden="true">
@@ -159,10 +193,10 @@ HP 60
               <span class="voice-wave"></span>
             </div>
             <dl class="voice-grid">
-              <div><dt>Source</dt><dd>허가 음성</dd></div>
-              <div><dt>Mode</dt><dd id="voiceMode">preview</dd></div>
-              <div><dt>Style</dt><dd id="voiceStyleLabel">전기 디바이스</dd></div>
-              <div><dt>Policy</dt><dd id="voicePolicy">독자 합성</dd></div>
+              <div><dt>음성 출처</dt><dd>브라우저 시스템 음성</dd></div>
+              <div><dt>실행 방식</dt><dd id="voiceMode">preview</dd></div>
+              <div><dt>스타일</dt><dd id="voiceStyleLabel">전기 디바이스</dd></div>
+              <div><dt>정책</dt><dd id="voicePolicy">독자 합성</dd></div>
             </dl>
             <div class="voice-controls">
               <label class="field-label" for="voiceScript">Preview Text</label>
@@ -191,17 +225,27 @@ HP 60
 
           <section id="collectionPanel" class="tool-panel collection-panel" aria-labelledby="collectionTitle">
             <div class="panel-heading">
-              <p class="eyebrow">Local Box</p>
-              <h2 id="collectionTitle">컬렉션</h2>
+              <div>
+                <p class="eyebrow">5 · 기기 내 저장</p>
+                <h2 id="collectionTitle">내 컬렉션</h2>
+              </div>
+              <span id="collectionCount" class="status-pill">0종</span>
             </div>
+            <div class="collection-tools">
+              <input id="collectionFilter" type="search" placeholder="저장한 이름·타입 검색" aria-label="컬렉션 검색">
+              <button id="exportButton" class="secondary-command" type="button">내보내기</button>
+              <button id="clearDataButton" class="danger-command" type="button">내 데이터 삭제</button>
+            </div>
+            <p id="qualitySummary" class="quality-summary">품질 로그 대기 중</p>
             <div id="collectionList" class="collection-list"></div>
+            <aside class="privacy-card">
+              <strong>로컬 개인정보 안내</strong>
+              <p>업로드 이미지는 저장하지 않습니다. 대화는 이어 말하기를 위해 이 기기에 최대 30분 보관되며, 위 버튼으로 즉시 삭제할 수 있습니다.</p>
+            </aside>
           </section>
         </div>
       </main>
 
-      <aside class="expression-rail" aria-hidden="true">
-        <img src="/ui/assets/rotomu/rotom-expressions.png" alt="">
-      </aside>
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>

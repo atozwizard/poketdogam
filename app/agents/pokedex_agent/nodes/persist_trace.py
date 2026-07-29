@@ -23,6 +23,9 @@ def run(state: AgentState) -> AgentState:
             "ocr_engine": state.ocr_engine,
             "match_score": top_score,
             "dataset_version": state.dataset_version,
+            "facet": state.retrieval_context.get("facet"),
+            "strategy": state.retrieval_context.get("strategy"),
+            "error_code": state.error.get("code"),
         },
     )
     return state

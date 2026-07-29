@@ -6,9 +6,16 @@ const elements = {
   lens: document.querySelector("#lens"),
   lensState: document.querySelector("#lensState"),
   lensScore: document.querySelector("#lensScore"),
+  cameraInput: document.querySelector("#cameraInput"),
+  imageScanButton: document.querySelector("#imageScanButton"),
+  scanPreview: document.querySelector("#scanPreview"),
+  uploadHint: document.querySelector("#uploadHint"),
+  scanGuidance: document.querySelector("#scanGuidance"),
   ocrText: document.querySelector("#ocrText"),
   scanButton: document.querySelector("#scanButton"),
   clearButton: document.querySelector("#clearButton"),
+  searchInput: document.querySelector("#searchInput"),
+  searchButton: document.querySelector("#searchButton"),
   candidateList: document.querySelector("#candidateList"),
   detailEmpty: document.querySelector("#detailEmpty"),
   detailCard: document.querySelector("#detailCard"),
@@ -19,9 +26,15 @@ const elements = {
   detailHeight: document.querySelector("#detailHeight"),
   detailWeight: document.querySelector("#detailWeight"),
   detailForm: document.querySelector("#detailForm"),
+  detailGeneration: document.querySelector("#detailGeneration"),
   detailVersion: document.querySelector("#detailVersion"),
+  detailSource: document.querySelector("#detailSource"),
+  detailUpdated: document.querySelector("#detailUpdated"),
   statBars: document.querySelector("#statBars"),
+  typeMatchups: document.querySelector("#typeMatchups"),
+  evolutionList: document.querySelector("#evolutionList"),
   saveButton: document.querySelector("#saveButton"),
+  saveHint: document.querySelector("#saveHint"),
   chatLog: document.querySelector("#chatLog"),
   chatInput: document.querySelector("#chatInput"),
   chatButton: document.querySelector("#chatButton"),
@@ -40,6 +53,11 @@ const elements = {
   voicePreviewButton: document.querySelector("#voicePreviewButton"),
   voiceStopButton: document.querySelector("#voiceStopButton"),
   collectionList: document.querySelector("#collectionList"),
+  collectionCount: document.querySelector("#collectionCount"),
+  collectionFilter: document.querySelector("#collectionFilter"),
+  exportButton: document.querySelector("#exportButton"),
+  clearDataButton: document.querySelector("#clearDataButton"),
+  qualitySummary: document.querySelector("#qualitySummary"),
   toast: document.querySelector("#toast"),
 };
 
@@ -47,7 +65,13 @@ const appState = {
   candidates: [],
   selected: null,
   detail: null,
+  confirmed: false,
+  latestScanEventId: null,
   collection: loadCollection(),
+  qualityEvents: loadQualityEvents(),
+  selectedFile: null,
+  previewUrl: null,
+  collectionQuery: "",
   voiceStyle: "electric_device",
   audioContext: null,
   sessionId: localStorage.getItem("poketdogam.sessionId") || null,
@@ -55,12 +79,53 @@ const appState = {
 
 const statLabels = {
   hp: "HP",
-  attack: "Attack",
-  defense: "Defense",
-  sp_attack: "Sp. Atk",
-  sp_defense: "Sp. Def",
-  speed: "Speed",
-  bst: "BST",
+  attack: "공격",
+  defense: "방어",
+  sp_attack: "특수공격",
+  sp_defense: "특수방어",
+  speed: "스피드",
+  bst: "합계",
+};
+
+const typeLabels = {
+  normal: "노말",
+  fire: "불꽃",
+  water: "물",
+  electric: "전기",
+  grass: "풀",
+  ice: "얼음",
+  fighting: "격투",
+  poison: "독",
+  ground: "땅",
+  flying: "비행",
+  psychic: "에스퍼",
+  bug: "벌레",
+  rock: "바위",
+  ghost: "고스트",
+  dragon: "드래곤",
+  dark: "악",
+  steel: "강철",
+  fairy: "페어리",
+};
+
+const statusLabels = {
+  idle: "준비",
+  scanning: "분석 중",
+  locked: "확정",
+  low_confidence: "확인 필요",
+  error: "오류",
+};
+
+const formLabels = {
+  base: "기본",
+  alola: "알로라",
+  galar: "가라르",
+  hisui: "히스이",
+  paldea: "팔데아",
+  mega: "메가",
+  gmax: "거다이맥스",
+  x: "X",
+  y: "Y",
 };
 
 const voiceStyleLabels = {
@@ -85,33 +150,75 @@ document.querySelectorAll("[data-sample]").forEach((button) => {
 });
 
 elements.scanButton.addEventListener("click", scanText);
+elements.cameraInput.addEventListener("change", handleImageSelection);
+elements.imageScanButton.addEventListener("click", scanImage);
 elements.clearButton.addEventListener("click", () => {
   appState.candidates = [];
   appState.selected = null;
   appState.detail = null;
+  appState.confirmed = false;
+  appState.latestScanEventId = null;
   elements.ocrText.value = "";
+  elements.cameraInput.value = "";
+  appState.selectedFile = null;
+  if (appState.previewUrl) {
+    URL.revokeObjectURL(appState.previewUrl);
+    appState.previewUrl = null;
+  }
+  elements.scanPreview.removeAttribute("src");
+  elements.scanPreview.hidden = true;
+  elements.imageScanButton.disabled = true;
+  elements.uploadHint.textContent = "PNG·JPEG·WebP·HEIC·TIFF, 최대 8MB";
+  elements.scanGuidance.textContent = "이미지를 선택하거나 이름을 검색하면 후보가 표시됩니다.";
+  elements.lensScore.textContent = "match --";
   renderCandidates();
   renderDetail();
   setStatus("idle", "렌즈 대기 중이다-로.", "READY");
 });
+
+elements.searchButton.addEventListener("click", searchPokedex);
+elements.searchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    searchPokedex();
+  }
+});
+
+elements.collectionFilter.addEventListener("input", () => {
+  appState.collectionQuery = elements.collectionFilter.value.trim().toLowerCase();
+  renderCollection();
+});
+elements.exportButton.addEventListener("click", exportLocalData);
+elements.clearDataButton.addEventListener("click", clearLocalData);
 
 elements.saveButton.addEventListener("click", () => {
   if (!appState.detail) {
     showToast("저장할 도감 데이터가 없습니다.");
     return;
   }
-  const next = appState.collection.filter((item) => item.form_id !== appState.detail.form_id);
-  next.unshift({
+  if (!appState.confirmed) {
+    showToast("후보를 먼저 확정하세요.");
+    return;
+  }
+
+  const now = new Date().toISOString();
+  const existing = appState.collection.find((item) => item.form_id === appState.detail.form_id);
+  const saved = {
     form_id: appState.detail.form_id,
     pokemon_id: appState.detail.pokemon_id,
     name_ko: appState.detail.name_ko,
     types: appState.detail.types,
-    saved_at: new Date().toISOString(),
-  });
-  appState.collection = next.slice(0, 12);
+    discovered_count: Number(existing?.discovered_count || 0) + 1,
+    first_saved_at: existing?.first_saved_at || existing?.saved_at || now,
+    last_saved_at: now,
+    favorite: Boolean(existing?.favorite),
+  };
+  appState.collection = [
+    saved,
+    ...appState.collection.filter((item) => item.form_id !== appState.detail.form_id),
+  ];
   saveCollection(appState.collection);
   renderCollection();
-  showToast(`${appState.detail.name_ko} 저장 완료`);
+  showToast(`${appState.detail.name_ko} ${saved.discovered_count}회 발견`);
 });
 
 elements.chatButton.addEventListener("click", sendChat);
@@ -156,6 +263,10 @@ async function scanText() {
     const data = await response.json();
     appState.candidates = data.top_candidates || [];
     appState.selected = appState.candidates[0] || null;
+    appState.confirmed = Boolean(appState.selected) && !data.requires_user_confirmation;
+    appState.latestScanEventId = data.event_id || null;
+    recordQualityEvent(data, appState.selected, appState.confirmed ? "matcher_test" : "matcher_test_pending", "matcher_only");
+    elements.scanGuidance.textContent = data.guidance || "개발용 텍스트 매처 결과입니다.";
     renderCandidates();
 
     if (!appState.selected) {
@@ -177,6 +288,113 @@ async function scanText() {
     showToast(error.message);
   } finally {
     elements.scanButton.disabled = false;
+  }
+}
+
+function handleImageSelection() {
+  const file = elements.cameraInput.files?.[0] || null;
+  if (!file) {
+    return;
+  }
+  if (file.size > 8 * 1024 * 1024) {
+    elements.cameraInput.value = "";
+    showToast("이미지는 8MB 이하여야 합니다.");
+    return;
+  }
+  appState.selectedFile = file;
+  if (appState.previewUrl) {
+    URL.revokeObjectURL(appState.previewUrl);
+  }
+  appState.previewUrl = URL.createObjectURL(file);
+  elements.scanPreview.src = appState.previewUrl;
+  elements.scanPreview.hidden = false;
+  elements.imageScanButton.disabled = false;
+  elements.uploadHint.textContent = `${file.name} · ${formatBytes(file.size)} · 분석 전`;
+  elements.scanGuidance.textContent = "이미지는 분석 중에만 사용되며 서버에 보관되지 않습니다.";
+  setStatus("idle", "이미지 장전 완료. 이름 영역을 분석할게-로.", "READY");
+}
+
+async function scanImage() {
+  if (!appState.selectedFile) {
+    showToast("먼저 카드 이미지를 선택하세요.");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("image", appState.selectedFile, appState.selectedFile.name);
+  setStatus("scanning", "카드 이름 영역을 읽는 중이다-로.", "OCR");
+  elements.imageScanButton.disabled = true;
+  try {
+    const response = await fetch("/v1/scan", { method: "POST", body: formData });
+    const data = await readJsonResponse(response);
+    appState.candidates = data.top_candidates || [];
+    appState.selected = appState.candidates[0] || null;
+    appState.confirmed = Boolean(appState.selected) && !data.requires_user_confirmation;
+    appState.latestScanEventId = data.event_id || null;
+    recordQualityEvent(data, appState.selected, appState.confirmed ? "auto" : "pending", "image_ocr");
+    elements.uploadHint.textContent = `${appState.selectedFile.name} · ${data.ocr_engine} · ${Math.round(data.latency_ms)}ms`;
+    elements.scanGuidance.textContent = data.guidance || "";
+    renderCandidates();
+    if (!appState.selected) {
+      appState.detail = null;
+      renderDetail();
+      setStatus("error", "이름을 읽지 못했어. 검색으로 이어가줘-로.", "MISS");
+      elements.searchInput.focus();
+      return;
+    }
+    const topScore = Number(appState.selected.confidence || 0);
+    const status = data.requires_user_confirmation ? "low_confidence" : "locked";
+    setStatus(
+      status,
+      data.requires_user_confirmation
+        ? "비슷한 후보가 있어. 맞는 이름을 골라줘-로."
+        : `${appState.selected.name_ko} 후보가 가장 강해-로.`,
+      data.requires_user_confirmation ? "CHECK" : "LOCK",
+    );
+    elements.lensScore.textContent = `일치도 ${Math.round(topScore * 100)}%`;
+    await loadDetail(appState.selected.form_id);
+  } catch (error) {
+    setStatus("error", "이미지 분석에 실패했어. 이름 검색을 사용해줘-로.", "ERROR");
+    elements.scanGuidance.textContent = error.message;
+    showToast(error.message);
+  } finally {
+    elements.imageScanButton.disabled = false;
+  }
+}
+
+async function searchPokedex() {
+  const query = elements.searchInput.value.trim();
+  if (!query) {
+    showToast("검색할 이름을 입력하세요.");
+    return;
+  }
+
+  elements.searchButton.disabled = true;
+  setStatus("scanning", "이름 색인을 찾는 중이다-로.", "SEARCH");
+  try {
+    const response = await fetch(`/v1/pokedex/search?query=${encodeURIComponent(query)}&limit=10`);
+    const data = await readJsonResponse(response);
+    appState.candidates = data.matches || [];
+    appState.selected = null;
+    appState.detail = null;
+    appState.confirmed = false;
+    appState.latestScanEventId = null;
+    elements.datasetVersion.textContent = data.dataset_version || "unknown";
+    elements.lensScore.textContent = `${appState.candidates.length} candidates`;
+    renderCandidates();
+    renderDetail();
+    elements.scanGuidance.textContent = appState.candidates.length
+      ? "검색 결과는 자동 확정하지 않습니다. 정확한 폼을 선택하세요."
+      : "검색 결과가 없습니다. 철자나 띄어쓰기를 바꿔보세요.";
+    setStatus(
+      appState.candidates.length ? "low_confidence" : "error",
+      appState.candidates.length ? "검색 후보를 하나 골라줘-로." : "이름 신호를 못 찾았다-로.",
+      appState.candidates.length ? "CHECK" : "MISS",
+    );
+  } catch (error) {
+    setStatus("error", "검색 회로가 끊겼다-로.", "ERROR");
+    showToast(error.message);
+  } finally {
+    elements.searchButton.disabled = false;
   }
 }
 
@@ -230,7 +448,7 @@ async function streamChat(message, bubble) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       message,
-      form_id: appState.selected?.form_id || null,
+      form_id: appState.detail?.form_id || appState.selected?.form_id || null,
       session_id: appState.sessionId,
     }),
   });
@@ -268,7 +486,7 @@ async function completeChat(message, bubble) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       message,
-      form_id: appState.selected?.form_id || null,
+      form_id: appState.detail?.form_id || appState.selected?.form_id || null,
       session_id: appState.sessionId,
     }),
   });
@@ -372,13 +590,14 @@ function renderCandidates() {
   elements.candidateList.innerHTML = appState.candidates
     .map((candidate, index) => {
       const selected = appState.selected?.form_id === candidate.form_id ? " is-selected" : "";
-      const types = (candidate.types || []).join(" / ") || "unknown";
+      const types = (candidate.types || []).map(localizeType).join(" / ") || "미확인";
+      const form = localizeForm(candidate.form_name || "base");
       const score = Math.round(Number(candidate.confidence || 0) * 100);
       return `
         <button class="candidate-item${selected}" type="button" data-form-id="${candidate.form_id}">
           <span class="candidate-main">
             <span>
-              <span class="candidate-name">${index + 1}. ${escapeHtml(candidate.name_ko)}</span>
+              <span class="candidate-name">${index + 1}. ${escapeHtml(candidate.name_ko)} · ${escapeHtml(form)}</span>
               <span class="candidate-meta">${escapeHtml(candidate.name_en || "")} · ${escapeHtml(types)}</span>
             </span>
             <span class="candidate-score">${score}%</span>
@@ -392,6 +611,10 @@ function renderCandidates() {
   elements.candidateList.querySelectorAll("[data-form-id]").forEach((button) => {
     button.addEventListener("click", async () => {
       appState.selected = appState.candidates.find((candidate) => candidate.form_id === button.dataset.formId);
+      appState.confirmed = Boolean(appState.selected);
+      if (appState.selected) {
+        confirmQualityEvent(appState.selected.form_id);
+      }
       renderCandidates();
       if (appState.selected) {
         setStatus("locked", `${appState.selected.name_ko} 선택이다-로.`, "LOCK");
@@ -406,6 +629,7 @@ function renderDetail() {
   if (!detail) {
     elements.detailEmpty.hidden = false;
     elements.detailCard.hidden = true;
+    elements.saveButton.disabled = true;
     return;
   }
 
@@ -414,12 +638,22 @@ function renderDetail() {
   elements.detailNumber.textContent = `No.${String(detail.pokemon_id).padStart(4, "0")}`;
   elements.detailName.textContent = detail.name_ko;
   elements.detailEnglish.textContent = detail.name_en || "-";
-  elements.typeBadges.innerHTML = (detail.types || []).map((type) => `<span class="type-badge">${escapeHtml(type)}</span>`).join("");
+  elements.typeBadges.innerHTML = (detail.types || [])
+    .map((type) => `<span class="type-badge">${escapeHtml(localizeType(type))}</span>`)
+    .join("");
   elements.detailHeight.textContent = detail.height_m ? `${detail.height_m} m` : "-";
   elements.detailWeight.textContent = detail.weight_kg ? `${detail.weight_kg} kg` : "-";
-  elements.detailForm.textContent = detail.form_name || "base";
+  elements.detailForm.textContent = localizeForm(detail.form_name || "base");
+  elements.detailGeneration.textContent = detail.generation ? `${detail.generation}세대` : "-";
   elements.detailVersion.textContent = detail.source_meta?.dataset_version || "-";
+  elements.detailSource.textContent = `출처: ${detail.source_meta?.source || "미확인"}`;
+  elements.detailUpdated.textContent = `갱신: ${formatDate(detail.source_meta?.updated_at)}`;
   renderStats(detail.stats || {});
+  renderTypeMatchups(detail);
+  renderEvolutions(detail.evolutions || []);
+  elements.saveButton.disabled = !appState.confirmed;
+  elements.saveButton.textContent = appState.confirmed ? "컬렉션 저장" : "후보 확정 필요";
+  elements.saveHint.hidden = appState.confirmed;
 }
 
 function renderStats(stats) {
@@ -441,32 +675,100 @@ function renderStats(stats) {
     .join("");
 }
 
+function renderTypeMatchups(detail) {
+  const groups = [
+    ["약점", detail.weaknesses || []],
+    ["반감", detail.resistances || []],
+    ["무효", detail.immunities || []],
+  ];
+  elements.typeMatchups.innerHTML = groups
+    .map(([label, items]) => {
+      const badges = items.length
+        ? items
+            .map(
+              (item) =>
+                `<span class="matchup-badge">${escapeHtml(localizeType(item.type))} ×${Number(item.multiplier).toFixed(
+                  Number(item.multiplier) % 1 ? 2 : 0,
+                )}</span>`,
+            )
+            .join("")
+        : `<span class="muted">없음</span>`;
+      return `<div class="matchup-row"><strong>${label}</strong><span>${badges}</span></div>`;
+    })
+    .join("");
+}
+
+function renderEvolutions(evolutions) {
+  if (!evolutions.length) {
+    elements.evolutionList.innerHTML = `<span class="muted">연결 정보 없음</span>`;
+    return;
+  }
+  elements.evolutionList.innerHTML = evolutions
+    .map((item) => {
+      const trigger = formatEvolutionCondition(item);
+      return `
+        <div class="evolution-item">
+          <strong>${escapeHtml(item.from_name)} → ${escapeHtml(item.to_name)}</strong>
+          <span class="muted">${escapeHtml(trigger)}</span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
 function renderCollection() {
-  if (!appState.collection.length) {
-    elements.collectionList.innerHTML = `<div class="empty-state">EMPTY BOX</div>`;
+  const filtered = appState.collection.filter((item) => {
+    if (!appState.collectionQuery) {
+      return true;
+    }
+    const searchText = `${item.name_ko} ${(item.types || []).join(" ")}`.toLowerCase();
+    return searchText.includes(appState.collectionQuery);
+  });
+  elements.collectionCount.textContent = `${appState.collection.length}종`;
+  renderQualitySummary();
+  if (!filtered.length) {
+    elements.collectionList.innerHTML = `<div class="empty-state">${
+      appState.collection.length ? "검색 결과가 없습니다." : "아직 저장한 포켓몬이 없습니다."
+    }</div>`;
     return;
   }
 
-  elements.collectionList.innerHTML = appState.collection
+  elements.collectionList.innerHTML = filtered
     .map((item) => {
-      const types = (item.types || []).join(" / ");
+      const types = (item.types || []).map(localizeType).join(" / ");
       return `
-        <button class="collection-item" type="button" data-form-id="${item.form_id}">
+        <div class="collection-item">
+          <button class="collection-open" type="button" data-open-form="${item.form_id}">
           <span class="candidate-main">
             <span>
               <span class="candidate-name">No.${String(item.pokemon_id).padStart(4, "0")} ${escapeHtml(item.name_ko)}</span>
-              <span class="candidate-meta">${escapeHtml(types)}</span>
+              <span class="candidate-meta">${escapeHtml(types)} · ${Number(item.discovered_count || 1)}회 발견</span>
             </span>
           </span>
-        </button>
+          </button>
+          <button class="favorite-button${item.favorite ? " is-favorite" : ""}" type="button" data-favorite-form="${
+            item.form_id
+          }" aria-label="${escapeHtml(item.name_ko)} 즐겨찾기">${item.favorite ? "★" : "☆"}</button>
+        </div>
       `;
     })
     .join("");
 
-  elements.collectionList.querySelectorAll("[data-form-id]").forEach((button) => {
+  elements.collectionList.querySelectorAll("[data-open-form]").forEach((button) => {
     button.addEventListener("click", async () => {
-      await loadDetail(button.dataset.formId);
+      appState.selected = null;
+      appState.confirmed = true;
+      await loadDetail(button.dataset.openForm);
       document.querySelector("#detailPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+  elements.collectionList.querySelectorAll("[data-favorite-form]").forEach((button) => {
+    button.addEventListener("click", () => {
+      appState.collection = appState.collection.map((item) =>
+        item.form_id === button.dataset.favoriteForm ? { ...item, favorite: !item.favorite } : item,
+      );
+      saveCollection(appState.collection);
+      renderCollection();
     });
   });
 }
@@ -481,7 +783,7 @@ function appendSpeech(text, speaker) {
 }
 
 function setStatus(status, line, lensText) {
-  elements.systemStatus.textContent = status;
+  elements.systemStatus.textContent = statusLabels[status] || status;
   elements.rotomLine.textContent = line;
   elements.lensState.textContent = lensText;
   elements.lens.classList.remove("is-scanning", "is-locked", "is-error");
@@ -500,8 +802,9 @@ function setStatus(status, line, lensText) {
 }
 
 function setLlmRuntime(runtime, model) {
-  const label = `${runtime}${model && model !== runtime ? ` · ${model}` : ""}`;
-  elements.llmRuntime.textContent = runtime;
+  const runtimeLabel = runtime === "template" ? "근거 템플릿" : runtime === "ollama" ? "로컬 LLM" : "안전 폴백";
+  const label = `${runtimeLabel}${model && model !== runtime && model !== "grounded_template" ? ` · ${model}` : ""}`;
+  elements.llmRuntime.textContent = runtimeLabel;
   elements.llmBadge.textContent = label;
   elements.llmBadge.classList.toggle("is-live", runtime === "ollama");
   elements.llmBadge.classList.toggle("is-waiting", runtime !== "ollama");
@@ -643,14 +946,179 @@ function showToast(message) {
 
 function loadCollection() {
   try {
-    return JSON.parse(window.localStorage.getItem("poketdogam.collection") || "[]");
+    const payload = JSON.parse(window.localStorage.getItem("poketdogam.collection") || "[]");
+    const saved = Array.isArray(payload) ? payload : payload?.items;
+    if (!Array.isArray(saved)) {
+      return [];
+    }
+    return saved.map((item) => ({
+      ...item,
+      discovered_count: Number(item.discovered_count || 1),
+      first_saved_at: item.first_saved_at || item.saved_at || null,
+      last_saved_at: item.last_saved_at || item.saved_at || null,
+      favorite: Boolean(item.favorite),
+    }));
   } catch {
     return [];
   }
 }
 
 function saveCollection(collection) {
-  window.localStorage.setItem("poketdogam.collection", JSON.stringify(collection));
+  window.localStorage.setItem(
+    "poketdogam.collection",
+    JSON.stringify({ schema_version: 2, saved_at: new Date().toISOString(), items: collection }),
+  );
+}
+
+function loadQualityEvents() {
+  try {
+    const events = JSON.parse(window.localStorage.getItem("poketdogam.qualityEvents") || "[]");
+    return Array.isArray(events) ? events : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveQualityEvents(events) {
+  window.localStorage.setItem("poketdogam.qualityEvents", JSON.stringify(events.slice(0, 100)));
+}
+
+function recordQualityEvent(data, candidate, confirmationMethod, metricScope = "image_ocr") {
+  const event = {
+    event_id: data.event_id,
+    trace_id: data.trace_id,
+    recorded_at: new Date().toISOString(),
+    ocr_engine: data.ocr_engine || "unknown",
+    match_score: candidate ? Number(candidate.confidence || 0) : null,
+    dataset_version: data.dataset_version || "unknown",
+    latency_ms: Number(data.latency_ms || 0),
+    requires_user_confirmation: Boolean(data.requires_user_confirmation),
+    confirmed: confirmationMethod === "auto",
+    confirmation_method: confirmationMethod,
+    metric_scope: metricScope,
+    confirmed_form_id: confirmationMethod === "auto" ? candidate?.form_id || null : null,
+  };
+  appState.qualityEvents = [event, ...appState.qualityEvents.filter((item) => item.event_id !== event.event_id)].slice(
+    0,
+    100,
+  );
+  saveQualityEvents(appState.qualityEvents);
+  renderQualitySummary();
+}
+
+function confirmQualityEvent(formId) {
+  if (!appState.latestScanEventId) {
+    return;
+  }
+  appState.qualityEvents = appState.qualityEvents.map((event) =>
+    event.event_id === appState.latestScanEventId
+      ? {
+          ...event,
+          confirmed: true,
+          confirmation_method: "user",
+          confirmed_form_id: formId,
+        }
+      : event,
+  );
+  saveQualityEvents(appState.qualityEvents);
+  renderQualitySummary();
+}
+
+function renderQualitySummary() {
+  const latest = appState.qualityEvents[0];
+  if (!latest) {
+    elements.qualitySummary.textContent = "품질 로그 대기 중";
+    return;
+  }
+  const score = latest.match_score === null ? "MISS" : `${Math.round(latest.match_score * 100)}%`;
+  const confirmation = latest.confirmed ? "확정" : "확인 대기";
+  const scope = latest.metric_scope === "matcher_only" ? "텍스트 매처" : "이미지 OCR";
+  elements.qualitySummary.textContent = `최근 ${scope} ${score} · ${Math.round(
+    latest.latency_ms,
+  )}ms · ${confirmation} · ${latest.dataset_version}`;
+}
+
+function localizeType(type) {
+  return typeLabels[type] || type || "미확인";
+}
+
+function localizeForm(formName) {
+  const parts = String(formName || "base").split("-");
+  return parts.map((part) => formLabels[part] || part).join(" ");
+}
+
+function formatEvolutionCondition(item) {
+  const condition = item.condition || {};
+  const bits = [];
+  if (condition.min_level) bits.push(`레벨 ${condition.min_level}`);
+  if (condition.item) bits.push(`${condition.item} 사용`);
+  if (condition.held_item) bits.push(`${condition.held_item} 소지`);
+  if (condition.min_happiness) bits.push(`친밀도 ${condition.min_happiness}+`);
+  if (condition.known_move) bits.push(`${condition.known_move} 습득`);
+  if (condition.time_of_day) bits.push(condition.time_of_day === "day" ? "낮" : condition.time_of_day === "night" ? "밤" : condition.time_of_day);
+  if (condition.location) bits.push(condition.location);
+  if (condition.region) bits.push(`${condition.region} 지역`);
+  return bits.join(" · ") || item.trigger_value || item.trigger_type || "조건 미확정";
+}
+
+function formatBytes(bytes) {
+  return bytes < 1024 * 1024 ? `${Math.ceil(bytes / 1024)}KB` : `${(bytes / 1024 / 1024).toFixed(1)}MB`;
+}
+
+function formatDate(value) {
+  if (!value) return "미확인";
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? String(value) : new Intl.DateTimeFormat("ko-KR").format(date);
+}
+
+async function readJsonResponse(response) {
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(payload.detail || `요청 실패 (${response.status})`);
+  }
+  return payload;
+}
+
+function exportLocalData() {
+  const payload = {
+    exported_at: new Date().toISOString(),
+    collection: appState.collection,
+    quality_events: appState.qualityEvents,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `poketdogam-local-${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  URL.revokeObjectURL(url);
+  showToast("로컬 데이터를 JSON으로 내보냈습니다.");
+}
+
+async function clearLocalData() {
+  if (!window.confirm("컬렉션, 품질 로그, 현재 대화를 이 기기에서 모두 삭제할까요?")) {
+    return;
+  }
+  if (appState.sessionId) {
+    await fetch(`/v1/sessions/${encodeURIComponent(appState.sessionId)}`, { method: "DELETE" }).catch(() => null);
+  }
+  ["poketdogam.collection", "poketdogam.qualityEvents", "poketdogam.sessionId"].forEach((key) =>
+    localStorage.removeItem(key),
+  );
+  appState.collection = [];
+  appState.qualityEvents = [];
+  appState.sessionId = null;
+  renderCollection();
+  showToast("이 기기의 포켓도감 데이터를 삭제했습니다.");
+}
+
+async function loadHealth() {
+  try {
+    const health = await readJsonResponse(await fetch("/health"));
+    elements.datasetVersion.textContent = health.dataset_version || "미확인";
+  } catch {
+    elements.datasetVersion.textContent = "연결 확인 필요";
+  }
 }
 
 function escapeHtml(value) {
@@ -666,4 +1134,4 @@ renderCandidates();
 renderDetail();
 renderCollection();
 loadVoiceStatus();
-scanText();
+loadHealth();

@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.agents.pokedex_agent.rag.embeddings import hash_embed
+from app.agents.pokedex_agent.rag.embeddings import encode_embedding, hash_embed
 
 
 def build_passage_rows(
@@ -118,7 +118,7 @@ def _passage(
         "title": title,
         "body": body,
         "searchable_text": searchable_text,
-        "embedding_csv": ",".join(f"{value:.6f}" for value in embedding),
+        "embedding_blob": encode_embedding(embedding),
         "updated_at": built_at,
     }
 

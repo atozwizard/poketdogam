@@ -9,11 +9,11 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Response
 from fastapi.responses import StreamingResponse
 
 from app.agents.pokedex_agent.graph import PokedexAgentGraph
-from app.agents.pokedex_agent.nodes.compose_answer import build_template_answer
+from app.agents.pokedex_agent.nodes.compose_answer import build_template_answer, run as compose_answer
 from app.agents.pokedex_agent.nodes.ingest_input import run as ingest_input
 from app.agents.pokedex_agent.nodes.persist_trace import run as persist_trace
 from app.agents.pokedex_agent.nodes.retrieve_local_dex import run as retrieve_context
@@ -28,14 +28,30 @@ agent = PokedexAgentGraph()
 sessions = SessionStore()
 
 
+@router.delete("/sessions/{session_id}", status_code=204)
+def delete_session(session_id: str) -> Response:
+    if not sessions.delete(session_id):
+        raise HTTPException(status_code=404, detail="Session not found")
+    return Response(status_code=204)
+
+
+@router.get("/privacy/status")
+def privacy_status() -> dict[str, object]:
+    return {
+        "session_retention_seconds": 1800,
+        "trace_retention_days": 7,
+        "raw_images_stored": False,
+        "ocr_text_stored": False,
+        "chat_stored_locally": True,
+        "delete_endpoint": "/v1/sessions/{session_id}",
+    }
+
+
 @router.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest) -> ChatResponse:
     state, session, flow_state, analysis = _prepare_chat_state(request)
-    state = agent.run_chat(
-        message=analysis.normalized,
-        form_id=request.form_id or flow_state.active_form_id or None,
-    )
-    state.session_id = session.session_id
+    compose_answer(state)
+    persist_trace(state)
     _persist_session(session.session_id, request.message, state, flow_state, analysis.facet)
     citations = _citations(state)
     return ChatResponse(
@@ -100,6 +116,27 @@ def chat_stream(request: ChatRequest) -> StreamingResponse:
                 "strategy": state.retrieval_context.get("strategy"),
             }
         )
+        facet = str(state.retrieval_context.get("facet") or analysis.facet)
+        if facet in {"weakness", "resistance", "type", "evolution", "stats"}:
+            state.llm_runtime = "template"
+            state.llm_model_used = "grounded_template"
+            state.response_text = template_answer
+            yield _sse({"event": "delta", "text": template_answer, "trace_id": state.trace_id})
+            yield _sse(
+                {
+                    "event": "done",
+                    "answer": template_answer,
+                    "runtime": "template",
+                    "model": "grounded_template",
+                    "trace_id": state.trace_id,
+                    "session_id": session.session_id,
+                    "suggested_actions": _suggested_actions(state),
+                    "citations": _citations(state),
+                }
+            )
+            _persist_session(session.session_id, request.message, state, flow_state, analysis.facet)
+            persist_trace(state)
+            return
         for event in stream_local_answer(state.input_text, detail, template_answer):
             state.llm_runtime = event.get("runtime", state.llm_runtime)
             state.llm_model_used = event.get("model", state.llm_model_used)
@@ -135,7 +172,7 @@ def _prepare_chat_state(request: ChatRequest):
         "name_ko": flow_state.active_name_ko,
     }
     ingest_input(state, rewritten)
-    retrieve_context(state, request.form_id or rewritten)
+    retrieve_context(state, rewritten)
     return state, session, flow_state, analysis
 
 

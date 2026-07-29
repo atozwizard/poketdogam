@@ -5,7 +5,7 @@ from app.schemas.domain import ScanCandidate
 
 
 class ChatRequest(BaseModel):
-    message: str
+    message: str = Field(min_length=1, max_length=1000)
     form_id: str | None = None
     session_id: str | None = None
 
@@ -27,11 +27,31 @@ class ScanResponse(BaseModel):
     top_candidates: list[ScanCandidate]
     requires_user_confirmation: bool
     trace_id: str
+    ocr_engine: str
+    dataset_version: str
+    latency_ms: float = Field(ge=0.0)
+    scan_status: str = "matched"
+    guidance: str = ""
 
 
 class ScanTextRequest(BaseModel):
-    ocr_text: str
-    filename: str = "ui-fixture.txt"
+    ocr_text: str = Field(min_length=1, max_length=10000)
+    filename: str = Field(default="ui-fixture.txt", min_length=1, max_length=255)
+
+
+class EvolutionSummary(BaseModel):
+    from_form_id: str
+    to_form_id: str
+    from_name: str
+    to_name: str
+    trigger_type: str
+    trigger_value: str | None = None
+    condition: dict[str, object] = Field(default_factory=dict)
+
+
+class TypeMatchup(BaseModel):
+    type: str
+    multiplier: float
 
 
 class PokedexDetailResponse(BaseModel):
@@ -39,20 +59,33 @@ class PokedexDetailResponse(BaseModel):
     form_id: str
     name_ko: str
     name_en: str | None = None
+    name_ja: str | None = None
+    generation: int | None = None
+    is_legendary: bool = False
     form_name: str = "base"
     types: list[str]
     height_m: float | None = None
     weight_kg: float | None = None
     stats: dict[str, int] = Field(default_factory=dict)
+    evolutions: list[EvolutionSummary] = Field(default_factory=list)
+    weaknesses: list[TypeMatchup] = Field(default_factory=list)
+    resistances: list[TypeMatchup] = Field(default_factory=list)
+    immunities: list[TypeMatchup] = Field(default_factory=list)
     source_meta: dict[str, str]
+
+
+class PokedexSearchResponse(BaseModel):
+    query: str
+    matches: list[ScanCandidate]
+    dataset_version: str
 
 
 class VoiceStatusResponse(BaseModel):
     stage: str
     runtime: str
-    original_ai_voice_allowed: True
-    official_audio_extraction_allowed: True
-    official_voice_mimicry_allowed: True
+    original_ai_voice_allowed: bool
+    official_audio_extraction_allowed: bool
+    official_voice_mimicry_allowed: bool
     policy: list[str]
 
 

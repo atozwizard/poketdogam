@@ -69,6 +69,7 @@ class SessionStore:
         sid = session_id or str(uuid4())
         now = time.time()
         with closing(self._connect()) as conn:
+            self._delete_expired(conn, now=now, exclude_session_id=sid)
             row = conn.execute(
                 "select session_id, flow_state_json, turn_count, last_active_at from sessions where session_id = ?",
                 (sid,),
@@ -87,6 +88,7 @@ class SessionStore:
 
             if now - float(row["last_active_at"]) > TTL_SECONDS:
                 state = FlowState()
+                conn.execute("delete from turns where session_id = ?", (sid,))
                 conn.execute(
                     "update sessions set flow_state_json = ?, turn_count = 0, last_active_at = ? where session_id = ?",
                     (json.dumps(state.to_dict(), ensure_ascii=False), now, sid),
@@ -176,6 +178,38 @@ class SessionStore:
             )
         return result
 
+    def delete(self, session_id: str) -> bool:
+        with closing(self._connect()) as conn:
+            conn.execute("delete from turns where session_id = ?", (session_id,))
+            deleted = conn.execute("delete from sessions where session_id = ?", (session_id,)).rowcount
+            conn.commit()
+        return bool(deleted)
+
+    def cleanup_expired(self, now: float | None = None) -> int:
+        with closing(self._connect()) as conn:
+            deleted = self._delete_expired(conn, now=now or time.time())
+            conn.commit()
+        return deleted
+
+    def _delete_expired(
+        self,
+        conn: sqlite3.Connection,
+        *,
+        now: float,
+        exclude_session_id: str | None = None,
+    ) -> int:
+        cutoff = now - TTL_SECONDS
+        sql = "select session_id from sessions where last_active_at < ?"
+        params: list[object] = [cutoff]
+        if exclude_session_id:
+            sql += " and session_id != ?"
+            params.append(exclude_session_id)
+        expired = [str(row["session_id"]) for row in conn.execute(sql, params).fetchall()]
+        for session_id in expired:
+            conn.execute("delete from turns where session_id = ?", (session_id,))
+            conn.execute("delete from sessions where session_id = ?", (session_id,))
+        return len(expired)
+
     def _ensure_schema(self) -> None:
         with closing(self._connect()) as conn:
             conn.executescript(
@@ -202,6 +236,7 @@ class SessionStore:
 
     def _connect(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.db_path)
+        conn.execute("pragma foreign_keys = on")
         conn.row_factory = sqlite3.Row
         return conn
 

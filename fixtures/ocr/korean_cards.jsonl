@@ -1,5 +1,30 @@
-{"id":"ko-pikachu-typo","ocr_text":"피카추\nHP 60\n전광석화","expected_pokemon_id":25}
-{"id":"ko-pichu-space","ocr_text":"피 추 HP 30 작은번개","expected_pokemon_id":172}
-{"id":"ko-eevee-card","ocr_text":"이브이 HP 70 빠른진화","expected_pokemon_id":133}
-{"id":"ko-squirtle-variant","ocr_text":"꼬북이\n물대포","expected_pokemon_id":7}
-{"id":"ko-pecharunt-space","ocr_text":"복숭 악동 특성 독꼭두각시","expected_pokemon_id":1025}
+{"id":"ko-pikachu-typo","ocr_text":"피카추\nHP 60\n전광석화","expected_pokemon_id":25,"fixture_type":"project_authored_ocr_variant"}
+{"id":"ko-pichu-space","ocr_text":"피 추 HP 30 작은번개","expected_pokemon_id":172,"fixture_type":"project_authored_ocr_variant"}
+{"id":"ko-eevee-card","ocr_text":"이브이 HP 70 빠른진화","expected_pokemon_id":133,"fixture_type":"project_authored_ocr_variant"}
+{"id":"ko-squirtle-variant","ocr_text":"꼬북이\n물대포","expected_pokemon_id":7,"fixture_type":"project_authored_ocr_variant"}
+{"id":"ko-pecharunt-space","ocr_text":"복숭 악동 특성 독꼭두각시","expected_pokemon_id":1025,"fixture_type":"project_authored_ocr_variant"}
+{"id":"ko-001-clean","ocr_text":"이상해씨 HP 70 씨뿌리기","expected_pokemon_id":1,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-002-clean","ocr_text":"이상해풀 HP 100 덩굴채찍","expected_pokemon_id":2,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-003-clean","ocr_text":"이상해꽃 HP 150 꽃향기","expected_pokemon_id":3,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-004-clean","ocr_text":"파이리 HP 60 불꽃","expected_pokemon_id":4,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-005-clean","ocr_text":"리자드 HP 90 화염꼬리","expected_pokemon_id":5,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-006-clean","ocr_text":"리자몽 HP 160 화염","expected_pokemon_id":6,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-008-clean","ocr_text":"어니부기 HP 90 물대포","expected_pokemon_id":8,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-009-clean","ocr_text":"거북왕 HP 160 하이드로","expected_pokemon_id":9,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-010-clean","ocr_text":"캐터피 HP 40 실뿜기","expected_pokemon_id":10,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-011-clean","ocr_text":"단데기 HP 80 단단해지기","expected_pokemon_id":11,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-012-clean","ocr_text":"버터플 HP 120 바람","expected_pokemon_id":12,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-013-clean","ocr_text":"뿔충이 HP 40 독침","expected_pokemon_id":13,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-014-clean","ocr_text":"딱충이 HP 80 단단해지기","expected_pokemon_id":14,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-015-clean","ocr_text":"독침붕 HP 120 독침","expected_pokemon_id":15,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-016-clean","ocr_text":"구구 HP 50 날갯짓","expected_pokemon_id":16,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-017-clean","ocr_text":"피죤 HP 80 돌진","expected_pokemon_id":17,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-018-clean","ocr_text":"피죤투 HP 130 폭풍","expected_pokemon_id":18,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-019-clean","ocr_text":"꼬렛 HP 30 물기","expected_pokemon_id":19,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-020-clean","ocr_text":"레트라 HP 90 이빨","expected_pokemon_id":20,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-021-clean","ocr_text":"깨비참 HP 50 쪼기","expected_pokemon_id":21,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-022-clean","ocr_text":"깨비드릴조 HP 100 회전부리","expected_pokemon_id":22,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-023-clean","ocr_text":"아보 HP 60 독침","expected_pokemon_id":23,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-024-clean","ocr_text":"아보크 HP 110 독엄니","expected_pokemon_id":24,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-026-clean","ocr_text":"라이츄 HP 120 전기충격","expected_pokemon_id":26,"fixture_type":"synthetic_text_not_camera_ocr"}
+{"id":"ko-027-clean","ocr_text":"모래두지 HP 60 모래뿌리기","expected_pokemon_id":27,"fixture_type":"synthetic_text_not_camera_ocr"}

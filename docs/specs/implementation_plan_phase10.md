@@ -53,6 +53,13 @@
 - 호스팅: 상시 인스턴스 불필요. 초기 HF 등 공개 URL 또는 사이드로드 → 배포 시 Cloudflare R2.
 - MVP 초기는 1B 없이 템플릿만으로도 DoD 통과.
 - STS/TTS는 YouTube/공식 캐릭터 음성 추출이 아니라 허가 음성 또는 공개 라이선스 음성으로만 별도 prototype 진행.
+- 제품 메인 음성: **Cascaded** (STT→Rotom/Dex→style TTS) + streaming + barge-in, TTFA≤1.5s.
+- Voice Lab(옵트인 GPU): OpenS2S / Moshi / **LLaMA-Omni2-0.5B 튜닝 실험** — 상세 `docs/specs/음성_STS_실시간대화_및_Omni2실험_계획.md`.
+
+## Phase 7.5 Voice Cascaded V1 + Voice Lab
+- Cascaded를 핫패스 후보로 구현. Moshi급 full-duplex는 비목표.
+- Omni2-0.5B-Bilingual 실험 E0–E3는 학술/NC 격리. 제품 기본 엔진 금지.
+- Dex FACTS는 항상 Agent sidechannel.
 
 ## Phase 8. 선택 클라우드 (콜드패스)
 - Cloudflare: `dex.sqlite` 스냅샷 배포만 우선.
@@ -64,11 +71,11 @@
 - 유료 API·상시 인스턴스 의존 0으로 베타. iOS는 Android 게이트 후.
 
 ## 즉시 실행 백로그
-1. 실기기 연결 전 Rotom Dex OS 웹 UI 완성 (`/`, `/v1/scan/text`)
-2. Local Scan Core 전체 Dex 확장 (`build_local_dex` + matcher + fixture 30장)
-3. Android Kotlin + Compose UI 포팅
-4. CameraX 셔터 + ML Kit OCR 실기기 연결
-5. 핫패스에 Supabase/인스턴스 넣지 않기. 1B 스토리지는 급하지 않음(템플릿 우선)
+1. **완료:** 실제 이미지 우선 웹 UI, Top-3, 검색, 폼/진화 조건/상성, 로컬 컬렉션·삭제
+2. **완료:** 1,025종/1,351폼/진화 조건 550개 Local Scan Core와 strict validator
+3. **소스 구현:** Android Compose + CameraX + bundled Korean ML Kit + read-only Dex
+4. **다음 게이트:** Android SDK 빌드·에뮬레이터·실기기 1종
+5. **다음 게이트:** 실물 카드 30→100장. 합성 데이터는 실물 성공률에 합산 금지
 
 ## DB·동접·SQLite 요약 (계획 고정)
 | 질문 | 답 |
@@ -82,6 +89,9 @@
 
 | 수정일자 | 수정자 | 변경 대상 문서 | 수정 요약 | 반영 상태 |
 | :-- | :-- | :-- | :-- | :-- |
+| 2026-07-29 09:41 +09:00 | Codex | `docs/specs/implementation_plan_phase10.md` | 실제 OCR·전체 폼/진화 조건·Android 수직 슬라이스와 실물 카드 미완료 게이트 반영 | 완료 |
+| 2026-07-28 18:04 +09:00 | Codex | `docs/specs/implementation_plan_phase10.md` | P0/P1 완료와 P2 fixture 5/30 진행 상태 반영 | 완료 |
+| 2026-07-28 17:47 +09:00 | Cursor | `docs/specs/implementation_plan_phase10.md` | Cascaded 음성 메인·Voice Lab(Omni2 등) Phase 7.5 반영 | 완료 |
 | 2026-07-28 19:45 +09:00 | Codex | `docs/specs/implementation_plan_phase10.md` | 로컬 Ollama 문장화 옵션과 합법 STS/TTS 원칙 반영 | 완료 |
 | 2026-07-28 19:20 +09:00 | Codex | `docs/specs/implementation_plan_phase10.md` | prod 단계별 계획 문서 연결 및 실기기 전 Rotom Dex OS UI 게이트 추가 | 완료 |
 | 2026-07-28 09:21 +09:00 | Cursor | `docs/specs/implementation_plan_phase10.md` | Kotlin 확정. 1B는 R2/HF 파일 배포, 인스턴스 불필요 | 완료 |

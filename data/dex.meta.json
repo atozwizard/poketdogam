@@ -1,23 +1,33 @@
 {
-  "dataset_version": "pokeapi-gen1-9-2026-07-28",
-  "built_at": "2026-07-28T07:13:28+00:00",
+  "dataset_version": "pokeapi-gen1-9-2026-07-29",
+  "built_at": "2026-07-29T00:33:40+00:00",
   "source": "pokeapi",
   "limit": 1025,
   "species_count": 1025,
-  "form_count": 1025,
-  "alias_count": 3093,
-  "passage_count": 3532,
+  "form_count": 1351,
+  "alias_count": 5576,
+  "passage_count": 4510,
   "type_chart_count": 324,
+  "usage_scope": "poc_noncommercial_evaluation",
+  "license_status": "product_license_pending_after_poc_acceptance",
+  "derivative_data_only": true,
+  "official_media_included": false,
   "sources": [
     {
       "name": "pokeapi",
       "url": "https://pokeapi.co",
-      "note": "Cached PokéAPI species/pokemon build up to id=1025."
+      "note": "Cached factual species, variety and evolution fields up to species id=1025.",
+      "usage_scope": "poc_noncommercial_evaluation",
+      "license_status": "product_license_pending_after_poc_acceptance",
+      "content_policy": "names, measurements, stats, types and evolution facts only; no media"
     },
     {
       "name": "seed:ocr-aliases",
       "url": "scripts/build_local_dex/seed_data.py",
-      "note": "Manual OCR aliases merged by pokemon_id when available."
+      "note": "Manual OCR aliases merged by pokemon_id when available.",
+      "usage_scope": "poc_noncommercial_evaluation",
+      "license_status": "project_authored_derivative",
+      "content_policy": "OCR error variants only"
     }
   ]
 }

@@ -15,8 +15,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[4]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from app.agents.pokedex_agent.prompts.rotom import build_system_prompt
+from app.agents.pokedex_agent.prompts.rotom import ROTOM_SYSTEM_PROMPT, build_system_prompt
 from app.config.settings import get_settings
+
+__all__ = [
+    "ROTOM_SYSTEM_PROMPT",
+    "generate_local_answer",
+    "stream_local_answer",
+]
 
 
 THINK_RE = re.compile(r"<think>.*?</think>", re.DOTALL | re.IGNORECASE)
@@ -45,6 +51,11 @@ def generate_local_answer(message: str, detail: dict[str, Any], template_answer:
                 "weight_kg": detail.get("weight_kg"),
                 "stats": detail.get("stats"),
                 "form_name": detail.get("form_name"),
+                "evolutions": detail.get("evolutions"),
+                "weaknesses": detail.get("weaknesses"),
+                "resistances": detail.get("resistances"),
+                "immunities": detail.get("immunities"),
+                "source_meta": detail.get("source_meta"),
             }
         ),
         safe_template=template_answer,
@@ -120,6 +131,11 @@ def stream_local_answer(message: str, detail: dict[str, Any], template_answer: s
                 "weight_kg": detail.get("weight_kg"),
                 "stats": detail.get("stats"),
                 "form_name": detail.get("form_name"),
+                "evolutions": detail.get("evolutions"),
+                "weaknesses": detail.get("weaknesses"),
+                "resistances": detail.get("resistances"),
+                "immunities": detail.get("immunities"),
+                "source_meta": detail.get("source_meta"),
             }
         ),
         safe_template=template_answer,
@@ -201,12 +217,19 @@ def _build_prompt(message: str, detail: dict[str, Any], template_answer: str) ->
         "weight_kg": detail.get("weight_kg"),
         "stats": detail.get("stats"),
         "form_name": detail.get("form_name"),
+        "evolutions": detail.get("evolutions"),
+        "weaknesses": detail.get("weaknesses"),
+        "resistances": detail.get("resistances"),
+        "immunities": detail.get("immunities"),
+        "source_meta": detail.get("source_meta"),
     }
     return (
         "Rotom Dex OS 말투로 한국어 1~4문장만 답하라. 질문이 단순하면 1문장으로 끝내라. "
+        "설명은 짧게 선점하고, 서포터처럼 말하라. "
         "자연스러울 때만 어미 '-로'를 쓰고, '-로'를 공백으로 따로 붙이지 말라. "
         "USER_QUESTION을 반복하지 말라. SAFE_TEMPLATE/FACTS에 있는 사실만 더 자연스럽게 말하라. "
-        "FACTS에 없는 애니메이션 설정, 성격, 기술, 세계관 설명은 추가하지 말라.\n\n"
+        "FACTS에 없는 애니메이션 설정, 성격, 기술, 세계관 설명은 추가하지 말라. "
+        "공식 대사나 성우 음색을 흉내 내지 말라.\n\n"
         f"USER_QUESTION: {message}\n"
         f"FACTS: {facts}\n"
         f"SAFE_TEMPLATE: {template_answer}\n"

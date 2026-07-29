@@ -1,18 +1,29 @@
 # Run: python -m unittest tests/test_rag_session.py
 from __future__ import annotations
 
+from contextlib import closing
 from pathlib import Path
 import tempfile
 import unittest
 
 from app.agents.pokedex_agent.rag.analyze_query import analyze_query
+from app.agents.pokedex_agent.rag.embeddings import decode_embedding, encode_embedding, hash_embed
 from app.agents.pokedex_agent.rag.hybrid_retrieve import hybrid_retrieve
+from app.agents.pokedex_agent.rag.expand_hops import expand_hops
 from app.agents.pokedex_agent.session.carryover import apply_carryover
 from app.agents.pokedex_agent.session.store import FlowState, SessionStore
 from scripts.build_local_dex.build import build_local_dex
 
 
 class RagSessionTest(unittest.TestCase):
+    def test_binary_hash_embedding_round_trip(self) -> None:
+        original = hash_embed("피카츄 전기 타입")
+        restored = decode_embedding(encode_embedding(original))
+
+        self.assertEqual(len(restored), 256)
+        self.assertAlmostEqual(sum(value * value for value in restored), 1.0, places=5)
+        self.assertEqual(decode_embedding("0.5,-0.5"), [0.5, -0.5])
+
     def test_carryover_rewrites_followup(self) -> None:
         state = FlowState(active_form_id="x", active_name_ko="피카츄", last_facet="weakness")
         rewritten, analysis = apply_carryover("그럼?", state)
@@ -42,6 +53,32 @@ class RagSessionTest(unittest.TestCase):
             again = store.ensure(session.session_id)
             self.assertEqual(again.flow_state.active_name_ko, "피카츄")
             self.assertEqual(again.flow_state.last_facet, "evolution")
+
+    def test_dual_type_matchups_multiply_all_defense_types(self) -> None:
+        from app.agents.pokedex_agent.tools.tool_local_dex import LocalDexStore
+
+        store = LocalDexStore()
+        detail = store.search_first("리자몽")
+        self.assertIsNotNone(detail)
+        hops = expand_hops(store.db_path, form_id=detail["form_id"], facet="weakness")
+        matchups = {item["attack_type"]: item["multiplier"] for item in hops["type_relations"]}
+        self.assertEqual(matchups["rock"], 4.0)
+        self.assertNotIn("ground", matchups)
+
+    def test_expired_session_deletes_plaintext_turns(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SessionStore(Path(temp_dir) / "sessions.sqlite")
+            session = store.ensure()
+            store.append_turn(session.session_id, role="user", content="민감한 대화", flow_state=None)
+            with closing(store._connect()) as conn:
+                conn.execute(
+                    "update sessions set last_active_at = ? where session_id = ?",
+                    (0, session.session_id),
+                )
+                conn.commit()
+
+            store.ensure(session.session_id)
+            self.assertEqual(store.recent_turns(session.session_id), [])
 
 
 if __name__ == "__main__":

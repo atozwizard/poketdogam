@@ -22,15 +22,20 @@ class PokedexAgentGraph:
         state = AgentState(input_text=message)
         state.entities = {"form_id": form_id or ""}
         ingest_input(state, message)
-        retrieve_context(state, form_id or message)
+        retrieve_context(state, message)
         compose_answer(state)
         persist_trace(state)
         return state
 
-    def run_scan(self, image_bytes: bytes, filename: str) -> tuple[AgentState, list[ScanCandidate]]:
+    def run_scan(
+        self,
+        image_bytes: bytes,
+        filename: str,
+        content_type: str | None = None,
+    ) -> tuple[AgentState, list[ScanCandidate]]:
         state = AgentState()
         state.intent = "scan"
-        extract_scan_text(state, image_bytes, filename)
+        extract_scan_text(state, image_bytes, filename, content_type)
         match_local_dex(state)
         persist_trace(state)
         candidates = [ScanCandidate(**candidate) for candidate in state.match_candidates]

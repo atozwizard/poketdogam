@@ -93,6 +93,9 @@ class LocalDexStore:
             return None
         return self.get_form(candidates[0].form_id)
 
+    def search(self, query: str, *, limit: int = 10) -> list[ScanCandidate]:
+        return self.match_name(query, top_k=limit, threshold=0.55)
+
     def get_form(self, form_id: str) -> dict[str, Any] | None:
         if not self.is_available():
             return None
@@ -141,6 +144,7 @@ class LocalDexStore:
             "bst": row["bst"],
         }
         types = [row["type1"], row["type2"]]
+        normalized_types = [item for item in types if item]
         meta = self.dataset_meta()
         return {
             "form_id": row["form_id"],
@@ -151,15 +155,102 @@ class LocalDexStore:
             "generation": row["generation"],
             "is_legendary": bool(row["is_legendary"]),
             "form_name": row["form_name"],
-            "types": [item for item in types if item],
+            "types": normalized_types,
             "height_m": row["height_m"],
             "weight_kg": row["weight_kg"],
             "stats": {key: value for key, value in stats.items() if value is not None},
+            "evolutions": self._evolutions(form_id),
+            **self._type_matchups(normalized_types),
             "source_meta": {
                 "source": row["source"],
                 "updated_at": row["updated_at"],
                 "dataset_version": meta["dataset_version"],
             },
+        }
+
+    def _evolutions(self, form_id: str) -> list[dict[str, Any]]:
+        with closing(self._connect()) as conn:
+            rows = conn.execute(
+                """
+                select
+                    e.from_form_id,
+                    e.to_form_id,
+                    e.trigger_type,
+                    e.trigger_value,
+                    e.condition_json,
+                    source_species.name_ko as from_name,
+                    target_species.name_ko as to_name
+                from evolution_rules e
+                join pokemon_forms source_form on source_form.form_id = e.from_form_id
+                join pokemon_species source_species on source_species.pokemon_id = source_form.pokemon_id
+                join pokemon_forms target_form on target_form.form_id = e.to_form_id
+                join pokemon_species target_species on target_species.pokemon_id = target_form.pokemon_id
+                where e.from_form_id = ? or e.to_form_id = ?
+                order by source_species.pokemon_id, target_species.pokemon_id
+                """,
+                (form_id, form_id),
+            ).fetchall()
+
+        evolutions: list[dict[str, Any]] = []
+        for row in rows:
+            try:
+                condition = json.loads(row["condition_json"] or "{}")
+            except json.JSONDecodeError:
+                condition = {}
+            evolutions.append(
+                {
+                    "from_form_id": row["from_form_id"],
+                    "to_form_id": row["to_form_id"],
+                    "from_name": row["from_name"],
+                    "to_name": row["to_name"],
+                    "trigger_type": row["trigger_type"],
+                    "trigger_value": row["trigger_value"],
+                    "condition": condition if isinstance(condition, dict) else {},
+                }
+            )
+        return evolutions
+
+    def _type_matchups(self, defense_types: list[str]) -> dict[str, list[dict[str, Any]]]:
+        if not defense_types:
+            return {"weaknesses": [], "resistances": [], "immunities": []}
+
+        placeholders = ",".join("?" for _ in defense_types)
+        with closing(self._connect()) as conn:
+            rows = conn.execute(
+                f"""
+                select attack_type, defense_type, multiplier
+                from type_chart
+                where defense_type in ({placeholders})
+                order by attack_type
+                """,
+                defense_types,
+            ).fetchall()
+
+        multipliers: dict[str, float] = {}
+        for row in rows:
+            attack_type = str(row["attack_type"])
+            multipliers[attack_type] = multipliers.get(attack_type, 1.0) * float(row["multiplier"])
+
+        matchups = [
+            {"type": attack_type, "multiplier": round(multiplier, 2)}
+            for attack_type, multiplier in multipliers.items()
+        ]
+        weaknesses = sorted(
+            (item for item in matchups if item["multiplier"] > 1.0),
+            key=lambda item: (-item["multiplier"], item["type"]),
+        )
+        resistances = sorted(
+            (item for item in matchups if 0.0 < item["multiplier"] < 1.0),
+            key=lambda item: (item["multiplier"], item["type"]),
+        )
+        immunities = sorted(
+            (item for item in matchups if item["multiplier"] == 0.0),
+            key=lambda item: item["type"],
+        )
+        return {
+            "weaknesses": weaknesses,
+            "resistances": resistances,
+            "immunities": immunities,
         }
 
     def _aliases(self) -> list[dict[str, str]]:

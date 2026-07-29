@@ -160,7 +160,7 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             title text not null,
             body text not null,
             searchable_text text not null,
-            embedding_csv text not null,
+            embedding_blob blob not null,
             updated_at text not null
         );
         create index idx_dex_passages_form on dex_passages(form_id);

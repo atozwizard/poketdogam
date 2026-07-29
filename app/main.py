@@ -5,6 +5,8 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from app.agents.pokedex_agent.tools.tool_local_dex import get_local_dex
+from app.agents.pokedex_agent.tools.tool_ocr_ondevice import available_ocr_engines
 from app.api.routes.chat import router as chat_router
 from app.api.routes.pokedex import router as pokedex_router
 from app.api.routes.scan import router as scan_router
@@ -21,6 +23,19 @@ def create_app() -> FastAPI:
     app.include_router(pokedex_router, prefix="/v1")
     app.include_router(voice_router, prefix="/v1")
     app.mount("/ui", StaticFiles(directory=UI_DIR), name="ui")
+
+    @app.get("/health")
+    def health() -> dict[str, object]:
+        store = get_local_dex()
+        meta = store.dataset_meta()
+        ready = store.is_available() and int(meta.get("species_count") or 0) > 0
+        return {
+            "status": "ready" if ready else "degraded",
+            "version": app.version,
+            "dataset_version": meta.get("dataset_version"),
+            "species_count": meta.get("species_count"),
+            "ocr_engines": available_ocr_engines(),
+        }
 
     @app.get("/", include_in_schema=False)
     def index() -> FileResponse:

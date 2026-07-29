@@ -52,29 +52,44 @@ def expand_hops(
             ).fetchone()
             if form is not None:
                 types = [form["type1"]] + ([form["type2"]] if form["type2"] else [])
-                for defense_type in types:
-                    if facet in {"weakness", "profile"}:
-                        rows = conn.execute(
-                            """
-                            select attack_type, defense_type, multiplier
-                            from type_chart
-                            where defense_type = ? and multiplier >= 2.0
-                            order by multiplier desc
-                            """,
-                            (defense_type,),
-                        ).fetchall()
-                        type_relations.extend(dict(row) | {"relation": "weak_to"} for row in rows)
-                    if facet in {"resistance", "profile"}:
-                        rows = conn.execute(
-                            """
-                            select attack_type, defense_type, multiplier
-                            from type_chart
-                            where defense_type = ? and multiplier > 0 and multiplier <= 0.5
-                            order by multiplier asc
-                            """,
-                            (defense_type,),
-                        ).fetchall()
-                        type_relations.extend(dict(row) | {"relation": "resists"} for row in rows)
+                placeholders = ",".join("?" for _ in types)
+                rows = conn.execute(
+                    f"""
+                    select attack_type, defense_type, multiplier
+                    from type_chart
+                    where defense_type in ({placeholders})
+                    order by attack_type
+                    """,
+                    types,
+                ).fetchall()
+                combined: dict[str, float] = {}
+                for row in rows:
+                    attack_type = str(row["attack_type"])
+                    combined[attack_type] = combined.get(attack_type, 1.0) * float(row["multiplier"])
+                for attack_type, multiplier in combined.items():
+                    relation = ""
+                    if multiplier > 1.0:
+                        relation = "weak_to"
+                    elif multiplier == 0.0:
+                        relation = "immune_to"
+                    elif multiplier < 1.0:
+                        relation = "resists"
+                    if not relation:
+                        continue
+                    if facet == "weakness" and relation != "weak_to":
+                        continue
+                    if facet == "resistance" and relation not in {"resists", "immune_to"}:
+                        continue
+                    type_relations.append(
+                        {
+                            "attack_type": attack_type,
+                            "multiplier": round(multiplier, 2),
+                            "relation": relation,
+                        }
+                    )
+                type_relations.sort(
+                    key=lambda item: (-float(item["multiplier"]), str(item["attack_type"]))
+                )
                 trace.append({"hop": 1, "type": "type_chart", "count": len(type_relations)})
 
     return {"evolutions": evolutions, "type_relations": type_relations[:24], "trace": trace}

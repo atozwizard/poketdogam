@@ -8,6 +8,7 @@ import unittest
 from app.agents.pokedex_agent.tools.tool_local_dex import LocalDexStore
 from scripts.build_local_dex.build import build_local_dex
 from scripts.build_local_dex.validate_dex import validate_fixtures
+from scripts.build_local_dex.validate_dex import validate
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -46,6 +47,21 @@ class LocalScanCoreTest(unittest.TestCase):
 
         self.assertGreaterEqual(result["match_recall_at_3"], 0.9)
         self.assertEqual(result["failures"], [])
+
+    def test_committed_dex_passes_strict_provenance_and_form_gate(self) -> None:
+        result = validate(
+            PROJECT_ROOT / "data/dex.sqlite",
+            PROJECT_ROOT / "fixtures/ocr/korean_cards.jsonl",
+            min_species=1025,
+            min_fixture_count=30,
+            require_nonbase_forms=True,
+            require_evolution_conditions=True,
+            require_provenance=True,
+        )
+
+        self.assertGreaterEqual(result["counts"]["nonbase_forms"], 300)
+        self.assertGreaterEqual(result["counts"]["evolution_conditions"], 500)
+        self.assertEqual(result["orphan_foreign_keys"], 0)
 
 
 if __name__ == "__main__":

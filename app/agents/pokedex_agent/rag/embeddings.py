@@ -6,6 +6,8 @@ from __future__ import annotations
 import hashlib
 import math
 import re
+import struct
+from typing import Any
 
 
 TOKEN_RE = re.compile(r"[A-Za-z0-9가-힣]+")
@@ -33,6 +35,24 @@ def cosine(a: list[float], b: list[float]) -> float:
     if not a or not b or len(a) != len(b):
         return 0.0
     return sum(x * y for x, y in zip(a, b))
+
+
+def encode_embedding(values: list[float]) -> bytes:
+    if not values:
+        return b""
+    return struct.pack(f"<{len(values)}f", *values)
+
+
+def decode_embedding(value: Any) -> list[float]:
+    if isinstance(value, memoryview):
+        value = value.tobytes()
+    if isinstance(value, bytes):
+        if not value or len(value) % 4:
+            return []
+        return list(struct.unpack(f"<{len(value) // 4}f", value))
+    if isinstance(value, str):
+        return [float(part) for part in value.split(",") if part]
+    return []
 
 
 def main() -> None:

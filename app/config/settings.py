@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     port: int = 8000
 
     llm_model: str = "template"
-    local_llm_provider: str = "ollama"
+    local_llm_provider: str = "template"
     local_llm_model: str = "llama3.2:1b"
     ollama_base_url: str = "http://127.0.0.1:11434"
     local_llm_timeout: int = 20

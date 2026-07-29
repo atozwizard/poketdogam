@@ -44,6 +44,9 @@ def build_local_dex(
                 "name": "seed:pokeapi-compatible",
                 "url": "https://pokeapi.co",
                 "note": "Offline seed subset for Local Scan Core development and CI.",
+                "usage_scope": "automated_test_only",
+                "license_status": "not_for_product_distribution",
+                "content_policy": "factual derivative fields; no official media",
             }
         ]
     elif source == "pokeapi":
@@ -55,12 +58,18 @@ def build_local_dex(
             {
                 "name": "pokeapi",
                 "url": "https://pokeapi.co",
-                "note": f"Cached PokéAPI species/pokemon build up to id={limit}.",
+                "note": f"Cached factual species, variety and evolution fields up to species id={limit}.",
+                "usage_scope": "poc_noncommercial_evaluation",
+                "license_status": "product_license_pending_after_poc_acceptance",
+                "content_policy": "names, measurements, stats, types and evolution facts only; no media",
             },
             {
                 "name": "seed:ocr-aliases",
                 "url": "scripts/build_local_dex/seed_data.py",
                 "note": "Manual OCR aliases merged by pokemon_id when available.",
+                "usage_scope": "poc_noncommercial_evaluation",
+                "license_status": "project_authored_derivative",
+                "content_policy": "OCR error variants only",
             },
         ]
     else:
@@ -100,13 +109,31 @@ def build_local_dex(
         "alias_count": len(aliases),
         "passage_count": len(passages),
         "type_chart_count": len(type_chart),
+        "usage_scope": "poc_noncommercial_evaluation" if source == "pokeapi" else "automated_test_only",
+        "license_status": (
+            "product_license_pending_after_poc_acceptance"
+            if source == "pokeapi"
+            else "not_for_product_distribution"
+        ),
+        "derivative_data_only": True,
+        "official_media_included": False,
         "sources": sources,
     }
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    fixture_path = PROJECT_ROOT / "fixtures/ocr/korean_cards.jsonl"
-    validation = validate(db_path, fixture_path)
+    fixture_path = PROJECT_ROOT / "fixtures/ocr" / (
+        "korean_cards.jsonl" if source == "pokeapi" else "seed_smoke.jsonl"
+    )
+    validation = validate(
+        db_path,
+        fixture_path,
+        min_species=limit if source == "pokeapi" else 1,
+        min_fixture_count=30 if source == "pokeapi" else 1,
+        require_nonbase_forms=source == "pokeapi",
+        require_evolution_conditions=source == "pokeapi",
+        require_provenance=True,
+    )
     return {"meta": meta, "validation": validation}
 
 

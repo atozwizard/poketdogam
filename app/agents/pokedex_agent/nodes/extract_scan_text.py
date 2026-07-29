@@ -11,8 +11,17 @@ from app.agents.pokedex_agent.state import AgentState
 from app.agents.pokedex_agent.tools.tool_ocr_ondevice import extract_ondevice_text
 
 
-def run(state: AgentState, image_bytes: bytes, filename: str) -> AgentState:
-    result = extract_ondevice_text(image_bytes=image_bytes, filename=filename)
+def run(
+    state: AgentState,
+    image_bytes: bytes,
+    filename: str,
+    content_type: str | None = None,
+) -> AgentState:
+    result = extract_ondevice_text(
+        image_bytes=image_bytes,
+        filename=filename,
+        content_type=content_type,
+    )
     state.input_image_ref = filename
     state.scan_text = str(result.get("text", ""))
     state.ocr_engine = str(result.get("engine", "os_ocr_adapter"))

@@ -4,6 +4,8 @@ from __future__ import annotations
 import unittest
 import warnings
 import os
+from pathlib import Path
+import platform
 
 warnings.filterwarnings(
     "ignore",
@@ -15,6 +17,9 @@ from fastapi.testclient import TestClient
 from app.config.settings import get_settings
 from app.agents.pokedex_agent.tools.tool_local_llm import ROTOM_SYSTEM_PROMPT
 from app.main import create_app
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 class PreDeviceUITest(unittest.TestCase):
@@ -37,8 +42,10 @@ class PreDeviceUITest(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(head_response.status_code, 200)
-        self.assertIn("Rotom Dex OS", response.text)
+        self.assertIn("Local Scan PoC", response.text)
         self.assertIn("/ui/app.js", response.text)
+        self.assertIn('id="cameraInput"', response.text)
+        self.assertNotIn("/ui/assets/rotomu/", response.text)
 
     def test_scan_text_matches_pikachu(self) -> None:
         response = self.client.post(
@@ -51,6 +58,33 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertGreaterEqual(len(payload["top_candidates"]), 1)
         self.assertEqual(payload["top_candidates"][0]["pokemon_id"], 25)
         self.assertFalse(payload["requires_user_confirmation"])
+        self.assertEqual(payload["ocr_engine"], "fixture_text")
+        self.assertNotEqual(payload["dataset_version"], "unknown")
+        self.assertGreaterEqual(payload["latency_ms"], 0)
+
+    def test_manual_search_returns_candidates(self) -> None:
+        response = self.client.get("/v1/pokedex/search", params={"query": "피카", "limit": 5})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["matches"][0]["pokemon_id"], 25)
+        self.assertLessEqual(len(payload["matches"]), 5)
+        self.assertTrue(payload["dataset_version"])
+
+    def test_pokedex_detail_includes_evolution_and_type_matchups(self) -> None:
+        search = self.client.get("/v1/pokedex/search", params={"query": "피카츄", "limit": 1}).json()
+        form_id = search["matches"][0]["form_id"]
+        response = self.client.get(f"/v1/pokedex/forms/{form_id}")
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["generation"], 1)
+        self.assertIn("라이츄", {item["to_name"] for item in payload["evolutions"]})
+        self.assertIn(
+            {"type": "ground", "multiplier": 2.0},
+            payload["weaknesses"],
+        )
+        self.assertTrue(any(item["condition"] for item in payload["evolutions"]))
 
     def test_chat_exposes_llm_runtime(self) -> None:
         response = self.client.post("/v1/chat", json={"message": "피카츄 알려줘"})
@@ -59,6 +93,56 @@ class PreDeviceUITest(unittest.TestCase):
         payload = response.json()
         self.assertEqual(payload["llm_runtime"], "template")
         self.assertIn("피카츄", payload["answer"])
+
+    def test_selected_form_preserves_weakness_facet(self) -> None:
+        search = self.client.get("/v1/pokedex/search", params={"query": "리자몽", "limit": 1}).json()
+        form_id = search["matches"][0]["form_id"]
+        response = self.client.post("/v1/chat", json={"message": "약점", "form_id": form_id})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["facet"], "weakness")
+        self.assertIn("바위 ×4", payload["answer"])
+        self.assertNotIn("땅", payload["answer"])
+        self.assertEqual(payload["llm_model"], "grounded_template")
+
+    def test_selected_form_localizes_resistance_answer(self) -> None:
+        search = self.client.get("/v1/pokedex/search", params={"query": "리자몽", "limit": 1}).json()
+        form_id = search["matches"][0]["form_id"]
+        response = self.client.post("/v1/chat", json={"message": "반감과 무효", "form_id": form_id})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["facet"], "resistance")
+        self.assertIn("벌레 ×0.25", payload["answer"])
+        self.assertIn("무효는 땅", payload["answer"])
+        self.assertNotIn("bug", payload["answer"])
+        self.assertEqual(payload["llm_model"], "grounded_template")
+
+    def test_image_upload_never_uses_filename_as_ocr(self) -> None:
+        image_path = PROJECT_ROOT / "app" / "ui" / "assets" / "rotomu" / "rotom-phone.png"
+        with image_path.open("rb") as image:
+            response = self.client.post(
+                "/v1/scan",
+                files={"image": ("피카츄.png", image, "image/png")},
+            )
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertNotEqual(payload["ocr_engine"], "filename_fallback")
+        self.assertFalse(
+            payload["top_candidates"]
+            and payload["top_candidates"][0]["pokemon_id"] == 25
+            and payload["top_candidates"][0]["confidence"] == 1.0
+        )
+
+    def test_image_upload_rejects_invalid_content(self) -> None:
+        response = self.client.post(
+            "/v1/scan",
+            files={"image": ("fake.png", b"not an image", "image/png")},
+        )
+
+        self.assertEqual(response.status_code, 415)
 
     def test_chat_stream_emits_sse_events(self) -> None:
         response = self.client.post("/v1/chat/stream", json={"message": "피카츄 알려줘"})
@@ -74,6 +158,34 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertIn("배경 시놉시스", ROTOM_SYSTEM_PROMPT)
         self.assertIn("공식 대사", ROTOM_SYSTEM_PROMPT)
         self.assertIn("FACTS", ROTOM_SYSTEM_PROMPT)
+
+    def test_ui_contains_confirmation_and_quality_log_guards(self) -> None:
+        index = self.client.get("/").text
+        script = self.client.get("/ui/app.js").text
+
+        self.assertIn('id="searchInput"', index)
+        self.assertIn('id="typeMatchups"', index)
+        self.assertIn("if (!appState.confirmed)", script)
+        self.assertIn("discovered_count", script)
+        self.assertIn("poketdogam.qualityEvents", script)
+        self.assertIn('"matcher_only"', script)
+        self.assertTrue(script.rstrip().endswith("loadHealth();"))
+
+    def test_health_and_privacy_delete_contract(self) -> None:
+        health = self.client.get("/health")
+        self.assertEqual(health.status_code, 200)
+        self.assertEqual(health.json()["status"], "ready")
+        self.assertIsInstance(health.json()["ocr_engines"], list)
+        if platform.system() == "Darwin":
+            self.assertIn("vision_macos", health.json()["ocr_engines"])
+
+        chat = self.client.post("/v1/chat", json={"message": "피카츄 알려줘"}).json()
+        session_id = chat["session_id"]
+        privacy = self.client.get("/v1/privacy/status")
+        self.assertEqual(privacy.status_code, 200)
+        self.assertFalse(privacy.json()["raw_images_stored"])
+        deleted = self.client.delete(f"/v1/sessions/{session_id}")
+        self.assertEqual(deleted.status_code, 204)
 
     def test_voice_status_policy_blocks_official_mimicry(self) -> None:
         response = self.client.get("/v1/voice/status")
