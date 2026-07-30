@@ -6,8 +6,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     environment: str = "development"
-    debug: bool = True
-    host: str = "0.0.0.0"
+    debug: bool = False
+    host: str = "127.0.0.1"
     port: int = 8000
 
     llm_model: str = "template"
@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     scan_primary_model: str = "os-ocr"
     scan_fallback_model: str = "manual-search"
     request_timeout: int = 30
+    scan_timeout_seconds: int = 20
 
     dex_sqlite_path: str = "data/dex.sqlite"
     visual_embedding_model_path: str = "data/vision/mobilenet_v3_small.tflite"

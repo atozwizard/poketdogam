@@ -5,7 +5,12 @@ from pathlib import Path
 
 from app.schemas.domain import ScanCandidate
 from app.vision.fusion import fuse_candidates
-from app.vision.visual_matcher import _center_square_views, visual_runtime_status
+from app.vision.visual_matcher import (
+    _center_square_views,
+    _calibrate_similarity,
+    _grid_square_views,
+    visual_runtime_status,
+)
 from scripts.validate_visual_benchmark import validate_visual_benchmark
 
 
@@ -18,11 +23,13 @@ def candidate(
     score: float,
     *,
     source: str,
+    form_name: str = "base",
 ) -> ScanCandidate:
     return ScanCandidate(
         form_id=form_id,
         pokemon_id=pokemon_id,
         name_ko=form_id,
+        form_name=form_name,
         confidence=score,
         evidence_sources=[source],
     )
@@ -43,6 +50,23 @@ class VisualFusionTest(unittest.TestCase):
         views = _center_square_views(image)
 
         self.assertEqual([view.size for view in views], [(326, 326), (268, 268)])
+
+    def test_matcher_builds_eighteen_position_crops(self) -> None:
+        from PIL import Image
+
+        image = Image.new("RGB", (640, 480))
+        views = _grid_square_views(image)
+
+        self.assertEqual(len(views), 18)
+        self.assertEqual(
+            [view.size for view in views],
+            [(240, 240)] * 9 + [(153, 153)] * 9,
+        )
+
+    def test_visual_score_is_a_cosine_comparison_not_probability(self) -> None:
+        self.assertEqual(_calibrate_similarity(-1.0), 0.0)
+        self.assertEqual(_calibrate_similarity(0.0), 0.5)
+        self.assertEqual(_calibrate_similarity(1.0), 1.0)
 
     def test_visual_benchmark_passes_each_scenario_at_ninety_percent(self) -> None:
         result = validate_visual_benchmark(
@@ -82,6 +106,18 @@ class VisualFusionTest(unittest.TestCase):
         self.assertEqual(fused[0].evidence_sources, ["ocr", "visual_embedding"])
         self.assertIsNotNone(fused[0].ocr_confidence)
         self.assertIsNotNone(fused[0].visual_confidence)
+
+    def test_equal_scores_prefer_base_form(self) -> None:
+        fused = fuse_candidates(
+            [
+                candidate("pikachu-rock-star", 25, 1.0, source="ocr", form_name="rock-star"),
+                candidate("pikachu-base", 25, 1.0, source="ocr", form_name="base"),
+            ],
+            [],
+            top_k=3,
+        )
+
+        self.assertEqual(fused[0].form_id, "pikachu-base")
 
 
 if __name__ == "__main__":

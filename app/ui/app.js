@@ -6,6 +6,9 @@ const elements = {
   lens: document.querySelector("#lens"),
   lensState: document.querySelector("#lensState"),
   lensScore: document.querySelector("#lensScore"),
+  cameraPreview: document.querySelector("#cameraPreview"),
+  startCameraButton: document.querySelector("#startCameraButton"),
+  captureButton: document.querySelector("#captureButton"),
   cameraInput: document.querySelector("#cameraInput"),
   imageScanButton: document.querySelector("#imageScanButton"),
   scanPreview: document.querySelector("#scanPreview"),
@@ -73,6 +76,8 @@ const appState = {
   qualityEvents: loadQualityEvents(),
   selectedFile: null,
   previewUrl: null,
+  cameraStream: null,
+  cameraQualityTimer: null,
   collectionQuery: "",
   voiceStyle: "electric_device",
   audioContext: null,
@@ -154,8 +159,11 @@ document.querySelectorAll("[data-sample]").forEach((button) => {
 
 elements.scanButton.addEventListener("click", scanText);
 elements.cameraInput.addEventListener("change", handleImageSelection);
+elements.startCameraButton.addEventListener("click", toggleCamera);
+elements.captureButton.addEventListener("click", captureCameraFrame);
 elements.imageScanButton.addEventListener("click", scanImage);
 elements.clearButton.addEventListener("click", () => {
+  stopCamera();
   appState.candidates = [];
   appState.selected = null;
   appState.detail = null;
@@ -171,9 +179,10 @@ elements.clearButton.addEventListener("click", () => {
   elements.scanPreview.removeAttribute("src");
   elements.scanPreview.hidden = true;
   elements.imageScanButton.disabled = true;
-  elements.uploadHint.textContent = "PNG·JPEG·WebP·HEIC·TIFF, 최대 8MB";
+  elements.uploadHint.textContent =
+    "카메라는 이 렌즈 안에서만 동작합니다. 촬영본은 분석 중에만 사용하며 저장하지 않습니다.";
   elements.scanGuidance.textContent = "이미지를 선택하거나 이름을 검색하면 후보가 표시됩니다.";
-  elements.lensScore.textContent = "match --";
+  elements.lensScore.textContent = "후보 점수 --";
   renderCandidates();
   renderDetail();
   setStatus("idle", "렌즈 대기 중이다-로.", "READY");
@@ -291,7 +300,7 @@ async function scanText() {
       ? "후보를 확인해줘-로."
       : `${appState.selected.name_ko} 잠금 완료다-로.`;
     setStatus(status, line, data.requires_user_confirmation ? "CHECK" : "LOCK");
-    elements.lensScore.textContent = `match ${Math.round(topScore * 100)}%`;
+    elements.lensScore.textContent = `후보 점수 ${Math.round(topScore * 100)}/100`;
     await loadDetail(appState.selected.form_id);
   } catch (error) {
     setStatus("error", "스캔 회로가 끊겼다-로.", "ERROR");
@@ -306,6 +315,10 @@ function handleImageSelection() {
   if (!file) {
     return;
   }
+  prepareSelectedFile(file, "갤러리 이미지");
+}
+
+function prepareSelectedFile(file, sourceLabel) {
   if (file.size > 8 * 1024 * 1024) {
     elements.cameraInput.value = "";
     showToast("이미지는 8MB 이하여야 합니다.");
@@ -319,9 +332,115 @@ function handleImageSelection() {
   elements.scanPreview.src = appState.previewUrl;
   elements.scanPreview.hidden = false;
   elements.imageScanButton.disabled = false;
-  elements.uploadHint.textContent = `${file.name} · ${formatBytes(file.size)} · 분석 전`;
+  elements.uploadHint.textContent = `${sourceLabel} · ${formatBytes(file.size)} · 분석 전`;
   elements.scanGuidance.textContent = "이미지는 분석 중에만 사용되며 서버에 보관되지 않습니다.";
   setStatus("idle", "이미지 장전 완료. 이름과 외형을 함께 분석할게-로.", "READY");
+}
+
+async function toggleCamera() {
+  if (appState.cameraStream) {
+    stopCamera();
+    return;
+  }
+  if (!navigator.mediaDevices?.getUserMedia) {
+    showToast("이 브라우저에서는 실시간 카메라를 사용할 수 없습니다. 갤러리에서 선택하세요.");
+    elements.cameraInput.focus();
+    return;
+  }
+
+  elements.startCameraButton.disabled = true;
+  setStatus("scanning", "카메라 사용 권한을 확인하는 중이다-로.", "CAMERA");
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: {
+        facingMode: { ideal: "environment" },
+        width: { ideal: 1920 },
+        height: { ideal: 1080 },
+      },
+    });
+    appState.cameraStream = stream;
+    elements.cameraPreview.srcObject = stream;
+    elements.cameraPreview.hidden = false;
+    elements.scanPreview.hidden = true;
+    await elements.cameraPreview.play();
+    elements.captureButton.disabled = false;
+    elements.startCameraButton.textContent = "카메라 끄기";
+    elements.uploadHint.textContent = "대상을 안내선 안에 크게 맞춘 뒤 ‘사진 촬영’을 누르세요.";
+    appState.cameraQualityTimer = window.setInterval(updateCameraQuality, 800);
+    setStatus("idle", "촬영 준비 완료. 대상을 중앙에 맞춰줘-로.", "촬영 준비");
+  } catch (error) {
+    const denied = error?.name === "NotAllowedError" || error?.name === "PermissionDeniedError";
+    const message = denied
+      ? "카메라 권한이 거부되었습니다. 브라우저 권한을 허용하거나 갤러리에서 선택하세요."
+      : "카메라를 시작하지 못했습니다. 다른 앱의 카메라 사용을 종료하거나 갤러리를 이용하세요.";
+    setStatus("error", message, "카메라 오류");
+    showToast(message);
+  } finally {
+    elements.startCameraButton.disabled = false;
+  }
+}
+
+function captureCameraFrame() {
+  const video = elements.cameraPreview;
+  if (!appState.cameraStream || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+    showToast("카메라 화면이 준비될 때까지 잠시 기다려주세요.");
+    return;
+  }
+
+  const maxEdge = 1920;
+  const scale = Math.min(1, maxEdge / Math.max(video.videoWidth, video.videoHeight));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
+  canvas.height = Math.max(1, Math.round(video.videoHeight * scale));
+  const context = canvas.getContext("2d", { alpha: false });
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  elements.captureButton.disabled = true;
+  canvas.toBlob(
+    (blob) => {
+      if (!blob) {
+        elements.captureButton.disabled = false;
+        showToast("촬영 이미지를 만들지 못했습니다. 다시 촬영해주세요.");
+        return;
+      }
+      const file = new File([blob], `poketdogam-${Date.now()}.jpg`, { type: "image/jpeg" });
+      prepareSelectedFile(file, "카메라 촬영");
+      stopCamera();
+      showToast("사진을 촬영했습니다. 이미지를 확인한 뒤 분석하세요.");
+    },
+    "image/jpeg",
+    0.9,
+  );
+}
+
+function updateCameraQuality() {
+  const video = elements.cameraPreview;
+  if (!appState.cameraStream || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+    return;
+  }
+  const canvas = document.createElement("canvas");
+  canvas.width = 64;
+  canvas.height = 48;
+  const context = canvas.getContext("2d", { alpha: false, willReadFrequently: true });
+  context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+  const quality = window.PoketdogamCameraQuality?.analyzeRgba(pixels);
+  elements.uploadHint.textContent = quality?.message || "카메라 화면을 확인하는 중입니다.";
+}
+
+function stopCamera() {
+  if (appState.cameraStream) {
+    appState.cameraStream.getTracks().forEach((track) => track.stop());
+  }
+  appState.cameraStream = null;
+  if (appState.cameraQualityTimer) {
+    window.clearInterval(appState.cameraQualityTimer);
+  }
+  appState.cameraQualityTimer = null;
+  elements.cameraPreview.srcObject = null;
+  elements.cameraPreview.hidden = true;
+  elements.captureButton.disabled = true;
+  elements.startCameraButton.textContent = "카메라 켜기";
 }
 
 async function scanImage() {
@@ -366,7 +485,7 @@ async function scanImage() {
         : `${appState.selected.name_ko} 후보가 가장 강해-로.`,
       data.requires_user_confirmation ? "CHECK" : "LOCK",
     );
-    elements.lensScore.textContent = `일치도 ${Math.round(topScore * 100)}%`;
+    elements.lensScore.textContent = `후보 점수 ${Math.round(topScore * 100)}/100`;
     await loadDetail(appState.selected.form_id);
   } catch (error) {
     setStatus("error", "이미지 분석에 실패했어. 이름 검색을 사용해줘-로.", "ERROR");
@@ -395,7 +514,7 @@ async function searchPokedex() {
     appState.confirmed = false;
     appState.latestScanEventId = null;
     elements.datasetVersion.textContent = data.dataset_version || "unknown";
-    elements.lensScore.textContent = `${appState.candidates.length} candidates`;
+    elements.lensScore.textContent = `후보 ${appState.candidates.length}개`;
     renderCandidates();
     renderDetail();
     elements.scanGuidance.textContent = appState.candidates.length
@@ -614,10 +733,10 @@ function renderCandidates() {
       const score = Math.round(Number(candidate.confidence || 0) * 100);
       const evidence = [];
       if (candidate.ocr_confidence !== null && candidate.ocr_confidence !== undefined) {
-        evidence.push(`OCR ${Math.round(Number(candidate.ocr_confidence) * 100)}%`);
+        evidence.push(`OCR 점수 ${Math.round(Number(candidate.ocr_confidence) * 100)}/100`);
       }
       if (candidate.visual_confidence !== null && candidate.visual_confidence !== undefined) {
-        evidence.push(`이미지 ${Math.round(Number(candidate.visual_confidence) * 100)}%`);
+        evidence.push(`이미지 점수 ${Math.round(Number(candidate.visual_confidence) * 100)}/100`);
       }
       const evidenceLabel = evidence.join(" · ") || candidate.match_reason || "-";
       return `
@@ -627,9 +746,9 @@ function renderCandidates() {
               <span class="candidate-name">${index + 1}. ${escapeHtml(candidate.name_ko)} · ${escapeHtml(form)}</span>
               <span class="candidate-meta">${escapeHtml(candidate.name_en || "")} · ${escapeHtml(types)}</span>
             </span>
-            <span class="candidate-score">${score}%</span>
+            <span class="candidate-score" aria-label="후보 순위 점수 ${score}점">점수 ${score}/100</span>
           </span>
-          <span class="candidate-meta">${escapeHtml(evidenceLabel)} · Top-${index + 1}</span>
+          <span class="candidate-meta">${escapeHtml(evidenceLabel)} · ${index + 1}순위 · 확률이 아닌 비교 점수</span>
         </button>
       `;
     })
@@ -1168,7 +1287,17 @@ async function clearLocalData() {
     return;
   }
   if (appState.sessionId) {
-    await fetch(`/v1/sessions/${encodeURIComponent(appState.sessionId)}`, { method: "DELETE" }).catch(() => null);
+    try {
+      const response = await fetch(`/v1/sessions/${encodeURIComponent(appState.sessionId)}`, {
+        method: "DELETE",
+      });
+      if (!response.ok && response.status !== 404) {
+        throw new Error(`대화 삭제 실패 (${response.status})`);
+      }
+    } catch (error) {
+      showToast(`로컬 서버의 대화를 삭제하지 못했습니다: ${error.message}`);
+      return;
+    }
   }
   ["poketdogam.collection", "poketdogam.qualityEvents", "poketdogam.sessionId"].forEach((key) =>
     localStorage.removeItem(key),
@@ -1198,6 +1327,7 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+window.addEventListener("pagehide", stopCamera);
 renderCandidates();
 renderDetail();
 renderCollection();

@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+val generatedDexAssets = layout.buildDirectory.dir("generated/dexAssets")
+
 android {
     namespace = "com.twentyflags.poketdogam"
     compileSdk = 37
@@ -20,25 +22,39 @@ android {
         compose = true
     }
 
+    buildTypes {
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+        }
+    }
+
+    lint {
+        warningsAsErrors = true
+        disable += "GradleDependency"
+    }
+
     packaging {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
 
-    sourceSets["main"].assets.srcDir(
-        layout.buildDirectory.get().dir("generated/dexAssets").asFile
-    )
+    sourceSets["main"].assets.directories.add(generatedDexAssets.get().asFile.path)
 }
 
-val generatedDexAssets = layout.buildDirectory.dir("generated/dexAssets")
-
-val syncVerifiedDex by tasks.registering(Copy::class) {
+val syncVerifiedDex = tasks.register<Copy>("syncVerifiedDex") {
     from(rootProject.projectDir.resolve("../data/dex.sqlite"))
+    from(rootProject.projectDir.resolve("../data/dex.meta.json"))
     from(rootProject.projectDir.resolve("../data/vision/mobilenet_v3_small.tflite"))
     from(rootProject.projectDir.resolve("../data/vision/gen1_visual_index.json"))
     into(generatedDexAssets)
     doFirst {
         val requiredAssets = listOf(
             rootProject.projectDir.resolve("../data/dex.sqlite"),
+            rootProject.projectDir.resolve("../data/dex.meta.json"),
             rootProject.projectDir.resolve("../data/vision/mobilenet_v3_small.tflite"),
             rootProject.projectDir.resolve("../data/vision/gen1_visual_index.json"),
         )
@@ -58,6 +74,7 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation("androidx.activity:activity-compose:1.13.0")
+    implementation("androidx.core:core-ktx:1.17.0")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -72,5 +89,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }

@@ -126,6 +126,17 @@ def validate(
                 "select distinct generation from pokemon_species order by generation"
             )
         ]
+        schema_version = int(conn.execute("pragma user_version").fetchone()[0])
+        quick_check = str(conn.execute("pragma quick_check").fetchone()[0])
+        indexes = {
+            str(row[0])
+            for row in conn.execute(
+                """
+                select name from sqlite_master
+                where type = 'index' and name is not null
+                """
+            ).fetchall()
+        }
 
     db_size_bytes = db_path.stat().st_size
     if counts["species"] < min_species or counts["forms"] == 0 or counts["aliases"] == 0:
@@ -140,6 +151,19 @@ def validate(
         raise ValueError(f"required localized names missing: {missing_names}")
     if orphan_foreign_keys:
         raise ValueError(f"orphan foreign keys found: {orphan_foreign_keys}")
+    if schema_version != 1:
+        raise ValueError(f"schema version must be 1, got {schema_version}")
+    if quick_check != "ok":
+        raise ValueError(f"sqlite quick_check failed: {quick_check}")
+    required_indexes = {
+        "idx_evolution_from",
+        "idx_evolution_to",
+        "idx_visual_reference_form",
+        "idx_visual_reference_model",
+    }
+    missing_indexes = sorted(required_indexes - indexes)
+    if missing_indexes:
+        raise ValueError(f"required indexes missing: {missing_indexes}")
     if require_nonbase_forms and counts["nonbase_forms"] == 0:
         raise ValueError("non-base form coverage is required")
     if require_evolution_conditions and counts["evolution_conditions"] == 0:
@@ -193,6 +217,8 @@ def validate(
         "db_size_bytes": db_size_bytes,
         "missing_names": missing_names,
         "orphan_foreign_keys": orphan_foreign_keys,
+        "schema_version": schema_version,
+        "sqlite_quick_check": quick_check,
         "provenance_source_count": len(sources) if isinstance(sources, list) else 0,
         "covered_generations": covered_generations,
         "fixture": fixture_result,

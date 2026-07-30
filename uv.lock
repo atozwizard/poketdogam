@@ -835,6 +835,7 @@ source = { editable = "." }
 dependencies = [
     { name = "fastapi" },
     { name = "httpx" },
+    { name = "pillow" },
     { name = "pydantic-settings" },
     { name = "python-multipart" },
     { name = "uvicorn" },
@@ -843,7 +844,6 @@ dependencies = [
 [package.optional-dependencies]
 vision = [
     { name = "mediapipe" },
-    { name = "pillow" },
 ]
 
 [package.metadata]
@@ -851,7 +851,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.116.0" },
     { name = "httpx", specifier = ">=0.28.0" },
     { name = "mediapipe", marker = "extra == 'vision'", specifier = ">=0.10.30" },
-    { name = "pillow", marker = "extra == 'vision'", specifier = ">=11.0" },
+    { name = "pillow", specifier = ">=11.0" },
     { name = "pydantic-settings", specifier = ">=2.10.0" },
     { name = "python-multipart", specifier = ">=0.0.20" },
     { name = "uvicorn", specifier = ">=0.35.0" },

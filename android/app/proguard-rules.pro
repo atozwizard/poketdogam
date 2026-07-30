@@ -1,0 +1,5 @@
+-keep class com.google.mediapipe.** { *; }
+-keep class com.google.mlkit.** { *; }
+-dontwarn org.tensorflow.lite.**
+-dontwarn com.google.mediapipe.proto.CalculatorProfileProto$CalculatorProfile
+-dontwarn com.google.mediapipe.proto.GraphTemplateProto$CalculatorGraphTemplate

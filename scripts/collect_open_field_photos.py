@@ -73,6 +73,7 @@ def collect_open_field_photos(
     summary_path: Path,
     max_pages: int = 12,
     max_per_species: int = 8,
+    max_per_creator: int = 8,
     max_downloads: int = 200,
     queries: tuple[str, ...] = DEFAULT_QUERIES,
     include_species_search: bool = False,
@@ -90,6 +91,9 @@ def collect_open_field_photos(
     species_counts: Counter[int] = Counter(
         int(item["expected_pokemon_id"]) for item in selected
     )
+    creator_counts: Counter[str] = Counter(
+        str(item["source_creator"]).casefold() for item in selected
+    )
     seen_source_ids = {str(item["source_id"]) for item in selected}
     seen_sha256 = {str(item["normalized_sha256"]) for item in selected}
     rejected: Counter[str] = Counter()
@@ -103,11 +107,15 @@ def collect_open_field_photos(
                 break
             source_id = str(candidate["source_id"])
             pokemon_id = int(candidate["expected_pokemon_id"])
+            creator_key = str(candidate["source_creator"]).casefold()
             if source_id in seen_source_ids:
                 rejected["duplicate_source_id"] += 1
                 continue
             if species_counts[pokemon_id] >= max_per_species:
                 rejected["species_cap"] += 1
+                continue
+            if creator_counts[creator_key] >= max_per_creator:
+                rejected["creator_cap"] += 1
                 continue
             try:
                 normalized, media = _download_and_normalize(
@@ -143,6 +151,7 @@ def collect_open_field_photos(
             seen_source_ids.add(source_id)
             seen_sha256.add(digest)
             species_counts[pokemon_id] += 1
+            creator_counts[creator_key] += 1
             print(
                 f"downloaded {len(selected)}/{max_downloads}: "
                 f"#{pokemon_id} {candidate['expected_name_en']}",
@@ -256,25 +265,26 @@ def _discover_candidates(
                 time.sleep(0.25)
         if include_species_search:
             for index, item in enumerate(species, start=1):
-                query = f"{item['name_en']} Pokemon"
-                payload = _openverse_page(client, query=query, page=1)
-                results = payload.get("results") or []
-                if isinstance(results, list):
-                    for result in results:
-                        candidate = _candidate_from_result(
-                            result,
-                            species=species,
-                            query=query,
-                        )
-                        if candidate is not None:
-                            candidates.append(candidate)
+                for object_term in ("toy figure", "plush", "card"):
+                    query = f"{item['name_en']} Pokemon {object_term}"
+                    payload = _openverse_page(client, query=query, page=1)
+                    results = payload.get("results") or []
+                    if isinstance(results, list):
+                        for result in results:
+                            candidate = _candidate_from_result(
+                                result,
+                                species=species,
+                                query=query,
+                            )
+                            if candidate is not None:
+                                candidates.append(candidate)
+                    time.sleep(0.2)
                 if index % 10 == 0 or index == len(species):
                     print(
                         f"species searches {index}/{len(species)}: "
                         f"{len(candidates)} total candidates",
                         file=sys.stderr,
                     )
-                time.sleep(0.35)
     return candidates
 
 
@@ -525,6 +535,7 @@ def main() -> None:
     )
     parser.add_argument("--max-pages", type=int, default=12)
     parser.add_argument("--max-per-species", type=int, default=8)
+    parser.add_argument("--max-per-creator", type=int, default=8)
     parser.add_argument("--max-downloads", type=int, default=200)
     parser.add_argument("--species-search", action="store_true")
     args = parser.parse_args()
@@ -535,6 +546,7 @@ def main() -> None:
         summary_path=PROJECT_ROOT / args.summary_path,
         max_pages=max(1, min(args.max_pages, 12)),
         max_per_species=max(1, args.max_per_species),
+        max_per_creator=max(1, args.max_per_creator),
         max_downloads=max(1, args.max_downloads),
         include_species_search=args.species_search,
     )

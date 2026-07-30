@@ -48,5 +48,20 @@
       "license_status": "project_authored_derivative",
       "content_policy": "OCR error variants only"
     }
-  ]
+  ],
+  "schema_version": 1,
+  "artifacts": {
+    "dex.sqlite": {
+      "sha256": "a0879f17902f8d83ea5ac797eb512094f58a2979d36e2f85080fd0320d831115",
+      "size_bytes": 10465280
+    },
+    "gen1_visual_index.json": {
+      "sha256": "ffea6054b4d292582747eeab11d2a23691d14b28c7de3d50b3cf50dea30a9c3b",
+      "size_bytes": 1325938
+    },
+    "mobilenet_v3_small.tflite": {
+      "sha256": "bbbb4c51a55a53905af1daec995ca1aae355046f8839bb8c9f5ce9271394bc40",
+      "size_bytes": 4117670
+    }
+  }
 }

@@ -44,8 +44,16 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertEqual(head_response.status_code, 200)
         self.assertIn("Local Scan PoC", response.text)
         self.assertIn("/ui/app.js", response.text)
+        self.assertIn("/ui/camera-quality.js", response.text)
         self.assertIn('id="cameraInput"', response.text)
+        self.assertIn('id="cameraPreview"', response.text)
+        self.assertIn('id="startCameraButton"', response.text)
+        self.assertIn('id="captureButton"', response.text)
         self.assertNotIn("/ui/assets/rotomu/", response.text)
+        self.assertEqual(
+            self.client.get("/ui/assets/rotomu/rotom-phone.png").status_code,
+            404,
+        )
 
     def test_scan_text_matches_pikachu(self) -> None:
         response = self.client.post(
@@ -61,6 +69,7 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertEqual(payload["ocr_engine"], "fixture_text")
         self.assertNotEqual(payload["dataset_version"], "unknown")
         self.assertGreaterEqual(payload["latency_ms"], 0)
+        self.assertEqual(payload["top_candidates"][0]["form_name"], "base")
 
     def test_manual_search_returns_candidates(self) -> None:
         response = self.client.get("/v1/pokedex/search", params={"query": "피카", "limit": 5})
@@ -130,7 +139,7 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertEqual(payload["llm_model"], "grounded_template")
 
     def test_image_upload_never_uses_filename_as_ocr(self) -> None:
-        image_path = PROJECT_ROOT / "app" / "ui" / "assets" / "rotomu" / "rotom-phone.png"
+        image_path = next((PROJECT_ROOT / "docs" / "rotomu").glob("*.png"))
         with image_path.open("rb") as image:
             response = self.client.post(
                 "/v1/scan",
@@ -179,6 +188,10 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertIn("discovered_count", script)
         self.assertIn("poketdogam.qualityEvents", script)
         self.assertIn('"matcher_only"', script)
+        self.assertIn("navigator.mediaDevices.getUserMedia", script)
+        self.assertIn("captureCameraFrame", script)
+        self.assertIn("PoketdogamCameraQuality", script)
+        self.assertIn("확률이 아닌 비교 점수", script)
         self.assertTrue(script.rstrip().endswith("loadHealth();"))
 
     def test_health_and_privacy_delete_contract(self) -> None:
@@ -196,6 +209,19 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertFalse(privacy.json()["raw_images_stored"])
         deleted = self.client.delete(f"/v1/sessions/{session_id}")
         self.assertEqual(deleted.status_code, 204)
+        self.assertEqual(self.client.delete("/v1/sessions/not.valid").status_code, 422)
+
+    def test_fact_answer_cites_the_exact_fact_channel(self) -> None:
+        search = self.client.get("/v1/pokedex/search", params={"query": "피카츄", "limit": 1}).json()
+        response = self.client.post(
+            "/v1/chat",
+            json={"message": "약점", "form_id": search["matches"][0]["form_id"]},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        citation = response.json()["citations"][0]
+        self.assertEqual(citation["facet"], "weakness")
+        self.assertTrue(citation["passage_id"].startswith("fact:weakness:"))
 
     def test_voice_status_policy_blocks_official_mimicry(self) -> None:
         response = self.client.get("/v1/voice/status")

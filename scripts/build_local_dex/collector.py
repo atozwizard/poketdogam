@@ -6,6 +6,7 @@ from __future__ import annotations
 from pathlib import Path
 import argparse
 import json
+import os
 import shutil
 import sys
 import tempfile
@@ -18,6 +19,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from scripts.build_local_dex.build import build_local_dex
 from scripts.build_local_dex.validate_dex import validate
 from scripts.build_visual_index import build_visual_index
+from scripts.build_local_dex.artifacts import attach_artifact_manifest
 
 
 def collect_dex(
@@ -84,16 +86,43 @@ def collect_dex(
         if dry_run:
             return report
 
+        artifacts = {"dex.sqlite": staging_db}
+        if staging_visual_index.exists():
+            artifacts["gen1_visual_index.json"] = staging_visual_index
+        model_path = PROJECT_ROOT / "data" / "vision" / "mobilenet_v3_small.tflite"
+        if model_path.exists():
+            artifacts["mobilenet_v3_small.tflite"] = model_path
+        attach_artifact_manifest(staging_meta, artifacts)
         db_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(staging_db, db_path)
-        shutil.copy2(staging_meta, meta_path)
+        _atomic_copy(staging_db, db_path)
         if staging_visual_index.exists():
             visual_index_path.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(staging_visual_index, visual_index_path)
+            _atomic_copy(staging_visual_index, visual_index_path)
+        _atomic_copy(staging_meta, meta_path)
         report["committed_paths"] = {"db": str(db_path), "meta": str(meta_path)}
         if staging_visual_index.exists():
             report["committed_paths"]["visual_index"] = str(visual_index_path)
         return report
+
+
+def _atomic_copy(source: Path, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        prefix=f".{target.name}.",
+        suffix=".tmp",
+        dir=target.parent,
+        delete=False,
+    ) as temporary:
+        temporary_path = Path(temporary.name)
+        with source.open("rb") as handle:
+            shutil.copyfileobj(handle, temporary)
+        temporary.flush()
+        os.fsync(temporary.fileno())
+    try:
+        shutil.copystat(source, temporary_path)
+        os.replace(temporary_path, target)
+    finally:
+        temporary_path.unlink(missing_ok=True)
 
 
 def _attach_visual_meta(meta_path: Path, visual_result: dict[str, object]) -> None:

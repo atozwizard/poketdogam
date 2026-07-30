@@ -15,6 +15,8 @@ ALLOWED_TRACE_KEYS = {
     "intent",
     "model",
     "ocr_engine",
+    "recognition_mode",
+    "visual_engine",
     "match_score",
     "dataset_version",
     "facet",

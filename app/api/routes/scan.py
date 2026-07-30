@@ -1,5 +1,8 @@
 # Run: python app/api/routes/scan.py
 from pathlib import Path
+from io import BytesIO
+import asyncio
+from threading import BoundedSemaphore
 import sys
 from time import perf_counter
 from uuid import uuid4
@@ -10,15 +13,19 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from fastapi import APIRouter, File, HTTPException, UploadFile
+from starlette.concurrency import run_in_threadpool
 
 from app.agents.pokedex_agent.graph import PokedexAgentGraph
 from app.agents.pokedex_agent.state import AgentState
+from app.config.settings import get_settings
 from app.schemas.domain import ScanCandidate
 from app.schemas.api import ScanResponse, ScanTextRequest
 
 router = APIRouter(tags=["scan"])
 agent = PokedexAgentGraph()
+scan_capacity = BoundedSemaphore(value=1)
 MAX_UPLOAD_BYTES = 8 * 1024 * 1024
+MAX_IMAGE_PIXELS = 40_000_000
 ALLOWED_IMAGE_TYPES = {
     "image/png",
     "image/jpeg",
@@ -43,11 +50,29 @@ async def scan(image: UploadFile = File(...)) -> ScanResponse:
         raise HTTPException(status_code=413, detail="이미지 크기는 8MB 이하여야 합니다.")
     if not _matches_image_signature(image_bytes, content_type):
         raise HTTPException(status_code=415, detail="파일 내용이 유효한 이미지 형식이 아닙니다.")
-    state, candidates = agent.run_scan(
-        image_bytes=image_bytes,
-        filename=image.filename or _default_filename(content_type),
-        content_type=content_type,
-    )
+    _validate_image_dimensions(image_bytes, content_type)
+    settings = get_settings()
+    try:
+        state, candidates = await asyncio.wait_for(
+            run_in_threadpool(
+                _run_scan_with_capacity,
+                image_bytes,
+                image.filename or _default_filename(content_type),
+                content_type,
+            ),
+            timeout=settings.scan_timeout_seconds,
+        )
+    except ScanCapacityError as exc:
+        raise HTTPException(
+            status_code=429,
+            detail="이미지 분석이 진행 중입니다. 잠시 후 다시 시도하세요.",
+            headers={"Retry-After": "1"},
+        ) from exc
+    except TimeoutError as exc:
+        raise HTTPException(
+            status_code=504,
+            detail="이미지 분석 시간이 초과되었습니다. 더 작은 이미지로 다시 시도하세요.",
+        ) from exc
     return _scan_response(state, candidates, started_at)
 
 
@@ -95,6 +120,23 @@ def _recognition_mode(candidates: list[ScanCandidate]) -> str:
     return "ocr"
 
 
+class ScanCapacityError(RuntimeError):
+    pass
+
+
+def _run_scan_with_capacity(
+    image_bytes: bytes,
+    filename: str,
+    content_type: str,
+) -> tuple[AgentState, list[ScanCandidate]]:
+    if not scan_capacity.acquire(timeout=1.0):
+        raise ScanCapacityError
+    try:
+        return agent.run_scan(image_bytes, filename, content_type)
+    finally:
+        scan_capacity.release()
+
+
 def _matches_image_signature(image_bytes: bytes, content_type: str) -> bool:
     if not image_bytes:
         return False
@@ -109,6 +151,27 @@ def _matches_image_signature(image_bytes: bytes, content_type: str) -> bool:
     if content_type == "image/tiff":
         return image_bytes.startswith((b"II*\x00", b"MM\x00*"))
     return False
+
+
+def _validate_image_dimensions(image_bytes: bytes, content_type: str) -> None:
+    try:
+        from PIL import Image, UnidentifiedImageError
+    except ImportError as exc:
+        raise HTTPException(status_code=503, detail="이미지 검증 모듈을 사용할 수 없습니다.") from exc
+
+    try:
+        with Image.open(BytesIO(image_bytes)) as image:
+            width, height = image.size
+    except (UnidentifiedImageError, OSError, ValueError) as exc:
+        raise HTTPException(status_code=415, detail="이미지 구조를 확인할 수 없습니다.") from exc
+
+    if width < 32 or height < 32:
+        raise HTTPException(status_code=422, detail="이미지는 가로·세로 각각 32px 이상이어야 합니다.")
+    if width * height > MAX_IMAGE_PIXELS:
+        raise HTTPException(
+            status_code=413,
+            detail="디코딩된 이미지 해상도는 4천만 픽셀 이하여야 합니다.",
+        )
 
 
 def _default_filename(content_type: str) -> str:

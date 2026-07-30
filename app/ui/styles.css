@@ -529,7 +529,8 @@ dd {
   background-size: 28px 28px, 28px 28px, auto, auto;
 }
 
-.scan-preview {
+.scan-preview,
+.camera-preview {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -539,6 +540,13 @@ dd {
   background: #17191c;
 }
 
+.camera-preview {
+  object-fit: cover;
+}
+
+.camera-preview:not([hidden]) ~ .reticle,
+.camera-preview:not([hidden]) ~ .lens-readout,
+.camera-preview:not([hidden]) ~ .scan-beam,
 .scan-preview:not([hidden]) ~ .reticle,
 .scan-preview:not([hidden]) ~ .lens-readout,
 .scan-preview:not([hidden]) ~ .scan-beam {
@@ -610,6 +618,7 @@ dd {
 }
 
 .fixture-row,
+.camera-actions,
 .command-row {
   display: flex;
   flex-wrap: wrap;
@@ -617,13 +626,9 @@ dd {
   margin-top: 12px;
 }
 
-.upload-zone {
+.camera-actions {
   display: grid;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.upload-zone + .lens {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 12px;
 }
 
@@ -634,6 +639,21 @@ dd {
   min-height: 48px;
   text-align: center;
   cursor: pointer;
+}
+
+.capture-command {
+  min-height: 48px;
+  padding: 0 18px;
+  border-color: rgba(0, 126, 133, 0.45);
+  color: #fff;
+  background: linear-gradient(135deg, var(--deep-cyan), #064b5d);
+  font-weight: 900;
+}
+
+.capture-command:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.45);
+  opacity: 0.55;
 }
 
 .upload-hint {
@@ -1339,7 +1359,7 @@ input:focus {
 
   .lid-copy .eyebrow {
     margin-bottom: 2px;
-    font-size: 0.68rem;
+    font-size: 0.78rem;
   }
 
   .rotom-line {
@@ -1351,7 +1371,7 @@ input:focus {
   .poc-badge {
     margin-top: 5px;
     padding: 3px 7px;
-    font-size: 0.61rem;
+    font-size: 0.75rem;
   }
 
   .dex-lid .system-meta {
@@ -1372,13 +1392,13 @@ input:focus {
   }
 
   .dex-lid .system-meta dt {
-    font-size: 0.62rem;
+    font-size: 0.75rem;
   }
 
   .dex-lid .system-meta dd {
     margin-top: 2px;
     overflow-wrap: anywhere;
-    font-size: 0.7rem;
+    font-size: 0.78rem;
   }
 
   .dex-shell .section-nav {
@@ -1388,6 +1408,14 @@ input:focus {
   .dex-shell .workspace {
     margin: 8px;
     padding: 8px;
+  }
+
+  .camera-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .camera-actions .upload-command {
+    grid-column: 1 / -1;
   }
 
   .hinge {
@@ -1426,7 +1454,7 @@ input:focus {
   }
 
   .nav-button {
-    min-height: 38px;
+    min-height: 48px;
     font-size: 0.9rem;
   }
 

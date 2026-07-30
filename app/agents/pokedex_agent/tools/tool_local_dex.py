@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 from contextlib import closing
+from functools import lru_cache
+from hashlib import sha256
 from pathlib import Path
 import sqlite3
 import sys
@@ -49,6 +51,19 @@ class LocalDexStore:
             "sources": json.loads(row["sources_json"] or "[]"),
         }
 
+    def integrity_status(self) -> dict[str, object]:
+        settings = get_settings()
+        meta_path = resolve_project_path(settings.dex_meta_path)
+        if not self.db_path.exists() or not meta_path.exists():
+            return {"valid": False, "schema_version": 0, "reason": "artifact_missing"}
+        return _cached_integrity_status(
+            str(self.db_path),
+            self.db_path.stat().st_mtime_ns,
+            self.db_path.stat().st_size,
+            str(meta_path),
+            meta_path.stat().st_mtime_ns,
+        )
+
     def match_name(
         self,
         raw_text: str,
@@ -85,7 +100,15 @@ class LocalDexStore:
                     match_reason=match.reason,
                 )
             )
-        return candidates
+        return sorted(
+            candidates,
+            key=lambda item: (
+                -float(item.confidence),
+                item.form_name != "base",
+                int(item.pokemon_id or 0),
+                item.form_id,
+            ),
+        )[:top_k]
 
     def search_first(self, query: str) -> dict[str, Any] | None:
         candidates = self.match_name(query, top_k=1, threshold=0.55)
@@ -277,13 +300,48 @@ class LocalDexStore:
         return [dict(row) for row in rows]
 
     def _connect(self) -> sqlite3.Connection:
-        conn = sqlite3.connect(self.db_path)
+        conn = sqlite3.connect(f"file:{self.db_path}?mode=ro", uri=True)
         conn.row_factory = sqlite3.Row
         return conn
 
 
 def get_local_dex() -> LocalDexStore:
     return LocalDexStore()
+
+
+@lru_cache(maxsize=4)
+def _cached_integrity_status(
+    db_path_value: str,
+    db_mtime_ns: int,
+    db_size: int,
+    meta_path_value: str,
+    meta_mtime_ns: int,
+) -> dict[str, object]:
+    del db_mtime_ns, meta_mtime_ns
+    db_path = Path(db_path_value)
+    meta_path = Path(meta_path_value)
+    try:
+        metadata = json.loads(meta_path.read_text(encoding="utf-8"))
+        expected = (metadata.get("artifacts") or {}).get("dex.sqlite") or {}
+        if int(expected.get("size_bytes") or -1) != db_size:
+            return {"valid": False, "schema_version": 0, "reason": "size_mismatch"}
+        digest = sha256()
+        with db_path.open("rb") as handle:
+            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+                digest.update(chunk)
+        if digest.hexdigest() != str(expected.get("sha256") or ""):
+            return {"valid": False, "schema_version": 0, "reason": "sha256_mismatch"}
+        with closing(sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)) as conn:
+            schema_version = int(conn.execute("pragma user_version").fetchone()[0])
+            quick_check = str(conn.execute("pragma quick_check").fetchone()[0])
+        valid = schema_version >= 1 and quick_check == "ok"
+        return {
+            "valid": valid,
+            "schema_version": schema_version,
+            "reason": "ok" if valid else "sqlite_integrity",
+        }
+    except (OSError, ValueError, json.JSONDecodeError, sqlite3.Error):
+        return {"valid": False, "schema_version": 0, "reason": "verification_error"}
 
 
 def main() -> None:

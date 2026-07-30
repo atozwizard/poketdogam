@@ -58,6 +58,7 @@ def fuse_candidates(
             -float(item.confidence),
             -float(item.ocr_confidence or 0.0),
             -float(item.visual_confidence or 0.0),
+            item.form_name != "base",
             int(item.pokemon_id or 0),
             item.form_id,
         ),
@@ -73,4 +74,3 @@ def _weights_for(ocr_candidates: list[ScanCandidate]) -> FusionWeights:
     if top >= 0.72:
         return FusionWeights(ocr=0.55, visual=0.45)
     return FusionWeights(ocr=0.35, visual=0.65)
-

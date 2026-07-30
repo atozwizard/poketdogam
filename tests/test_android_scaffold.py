@@ -23,11 +23,24 @@ class AndroidScaffoldTest(unittest.TestCase):
             PROJECT_ROOT
             / "android/app/src/main/java/com/twentyflags/poketdogam/RotomNarrator.kt"
         ).read_text(encoding="utf-8")
+        ranker = (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/CandidateRanker.kt"
+        ).read_text(encoding="utf-8")
+        ranker_test = (
+            PROJECT_ROOT
+            / "android/app/src/test/java/com/twentyflags/poketdogam/CandidateRankerTest.kt"
+        ).read_text(encoding="utf-8")
+        asset_integrity = (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/AssetIntegrity.kt"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("text-recognition-korean:16.0.1", build_file)
         self.assertIn("tasks-vision:0.10.29", build_file)
         self.assertIn("camera-view:1.6.1", build_file)
         self.assertIn("../data/dex.sqlite", build_file)
+        self.assertIn("../data/dex.meta.json", build_file)
         self.assertIn("../data/vision/gen1_visual_index.json", build_file)
         self.assertIn("../data/vision/mobilenet_v3_small.tflite", build_file)
         self.assertIn("android.permission.CAMERA", manifest)
@@ -44,6 +57,16 @@ class AndroidScaffoldTest(unittest.TestCase):
         self.assertIn("TextToSpeech", activity)
         self.assertIn("reference_count", visual_matcher)
         self.assertIn("buildNarration", narrator)
+        self.assertIn('assetIntegrity.fileMatches("dex.sqlite", target)', (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/DexRepository.kt"
+        ).read_text(encoding="utf-8"))
+        self.assertIn('it.formName != "base"', ranker)
+        self.assertIn("equalOcrScoresPreferBaseForm", ranker_test)
+        self.assertIn("Bundled $name checksum mismatch", asset_integrity)
+        self.assertIn('requireVerified("mobilenet_v3_small.tflite")', visual_matcher)
+        self.assertIn("listOf(0.50, 0.32)", visual_matcher)
+        self.assertIn("downscaleForEmbedding", visual_matcher)
 
 
 if __name__ == "__main__":

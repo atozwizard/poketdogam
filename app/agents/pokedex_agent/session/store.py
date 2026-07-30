@@ -154,6 +154,59 @@ class SessionStore:
                 conn.execute("delete from turns where turn_id = ?", (stale,))
             conn.commit()
 
+    def append_exchange(
+        self,
+        session_id: str,
+        *,
+        user_content: str,
+        assistant_content: str,
+        assistant_metadata: dict[str, object] | None = None,
+        flow_state: FlowState,
+    ) -> None:
+        now = time.time()
+        with closing(self._connect()) as conn:
+            try:
+                conn.execute("begin immediate")
+                for role, content, metadata in (
+                    ("user", user_content, {}),
+                    ("assistant", assistant_content, assistant_metadata or {}),
+                ):
+                    conn.execute(
+                        """
+                        insert into turns(turn_id, session_id, role, content, metadata_json, created_at)
+                        values (?, ?, ?, ?, ?, ?)
+                        """,
+                        (
+                            str(uuid4()),
+                            session_id,
+                            role,
+                            content,
+                            json.dumps(metadata, ensure_ascii=False),
+                            now,
+                        ),
+                    )
+                conn.execute(
+                    """
+                    update sessions
+                    set flow_state_json = ?, turn_count = turn_count + 2, last_active_at = ?
+                    where session_id = ?
+                    """,
+                    (json.dumps(flow_state.to_dict(), ensure_ascii=False), now, session_id),
+                )
+                ids = [
+                    row["turn_id"]
+                    for row in conn.execute(
+                        "select turn_id from turns where session_id = ? order by created_at desc, rowid desc",
+                        (session_id,),
+                    ).fetchall()
+                ]
+                for stale in ids[MAX_TURNS:]:
+                    conn.execute("delete from turns where turn_id = ?", (stale,))
+                conn.commit()
+            except Exception:
+                conn.rollback()
+                raise
+
     def recent_turns(self, session_id: str, limit: int = 6) -> list[dict[str, object]]:
         with closing(self._connect()) as conn:
             rows = conn.execute(

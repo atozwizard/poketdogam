@@ -1,6 +1,7 @@
 # Run: python app/api/routes/chat.py
 from pathlib import Path
 import json
+import re
 import sys
 from collections.abc import Iterator
 
@@ -26,10 +27,13 @@ from app.schemas.api import ChatRequest, ChatResponse
 router = APIRouter(tags=["chat"])
 agent = PokedexAgentGraph()
 sessions = SessionStore()
+SESSION_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 
 
 @router.delete("/sessions/{session_id}", status_code=204)
 def delete_session(session_id: str) -> Response:
+    if not SESSION_ID_PATTERN.fullmatch(session_id):
+        raise HTTPException(status_code=422, detail="Invalid session id")
     if not sessions.delete(session_id):
         raise HTTPException(status_code=404, detail="Session not found")
     return Response(status_code=204)
@@ -191,12 +195,11 @@ def _persist_session(
     passages = state.retrieval_context.get("passages") if isinstance(state.retrieval_context, dict) else []
     if isinstance(passages, list):
         flow_state.evidence_ids = [str(item.get("passage_id")) for item in passages[:5] if isinstance(item, dict)]
-    sessions.append_turn(session_id, role="user", content=user_message, flow_state=None)
-    sessions.append_turn(
+    sessions.append_exchange(
         session_id,
-        role="assistant",
-        content=state.response_text,
-        metadata={
+        user_content=user_message,
+        assistant_content=state.response_text,
+        assistant_metadata={
             "trace_id": state.trace_id,
             "facet": flow_state.last_facet,
             "strategy": state.retrieval_context.get("strategy"),
@@ -216,6 +219,23 @@ def _suggested_actions(state: AgentState) -> list[str]:
 
 def _citations(state: AgentState) -> list[dict[str, str]]:
     passages = state.retrieval_context.get("passages") if isinstance(state.retrieval_context, dict) else []
+    facet = str(state.retrieval_context.get("facet") or "profile")
+    detail = state.retrieval_context.get("detail") if isinstance(state.retrieval_context, dict) else None
+    if facet in {"weakness", "resistance", "type", "evolution", "stats"} and isinstance(detail, dict):
+        labels = {
+            "weakness": "타입 상성표 기반 약점",
+            "resistance": "타입 상성표 기반 반감·무효",
+            "type": "선택 폼의 타입 정보",
+            "evolution": "선택 폼의 진화 관계",
+            "stats": "선택 폼의 종족값",
+        }
+        return [
+            {
+                "passage_id": f"fact:{facet}:{detail.get('form_id') or ''}",
+                "title": labels[facet],
+                "facet": facet,
+            }
+        ]
     if not isinstance(passages, list):
         return []
     citations = []

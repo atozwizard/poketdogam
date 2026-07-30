@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Base64
+import androidx.core.graphics.scale
 import androidx.exifinterface.media.ExifInterface
 import com.google.mediapipe.framework.image.BitmapImageBuilder
 import com.google.mediapipe.tasks.core.BaseOptions
@@ -12,6 +13,7 @@ import com.google.mediapipe.tasks.vision.imageembedder.ImageEmbedder
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.charset.StandardCharsets
 import kotlin.math.sqrt
 import org.json.JSONObject
 
@@ -24,10 +26,12 @@ class VisualMatcher(
     private val context: Context,
     private val repository: DexRepository,
 ) : AutoCloseable {
+    private val assetIntegrity = AssetIntegrity(context)
     private val references: List<VisualReference> by lazy { loadReferences() }
     private var embedderInstance: ImageEmbedder? = null
     private fun getEmbedder(): ImageEmbedder {
         embedderInstance?.let { return it }
+        assetIntegrity.requireVerified("mobilenet_v3_small.tflite")
         val baseOptions = BaseOptions.builder()
             .setModelAssetPath("mobilenet_v3_small.tflite")
             .build()
@@ -41,7 +45,10 @@ class VisualMatcher(
 
     fun match(imageFile: File, limit: Int = 5): List<DexCandidate> {
         val decoded = BitmapFactory.decodeFile(imageFile.path) ?: return emptyList()
-        val bitmap = orientBitmap(decoded, imageFile)
+        val oriented = orientBitmap(decoded, imageFile)
+        val bitmap = downscaleForEmbedding(oriented).also {
+            if (it !== oriented) oriented.recycle()
+        }
         val views = imageViews(bitmap)
         val queries = try {
             views.mapNotNull { view ->
@@ -97,9 +104,12 @@ class VisualMatcher(
     }
 
     private fun loadReferences(): List<VisualReference> {
-        val payload = context.assets.open("gen1_visual_index.json")
-            .bufferedReader()
-            .use { JSONObject(it.readText()) }
+        val payload = JSONObject(
+            String(
+                assetIntegrity.readVerified("gen1_visual_index.json"),
+                StandardCharsets.UTF_8,
+            )
+        )
         require(payload.getString("scope") == "generation_1_all_forms")
         val items = payload.getJSONArray("items")
         return buildList {
@@ -130,6 +140,28 @@ class VisualMatcher(
             val top = ((bitmap.height - side) / 2).coerceAtLeast(0)
             add(Bitmap.createBitmap(bitmap, left, top, side, side))
         }
+        listOf(0.50, 0.32).forEach { fraction ->
+            val side = (shortest * fraction).toInt().coerceAtLeast(1)
+            val maxLeft = (bitmap.width - side).coerceAtLeast(0)
+            val maxTop = (bitmap.height - side).coerceAtLeast(0)
+            listOf(0.0, 0.5, 1.0).forEach { topRatio ->
+                listOf(0.0, 0.5, 1.0).forEach { leftRatio ->
+                    val left = (maxLeft * leftRatio).toInt()
+                    val top = (maxTop * topRatio).toInt()
+                    add(Bitmap.createBitmap(bitmap, left, top, side, side))
+                }
+            }
+        }
+    }
+
+    private fun downscaleForEmbedding(bitmap: Bitmap): Bitmap {
+        val longest = maxOf(bitmap.width, bitmap.height)
+        if (longest <= 1024) return bitmap
+        val scale = 1024.0 / longest
+        return bitmap.scale(
+            (bitmap.width * scale).toInt().coerceAtLeast(1),
+            (bitmap.height * scale).toInt().coerceAtLeast(1),
+        )
     }
 
     private fun orientBitmap(bitmap: Bitmap, imageFile: File): Bitmap {
@@ -170,5 +202,5 @@ class VisualMatcher(
     }
 
     private fun calibrate(similarity: Double): Double =
-        ((similarity - 0.35) / 0.6).coerceIn(0.0, 1.0)
+        ((similarity + 1.0) / 2.0).coerceIn(0.0, 1.0)
 }

@@ -29,6 +29,7 @@ class VisualDexMatcher:
             str(model_path or settings.visual_embedding_model_path)
         )
         self._embedder = None
+        self._reference_cache: list[sqlite3.Row] | None = None
         self._lock = Lock()
 
     def is_available(self) -> bool:
@@ -130,7 +131,7 @@ class VisualDexMatcher:
         *,
         top_k: int,
     ) -> list[tuple[float, sqlite3.Row]]:
-        queries = self._embed_views(image_bytes)
+        queries = self._embed_views(image_bytes, include_grid=True)
         if not queries:
             return []
         rows = self._reference_rows()
@@ -168,6 +169,7 @@ class VisualDexMatcher:
 
         with Image.open(BytesIO(image_bytes)) as image:
             rgb = image.convert("RGB")
+            rgb.thumbnail((1024, 1024), Image.Resampling.LANCZOS)
             views = [rgb, *_center_square_views(rgb)]
             if include_grid:
                 views.extend(_grid_square_views(rgb))
@@ -197,9 +199,11 @@ class VisualDexMatcher:
         return embeddings
 
     def _reference_rows(self) -> list[sqlite3.Row]:
+        if self._reference_cache is not None:
+            return self._reference_cache
         with closing(sqlite3.connect(self.db_path)) as conn:
             conn.row_factory = sqlite3.Row
-            return conn.execute(
+            rows = conn.execute(
                 """
                 select
                     v.form_id,
@@ -217,6 +221,8 @@ class VisualDexMatcher:
                 """,
                 (MODEL_ID,),
             ).fetchall()
+        self._reference_cache = rows
+        return rows
 
     def _embed(self, image_bytes: bytes) -> list[float]:
         embeddings = self._embed_views(image_bytes)
@@ -254,7 +260,8 @@ def _grid_square_views(image) -> list[object]:
 
 
 def _calibrate_similarity(similarity: float) -> float:
-    return round(min(1.0, max(0.0, (similarity - 0.35) / 0.6)), 4)
+    # Cosine similarity is a ranking signal, not a calibrated probability.
+    return round(min(1.0, max(0.0, (similarity + 1.0) / 2.0)), 4)
 
 
 _VISUAL_MATCHER: VisualDexMatcher | None = None

@@ -19,3 +19,18 @@ jobs:
           node-version: "22"
       - run: uv sync --frozen --extra vision
       - run: bash scripts/quality_gate.sh
+
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+      - uses: android-actions/setup-android@v3
+      - run: chmod +x gradlew
+        working-directory: android
+      - run: ./gradlew testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest bundleRelease --stacktrace
+        working-directory: android

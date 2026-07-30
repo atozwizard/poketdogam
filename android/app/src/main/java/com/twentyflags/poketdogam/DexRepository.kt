@@ -3,6 +3,10 @@ package com.twentyflags.poketdogam
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import java.io.File
+import java.io.FileOutputStream
+import java.nio.file.AtomicMoveNotSupportedException
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import java.text.Normalizer
 import org.json.JSONObject
 
@@ -44,13 +48,33 @@ data class DexDetail(
 )
 
 class DexRepository(private val context: Context) {
+    private val assetIntegrity = AssetIntegrity(context)
     private val database: SQLiteDatabase by lazy {
         val directory = File(context.filesDir, "dex").apply { mkdirs() }
         val target = File(directory, "dex.sqlite")
-        val assetSize = context.assets.open("dex.sqlite").use { it.available().toLong() }
-        if (!target.exists() || target.length() != assetSize) {
+        val expectedHash = assetIntegrity.expectedSha256("dex.sqlite")
+        if (!assetIntegrity.fileMatches("dex.sqlite", target)) {
+            val temporary = File(directory, ".dex.sqlite.tmp")
             context.assets.open("dex.sqlite").use { source ->
-                target.outputStream().use(source::copyTo)
+                FileOutputStream(temporary).use { output ->
+                    source.copyTo(output)
+                    output.fd.sync()
+                }
+            }
+            check(assetIntegrity.sha256(temporary) == expectedHash) { "Bundled Dex checksum mismatch" }
+            try {
+                Files.move(
+                    temporary.toPath(),
+                    target.toPath(),
+                    StandardCopyOption.ATOMIC_MOVE,
+                    StandardCopyOption.REPLACE_EXISTING,
+                )
+            } catch (_: AtomicMoveNotSupportedException) {
+                Files.move(
+                    temporary.toPath(),
+                    target.toPath(),
+                    StandardCopyOption.REPLACE_EXISTING,
+                )
             }
         }
         SQLiteDatabase.openDatabase(target.path, null, SQLiteDatabase.OPEN_READONLY)
@@ -73,7 +97,9 @@ class DexRepository(private val context: Context) {
             join pokemon_species s on s.pokemon_id = f.pokemon_id
             where a.alias_norm = ? or instr(?, a.alias_norm) > 0
                 or a.alias_norm in ($placeholders)
-            order by score desc, length(a.alias_norm) desc, f.pokemon_id
+            order by score desc, length(a.alias_norm) desc,
+                case when f.form_name = 'base' then 0 else 1 end,
+                f.pokemon_id, f.form_id
             limit ?
         """.trimIndent()
         val args = mutableListOf(normalized, normalized, normalized, normalized)
@@ -127,42 +153,7 @@ class DexRepository(private val context: Context) {
         visualCandidates: List<DexCandidate>,
         limit: Int = 3,
     ): List<DexCandidate> {
-        if (ocrCandidates.isEmpty() && visualCandidates.isEmpty()) return emptyList()
-        val topOcr = ocrCandidates.firstOrNull()?.confidence ?: 0.0
-        val (ocrWeight, visualWeight) = when {
-            ocrCandidates.isEmpty() -> 0.0 to 1.0
-            visualCandidates.isEmpty() -> 1.0 to 0.0
-            topOcr >= 0.9 -> 0.75 to 0.25
-            topOcr >= 0.72 -> 0.55 to 0.45
-            else -> 0.35 to 0.65
-        }
-        val ocrByForm = ocrCandidates.associateBy { it.formId }
-        val visualByForm = visualCandidates.associateBy { it.formId }
-        return (ocrByForm.keys + visualByForm.keys)
-            .mapNotNull { formId ->
-                val ocr = ocrByForm[formId]
-                val visual = visualByForm[formId]
-                val base = ocr ?: visual ?: return@mapNotNull null
-                val ocrScore = ocr?.confidence
-                val visualScore = visual?.confidence
-                base.copy(
-                    confidence = (ocrWeight * (ocrScore ?: 0.0) +
-                        visualWeight * (visualScore ?: 0.0)).coerceIn(0.0, 1.0),
-                    ocrConfidence = ocrScore,
-                    visualConfidence = visualScore,
-                    evidence = buildList {
-                        if (ocrScore != null) add("OCR")
-                        if (visualScore != null) add("이미지")
-                    },
-                )
-            }
-            .sortedWith(
-                compareByDescending<DexCandidate> { it.confidence }
-                    .thenByDescending { it.ocrConfidence ?: 0.0 }
-                    .thenByDescending { it.visualConfidence ?: 0.0 }
-                    .thenBy { it.pokemonId }
-            )
-            .take(limit)
+        return CandidateRanker.fuse(ocrCandidates, visualCandidates, limit)
     }
 
     fun detail(formId: String): DexDetail? {

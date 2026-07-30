@@ -64,26 +64,39 @@
             </div>
             <p class="panel-lead">대상을 화면 중앙에 크게 두고, 카드라면 이름도 선명하게 촬영하세요.</p>
 
-            <div class="upload-zone">
-              <label class="primary-command upload-command" for="cameraInput">촬영·이미지 선택</label>
-              <input id="cameraInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/heic,image/heif,image/tiff" capture="environment">
-              <p id="uploadHint" class="upload-hint">PNG·JPEG·WebP·HEIC·TIFF, 최대 8MB</p>
-            </div>
-
             <div class="lens" id="lens">
+              <video
+                id="cameraPreview"
+                class="camera-preview"
+                aria-label="포켓몬 촬영 카메라 미리보기"
+                autoplay
+                muted
+                playsinline
+                hidden
+              ></video>
               <img id="scanPreview" class="scan-preview" alt="선택한 포켓몬 이미지 미리보기" hidden>
               <div class="scan-beam"></div>
               <div class="reticle">
                 <span></span><span></span><span></span><span></span>
               </div>
-              <div class="lens-readout">
-                <strong id="lensState">READY</strong>
-                <small id="lensScore">match --</small>
+              <div class="lens-readout" aria-live="polite">
+                <strong id="lensState">준비</strong>
+                <small id="lensScore">후보 점수 --</small>
               </div>
             </div>
 
+            <div class="camera-actions" aria-label="카메라 촬영">
+              <button id="startCameraButton" class="primary-command" type="button">카메라 켜기</button>
+              <button id="captureButton" class="capture-command" type="button" disabled>사진 촬영</button>
+              <label class="secondary-command upload-command" for="cameraInput">갤러리에서 선택</label>
+              <input id="cameraInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/heic,image/heif,image/tiff" capture="environment">
+            </div>
+            <p id="uploadHint" class="upload-hint" aria-live="polite">
+              카메라는 이 렌즈 안에서만 동작합니다. 촬영본은 분석 중에만 사용하며 저장하지 않습니다.
+            </p>
+
             <div class="command-row">
-              <button id="imageScanButton" class="primary-command" type="button" disabled>선택 이미지 분석</button>
+              <button id="imageScanButton" class="primary-command" type="button" disabled>촬영 이미지 분석</button>
               <button id="clearButton" class="secondary-command" type="button">다시 시작</button>
             </div>
 
@@ -112,7 +125,7 @@
                 <h3>인식 후보</h3>
               </div>
               <div id="candidateList" class="candidate-list"></div>
-              <p id="scanGuidance" class="save-hint">이미지를 선택하거나 이름을 검색하면 후보가 표시됩니다.</p>
+              <p id="scanGuidance" class="save-hint" aria-live="polite">이미지를 선택하거나 이름을 검색하면 후보가 표시됩니다.</p>
             </div>
           </section>
 
@@ -215,11 +228,11 @@
               </div>
               <div class="range-grid">
                 <label class="range-control" for="voicePitch">
-                  <span>Pitch</span>
+                  <span>음높이</span>
                   <input id="voicePitch" type="range" min="0.7" max="1.7" step="0.05" value="1.18">
                 </label>
                 <label class="range-control" for="voiceSpeed">
-                  <span>Speed</span>
+                  <span>말하기 속도</span>
                   <input id="voiceSpeed" type="range" min="0.75" max="1.35" step="0.05" value="1.08">
                 </label>
               </div>
@@ -247,7 +260,7 @@
             <div id="collectionList" class="collection-list"></div>
             <aside class="privacy-card">
               <strong>로컬 개인정보 안내</strong>
-              <p>업로드 이미지는 저장하지 않습니다. 대화는 이어 말하기를 위해 이 기기에 최대 30분 보관되며, 위 버튼으로 즉시 삭제할 수 있습니다.</p>
+              <p>업로드 이미지는 저장하지 않습니다. 대화는 이어 말하기를 위해 실행 중인 로컬 서버에 최대 30분 보관되며, 위 버튼으로 즉시 삭제할 수 있습니다.</p>
             </aside>
           </section>
         </div>
@@ -256,6 +269,7 @@
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="/ui/camera-quality.js"></script>
     <script src="/ui/app.js"></script>
   </body>
 </html>

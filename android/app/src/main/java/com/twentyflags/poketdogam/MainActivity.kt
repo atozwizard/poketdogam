@@ -42,9 +42,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
@@ -156,7 +158,9 @@ private fun PoketdogamScreen() {
                                 cameraController.bindToLifecycle(activity)
                             }
                         },
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .testTag("camera_preview"),
                     )
                     Box(
                         modifier = Modifier
@@ -199,7 +203,9 @@ private fun PoketdogamScreen() {
                         onError = { message -> status = message },
                     )
                 },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("capture_button"),
             ) {
                 Text("촬영하고 이름+외형 분석")
             }
@@ -222,7 +228,7 @@ private fun PoketdogamScreen() {
                 Text(
                     "$number ${candidate.nameKo} · ${candidate.formName} · " +
                         "${candidate.types.joinToString("/")} · $evidence " +
-                        "${(candidate.confidence * 100).toInt()}%"
+                        "후보 점수 ${(candidate.confidence * 100).toInt()}/100"
                 )
             }
         }
@@ -259,7 +265,7 @@ private fun PoketdogamScreen() {
                                 checked = autoNarration,
                                 onCheckedChange = { checked ->
                                     autoNarration = checked
-                                    preferences.edit().putBoolean("auto_narration", checked).apply()
+                                    preferences.edit { putBoolean("auto_narration", checked) }
                                 },
                             )
                         }

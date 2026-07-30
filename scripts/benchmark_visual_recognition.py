@@ -72,7 +72,7 @@ def benchmark_visual_recognition(
                     seed_key=f"{record['form_id']}:{scenario}",
                 )
                 started = time.perf_counter()
-                queries = matcher._embed_views(image_bytes)
+                queries = matcher._embed_views(image_bytes, include_grid=True)
                 if queries:
                     query_matrix = np.asarray(queries, dtype=np.float32)
                     scores = (reference_matrix @ query_matrix.T).max(axis=1)

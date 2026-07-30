@@ -7,11 +7,12 @@
   included in the database, web runtime, Android assets, or Git.
 - The committed index contains numeric embeddings, form IDs, model metadata, and
   hashed source URLs only.
-- Runtime matching embeds the full frame and two centered square crops (68% and
-  56%), then keeps the best score per form. Android also honors JPEG EXIF
-  orientation before embedding.
+- Runtime matching downsizes the input to at most 1024px and embeds the full
+  frame, two centered square crops (68% and 56%), and eighteen position crops
+  (50% and 32% on a 3x3 grid), then keeps the best score per form. Android also
+  honors JPEG EXIF orientation before embedding.
 - `benchmark.json` records a 238-form/714-query transformed holdout. Form
-  recall@3 is 94.54% overall and at least 93.70% in every committed scenario.
+  recall@3 is 93.70% overall and at least 92.86% in every committed scenario.
   Run `uv run --extra vision python scripts/benchmark_visual_recognition.py` to
   regenerate it; temporary source and transformed images are discarded.
 - The benchmark is a regression gate for indirect reference transforms, not a
@@ -45,8 +46,8 @@ Committed evidence, without the photographs:
   privacy-reviewed samples; 9 species, 5 creators; 67 figures/toys and 1 card.
 - `field_attribution.json`: source page, creator, license, expected species, and
   object type for every eligible sample.
-- `field_benchmark.json`: current three-view product path. Fused species
-  recall@3 is 2.94% (2/68); raw visual recall@3 is 5.88%.
+- `field_benchmark.json`: current 21-view product path. Fused species recall@3
+  is 16.18% (11/68); raw visual recall@3 is 17.65% (12/68).
 - `field_prototype_experiment.json`: deterministic 34-train/34-test,
   benchmark-only 21-crop prototype experiment. Recall@3 improves from 17.65%
   with indirect references to 79.41% with field prototypes, but only two test

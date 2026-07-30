@@ -21,6 +21,7 @@ from scripts.build_local_dex.normalize_dex import normalize_seed_records
 from scripts.build_local_dex.normalize_official_previews import normalize_official_previews
 from scripts.build_local_dex.normalize_pokeapi import normalize_pokeapi_cache
 from scripts.build_local_dex.validate_dex import validate
+from scripts.build_local_dex.artifacts import attach_artifact_manifest
 
 
 def build_local_dex(
@@ -145,6 +146,7 @@ def build_local_dex(
     }
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    meta = attach_artifact_manifest(meta_path, {"dex.sqlite": db_path})
 
     fixture_path = PROJECT_ROOT / "fixtures/ocr" / (
         "korean_cards.jsonl" if source == "pokeapi" else "seed_smoke.jsonl"

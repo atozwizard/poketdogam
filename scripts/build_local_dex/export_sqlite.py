@@ -34,6 +34,7 @@ def export_sqlite(
     with closing(sqlite3.connect(db_path)) as conn:
         conn.execute("pragma foreign_keys = on")
         _create_schema(conn)
+        conn.execute("pragma user_version = 1")
         _insert_rows(conn, "pokemon_species", species)
         _insert_rows(conn, "pokemon_forms", [_strip_runtime_fields(row) for row in forms])
         _insert_rows(conn, "pokemon_stats", stats)
@@ -47,6 +48,10 @@ def export_sqlite(
             values (?, ?, ?, ?)
             """,
             (dataset_version, len(species), built_at, json.dumps(sources, ensure_ascii=False)),
+        )
+        conn.execute(
+            "insert into schema_meta(schema_version, built_at) values (?, ?)",
+            (1, built_at),
         )
         conn.commit()
 
@@ -87,6 +92,7 @@ def _create_schema(conn: sqlite3.Connection) -> None:
 
         create index idx_pokemon_forms_type1 on pokemon_forms(type1);
         create index idx_pokemon_forms_type2 on pokemon_forms(type2);
+        create index idx_pokemon_forms_pokemon on pokemon_forms(pokemon_id);
 
         create table pokemon_stats (
             form_id text primary key references pokemon_forms(form_id),
@@ -108,6 +114,8 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             condition_json text not null default '{}',
             updated_at text not null
         );
+        create index idx_evolution_from on evolution_rules(from_form_id);
+        create index idx_evolution_to on evolution_rules(to_form_id);
 
         create table type_chart (
             attack_type text not null,
@@ -156,6 +164,11 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             species_count integer not null,
             built_at text not null,
             sources_json text not null
+        );
+
+        create table schema_meta (
+            schema_version integer primary key,
+            built_at text not null
         );
 
         create table dex_passages (
