@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     request_timeout: int = 30
 
     dex_sqlite_path: str = "data/dex.sqlite"
+    visual_embedding_model_path: str = "data/vision/mobilenet_v3_small.tflite"
     dex_meta_path: str = "data/dex.meta.json"
     local_match_top_k: int = 3
     local_match_threshold: float = 0.72

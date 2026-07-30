@@ -12,6 +12,12 @@ dependencies = [
   "uvicorn>=0.35.0",
 ]
 
+[project.optional-dependencies]
+vision = [
+    "mediapipe>=0.10.30",
+    "pillow>=11.0",
+]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

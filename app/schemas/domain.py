@@ -10,6 +10,9 @@ class ScanCandidate(BaseModel):
     form_name: str = "base"
     types: list[str] = Field(default_factory=list)
     confidence: float = Field(ge=0.0, le=1.0)
+    ocr_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
+    visual_confidence: float | None = Field(default=None, ge=0.0, le=1.0)
+    evidence_sources: list[str] = Field(default_factory=list)
     matched_alias: str | None = None
     match_reason: str | None = None
 

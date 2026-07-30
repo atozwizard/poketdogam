@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "benchmark": "open_license_field_prototype_holdout_experiment",
+  "created_at": "2026-07-30T00:43:15+00:00",
+  "scope": {
+    "train_image_count": 34,
+    "test_image_count": 34,
+    "prototype_embedding_count": 714,
+    "covered_species_count": 9,
+    "train_creator_count": 3,
+    "test_creator_count": 3,
+    "creator_independent_test_count": 2,
+    "raw_media_committed": false
+  },
+  "split_policy": "Within each species, source IDs are sorted and alternated train/test. No file or transformed duplicate crosses the split.",
+  "metrics": {
+    "official_reference_species_recall_at_1": 0.0882,
+    "official_reference_species_recall_at_3": 0.1765,
+    "field_augmented_species_recall_at_1": 0.3529,
+    "field_augmented_species_recall_at_3": 0.7941,
+    "improvement_percentage_points_at_3": 61.76
+  },
+  "latency_ms": {
+    "mean": 32.65,
+    "p95": 34.54
+  },
+  "sample_recall_target_met": false,
+  "generation_wide_90_percent_claimable": false,
+  "failure_samples": [
+    {
+      "sample_id": "6bf839ce7ec1",
+      "expected_pokemon_id": 4,
+      "augmented_candidate_ids": [
+        140,
+        109,
+        145
+      ]
+    },
+    {
+      "sample_id": "1da3fbfa1a48",
+      "expected_pokemon_id": 5,
+      "augmented_candidate_ids": [
+        109,
+        71,
+        76
+      ]
+    },
+    {
+      "sample_id": "92e3b64e297a",
+      "expected_pokemon_id": 5,
+      "augmented_candidate_ids": [
+        140,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "077b5bb7d02b",
+      "expected_pokemon_id": 25,
+      "augmented_candidate_ids": [
+        140,
+        5,
+        71
+      ]
+    },
+    {
+      "sample_id": "63e26932f6eb",
+      "expected_pokemon_id": 76,
+      "augmented_candidate_ids": [
+        140,
+        109,
+        59
+      ]
+    },
+    {
+      "sample_id": "a3f308575295",
+      "expected_pokemon_id": 145,
+      "augmented_candidate_ids": [
+        109,
+        71,
+        76
+      ]
+    },
+    {
+      "sample_id": "8b66ae754f5e",
+      "expected_pokemon_id": 145,
+      "augmented_candidate_ids": [
+        109,
+        71,
+        59
+      ]
+    }
+  ],
+  "interpretation": "This experiment estimates whether field-derived prototypes can close the domain gap. Most train/test images share one creator and object series, so even a passing pilot result is not Generation 1 generalization evidence."
+}

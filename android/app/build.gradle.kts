@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
@@ -25,17 +24,26 @@ android {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
 
-    sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("generated/dexAssets"))
+    sourceSets["main"].assets.srcDir(
+        layout.buildDirectory.get().dir("generated/dexAssets").asFile
+    )
 }
 
 val generatedDexAssets = layout.buildDirectory.dir("generated/dexAssets")
 
 val syncVerifiedDex by tasks.registering(Copy::class) {
     from(rootProject.projectDir.resolve("../data/dex.sqlite"))
+    from(rootProject.projectDir.resolve("../data/vision/mobilenet_v3_small.tflite"))
+    from(rootProject.projectDir.resolve("../data/vision/gen1_visual_index.json"))
     into(generatedDexAssets)
     doFirst {
-        require(rootProject.projectDir.resolve("../data/dex.sqlite").exists()) {
-            "Run the validated Dex collector before building Android."
+        val requiredAssets = listOf(
+            rootProject.projectDir.resolve("../data/dex.sqlite"),
+            rootProject.projectDir.resolve("../data/vision/mobilenet_v3_small.tflite"),
+            rootProject.projectDir.resolve("../data/vision/gen1_visual_index.json"),
+        )
+        require(requiredAssets.all { it.exists() }) {
+            "Run the validated Dex collector and Generation 1 visual index builder before Android."
         }
     }
 }
@@ -58,7 +66,9 @@ dependencies {
     implementation("androidx.camera:camera-camera2:1.6.1")
     implementation("androidx.camera:camera-lifecycle:1.6.1")
     implementation("androidx.camera:camera-view:1.6.1")
+    implementation("androidx.exifinterface:exifinterface:1.4.1")
     implementation("com.google.mlkit:text-recognition-korean:16.0.1")
+    implementation("com.google.mediapipe:tasks-vision:0.10.29")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")

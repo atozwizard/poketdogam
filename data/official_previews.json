@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-07-29",
+  "policy": {
+    "usage_scope": "poc_noncommercial_evaluation",
+    "record_status": "officially_announced_unnumbered",
+    "media_included": false,
+    "note": "Officially announced factual fields only. National Pokédex numbers and Korean localized names are not inferred."
+  },
+  "sources": [
+    {
+      "name": "pokemon-winds-waves-official",
+      "url": "https://windswaves.pokemon.com/en-us/",
+      "publisher": "The Pokémon Company International",
+      "content_policy": "names, category, type, measurements and ability only; no media or description text"
+    }
+  ],
+  "pokemon": [
+    {
+      "provisional_id": -1000001,
+      "canonical_key": "official-preview:gen10:browt",
+      "name_ko": "Browt",
+      "name_en": "Browt",
+      "generation": 10,
+      "form_name": "base",
+      "types": ["grass"],
+      "height_m": 0.3,
+      "weight_kg": 3.49,
+      "category_en": "Bean Chick Pokémon",
+      "ability_en": "Overgrow",
+      "localization_status": "ko_name_not_announced",
+      "record_status": "officially_announced_unnumbered"
+    },
+    {
+      "provisional_id": -1000002,
+      "canonical_key": "official-preview:gen10:pombon",
+      "name_ko": "Pombon",
+      "name_en": "Pombon",
+      "generation": 10,
+      "form_name": "base",
+      "types": ["fire"],
+      "height_m": 0.41,
+      "weight_kg": 6.71,
+      "category_en": "Puppy Pokémon",
+      "ability_en": "Blaze",
+      "localization_status": "ko_name_not_announced",
+      "record_status": "officially_announced_unnumbered"
+    },
+    {
+      "provisional_id": -1000003,
+      "canonical_key": "official-preview:gen10:gecqua",
+      "name_ko": "Gecqua",
+      "name_en": "Gecqua",
+      "generation": 10,
+      "form_name": "base",
+      "types": ["water"],
+      "height_m": 0.3,
+      "weight_kg": 4.31,
+      "category_en": "Water Gecko Pokémon",
+      "ability_en": "Torrent",
+      "localization_status": "ko_name_not_announced",
+      "record_status": "officially_announced_unnumbered"
+    }
+  ]
+}

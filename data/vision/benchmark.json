@@ -1,0 +1,666 @@
+{
+  "schema_version": 1,
+  "benchmark": "generation_1_transformed_reference_holdout",
+  "scope": {
+    "generation": 1,
+    "form_count": 238,
+    "scenarios": [
+      "studio",
+      "camera",
+      "partial"
+    ],
+    "recognition_mode": "visual_only",
+    "dataset_kind": "synthetic_transforms_of_temporary_indirect_reference_images",
+    "excludes": [
+      "physical_plush_photos",
+      "user_camera_field_samples",
+      "official_product_media_retention"
+    ]
+  },
+  "model_id": "mediapipe-mobilenet-v3-small-float32",
+  "reference_count": 238,
+  "target": {
+    "metric": "form_recall_at_3",
+    "minimum": 0.9,
+    "applies_to": "aggregate_and_each_scenario"
+  },
+  "aggregate": {
+    "query_count": 714,
+    "form_recall_at_1": 0.8613,
+    "form_recall_at_3": 0.9454,
+    "species_recall_at_1": 0.8782,
+    "species_recall_at_3": 0.9538
+  },
+  "by_scenario": {
+    "camera": {
+      "query_count": 238,
+      "form_recall_at_1": 0.8235,
+      "form_recall_at_3": 0.937,
+      "species_recall_at_1": 0.8361,
+      "species_recall_at_3": 0.9454
+    },
+    "partial": {
+      "query_count": 238,
+      "form_recall_at_1": 0.8613,
+      "form_recall_at_3": 0.9454,
+      "species_recall_at_1": 0.8824,
+      "species_recall_at_3": 0.958
+    },
+    "studio": {
+      "query_count": 238,
+      "form_recall_at_1": 0.8992,
+      "form_recall_at_3": 0.9538,
+      "species_recall_at_1": 0.916,
+      "species_recall_at_3": 0.958
+    }
+  },
+  "baseline_full_frame_only": {
+    "aggregate": {
+      "query_count": 714,
+      "form_recall_at_1": 0.6373,
+      "form_recall_at_3": 0.7311,
+      "species_recall_at_1": 0.6597,
+      "species_recall_at_3": 0.7549
+    },
+    "by_scenario": {
+      "camera": {
+        "query_count": 238,
+        "form_recall_at_1": 0.2605,
+        "form_recall_at_3": 0.3613,
+        "species_recall_at_1": 0.2983,
+        "species_recall_at_3": 0.4076
+      },
+      "partial": {
+        "query_count": 238,
+        "form_recall_at_1": 0.8277,
+        "form_recall_at_3": 0.9202,
+        "species_recall_at_1": 0.8445,
+        "species_recall_at_3": 0.9286
+      },
+      "studio": {
+        "query_count": 238,
+        "form_recall_at_1": 0.8235,
+        "form_recall_at_3": 0.9118,
+        "species_recall_at_1": 0.8361,
+        "species_recall_at_3": 0.9286
+      }
+    }
+  },
+  "improvement_percentage_points": {
+    "form_recall_at_1": 22.4,
+    "form_recall_at_3": 21.43
+  },
+  "latency_ms": {
+    "mean": 6.88,
+    "p95": 6.82
+  },
+  "passed": true,
+  "failure_count": 39,
+  "failure_samples": [
+    {
+      "scenario": "camera",
+      "expected_form_id": "068fb2c2-ab86-5497-bc8e-c4db04865777",
+      "expected_pokemon_id": 2,
+      "predicted_form_ids": [
+        "5483eab8-f747-5764-b9e3-d9223eb6cc2f",
+        "3fee1888-9745-5b7e-8e33-8f755546b038",
+        "ab60b1cf-c81d-5b02-9356-f6cb51f5163c"
+      ],
+      "predicted_pokemon_ids": [
+        38,
+        3,
+        146
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "551bc17f-351a-5524-9361-775fc3dd0aec",
+      "expected_pokemon_id": 6,
+      "predicted_form_ids": [
+        "dec21456-e436-5ea8-96ec-348d7547276e",
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c"
+      ],
+      "predicted_pokemon_ids": [
+        145,
+        26,
+        19
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "55957bb2-aa6e-50f7-8aaf-173d901b8ce6",
+      "expected_pokemon_id": 9,
+      "predicted_form_ids": [
+        "8b84009c-b69e-54df-a1e2-8c8a5bc955e9",
+        "024381d5-ca8c-53f0-aa2c-823021ec518e",
+        "ad33f29b-3d9c-5702-96b7-59ce29a19983"
+      ],
+      "predicted_pokemon_ids": [
+        27,
+        139,
+        111
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "ba3324f3-062d-5807-8d63-f90745f52e7e",
+      "expected_pokemon_id": 19,
+      "predicted_form_ids": [
+        "d7cf5806-8be2-54f8-845d-ccae446c29ca",
+        "9772c344-16ec-5358-94bd-3dc1a3b0302b",
+        "cbbe55a1-cea7-5682-8c7a-18ebc1ffa1e6"
+      ],
+      "predicted_pokemon_ids": [
+        63,
+        44,
+        86
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "6262b0ed-cff4-5707-afde-3544c2d08224",
+      "expected_pokemon_id": 26,
+      "predicted_form_ids": [
+        "78f1b164-63d3-5ce4-bcaa-e6e53a49ad0e",
+        "751172f9-8bde-57a5-9076-d2332dbaa92f",
+        "61c81022-49e9-517b-8315-81f5d1cb94a9"
+      ],
+      "predicted_pokemon_ids": [
+        104,
+        96,
+        25
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "6262b0ed-cff4-5707-afde-3544c2d08224",
+      "expected_pokemon_id": 26,
+      "predicted_form_ids": [
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c",
+        "dadad59e-7991-591c-a6ad-b17c0f9b2b1b",
+        "256c52ce-e364-541f-aecc-9267351dc26c"
+      ],
+      "predicted_pokemon_ids": [
+        19,
+        149,
+        26
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "6262b0ed-cff4-5707-afde-3544c2d08224",
+      "expected_pokemon_id": 26,
+      "predicted_form_ids": [
+        "8f0aea10-adc5-5f37-82d0-3504e3aa5f73",
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        26,
+        19
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "8c4129c0-4ed3-5c32-920e-08e47651d7ef",
+      "expected_pokemon_id": 31,
+      "predicted_form_ids": [
+        "4c31f25f-b9cf-560f-9735-189526ffa893",
+        "e6199f0d-7a1b-5bae-bc5c-590be95c15f3",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c"
+      ],
+      "predicted_pokemon_ids": [
+        122,
+        25,
+        19
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "008be476-aea3-52f0-9f58-da37403450d2",
+      "expected_pokemon_id": 53,
+      "predicted_form_ids": [
+        "90b1a429-ef19-5093-815e-7c988128bd73",
+        "dadad59e-7991-591c-a6ad-b17c0f9b2b1b",
+        "a3a13a38-e3cd-51f5-8207-282ba15270dc"
+      ],
+      "predicted_pokemon_ids": [
+        36,
+        149,
+        150
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "7f543c46-5ae1-5dd6-9f14-72a52012d348",
+      "expected_pokemon_id": 66,
+      "predicted_form_ids": [
+        "8b84009c-b69e-54df-a1e2-8c8a5bc955e9",
+        "e50372de-9e39-55df-a65b-ef7bae04d16a",
+        "33f624f0-dee6-55fa-9e5c-f12068c2ce43"
+      ],
+      "predicted_pokemon_ids": [
+        27,
+        95,
+        76
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "7f543c46-5ae1-5dd6-9f14-72a52012d348",
+      "expected_pokemon_id": 66,
+      "predicted_form_ids": [
+        "582d400a-2504-54ea-8c49-af0dbf837254",
+        "e50372de-9e39-55df-a65b-ef7bae04d16a",
+        "450a4ef6-b9cf-5056-bdbf-ce8b4d978ae3"
+      ],
+      "predicted_pokemon_ids": [
+        12,
+        95,
+        30
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "1e50bc1a-92f3-53b0-9109-0dc935b6c3e3",
+      "expected_pokemon_id": 68,
+      "predicted_form_ids": [
+        "7cde758b-8cec-5fef-bfbb-897d8902888a",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c",
+        "7cad8510-f8ce-5cc1-8640-01f19a975125"
+      ],
+      "predicted_pokemon_ids": [
+        144,
+        19,
+        84
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "18c0c4d7-1d7e-5c77-90f2-bc79c4c68093",
+      "expected_pokemon_id": 68,
+      "predicted_form_ids": [
+        "0950f4f8-4a0e-5570-8b54-fffb64811fa5",
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "f6ca20aa-e671-5753-b2b7-ef1ad6a77905"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        26,
+        126
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "18c0c4d7-1d7e-5c77-90f2-bc79c4c68093",
+      "expected_pokemon_id": 68,
+      "predicted_form_ids": [
+        "ab60b1cf-c81d-5b02-9356-f6cb51f5163c",
+        "0950f4f8-4a0e-5570-8b54-fffb64811fa5",
+        "dec21456-e436-5ea8-96ec-348d7547276e"
+      ],
+      "predicted_pokemon_ids": [
+        146,
+        25,
+        145
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "18c0c4d7-1d7e-5c77-90f2-bc79c4c68093",
+      "expected_pokemon_id": 68,
+      "predicted_form_ids": [
+        "0950f4f8-4a0e-5570-8b54-fffb64811fa5",
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "e6199f0d-7a1b-5bae-bc5c-590be95c15f3"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        26,
+        126
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "d87159dc-6259-53ba-a6b8-94aac5cff283",
+      "expected_pokemon_id": 77,
+      "predicted_form_ids": [
+        "8f0aea10-adc5-5f37-82d0-3504e3aa5f73",
+        "e22a8694-2dbe-5d68-b37b-1119c1cf4bb7",
+        "ffff6837-a1d3-5a10-88ed-c10a1608102e"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        150,
+        37
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "d87159dc-6259-53ba-a6b8-94aac5cff283",
+      "expected_pokemon_id": 77,
+      "predicted_form_ids": [
+        "8f0aea10-adc5-5f37-82d0-3504e3aa5f73",
+        "e436ebff-c17b-5620-8c33-c00231a118de",
+        "5483eab8-f747-5764-b9e3-d9223eb6cc2f"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        38,
+        149
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "d87159dc-6259-53ba-a6b8-94aac5cff283",
+      "expected_pokemon_id": 77,
+      "predicted_form_ids": [
+        "5483eab8-f747-5764-b9e3-d9223eb6cc2f",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c",
+        "8f0aea10-adc5-5f37-82d0-3504e3aa5f73"
+      ],
+      "predicted_pokemon_ids": [
+        38,
+        19,
+        25
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "1d651884-b317-57b7-96f4-499a4aa0b04d",
+      "expected_pokemon_id": 99,
+      "predicted_form_ids": [
+        "28c0980c-fea9-565a-848f-80170c4be186",
+        "3551ca7b-1e27-59e6-b7df-860a1042542a",
+        "f322d5a5-ce4c-567f-a729-f79d942231d1"
+      ],
+      "predicted_pokemon_ids": [
+        128,
+        25,
+        129
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "1d651884-b317-57b7-96f4-499a4aa0b04d",
+      "expected_pokemon_id": 99,
+      "predicted_form_ids": [
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "1e50bc1a-92f3-53b0-9109-0dc935b6c3e3",
+        "3551ca7b-1e27-59e6-b7df-860a1042542a"
+      ],
+      "predicted_pokemon_ids": [
+        26,
+        68,
+        25
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "d26eb2d5-ba18-599c-b4b0-1a8b81277926",
+      "expected_pokemon_id": 103,
+      "predicted_form_ids": [],
+      "predicted_pokemon_ids": []
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "92757c5b-ab25-5bb9-b2d2-271d480ab794",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "5483eab8-f747-5764-b9e3-d9223eb6cc2f",
+        "dec21456-e436-5ea8-96ec-348d7547276e",
+        "262d4979-6cae-5bea-b138-dd11b64d4993"
+      ],
+      "predicted_pokemon_ids": [
+        38,
+        145,
+        105
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "92757c5b-ab25-5bb9-b2d2-271d480ab794",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "e6199f0d-7a1b-5bae-bc5c-590be95c15f3",
+        "163122f5-71f7-5821-8647-111f9356e10e",
+        "262d4979-6cae-5bea-b138-dd11b64d4993"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        105,
+        34
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "76173425-2ab6-5e5a-82f3-24e9d8fd6c8e",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "cbbe55a1-cea7-5682-8c7a-18ebc1ffa1e6",
+        "78f1b164-63d3-5ce4-bcaa-e6e53a49ad0e",
+        "dadad59e-7991-591c-a6ad-b17c0f9b2b1b"
+      ],
+      "predicted_pokemon_ids": [
+        86,
+        104,
+        149
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "76173425-2ab6-5e5a-82f3-24e9d8fd6c8e",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "dcc5a29f-eab4-58ca-ad2f-8e1271df7ceb",
+        "5483eab8-f747-5764-b9e3-d9223eb6cc2f",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c"
+      ],
+      "predicted_pokemon_ids": [
+        55,
+        38,
+        19
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "76173425-2ab6-5e5a-82f3-24e9d8fd6c8e",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "78f1b164-63d3-5ce4-bcaa-e6e53a49ad0e",
+        "ad33f29b-3d9c-5702-96b7-59ce29a19983",
+        "dadad59e-7991-591c-a6ad-b17c0f9b2b1b"
+      ],
+      "predicted_pokemon_ids": [
+        104,
+        111,
+        149
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "262d4979-6cae-5bea-b138-dd11b64d4993",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "6e2c544e-e01f-55b5-8c17-1539cf655ca9",
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "a50d5858-9700-5db3-81a8-99e60aa667a6"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        26,
+        6
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "262d4979-6cae-5bea-b138-dd11b64d4993",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "0950f4f8-4a0e-5570-8b54-fffb64811fa5",
+        "256c52ce-e364-541f-aecc-9267351dc26c",
+        "ab60b1cf-c81d-5b02-9356-f6cb51f5163c"
+      ],
+      "predicted_pokemon_ids": [
+        25,
+        26,
+        146
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "262d4979-6cae-5bea-b138-dd11b64d4993",
+      "expected_pokemon_id": 105,
+      "predicted_form_ids": [
+        "a50d5858-9700-5db3-81a8-99e60aa667a6",
+        "0950f4f8-4a0e-5570-8b54-fffb64811fa5",
+        "e436ebff-c17b-5620-8c33-c00231a118de"
+      ],
+      "predicted_pokemon_ids": [
+        6,
+        25,
+        105
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "ad33f29b-3d9c-5702-96b7-59ce29a19983",
+      "expected_pokemon_id": 111,
+      "predicted_form_ids": [
+        "12eeca61-39dc-529f-a841-427185e262b9",
+        "e50372de-9e39-55df-a65b-ef7bae04d16a",
+        "313d68b2-31bb-5164-83e6-de769c89243f"
+      ],
+      "predicted_pokemon_ids": [
+        75,
+        95,
+        52
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "602dc65d-ab4f-57f0-9ce1-37e4f4db7e5a",
+      "expected_pokemon_id": 127,
+      "predicted_form_ids": [
+        "8e532781-356c-53c7-9774-ea389c707c89",
+        "dcc5a29f-eab4-58ca-ad2f-8e1271df7ceb",
+        "a50d5858-9700-5db3-81a8-99e60aa667a6"
+      ],
+      "predicted_pokemon_ids": [
+        65,
+        55,
+        6
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "4725bcdb-87d3-5d8f-b98f-db6d08441ca2",
+      "expected_pokemon_id": 128,
+      "predicted_form_ids": [
+        "59d47ced-86ee-5356-aec5-538492bde015",
+        "32b8775c-e963-5539-9b0e-cbbdabbac5e1",
+        "5871ab27-3fba-50a9-b3e0-6914fa807404"
+      ],
+      "predicted_pokemon_ids": [
+        128,
+        25
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "4725bcdb-87d3-5d8f-b98f-db6d08441ca2",
+      "expected_pokemon_id": 128,
+      "predicted_form_ids": [],
+      "predicted_pokemon_ids": []
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "4725bcdb-87d3-5d8f-b98f-db6d08441ca2",
+      "expected_pokemon_id": 128,
+      "predicted_form_ids": [
+        "32b8775c-e963-5539-9b0e-cbbdabbac5e1"
+      ],
+      "predicted_pokemon_ids": [
+        25
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "38d0ac82-bccd-5422-80bc-06c7ca510d68",
+      "expected_pokemon_id": 130,
+      "predicted_form_ids": [
+        "dec21456-e436-5ea8-96ec-348d7547276e",
+        "ada06f77-815c-5bfe-8ef5-12cab938535a",
+        "582d400a-2504-54ea-8c49-af0dbf837254"
+      ],
+      "predicted_pokemon_ids": [
+        145,
+        59,
+        12
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "0c315fd6-8855-517e-967b-7a8926fd2702",
+      "expected_pokemon_id": 141,
+      "predicted_form_ids": [
+        "20b1b5f1-590b-5329-91a2-57500db9d73f",
+        "a3a13a38-e3cd-51f5-8207-282ba15270dc",
+        "7cde758b-8cec-5fef-bfbb-897d8902888a"
+      ],
+      "predicted_pokemon_ids": [
+        127,
+        150,
+        144
+      ]
+    },
+    {
+      "scenario": "studio",
+      "expected_form_id": "04e1ca08-9ad0-522a-825f-e915cad5127a",
+      "expected_pokemon_id": 151,
+      "predicted_form_ids": [
+        "90b1a429-ef19-5093-815e-7c988128bd73",
+        "04205aac-f152-5e06-bcc1-1ac1a202f12c",
+        "450a4ef6-b9cf-5056-bdbf-ce8b4d978ae3"
+      ],
+      "predicted_pokemon_ids": [
+        36,
+        19,
+        30
+      ]
+    },
+    {
+      "scenario": "camera",
+      "expected_form_id": "04e1ca08-9ad0-522a-825f-e915cad5127a",
+      "expected_pokemon_id": 151,
+      "predicted_form_ids": [
+        "ffff6837-a1d3-5a10-88ed-c10a1608102e",
+        "450a4ef6-b9cf-5056-bdbf-ce8b4d978ae3",
+        "cbbe55a1-cea7-5682-8c7a-18ebc1ffa1e6"
+      ],
+      "predicted_pokemon_ids": [
+        37,
+        30,
+        86
+      ]
+    },
+    {
+      "scenario": "partial",
+      "expected_form_id": "04e1ca08-9ad0-522a-825f-e915cad5127a",
+      "expected_pokemon_id": 151,
+      "predicted_form_ids": [
+        "450a4ef6-b9cf-5056-bdbf-ce8b4d978ae3",
+        "90b1a429-ef19-5093-815e-7c988128bd73",
+        "582d400a-2504-54ea-8c49-af0dbf837254"
+      ],
+      "predicted_pokemon_ids": [
+        30,
+        36,
+        12
+      ]
+    }
+  ],
+  "interpretation": "This gate measures transformed indirect reference images. It does not establish 90% accuracy on physical toys, cards, or field camera photos."
+}

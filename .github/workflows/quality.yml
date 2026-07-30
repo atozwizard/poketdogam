@@ -17,5 +17,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - run: uv sync --frozen
+      - run: uv sync --frozen --extra vision
       - run: bash scripts/quality_gate.sh

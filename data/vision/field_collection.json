@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "collection": "open_licensed_user_photography_candidates",
+  "created_at": "2026-07-30T00:29:26+00:00",
+  "reviewed_at": "2026-07-30T00:46:35+00:00",
+  "status": "field_pilot_ready_not_generation_wide",
+  "downloaded_candidate_count": 69,
+  "benchmark_eligible_count": 68,
+  "rejected_visual_or_privacy_count": 1,
+  "license_unverified_count": 0,
+  "covered_species_count": 9,
+  "covered_creator_count": 5,
+  "species_sample_counts": {
+    "4": 8,
+    "5": 8,
+    "25": 4,
+    "59": 8,
+    "71": 8,
+    "76": 8,
+    "109": 8,
+    "140": 8,
+    "145": 8
+  },
+  "creator_sample_counts": {
+    "Kasadera": 64,
+    "Neil T": 1,
+    "Popplio728": 1,
+    "Sergiy Galyonkin": 1,
+    "avlxyz": 1
+  },
+  "object_kind_counts": {
+    "card": 1,
+    "figure_or_toy": 67
+  },
+  "raw_media_committed": false,
+  "generation_1_coverage_complete": false,
+  "interpretation": "Eligible images form a narrow open-license field pilot. Repeated images from one creator and missing Generation 1 species prevent a 90% generation-wide accuracy claim."
+}

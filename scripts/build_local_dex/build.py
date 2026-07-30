@@ -1,4 +1,4 @@
-# Run: python scripts/build_local_dex/build.py --source pokeapi --limit 1025
+# Run: python scripts/build_local_dex/build.py --source pokeapi
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -18,6 +18,7 @@ from scripts.build_local_dex.build_type_chart import build_type_chart_rows
 from scripts.build_local_dex.export_sqlite import export_sqlite
 from scripts.build_local_dex.fetch_pokeapi import fetch_pokeapi_cache
 from scripts.build_local_dex.normalize_dex import normalize_seed_records
+from scripts.build_local_dex.normalize_official_previews import normalize_official_previews
 from scripts.build_local_dex.normalize_pokeapi import normalize_pokeapi_cache
 from scripts.build_local_dex.validate_dex import validate
 
@@ -29,7 +30,7 @@ def build_local_dex(
     dataset_version: str | None = None,
     source: str = "seed",
     cache_dir: Path | None = None,
-    limit: int = 1025,
+    limit: int | None = None,
     fetch: bool = False,
     sleep_seconds: float = 0.05,
 ) -> dict[str, object]:
@@ -52,16 +53,33 @@ def build_local_dex(
     elif source == "pokeapi":
         if fetch:
             fetch_pokeapi_cache(cache_dir, limit=limit, sleep_seconds=sleep_seconds)
-        dataset_version = dataset_version or f"pokeapi-gen1-9-{built_at[:10]}"
+        dataset_version = dataset_version or f"multisource-all-generations-{built_at[:10]}"
         normalized = normalize_pokeapi_cache(cache_dir, built_at, limit=limit)
+        official_previews = normalize_official_previews(
+            PROJECT_ROOT / "data/official_previews.json",
+            built_at,
+        )
+        _append_unreleased_official_previews(normalized, official_previews)
         sources = [
             {
                 "name": "pokeapi",
                 "url": "https://pokeapi.co",
-                "note": f"Cached factual species, variety and evolution fields up to species id={limit}.",
+                "note": (
+                    f"Cached factual species, variety and evolution fields up to species id={limit}."
+                    if limit is not None
+                    else "All factual species, variety and evolution fields available in the local cache."
+                ),
                 "usage_scope": "poc_noncommercial_evaluation",
                 "license_status": "product_license_pending_after_poc_acceptance",
                 "content_policy": "names, measurements, stats, types and evolution facts only; no media",
+            },
+            {
+                "name": "pokemon-winds-waves-official-preview",
+                "url": "https://windswaves.pokemon.com/en-us/",
+                "note": "Officially announced, unnumbered next-generation Pokémon facts.",
+                "usage_scope": "poc_noncommercial_evaluation",
+                "license_status": "product_license_pending_after_poc_acceptance",
+                "content_policy": "names, category, type, measurements and ability only; no media",
             },
             {
                 "name": "seed:ocr-aliases",
@@ -105,6 +123,12 @@ def build_local_dex(
         "source": source,
         "limit": limit if source == "pokeapi" else len(normalized["species"]),
         "species_count": len(normalized["species"]),
+        "canonical_species_count": len(
+            [item for item in normalized["species"] if int(item["pokemon_id"]) > 0]
+        ),
+        "official_preview_count": len(
+            [item for item in normalized["species"] if int(item["pokemon_id"]) < 0]
+        ),
         "form_count": len(normalized["forms"]),
         "alias_count": len(aliases),
         "passage_count": len(passages),
@@ -128,13 +152,45 @@ def build_local_dex(
     validation = validate(
         db_path,
         fixture_path,
-        min_species=limit if source == "pokeapi" else 1,
+        min_species=(limit or 1025) if source == "pokeapi" else 1,
         min_fixture_count=30 if source == "pokeapi" else 1,
         require_nonbase_forms=source == "pokeapi",
         require_evolution_conditions=source == "pokeapi",
         require_provenance=True,
     )
     return {"meta": meta, "validation": validation}
+
+
+def _append_unreleased_official_previews(
+    normalized: dict[str, list[dict[str, object]]],
+    previews: dict[str, list[dict[str, object]]],
+) -> None:
+    canonical_names = {
+        str(item.get("name_en") or "").strip().casefold()
+        for item in normalized["species"]
+    }
+    preview_species = [
+        item
+        for item in previews["species"]
+        if str(item.get("name_en") or "").strip().casefold() not in canonical_names
+    ]
+    included_ids = {int(item["pokemon_id"]) for item in preview_species}
+    preview_forms = [
+        item for item in previews["forms"] if int(item["pokemon_id"]) in included_ids
+    ]
+    included_form_ids = {str(item["form_id"]) for item in preview_forms}
+
+    normalized["species"].extend(preview_species)
+    normalized["forms"].extend(preview_forms)
+    normalized["stats"].extend(
+        item for item in previews["stats"] if str(item["form_id"]) in included_form_ids
+    )
+    normalized["evolutions"].extend(
+        item
+        for item in previews["evolutions"]
+        if str(item["from_form_id"]) in included_form_ids
+        and str(item["to_form_id"]) in included_form_ids
+    )
 
 
 def main() -> None:
@@ -144,7 +200,12 @@ def main() -> None:
     parser.add_argument("--dataset-version", default=None)
     parser.add_argument("--source", choices=("seed", "pokeapi"), default="seed")
     parser.add_argument("--cache-dir", default="data/raw/pokeapi")
-    parser.add_argument("--limit", type=int, default=1025)
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=0,
+        help="Maximum canonical species id. Use 0 to include every cached/available species.",
+    )
     parser.add_argument("--fetch", action="store_true", help="Fetch missing PokéAPI cache before build")
     parser.add_argument("--sleep-seconds", type=float, default=0.05)
     args = parser.parse_args()
@@ -155,7 +216,7 @@ def main() -> None:
         dataset_version=args.dataset_version,
         source=args.source,
         cache_dir=PROJECT_ROOT / args.cache_dir,
-        limit=args.limit,
+        limit=args.limit or None,
         fetch=args.fetch,
         sleep_seconds=args.sleep_seconds,
     )

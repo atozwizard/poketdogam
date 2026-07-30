@@ -34,6 +34,7 @@ const elements = {
   typeMatchups: document.querySelector("#typeMatchups"),
   evolutionList: document.querySelector("#evolutionList"),
   saveButton: document.querySelector("#saveButton"),
+  detailNarrationButton: document.querySelector("#detailNarrationButton"),
   saveHint: document.querySelector("#saveHint"),
   chatLog: document.querySelector("#chatLog"),
   chatInput: document.querySelector("#chatInput"),
@@ -52,6 +53,7 @@ const elements = {
   voiceSpeed: document.querySelector("#voiceSpeed"),
   voicePreviewButton: document.querySelector("#voicePreviewButton"),
   voiceStopButton: document.querySelector("#voiceStopButton"),
+  autoNarration: document.querySelector("#autoNarration"),
   collectionList: document.querySelector("#collectionList"),
   collectionCount: document.querySelector("#collectionCount"),
   collectionFilter: document.querySelector("#collectionFilter"),
@@ -74,6 +76,7 @@ const appState = {
   collectionQuery: "",
   voiceStyle: "electric_device",
   audioContext: null,
+  autoNarration: localStorage.getItem("poketdogam.autoNarration") === "true",
   sessionId: localStorage.getItem("poketdogam.sessionId") || null,
 };
 
@@ -239,6 +242,13 @@ document.querySelectorAll("[data-voice-style]").forEach((button) => {
 
 elements.voicePreviewButton.addEventListener("click", previewVoice);
 elements.voiceStopButton.addEventListener("click", stopVoice);
+elements.detailNarrationButton.addEventListener("click", () => loadNarration(true));
+elements.autoNarration.checked = appState.autoNarration;
+elements.autoNarration.addEventListener("change", () => {
+  appState.autoNarration = elements.autoNarration.checked;
+  localStorage.setItem("poketdogam.autoNarration", String(appState.autoNarration));
+  showToast(appState.autoNarration ? "폼 확정 후 자동 낭독을 켰습니다." : "자동 낭독을 껐습니다.");
+});
 
 async function scanText() {
   const ocrText = elements.ocrText.value.trim();
@@ -311,17 +321,17 @@ function handleImageSelection() {
   elements.imageScanButton.disabled = false;
   elements.uploadHint.textContent = `${file.name} · ${formatBytes(file.size)} · 분석 전`;
   elements.scanGuidance.textContent = "이미지는 분석 중에만 사용되며 서버에 보관되지 않습니다.";
-  setStatus("idle", "이미지 장전 완료. 이름 영역을 분석할게-로.", "READY");
+  setStatus("idle", "이미지 장전 완료. 이름과 외형을 함께 분석할게-로.", "READY");
 }
 
 async function scanImage() {
   if (!appState.selectedFile) {
-    showToast("먼저 카드 이미지를 선택하세요.");
+    showToast("먼저 포켓몬 이미지를 선택하세요.");
     return;
   }
   const formData = new FormData();
   formData.append("image", appState.selectedFile, appState.selectedFile.name);
-  setStatus("scanning", "카드 이름 영역을 읽는 중이다-로.", "OCR");
+  setStatus("scanning", "이름과 외형 신호를 결합하는 중이다-로.", "FUSION");
   elements.imageScanButton.disabled = true;
   try {
     const response = await fetch("/v1/scan", { method: "POST", body: formData });
@@ -330,8 +340,14 @@ async function scanImage() {
     appState.selected = appState.candidates[0] || null;
     appState.confirmed = Boolean(appState.selected) && !data.requires_user_confirmation;
     appState.latestScanEventId = data.event_id || null;
-    recordQualityEvent(data, appState.selected, appState.confirmed ? "auto" : "pending", "image_ocr");
-    elements.uploadHint.textContent = `${appState.selectedFile.name} · ${data.ocr_engine} · ${Math.round(data.latency_ms)}ms`;
+    recordQualityEvent(
+      data,
+      appState.selected,
+      appState.confirmed ? "auto" : "pending",
+      data.recognition_mode || "image_ocr",
+    );
+    elements.uploadHint.textContent =
+      `${appState.selectedFile.name} · ${data.recognition_mode || data.ocr_engine} · ${Math.round(data.latency_ms)}ms`;
     elements.scanGuidance.textContent = data.guidance || "";
     renderCandidates();
     if (!appState.selected) {
@@ -407,6 +423,9 @@ async function loadDetail(formId) {
     appState.detail = await response.json();
     elements.datasetVersion.textContent = appState.detail.source_meta?.dataset_version || "unknown";
     renderDetail();
+    if (appState.confirmed) {
+      await loadNarration(appState.autoNarration);
+    }
   } catch (error) {
     appState.detail = null;
     renderDetail();
@@ -593,6 +612,14 @@ function renderCandidates() {
       const types = (candidate.types || []).map(localizeType).join(" / ") || "미확인";
       const form = localizeForm(candidate.form_name || "base");
       const score = Math.round(Number(candidate.confidence || 0) * 100);
+      const evidence = [];
+      if (candidate.ocr_confidence !== null && candidate.ocr_confidence !== undefined) {
+        evidence.push(`OCR ${Math.round(Number(candidate.ocr_confidence) * 100)}%`);
+      }
+      if (candidate.visual_confidence !== null && candidate.visual_confidence !== undefined) {
+        evidence.push(`이미지 ${Math.round(Number(candidate.visual_confidence) * 100)}%`);
+      }
+      const evidenceLabel = evidence.join(" · ") || candidate.match_reason || "-";
       return `
         <button class="candidate-item${selected}" type="button" data-form-id="${candidate.form_id}">
           <span class="candidate-main">
@@ -602,7 +629,7 @@ function renderCandidates() {
             </span>
             <span class="candidate-score">${score}%</span>
           </span>
-          <span class="candidate-meta">alias ${escapeHtml(candidate.matched_alias || "-")} · ${escapeHtml(candidate.match_reason || "-")}</span>
+          <span class="candidate-meta">${escapeHtml(evidenceLabel)} · Top-${index + 1}</span>
         </button>
       `;
     })
@@ -630,12 +657,16 @@ function renderDetail() {
     elements.detailEmpty.hidden = false;
     elements.detailCard.hidden = true;
     elements.saveButton.disabled = true;
+    elements.detailNarrationButton.disabled = true;
     return;
   }
 
   elements.detailEmpty.hidden = true;
   elements.detailCard.hidden = false;
-  elements.detailNumber.textContent = `No.${String(detail.pokemon_id).padStart(4, "0")}`;
+  elements.detailNumber.textContent =
+    Number(detail.pokemon_id) > 0
+      ? `No.${String(detail.pokemon_id).padStart(4, "0")}`
+      : "공식 발표 · 번호 미확정";
   elements.detailName.textContent = detail.name_ko;
   elements.detailEnglish.textContent = detail.name_en || "-";
   elements.typeBadges.innerHTML = (detail.types || [])
@@ -652,6 +683,7 @@ function renderDetail() {
   renderTypeMatchups(detail);
   renderEvolutions(detail.evolutions || []);
   elements.saveButton.disabled = !appState.confirmed;
+  elements.detailNarrationButton.disabled = !appState.confirmed;
   elements.saveButton.textContent = appState.confirmed ? "컬렉션 저장" : "후보 확정 필요";
   elements.saveHint.hidden = appState.confirmed;
 }
@@ -829,6 +861,33 @@ async function loadVoiceStatus() {
   }
 }
 
+async function loadNarration(autoPlay = false) {
+  if (!appState.detail || !appState.confirmed) {
+    showToast("정확한 폼을 먼저 확정하세요.");
+    return;
+  }
+  elements.detailNarrationButton.disabled = true;
+  try {
+    const response = await fetch("/v1/voice/narration", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ form_id: appState.detail.form_id }),
+    });
+    const data = await readJsonResponse(response);
+    if (data.form_id !== appState.detail.form_id) {
+      throw new Error("선택 폼과 낭독 데이터가 일치하지 않습니다.");
+    }
+    elements.voiceScript.value = data.narration_text;
+    if (autoPlay) {
+      await previewVoice();
+    }
+  } catch (error) {
+    showToast(error.message);
+  } finally {
+    elements.detailNarrationButton.disabled = false;
+  }
+}
+
 async function previewVoice() {
   const text = elements.voiceScript.value.trim();
   if (!text) {
@@ -989,6 +1048,8 @@ function recordQualityEvent(data, candidate, confirmationMethod, metricScope = "
     trace_id: data.trace_id,
     recorded_at: new Date().toISOString(),
     ocr_engine: data.ocr_engine || "unknown",
+    visual_engine: data.visual_engine || "unavailable",
+    recognition_mode: data.recognition_mode || "ocr",
     match_score: candidate ? Number(candidate.confidence || 0) : null,
     dataset_version: data.dataset_version || "unknown",
     latency_ms: Number(data.latency_ms || 0),
@@ -1032,7 +1093,14 @@ function renderQualitySummary() {
   }
   const score = latest.match_score === null ? "MISS" : `${Math.round(latest.match_score * 100)}%`;
   const confirmation = latest.confirmed ? "확정" : "확인 대기";
-  const scope = latest.metric_scope === "matcher_only" ? "텍스트 매처" : "이미지 OCR";
+  const scope =
+    latest.metric_scope === "matcher_only"
+      ? "텍스트 매처"
+      : latest.metric_scope === "ocr+visual_embedding"
+        ? "OCR+이미지"
+        : latest.metric_scope === "visual_embedding"
+          ? "이미지"
+          : "이미지 OCR";
   elements.qualitySummary.textContent = `최근 ${scope} ${score} · ${Math.round(
     latest.latency_ms,
   )}ms · ${confirmation} · ${latest.dataset_version}`;

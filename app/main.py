@@ -11,6 +11,7 @@ from app.api.routes.chat import router as chat_router
 from app.api.routes.pokedex import router as pokedex_router
 from app.api.routes.scan import router as scan_router
 from app.api.routes.voice import router as voice_router
+from app.vision.visual_matcher import visual_runtime_status
 
 
 UI_DIR = Path(__file__).resolve().parent / "ui"
@@ -35,6 +36,7 @@ def create_app() -> FastAPI:
             "dataset_version": meta.get("dataset_version"),
             "species_count": meta.get("species_count"),
             "ocr_engines": available_ocr_engines(),
+            "visual_recognition": visual_runtime_status(),
         }
 
     @app.get("/", include_in_schema=False)

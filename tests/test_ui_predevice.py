@@ -57,7 +57,7 @@ class PreDeviceUITest(unittest.TestCase):
         payload = response.json()
         self.assertGreaterEqual(len(payload["top_candidates"]), 1)
         self.assertEqual(payload["top_candidates"][0]["pokemon_id"], 25)
-        self.assertFalse(payload["requires_user_confirmation"])
+        self.assertTrue(payload["requires_user_confirmation"])
         self.assertEqual(payload["ocr_engine"], "fixture_text")
         self.assertNotEqual(payload["dataset_version"], "unknown")
         self.assertGreaterEqual(payload["latency_ms"], 0)
@@ -70,6 +70,16 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertEqual(payload["matches"][0]["pokemon_id"], 25)
         self.assertLessEqual(len(payload["matches"]), 5)
         self.assertTrue(payload["dataset_version"])
+
+    def test_official_unnumbered_preview_is_searchable_without_invented_dex_number(self) -> None:
+        response = self.client.get("/v1/pokedex/search", params={"query": "Browt", "limit": 3})
+
+        self.assertEqual(response.status_code, 200)
+        match = response.json()["matches"][0]
+        self.assertEqual(match["pokemon_id"], -1000001)
+        detail = self.client.get(f"/v1/pokedex/forms/{match['form_id']}").json()
+        self.assertEqual(detail["record_status"], "officially_announced_unnumbered")
+        self.assertEqual(detail["localization_status"], "ko_name_not_announced")
 
     def test_pokedex_detail_includes_evolution_and_type_matchups(self) -> None:
         search = self.client.get("/v1/pokedex/search", params={"query": "피카츄", "limit": 1}).json()
@@ -193,8 +203,25 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         payload = response.json()
         self.assertTrue(payload["original_ai_voice_allowed"])
-        self.assertTrue(payload["official_audio_extraction_allowed"])
-        self.assertTrue(payload["official_voice_mimicry_allowed"])
+        self.assertFalse(payload["official_audio_extraction_allowed"])
+        self.assertFalse(payload["official_voice_mimicry_allowed"])
+
+    def test_selected_form_generates_grounded_narration(self) -> None:
+        search = self.client.get("/v1/pokedex/search", params={"query": "피카츄", "limit": 1}).json()
+        form_id = search["matches"][0]["form_id"]
+        response = self.client.post("/v1/voice/narration", json={"form_id": form_id})
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["form_id"], form_id)
+        self.assertIn("피카츄", payload["narration_text"])
+        self.assertIn("전기", payload["narration_text"])
+        self.assertIn("땅 2배", payload["narration_text"])
+        self.assertIn("라이츄", payload["narration_text"])
+        self.assertIn("천둥의돌", payload["narration_text"])
+        self.assertIn("알로라 지역", payload["narration_text"])
+        self.assertNotIn("라이츄으로", payload["narration_text"])
+        self.assertIn("선택한 정확한 폼", payload["narration_text"])
 
     def test_voice_preview_contract(self) -> None:
         response = self.client.post(

@@ -15,6 +15,8 @@ from app.agents.pokedex_agent.nodes.persist_trace import run as persist_trace
 from app.agents.pokedex_agent.nodes.retrieve_local_dex import run as retrieve_context
 from app.agents.pokedex_agent.state import AgentState
 from app.schemas.domain import ScanCandidate
+from app.vision.fusion import fuse_candidates
+from app.vision.visual_matcher import MODEL_ID, get_visual_matcher
 
 
 class PokedexAgentGraph:
@@ -37,8 +39,14 @@ class PokedexAgentGraph:
         state.intent = "scan"
         extract_scan_text(state, image_bytes, filename, content_type)
         match_local_dex(state)
+        ocr_candidates = [ScanCandidate(**candidate) for candidate in state.match_candidates]
+        visual_candidates: list[ScanCandidate] = []
+        if content_type and content_type.startswith("image/"):
+            visual_candidates = get_visual_matcher().match(image_bytes, top_k=5)
+            state.visual_engine = MODEL_ID if visual_candidates else "unavailable"
+        candidates = fuse_candidates(ocr_candidates, visual_candidates, top_k=3)
+        state.match_candidates = [candidate.model_dump() for candidate in candidates]
         persist_trace(state)
-        candidates = [ScanCandidate(**candidate) for candidate in state.match_candidates]
         return state, candidates
 
 

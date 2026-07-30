@@ -75,6 +75,11 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             height_m real,
             weight_kg real,
             rarity_tier text,
+            canonical_key text,
+            record_status text not null default 'canonical',
+            localization_status text not null default 'complete',
+            category_en text,
+            ability_en text,
             source text not null,
             updated_at text not null,
             unique(pokemon_id, form_name)
@@ -165,6 +170,21 @@ def _create_schema(conn: sqlite3.Connection) -> None:
         );
         create index idx_dex_passages_form on dex_passages(form_id);
         create index idx_dex_passages_facet on dex_passages(facet);
+
+        create table visual_reference_embeddings (
+            reference_id text primary key,
+            form_id text not null references pokemon_forms(form_id),
+            model_id text not null,
+            embedding_blob blob not null,
+            dimension integer not null,
+            reference_kind text not null,
+            source_name text not null,
+            source_url_sha256 text not null,
+            generation_scope integer not null,
+            created_at text not null
+        );
+        create index idx_visual_reference_form on visual_reference_embeddings(form_id);
+        create index idx_visual_reference_model on visual_reference_embeddings(model_id);
         """
     )
 
@@ -181,7 +201,13 @@ def _insert_rows(conn: sqlite3.Connection, table: str, rows: list[dict[str, obje
 
 def _strip_runtime_fields(row: dict[str, object]) -> dict[str, object]:
     blocked = {"names", "aliases", "evolves_from_id"}
-    return {key: value for key, value in row.items() if key not in blocked}
+    cleaned = {key: value for key, value in row.items() if key not in blocked}
+    cleaned.setdefault("canonical_key", f"national:{row['pokemon_id']}:{row['form_name']}")
+    cleaned.setdefault("record_status", "canonical")
+    cleaned.setdefault("localization_status", "complete")
+    cleaned.setdefault("category_en", None)
+    cleaned.setdefault("ability_en", None)
+    return cleaned
 
 
 def main() -> None:

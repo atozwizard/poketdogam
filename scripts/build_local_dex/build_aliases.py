@@ -47,11 +47,12 @@ def _aliases_for_form(form: dict[str, object]) -> list[tuple[str, str, str]]:
     assert isinstance(names, dict)
     form_name = str(form["form_name"])
     aliases: list[tuple[str, str, str]] = []
+    name_source = str(form.get("source") or "pokeapi")
 
     for locale in ("ko", "en", "ja"):
         value = names.get(locale)
         if isinstance(value, str) and value:
-            aliases.append((locale, value, "pokeapi"))
+            aliases.append((locale, value, name_source))
 
     if form_name != "base":
         ko_name = str(names.get("ko") or "")

@@ -15,13 +15,35 @@ class AndroidScaffoldTest(unittest.TestCase):
             PROJECT_ROOT
             / "android/app/src/main/java/com/twentyflags/poketdogam/MainActivity.kt"
         ).read_text(encoding="utf-8")
+        visual_matcher = (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/VisualMatcher.kt"
+        ).read_text(encoding="utf-8")
+        narrator = (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/RotomNarrator.kt"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("text-recognition-korean:16.0.1", build_file)
+        self.assertIn("tasks-vision:0.10.29", build_file)
         self.assertIn("camera-view:1.6.1", build_file)
         self.assertIn("../data/dex.sqlite", build_file)
+        self.assertIn("../data/vision/gen1_visual_index.json", build_file)
+        self.assertIn("../data/vision/mobilenet_v3_small.tflite", build_file)
         self.assertIn("android.permission.CAMERA", manifest)
-        self.assertNotIn("android.permission.INTERNET", manifest)
+        self.assertIn(
+            'android.permission.INTERNET" tools:node="remove"',
+            manifest,
+        )
+        self.assertIn(
+            'android.permission.ACCESS_NETWORK_STATE" tools:node="remove"',
+            manifest,
+        )
         self.assertIn("temporaryImage.delete()", activity)
+        self.assertIn("repository.fuse", activity)
+        self.assertIn("TextToSpeech", activity)
+        self.assertIn("reference_count", visual_matcher)
+        self.assertIn("buildNarration", narrator)
 
 
 if __name__ == "__main__":

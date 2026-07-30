@@ -1,25 +1,44 @@
 {
-  "dataset_version": "pokeapi-gen1-9-2026-07-29",
-  "built_at": "2026-07-29T00:33:40+00:00",
+  "dataset_version": "multisource-all-generations-2026-07-29",
+  "built_at": "2026-07-29T05:47:14+00:00",
   "source": "pokeapi",
-  "limit": 1025,
-  "species_count": 1025,
-  "form_count": 1351,
-  "alias_count": 5576,
-  "passage_count": 4510,
+  "limit": null,
+  "species_count": 1028,
+  "canonical_species_count": 1025,
+  "official_preview_count": 3,
+  "form_count": 1354,
+  "alias_count": 5582,
+  "passage_count": 4516,
   "type_chart_count": 324,
   "usage_scope": "poc_noncommercial_evaluation",
   "license_status": "product_license_pending_after_poc_acceptance",
   "derivative_data_only": true,
   "official_media_included": false,
+  "visual_index": {
+    "model_id": "mediapipe-mobilenet-v3-small-float32",
+    "model_sha256": "bbbb4c51a55a53905af1daec995ca1aae355046f8839bb8c9f5ce9271394bc40",
+    "generation": 1,
+    "species_count": 151,
+    "form_count": 238,
+    "reference_count": 238,
+    "policy": "derived numeric embeddings only; source images are temporary and excluded"
+  },
   "sources": [
     {
       "name": "pokeapi",
       "url": "https://pokeapi.co",
-      "note": "Cached factual species, variety and evolution fields up to species id=1025.",
+      "note": "All factual species, variety and evolution fields available in the local cache.",
       "usage_scope": "poc_noncommercial_evaluation",
       "license_status": "product_license_pending_after_poc_acceptance",
       "content_policy": "names, measurements, stats, types and evolution facts only; no media"
+    },
+    {
+      "name": "pokemon-winds-waves-official-preview",
+      "url": "https://windswaves.pokemon.com/en-us/",
+      "note": "Officially announced, unnumbered next-generation Pokémon facts.",
+      "usage_scope": "poc_noncommercial_evaluation",
+      "license_status": "product_license_pending_after_poc_acceptance",
+      "content_policy": "names, category, type, measurements and ability only; no media"
     },
     {
       "name": "seed:ocr-aliases",

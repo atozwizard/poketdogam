@@ -8,9 +8,17 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-from app.schemas.api import VoicePreviewRequest, VoicePreviewResponse, VoiceStatusResponse
+from app.agents.pokedex_agent.tools.tool_local_dex import get_local_dex
+from app.schemas.api import (
+    NarrationRequest,
+    NarrationResponse,
+    VoicePreviewRequest,
+    VoicePreviewResponse,
+    VoiceStatusResponse,
+)
+from app.voice.narration import build_narration
 
 router = APIRouter(tags=["voice"])
 
@@ -30,9 +38,24 @@ def voice_status() -> VoiceStatusResponse:
         stage="pre_device_preview",
         runtime="browser_speech_synthesis",
         original_ai_voice_allowed=True,
-        official_audio_extraction_allowed=True,
-        official_voice_mimicry_allowed=True,
+        official_audio_extraction_allowed=False,
+        official_voice_mimicry_allowed=False,
         policy=VOICE_POLICY,
+    )
+
+
+@router.post("/voice/narration", response_model=NarrationResponse)
+def voice_narration(request: NarrationRequest) -> NarrationResponse:
+    detail = get_local_dex().get_form(request.form_id)
+    if detail is None:
+        raise HTTPException(status_code=404, detail="Local dex form not found")
+    return NarrationResponse(
+        form_id=str(detail["form_id"]),
+        pokemon_id=int(detail["pokemon_id"]),
+        name_ko=str(detail["name_ko"]),
+        narration_text=build_narration(detail),
+        grounded_fields=["types", "weaknesses", "evolutions", "stats.bst"],
+        dataset_version=str(detail["source_meta"]["dataset_version"]),
     )
 
 

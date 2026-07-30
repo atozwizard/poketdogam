@@ -29,6 +29,9 @@ def validate(
     require_nonbase_forms: bool = False,
     require_evolution_conditions: bool = False,
     require_provenance: bool = False,
+    require_gen1_visual_coverage: bool = False,
+    require_all_announced_generations: bool = False,
+    min_official_previews: int = 0,
 ) -> dict[str, object]:
     if not db_path.exists():
         raise FileNotFoundError(f"dex sqlite does not exist: {db_path}")
@@ -48,6 +51,51 @@ def validate(
             ),
             "aliases": _count(conn, "name_aliases"),
             "type_chart": _count(conn, "type_chart"),
+            "canonical_species": int(
+                conn.execute(
+                    """
+                    select count(distinct pokemon_id)
+                    from pokemon_forms
+                    where record_status = 'canonical'
+                    """
+                ).fetchone()[0]
+            ),
+            "official_previews": int(
+                conn.execute(
+                    """
+                    select count(distinct pokemon_id)
+                    from pokemon_forms
+                    where record_status = 'officially_announced_unnumbered'
+                    """
+                ).fetchone()[0]
+            ),
+            "generation_1_species": int(
+                conn.execute(
+                    "select count(*) from pokemon_species where generation = 1"
+                ).fetchone()[0]
+            ),
+            "generation_1_forms": int(
+                conn.execute(
+                    """
+                    select count(*)
+                    from pokemon_forms f
+                    join pokemon_species s on s.pokemon_id = f.pokemon_id
+                    where s.generation = 1
+                    """
+                ).fetchone()[0]
+            ),
+            "visual_references": _count(conn, "visual_reference_embeddings"),
+            "generation_1_visual_forms": int(
+                conn.execute(
+                    """
+                    select count(distinct v.form_id)
+                    from visual_reference_embeddings v
+                    join pokemon_forms f on f.form_id = v.form_id
+                    join pokemon_species s on s.pokemon_id = f.pokemon_id
+                    where s.generation = 1
+                    """
+                ).fetchone()[0]
+            ),
         }
         duplicate_aliases = conn.execute(
             """
@@ -72,6 +120,12 @@ def validate(
             "select sources_json from dataset_meta order by built_at desc limit 1"
         ).fetchone()
         sources = json.loads(meta_row[0]) if meta_row and meta_row[0] else []
+        covered_generations = [
+            int(row[0])
+            for row in conn.execute(
+                "select distinct generation from pokemon_species order by generation"
+            )
+        ]
 
     db_size_bytes = db_path.stat().st_size
     if counts["species"] < min_species or counts["forms"] == 0 or counts["aliases"] == 0:
@@ -104,6 +158,25 @@ def validate(
         ]
         if missing_provenance:
             raise ValueError(f"dataset provenance incomplete: {missing_provenance}")
+    if counts["official_previews"] < min_official_previews:
+        raise ValueError(
+            "official preview coverage below gate: "
+            f"{counts['official_previews']} < {min_official_previews}"
+        )
+    if require_gen1_visual_coverage:
+        if counts["generation_1_species"] != 151:
+            raise ValueError(
+                f"generation 1 species coverage must be 151, got {counts['generation_1_species']}"
+            )
+        if counts["generation_1_visual_forms"] != counts["generation_1_forms"]:
+            raise ValueError(
+                "generation 1 visual coverage incomplete: "
+                f"{counts['generation_1_visual_forms']} / {counts['generation_1_forms']}"
+            )
+    if require_all_announced_generations:
+        missing_generations = sorted(set(range(1, 11)) - set(covered_generations))
+        if missing_generations:
+            raise ValueError(f"announced generation coverage incomplete: {missing_generations}")
 
     fixture_result = None
     if fixture_path is not None and fixture_path.exists():
@@ -121,6 +194,7 @@ def validate(
         "missing_names": missing_names,
         "orphan_foreign_keys": orphan_foreign_keys,
         "provenance_source_count": len(sources) if isinstance(sources, list) else 0,
+        "covered_generations": covered_generations,
         "fixture": fixture_result,
     }
 
@@ -166,10 +240,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("db_path", nargs="?", default="data/dex.sqlite")
     parser.add_argument("--fixtures", default="fixtures/ocr/korean_cards.jsonl")
-    parser.add_argument("--min-species", type=int, default=1025)
+    parser.add_argument("--min-species", type=int, default=1028)
+    parser.add_argument("--min-official-previews", type=int, default=3)
     parser.add_argument("--min-fixtures", type=int, default=30)
     parser.add_argument("--allow-base-only", action="store_true")
     parser.add_argument("--allow-missing-evolution-conditions", action="store_true")
+    parser.add_argument("--allow-incomplete-gen1-visual", action="store_true")
     args = parser.parse_args()
     result = validate(
         PROJECT_ROOT / args.db_path,
@@ -179,6 +255,9 @@ def main() -> None:
         require_nonbase_forms=not args.allow_base_only,
         require_evolution_conditions=not args.allow_missing_evolution_conditions,
         require_provenance=True,
+        require_gen1_visual_coverage=not args.allow_incomplete_gen1_visual,
+        require_all_announced_generations=True,
+        min_official_previews=args.min_official_previews,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2))
 

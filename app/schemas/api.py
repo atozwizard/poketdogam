@@ -28,6 +28,8 @@ class ScanResponse(BaseModel):
     requires_user_confirmation: bool
     trace_id: str
     ocr_engine: str
+    visual_engine: str = "unavailable"
+    recognition_mode: str = "ocr"
     dataset_version: str
     latency_ms: float = Field(ge=0.0)
     scan_status: str = "matched"
@@ -66,6 +68,11 @@ class PokedexDetailResponse(BaseModel):
     types: list[str]
     height_m: float | None = None
     weight_kg: float | None = None
+    canonical_key: str | None = None
+    record_status: str = "canonical"
+    localization_status: str = "complete"
+    category_en: str | None = None
+    ability_en: str | None = None
     stats: dict[str, int] = Field(default_factory=dict)
     evolutions: list[EvolutionSummary] = Field(default_factory=list)
     weaknesses: list[TypeMatchup] = Field(default_factory=list)
@@ -87,6 +94,19 @@ class VoiceStatusResponse(BaseModel):
     official_audio_extraction_allowed: bool
     official_voice_mimicry_allowed: bool
     policy: list[str]
+
+
+class NarrationRequest(BaseModel):
+    form_id: str = Field(min_length=1, max_length=120)
+
+
+class NarrationResponse(BaseModel):
+    form_id: str
+    pokemon_id: int
+    name_ko: str
+    narration_text: str
+    grounded_fields: list[str]
+    dataset_version: str
 
 
 class VoicePreviewRequest(BaseModel):

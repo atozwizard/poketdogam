@@ -13,6 +13,7 @@ class AgentState:
     weather: dict[str, str | float | int | None] = field(default_factory=dict)
     intent: str = "unknown"
     ocr_engine: str = ""
+    visual_engine: str = ""
     scan_text: str = ""
     match_candidates: list[dict[str, object]] = field(default_factory=list)
     entities: dict[str, str] = field(default_factory=dict)

@@ -8,7 +8,9 @@
 
 ## 1. Prod 완료 정의
 - 유료 클라우드 LLM/OCR 없이 스캔, 후보 확인, 상세 조회, 템플릿 응답이 동작한다.
-- `dex.sqlite`는 Gen1-9 범위로 재현 빌드되고 `dex.meta.json`과 함께 버전 관리된다.
+- `dex.sqlite`는 상한을 고정하지 않고 모든 공개 세대 범위를 재현 빌드하며,
+  번호가 없는 공식 발표 레코드는 임시 음수 ID와 명시적 상태로 분리한다.
+- 시각 인식 PoC는 1세대 151종과 현재 도감의 238폼을 누락 없이 포함한다.
 - 실물 한국어 카드 30장 알파 `match_recall@3 >= 0.90`, 100장 MVP `>= 0.95`를 통과한다.
 - Android 실기기 1종 이상에서 CameraX 스틸 캡처, ML Kit OCR, 로컬 matcher, 상세 화면이 오프라인으로 이어진다.
 - 로토무 모티프 UI는 첫 화면부터 스캔, 후보, 상세, 대화, 수동 검색 상태까지 완성되어 있다.
@@ -46,17 +48,21 @@
 
 ### P1. Local Scan Core 전체 Dex 빌드
 - 작업:
-  1. `fetch_pokeapi.py`로 Gen1-9 PokéAPI raw cache 확보.
+  1. `fetch_pokeapi.py`에서 upstream species count를 조회해 전 세대 raw cache를 확보.
   2. `normalize_dex.py`를 seed 입력에서 raw cache 입력까지 확장.
   3. 종, 폼, 타입, 스탯, 진화, 다국어 이름을 SQLite로 export.
   4. `name_aliases`에 OCR용 한글/영문/일문 alias와 흔한 오타를 추가.
   5. `validate_dex.py`에 고아 FK, alias 중복, 필수 이름 누락, 타입 상성 18x18 검증을 강화.
 - 산출물:
-  - Gen1-9 `data/dex.sqlite`
+  - 전 세대 `data/dex.sqlite`
+  - 번호 미정 공식 발표 manifest
+  - 1세대 151종·238폼 파생 시각 임베딩 인덱스
   - `data/dex.meta.json`
   - raw cache 디렉터리 또는 CI artifact
 - 게이트:
-  - `species_count >= 1025`
+  - 정식 번호 species 1,025 이상 + 확인 가능한 공식 발표·번호 미정 레코드
+  - 1세대 species 151, visual form coverage 238/238
+  - 합성 변형 시각 회귀 238폼·714건, aggregate와 각 구도 `form_recall@3 >= 0.90`
   - 텍스트 DB 용량 `<= 15MB`
   - fixture `match_recall@3 >= 0.90`
 
@@ -88,6 +94,8 @@
   2. ML Kit Text Recognition으로 OCR text를 생성한다.
   3. OCR 결과를 로컬 matcher에 전달한다.
   4. 저신뢰 결과는 Top-3 확인 또는 수동 검색으로 보낸다.
+  5. MediaPipe 이미지 임베딩 후보를 OCR 후보와 동적 가중치로 결합한다.
+  6. 선택 폼의 타입·약점·진화 데이터로 낭독 문장을 생성하고 TTS에 연결한다.
 - 게이트:
   - 실기기 1종에서 스캔 -> OCR -> Top-3 -> 상세.
   - 스캔 핫패스에서 원격 API 호출 0회.
@@ -178,17 +186,17 @@
 1. P0 실기기 전 UI 완성. **완료**
 2. P1 PokéAPI 간접 사실 데이터 기반 전체 Dex 확장. **완료**
 3. P2 실물 한국어 카드 30장 벤치. **미수행** (텍스트/합성 이미지 30건 회귀 통과)
-4. P3 Android Compose UI 포팅. **소스 구현, 빌드 미검증**
-5. P4 CameraX + bundled Korean ML Kit 연결. **소스 구현, 실기기 미검증**
+4. P3 Android Compose UI 포팅. **소스 구현·debug APK 빌드 완료**
+5. P4 CameraX + bundled Korean ML Kit 연결. **1차 실기기 실행 완료, 3뷰 수정본 재설치 대기**
 
 ## 4. 구현도 스냅샷 (2026-07-29 09:41 +09:00)
 
 | 단계 | 상태 | 확인된 구현 | 남은 게이트 |
 | :-- | :-- | :-- | :-- |
 | P0 | 완료 | 실제 이미지 OCR, 업로드 보호, Top-3, 검색, 상세, grounded SSE 대화, 컬렉션, 데이터 삭제, 360px | 실제 사용자 사용성 평가 |
-| P1 | 완료 | 1,025종, 1,351폼, 비기본 326폼, 진화 조건 550개, alias 5,576개, DB 9.15MB | 정기 데이터 갱신 |
+| P1 | 완료 | 정식 번호 1,025종+공식 번호 미정 3종, 1,354폼, 시각 238폼, DB 10.35MB | 정기 데이터 갱신 |
 | P2 | 미완료 | matcher 30/30, 합성 이미지 Vision→matcher 30/30·P95 343.62ms | 실물 카드 30장 조건별 실측 |
-| P3–P4 | 소스 구현 | Compose, CameraX, bundled Korean ML Kit, read-only Dex, Top-3, 상세 | Android SDK 빌드·에뮬레이터·실기기 |
+| P3–P4 | 수정본 검증 대기 | Compose, CameraX, ML Kit, 3뷰 MediaPipe, EXIF 보정, Top-3, 상세·TTS, APK 빌드. 1차 SM-P610 실행 | 3뷰 수정 APK 재설치·실물 표본 |
 | P5 | 미착수 | 없음 | 실물 카드 100장, 중급 Android P95·recall@3 95% |
 | P6 | 웹 PoC 완료 | 확정 게이트, 검색/즐겨찾기/내보내기/삭제, 비식별 trace, 세션 TTL 삭제 | Android 컬렉션 저장소 |
 | P6.5 | 프리뷰 | browser speech synthesis와 정책 표시 | STT→Agent→TTS, streaming, barge-in, TTFA 실측 |

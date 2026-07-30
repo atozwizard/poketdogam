@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>포켓도감 PoC · 로컬 카드 스캔</title>
-    <meta name="description" content="이미지 OCR과 로컬 도감으로 카드 속 포켓몬을 찾는 비상업 PoC">
+    <meta name="description" content="OCR과 이미지 임베딩, 로컬 도감으로 포켓몬 폼을 찾는 비상업 PoC">
     <link rel="icon" href="/ui/assets/rotom-core.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/ui/styles.css">
   </head>
@@ -24,7 +24,7 @@
           <div class="lid-copy">
             <p class="eyebrow">Local Scan PoC</p>
             <h1>포켓도감</h1>
-            <p id="rotomLine" class="rotom-line">카드 이름이 선명한 이미지를 준비해줘-로.</p>
+            <p id="rotomLine" class="rotom-line">이름이나 캐릭터 외형이 선명한 이미지를 준비해줘-로.</p>
             <span class="poc-badge">비상업 PoC · 정식 라이선스 신청 전</span>
           </div>
           <dl class="system-meta">
@@ -58,20 +58,20 @@
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">1 · 이미지 스캔</p>
-                <h2 id="scanTitle">카드에서 이름 찾기</h2>
+                <h2 id="scanTitle">카드·인형·캐릭터 찾기</h2>
               </div>
               <span class="status-pill">원본 미저장</span>
             </div>
-            <p class="panel-lead">카드 이름 영역이 크고 반사광 없이 보이도록 촬영하면 인식률이 높아집니다.</p>
+            <p class="panel-lead">대상을 화면 중앙에 크게 두고, 카드라면 이름도 선명하게 촬영하세요.</p>
 
             <div class="upload-zone">
-              <label class="primary-command upload-command" for="cameraInput">카드 촬영·이미지 선택</label>
+              <label class="primary-command upload-command" for="cameraInput">촬영·이미지 선택</label>
               <input id="cameraInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/heic,image/heif,image/tiff" capture="environment">
               <p id="uploadHint" class="upload-hint">PNG·JPEG·WebP·HEIC·TIFF, 최대 8MB</p>
             </div>
 
             <div class="lens" id="lens">
-              <img id="scanPreview" class="scan-preview" alt="선택한 카드 이미지 미리보기" hidden>
+              <img id="scanPreview" class="scan-preview" alt="선택한 포켓몬 이미지 미리보기" hidden>
               <div class="scan-beam"></div>
               <div class="reticle">
                 <span></span><span></span><span></span><span></span>
@@ -157,6 +157,9 @@
                 <span>사실 필드 기반 비상업 PoC · 공식 미디어 미포함</span>
               </aside>
               <button id="saveButton" class="secondary-command full-width" type="button">컬렉션 저장</button>
+              <button id="detailNarrationButton" class="primary-command full-width" type="button">
+                로토무 설명 듣기
+              </button>
               <p id="saveHint" class="save-hint">후보를 확정하면 저장할 수 있습니다.</p>
             </article>
           </section>
@@ -199,8 +202,12 @@
               <div><dt>정책</dt><dd id="voicePolicy">독자 합성</dd></div>
             </dl>
             <div class="voice-controls">
-              <label class="field-label" for="voiceScript">Preview Text</label>
+              <label class="field-label" for="voiceScript">선택 폼 기반 낭독 문장</label>
               <textarea id="voiceScript" spellcheck="false">분석 완료다-로. 로컬 도감 메모리와 연결됐다-로.</textarea>
+              <label class="auto-narration-option" for="autoNarration">
+                <input id="autoNarration" type="checkbox">
+                <span>정확한 폼 확정 후 자동 낭독</span>
+              </label>
               <div class="segmented-row" role="group" aria-label="보이스 스타일">
                 <button class="voice-option is-active" type="button" data-voice-style="electric_device">전기</button>
                 <button class="voice-option" type="button" data-voice-style="bright_guide">맑음</button>

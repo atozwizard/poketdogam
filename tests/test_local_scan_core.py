@@ -6,7 +6,7 @@ import tempfile
 import unittest
 
 from app.agents.pokedex_agent.tools.tool_local_dex import LocalDexStore
-from scripts.build_local_dex.build import build_local_dex
+from scripts.build_local_dex.build import _append_unreleased_official_previews, build_local_dex
 from scripts.build_local_dex.validate_dex import validate_fixtures
 from scripts.build_local_dex.validate_dex import validate
 
@@ -15,6 +15,25 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 class LocalScanCoreTest(unittest.TestCase):
+    def test_official_preview_is_removed_when_upstream_canonical_name_arrives(self) -> None:
+        normalized = {
+            "species": [{"pokemon_id": 1026, "name_en": "Browt"}],
+            "forms": [],
+            "stats": [],
+            "evolutions": [],
+        }
+        previews = {
+            "species": [{"pokemon_id": -1000001, "name_en": "Browt"}],
+            "forms": [{"pokemon_id": -1000001, "form_id": "preview-browt"}],
+            "stats": [],
+            "evolutions": [],
+        }
+
+        _append_unreleased_official_previews(normalized, previews)
+
+        self.assertEqual(len(normalized["species"]), 1)
+        self.assertEqual(normalized["forms"], [])
+
     def test_build_seed_dex_and_match_fixture(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             temp_path = Path(temp_dir)
@@ -57,8 +76,20 @@ class LocalScanCoreTest(unittest.TestCase):
             require_nonbase_forms=True,
             require_evolution_conditions=True,
             require_provenance=True,
+            require_gen1_visual_coverage=True,
+            require_all_announced_generations=True,
+            min_official_previews=3,
         )
 
+        self.assertGreaterEqual(result["counts"]["species"], 1028)
+        self.assertEqual(result["counts"]["canonical_species"], 1025)
+        self.assertEqual(result["counts"]["official_previews"], 3)
+        self.assertEqual(result["counts"]["generation_1_species"], 151)
+        self.assertEqual(result["covered_generations"], list(range(1, 11)))
+        self.assertEqual(
+            result["counts"]["generation_1_visual_forms"],
+            result["counts"]["generation_1_forms"],
+        )
         self.assertGreaterEqual(result["counts"]["nonbase_forms"], 300)
         self.assertGreaterEqual(result["counts"]["evolution_conditions"], 500)
         self.assertEqual(result["orphan_foreign_keys"], 0)

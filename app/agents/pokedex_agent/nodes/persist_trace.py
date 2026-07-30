@@ -15,12 +15,21 @@ def run(state: AgentState) -> AgentState:
     top_score = None
     if state.match_candidates:
         top_score = state.match_candidates[0].get("confidence")
+    evidence_sources = sorted(
+        {
+            str(source)
+            for candidate in state.match_candidates
+            for source in candidate.get("evidence_sources", [])
+        }
+    )
     record_trace(
         state.trace_id,
         {
             "intent": state.intent,
             "model": state.llm_model_used,
             "ocr_engine": state.ocr_engine,
+            "visual_engine": state.visual_engine,
+            "recognition_mode": "+".join(evidence_sources) or "none",
             "match_score": top_score,
             "dataset_version": state.dataset_version,
             "facet": state.retrieval_context.get("facet"),

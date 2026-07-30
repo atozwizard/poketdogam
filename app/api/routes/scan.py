@@ -74,14 +74,25 @@ def _scan_response(state: AgentState, candidates: list[ScanCandidate], started_a
     return ScanResponse(
         event_id=str(uuid4()),
         top_candidates=candidates,
-        requires_user_confirmation=not candidates or candidates[0].confidence < 0.9,
+        requires_user_confirmation=True,
         trace_id=state.trace_id,
         ocr_engine=state.ocr_engine or "unknown",
+        visual_engine=state.visual_engine or "unavailable",
+        recognition_mode=_recognition_mode(candidates),
         dataset_version=state.dataset_version or "unknown",
         latency_ms=round((perf_counter() - started_at) * 1000, 2),
         scan_status=scan_status,
         guidance=guidance,
     )
+
+
+def _recognition_mode(candidates: list[ScanCandidate]) -> str:
+    sources = {source for item in candidates for source in item.evidence_sources}
+    if {"ocr", "visual_embedding"}.issubset(sources):
+        return "ocr+visual_embedding"
+    if "visual_embedding" in sources:
+        return "visual_embedding"
+    return "ocr"
 
 
 def _matches_image_signature(image_bytes: bytes, content_type: str) -> bool:
