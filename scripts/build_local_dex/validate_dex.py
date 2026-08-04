@@ -16,7 +16,8 @@ if str(PROJECT_ROOT) not in sys.path:
 from app.agents.pokedex_agent.tools.tool_local_dex import LocalDexStore
 
 
-MAX_DEX_BYTES = 15 * 1024 * 1024
+# All-generation visual embeddings (esp. Gen7–9 aug densification) exceed 32MB.
+MAX_DEX_BYTES = 96 * 1024 * 1024
 
 
 def validate(

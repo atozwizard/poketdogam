@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
+import os
+import sqlite3
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -9,6 +14,9 @@ from app.vision.visual_matcher import (
     _center_square_views,
     _calibrate_similarity,
     _grid_square_views,
+    MODEL_ID,
+    VisualDexMatcher,
+    get_visual_matcher,
     visual_runtime_status,
 )
 from scripts.validate_visual_benchmark import validate_visual_benchmark
@@ -36,12 +44,68 @@ def candidate(
 
 
 class VisualFusionTest(unittest.TestCase):
+    def test_visual_matcher_singleton_is_thread_safe(self) -> None:
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            matchers = list(executor.map(lambda _: get_visual_matcher(), range(32)))
+
+        self.assertEqual(len({id(matcher) for matcher in matchers}), 1)
+
+    def test_reference_cache_tracks_atomic_database_replacement(self) -> None:
+        def build_database(path: Path, pokemon_id: int, name: str) -> None:
+            with closing(sqlite3.connect(path)) as conn:
+                conn.executescript(
+                    """
+                    create table visual_reference_embeddings (
+                        form_id text, embedding_blob blob, model_id text,
+                        reference_kind text, generation_scope integer
+                    );
+                    create table pokemon_forms (
+                        form_id text, pokemon_id integer, form_name text,
+                        type1 text, type2 text
+                    );
+                    create table pokemon_species (
+                        pokemon_id integer, name_ko text, name_en text,
+                        generation integer
+                    );
+                    """
+                )
+                conn.execute(
+                    "insert into pokemon_species values (?, ?, ?, 1)",
+                    (pokemon_id, name, name),
+                )
+                conn.execute(
+                    "insert into pokemon_forms values ('base', ?, 'base', 'normal', null)",
+                    (pokemon_id,),
+                )
+                conn.execute(
+                    "insert into visual_reference_embeddings values ('base', ?, ?, 'derived', 1)",
+                    (sqlite3.Binary(b"\0\0\0\0"), MODEL_ID),
+                )
+                conn.commit()
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            database = root / "dex.sqlite"
+            replacement = root / "replacement.sqlite"
+            model = root / "model.tflite"
+            model.write_bytes(b"test")
+            build_database(database, 25, "피카츄")
+            matcher = VisualDexMatcher(db_path=database, model_path=model)
+            self.assertEqual(matcher._reference_rows()[0]["pokemon_id"], 25)
+
+            build_database(replacement, 133, "이브이")
+            os.replace(replacement, database)
+
+            self.assertEqual(matcher._reference_rows()[0]["pokemon_id"], 133)
+
     def test_gen1_visual_index_covers_every_committed_form(self) -> None:
         status = visual_runtime_status()
 
         self.assertTrue(status["available"])
-        self.assertEqual(status["reference_count"], 238)
-        self.assertEqual(status["scope"], "generation_1_all_forms")
+        self.assertEqual(status["gen1_form_count"], 238)
+        self.assertIsNone(status["scan_default_generation"])
+        self.assertIn(status["scope"], {"generation_1_all_forms", "all_generations_all_forms"})
+        self.assertGreaterEqual(status["reference_count"], 238)
 
     def test_matcher_builds_full_and_two_center_views(self) -> None:
         from PIL import Image

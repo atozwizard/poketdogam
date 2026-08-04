@@ -42,7 +42,11 @@ class PokedexAgentGraph:
         ocr_candidates = [ScanCandidate(**candidate) for candidate in state.match_candidates]
         visual_candidates: list[ScanCandidate] = []
         if content_type and content_type.startswith("image/"):
-            visual_candidates = get_visual_matcher().match(image_bytes, top_k=5)
+            visual_candidates = get_visual_matcher().match(
+                image_bytes,
+                top_k=5,
+                generation=None,
+            )
             state.visual_engine = MODEL_ID if visual_candidates else "unavailable"
         candidates = fuse_candidates(ocr_candidates, visual_candidates, top_k=3)
         state.match_candidates = [candidate.model_dump() for candidate in candidates]

@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "benchmark": "universal_all_generation_multi_media_recognition",
+  "created_at": "2026-08-02T01:49:02+00:00",
+  "model_id": "mediapipe-mobilenet-v3-small-float32",
+  "scope": {
+    "generations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "species_target": 1025,
+    "base_forms_only": true,
+    "query_form_count": 1025,
+    "scenarios": [
+      "studio",
+      "camera",
+      "partial"
+    ],
+    "recognition_mode": "visual_only_generation_scoped_index",
+    "cross_generation_diagnostic": "visual_only_all_generation_index",
+    "product_recognition_mode": "visual_only_all_generation_index",
+    "evaluated_media_kinds": [
+      "in_game_transform"
+    ],
+    "media_kinds_authorized": [
+      "in_game_sprite_or_artwork",
+      "user_screenshot",
+      "plush",
+      "figure_or_toy",
+      "card",
+      "sticker",
+      "goods"
+    ],
+    "official_media_retained_in_product": false,
+    "raw_media_committed": false
+  },
+  "corpus": {
+    "in_game_species_count": 1025,
+    "in_game_reference_count": 4878,
+    "field_species_count": 28,
+    "field_reference_count": 91,
+    "field_creator_count": 20,
+    "field_object_kind_counts": {
+      "figure_or_toy": 76,
+      "card": 2,
+      "plush": 7,
+      "user_screenshot": 5,
+      "goods": 1
+    },
+    "media_kinds_present": [
+      "card",
+      "figure_or_toy",
+      "goods",
+      "in_game_sprite_or_artwork",
+      "open_license_field_photo",
+      "plush",
+      "user_screenshot"
+    ],
+    "media_kind_count": 7,
+    "total_recognizable_samples": 4969
+  },
+  "target": {
+    "metric": "species_recall_at_3",
+    "minimum": 0.9,
+    "species": 1025,
+    "media_kinds": 4
+  },
+  "aggregate": {
+    "query_count": 3075,
+    "species_recall_at_1": 0.8189,
+    "species_recall_at_3": 0.918,
+    "form_recall_at_1": 0.8081,
+    "form_recall_at_3": 0.9112
+  },
+  "cross_generation_aggregate": {
+    "query_count": 3075,
+    "species_recall_at_1": 0.5906,
+    "species_recall_at_3": 0.6963,
+    "form_recall_at_1": 0.0,
+    "form_recall_at_3": 0.0
+  },
+  "by_generation": {
+    "1": {
+      "query_count": 453,
+      "species_recall_at_1": 0.8985,
+      "species_recall_at_3": 0.9669,
+      "form_recall_at_1": 0.8918,
+      "form_recall_at_3": 0.9625
+    },
+    "2": {
+      "query_count": 300,
+      "species_recall_at_1": 0.7867,
+      "species_recall_at_3": 0.9167,
+      "form_recall_at_1": 0.78,
+      "form_recall_at_3": 0.91
+    },
+    "3": {
+      "query_count": 405,
+      "species_recall_at_1": 0.8889,
+      "species_recall_at_3": 0.9506,
+      "form_recall_at_1": 0.8815,
+      "form_recall_at_3": 0.9481
+    },
+    "4": {
+      "query_count": 321,
+      "species_recall_at_1": 0.8193,
+      "species_recall_at_3": 0.9065,
+      "form_recall_at_1": 0.8162,
+      "form_recall_at_3": 0.9034
+    },
+    "5": {
+      "query_count": 468,
+      "species_recall_at_1": 0.8483,
+      "species_recall_at_3": 0.9295,
+      "form_recall_at_1": 0.8483,
+      "form_recall_at_3": 0.9274
+    },
+    "6": {
+      "query_count": 216,
+      "species_recall_at_1": 0.8333,
+      "species_recall_at_3": 0.9398,
+      "form_recall_at_1": 0.787,
+      "form_recall_at_3": 0.912
+    },
+    "7": {
+      "query_count": 264,
+      "species_recall_at_1": 0.75,
+      "species_recall_at_3": 0.8864,
+      "form_recall_at_1": 0.7197,
+      "form_recall_at_3": 0.8674
+    },
+    "8": {
+      "query_count": 288,
+      "species_recall_at_1": 0.7431,
+      "species_recall_at_3": 0.8681,
+      "form_recall_at_1": 0.7361,
+      "form_recall_at_3": 0.8611
+    },
+    "9": {
+      "query_count": 360,
+      "species_recall_at_1": 0.7306,
+      "species_recall_at_3": 0.8667,
+      "form_recall_at_1": 0.7194,
+      "form_recall_at_3": 0.8639
+    }
+  },
+  "latency_ms": {
+    "p50": 35.45,
+    "p95": 43.17
+  },
+  "interpretation": "In-game transform holdout over all Generation 1–9 base forms. The product does not know the target generation, so certification uses cross_generation_aggregate. aggregate and by_generation use a target-generation hint and are laboratory diagnostics only. Physical photos, cards, plush, and goods are not evaluated by this benchmark. Source images are temporary; product UI still ships zero official media."
+}

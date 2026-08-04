@@ -59,10 +59,14 @@ const elements = {
   autoNarration: document.querySelector("#autoNarration"),
   collectionList: document.querySelector("#collectionList"),
   collectionCount: document.querySelector("#collectionCount"),
+  generationProgress: document.querySelector("#generationProgress"),
   collectionFilter: document.querySelector("#collectionFilter"),
   exportButton: document.querySelector("#exportButton"),
   clearDataButton: document.querySelector("#clearDataButton"),
   qualitySummary: document.querySelector("#qualitySummary"),
+  productEvidence: document.querySelector("#productEvidence"),
+  labEvidence: document.querySelector("#labEvidence"),
+  fieldEvidence: document.querySelector("#fieldEvidence"),
   toast: document.querySelector("#toast"),
 };
 
@@ -140,6 +144,25 @@ const voiceStyleLabels = {
   electric_device: "전기 디바이스",
   bright_guide: "맑은 안내",
   machine_pulse: "기계 펄스",
+};
+
+const generationTotals = {
+  1: 151,
+  2: 100,
+  3: 135,
+  4: 107,
+  5: 156,
+  6: 72,
+  7: 88,
+  8: 96,
+  9: 120,
+};
+
+const scanRecoveryTips = {
+  dark: "조명을 한 단계 밝게 하고 그림자가 카드명을 가리지 않게 해주세요.",
+  blurred: "렌즈를 닦고 대상과 휴대폰을 잠시 멈춘 뒤 다시 찍어주세요.",
+  miss: "대상을 70% 이상 채우고 배경을 단순하게 만드세요. 카드는 이름을 위쪽 카드명 영역에 맞춰주세요.",
+  error: "조명·흔들림·배경을 확인한 뒤 다시 찍거나 이름 검색으로 이어가세요.",
 };
 
 document.querySelectorAll(".nav-button").forEach((button) => {
@@ -223,6 +246,7 @@ elements.saveButton.addEventListener("click", () => {
     first_saved_at: existing?.first_saved_at || existing?.saved_at || now,
     last_saved_at: now,
     favorite: Boolean(existing?.favorite),
+    generation: Number(appState.detail.generation || generationForPokemonId(appState.detail.pokemon_id)) || null,
   };
   appState.collection = [
     saved,
@@ -366,9 +390,10 @@ async function toggleCamera() {
     await elements.cameraPreview.play();
     elements.captureButton.disabled = false;
     elements.startCameraButton.textContent = "카메라 끄기";
-    elements.uploadHint.textContent = "대상을 안내선 안에 크게 맞춘 뒤 ‘사진 촬영’을 누르세요.";
+    elements.uploadHint.textContent =
+      "대상을 70% 이상 채우세요. 카드는 위쪽 카드명 영역에 이름을 맞춘 뒤 ‘사진 촬영’을 누르세요.";
     appState.cameraQualityTimer = window.setInterval(updateCameraQuality, 800);
-    setStatus("idle", "촬영 준비 완료. 대상을 중앙에 맞춰줘-로.", "촬영 준비");
+    setStatus("idle", "촬영 준비 완료. 카드명이 위쪽 영역에 들어오게 맞춰줘-로.", "촬영 준비");
   } catch (error) {
     const denied = error?.name === "NotAllowedError" || error?.name === "PermissionDeniedError";
     const message = denied
@@ -426,6 +451,9 @@ function updateCameraQuality() {
   const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
   const quality = window.PoketdogamCameraQuality?.analyzeRgba(pixels);
   elements.uploadHint.textContent = quality?.message || "카메라 화면을 확인하는 중입니다.";
+  if (quality?.state && quality.state !== "ready") {
+    elements.scanGuidance.textContent = scanRecoveryTips[quality.state] || scanRecoveryTips.error;
+  }
 }
 
 function stopCamera() {
@@ -473,6 +501,7 @@ async function scanImage() {
       appState.detail = null;
       renderDetail();
       setStatus("error", "이름을 읽지 못했어. 검색으로 이어가줘-로.", "MISS");
+      elements.scanGuidance.textContent = scanRecoveryTips.miss;
       elements.searchInput.focus();
       return;
     }
@@ -489,7 +518,7 @@ async function scanImage() {
     await loadDetail(appState.selected.form_id);
   } catch (error) {
     setStatus("error", "이미지 분석에 실패했어. 이름 검색을 사용해줘-로.", "ERROR");
-    elements.scanGuidance.textContent = error.message;
+    elements.scanGuidance.textContent = `${scanRecoveryTips.error} (${error.message})`;
     showToast(error.message);
   } finally {
     elements.imageScanButton.disabled = false;
@@ -875,7 +904,9 @@ function renderCollection() {
     const searchText = `${item.name_ko} ${(item.types || []).join(" ")}`.toLowerCase();
     return searchText.includes(appState.collectionQuery);
   });
-  elements.collectionCount.textContent = `${appState.collection.length}종`;
+  const uniqueSpecies = new Set(appState.collection.map((item) => String(item.pokemon_id)));
+  elements.collectionCount.textContent = `${uniqueSpecies.size}종`;
+  renderGenerationProgress();
   renderQualitySummary();
   if (!filtered.length) {
     elements.collectionList.innerHTML = `<div class="empty-state">${
@@ -900,6 +931,9 @@ function renderCollection() {
           <button class="favorite-button${item.favorite ? " is-favorite" : ""}" type="button" data-favorite-form="${
             item.form_id
           }" aria-label="${escapeHtml(item.name_ko)} 즐겨찾기">${item.favorite ? "★" : "☆"}</button>
+          <button class="remove-collection-button" type="button" data-remove-form="${item.form_id}" aria-label="${escapeHtml(
+            item.name_ko,
+          )} 컬렉션에서 삭제">삭제</button>
         </div>
       `;
     })
@@ -922,6 +956,50 @@ function renderCollection() {
       renderCollection();
     });
   });
+  elements.collectionList.querySelectorAll("[data-remove-form]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = appState.collection.find((candidate) => candidate.form_id === button.dataset.removeForm);
+      if (!item) {
+        return;
+      }
+      appState.collection = appState.collection.filter(
+        (candidate) => candidate.form_id !== button.dataset.removeForm,
+      );
+      saveCollection(appState.collection);
+      renderCollection();
+      showToast(`${item.name_ko}을(를) 컬렉션에서 삭제했습니다.`);
+    });
+  });
+}
+
+function renderGenerationProgress() {
+  const speciesByGeneration = new Map();
+  appState.collection.forEach((item) => {
+    const generation = Number(item.generation || generationForPokemonId(item.pokemon_id));
+    const pokemonId = Number(item.pokemon_id);
+    if (!generationTotals[generation] || pokemonId <= 0) {
+      return;
+    }
+    if (!speciesByGeneration.has(generation)) {
+      speciesByGeneration.set(generation, new Set());
+    }
+    speciesByGeneration.get(generation).add(pokemonId);
+  });
+  elements.generationProgress.innerHTML = Object.entries(generationTotals)
+    .map(([generation, total]) => {
+      const collected = speciesByGeneration.get(Number(generation))?.size || 0;
+      const percentage = Math.round((collected / total) * 100);
+      return `
+        <article class="generation-progress-item" aria-label="${generation}세대 ${collected}종 / ${total}종">
+          <span><strong>${generation}세대</strong><small>${collected} / ${total}종</small></span>
+          <span class="generation-progress-track" aria-hidden="true">
+            <span style="width: ${percentage}%"></span>
+          </span>
+          <b>${percentage}%</b>
+        </article>
+      `;
+    })
+    .join("");
 }
 
 function appendSpeech(text, speaker) {
@@ -1135,6 +1213,7 @@ function loadCollection() {
       first_saved_at: item.first_saved_at || item.saved_at || null,
       last_saved_at: item.last_saved_at || item.saved_at || null,
       favorite: Boolean(item.favorite),
+      generation: Number(item.generation || generationForPokemonId(item.pokemon_id)) || null,
     }));
   } catch {
     return [];
@@ -1313,9 +1392,49 @@ async function loadHealth() {
   try {
     const health = await readJsonResponse(await fetch("/health"));
     elements.datasetVersion.textContent = health.dataset_version || "미확인";
+    renderRecognitionEvidence(health.visual_recognition?.recognition_evidence || {});
   } catch {
     elements.datasetVersion.textContent = "연결 확인 필요";
+    renderRecognitionEvidence({});
   }
+}
+
+function renderRecognitionEvidence(evidence) {
+  const product = evidence.product_open_search || {};
+  const lab = evidence.generation_aided_lab || {};
+  const field = evidence.field_pilot || {};
+  elements.productEvidence.textContent = product.species_recall_at_3
+    ? `전세대 공개 탐색 Top-3 ${formatPercent(product.species_recall_at_3)} · ${
+        product.certified ? "게이트 통과" : "게이트 미달"
+      }`
+    : "전세대 공개 탐색 · 증거 확인 필요";
+  elements.labEvidence.textContent = lab.species_recall_at_3
+    ? `세대 힌트 파생 실험 Top-3 ${formatPercent(lab.species_recall_at_3)} · 제품 인증 아님`
+    : "세대 힌트 파생 실험 · 증거 확인 필요";
+  elements.fieldEvidence.textContent = field.samples
+    ? `실물 Top-3 ${formatPercent(field.species_recall_at_3)} · ${field.species}종/${field.samples}장/${
+        field.creators
+      }명 · ${field.generation_wide_claimable ? "필드 게이트 통과" : "좁은 파일럿"}`
+    : "실물 필드 파일럿 · 증거 확인 필요";
+}
+
+function generationForPokemonId(value) {
+  const pokemonId = Number(value);
+  if (!Number.isInteger(pokemonId) || pokemonId < 1 || pokemonId > 1025) {
+    return null;
+  }
+  let upperBound = 0;
+  for (const [generation, total] of Object.entries(generationTotals)) {
+    upperBound += total;
+    if (pokemonId <= upperBound) {
+      return Number(generation);
+    }
+  }
+  return null;
+}
+
+function formatPercent(value) {
+  return `${(Number(value || 0) * 100).toFixed(1)}%`;
 }
 
 function escapeHtml(value) {

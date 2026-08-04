@@ -15,7 +15,7 @@ from PIL import Image
 from app.agents.pokedex_agent.state import AgentState
 from app.api.routes import scan as scan_route
 from app.api.routes.scan import _validate_image_dimensions
-from app.main import create_app
+from app.main import METRICS_LOCK, REQUEST_METRICS, create_app
 from scripts.build_local_dex.artifacts import (
     attach_artifact_manifest,
     verify_artifact_manifest,
@@ -67,6 +67,34 @@ class RuntimeSafetyTest(unittest.TestCase):
             elapsed = asyncio.run(scenario())
         self.assertLess(elapsed, 0.15)
 
+    def test_scan_capacity_rejects_overlap_without_unbounded_queue(self) -> None:
+        async def scenario() -> tuple[int, int]:
+            transport = httpx.ASGITransport(app=create_app())
+            async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+                first = asyncio.create_task(
+                    client.post(
+                        "/v1/scan",
+                        files={"image": ("first.png", image_bytes(), "image/png")},
+                    )
+                )
+                await asyncio.sleep(0.05)
+                second = await client.post(
+                    "/v1/scan",
+                    files={"image": ("second.png", image_bytes(), "image/png")},
+                )
+                return (await first).status_code, second.status_code
+
+        def slow_scan(*_args, **_kwargs):
+            time.sleep(1.2)
+            state = AgentState()
+            state.dataset_version = "test"
+            return state, []
+
+        with patch.object(scan_route.agent, "run_scan", side_effect=slow_scan):
+            first_status, second_status = asyncio.run(scenario())
+        self.assertEqual(first_status, 200)
+        self.assertEqual(second_status, 429)
+
     def test_security_headers_and_health_contract(self) -> None:
         transport = httpx.ASGITransport(app=create_app())
 
@@ -80,6 +108,27 @@ class RuntimeSafetyTest(unittest.TestCase):
                 self.assertIn("components", ready.json())
 
         asyncio.run(scenario())
+
+    def test_uncaught_request_failure_is_counted(self) -> None:
+        app = create_app()
+
+        @app.get("/_test/boom")
+        def boom() -> None:
+            raise RuntimeError("expected test failure")
+
+        async def scenario() -> int:
+            transport = httpx.ASGITransport(app=app, raise_app_exceptions=False)
+            async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+                return (await client.get("/_test/boom")).status_code
+
+        with METRICS_LOCK:
+            before = int(REQUEST_METRICS["errors_total"])
+        self.assertEqual(asyncio.run(scenario()), 500)
+        with METRICS_LOCK:
+            after = int(REQUEST_METRICS["errors_total"])
+            route_count = int(REQUEST_METRICS["routes"]["GET /_test/boom 500"])
+        self.assertEqual(after, before + 1)
+        self.assertGreaterEqual(route_count, 1)
 
     def test_artifact_manifest_detects_corruption_and_atomic_copy_replaces(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

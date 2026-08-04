@@ -16,3 +16,7 @@ data/sessions_demo.sqlite
 data/observability.sqlite
 data/observability.sqlite-shm
 data/observability.sqlite-wal
+data/vision/*.err
+data/vision/rebuild_*.out
+data/vision/*.partial
+data/vision/*_probe.json

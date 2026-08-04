@@ -1,0 +1,315 @@
+{
+  "campaign": "collector_president_field_coverage",
+  "gap": {
+    "missing_species": 997,
+    "covered_species": 28,
+    "eligible_samples": 91,
+    "in_game_embedded_species": 1025,
+    "json_out": "/Users/twentyflags/twentyflags/upstage_project/poketdogam/data/vision/field_coverage_gap.json",
+    "csv_out": "/Users/twentyflags/twentyflags/upstage_project/poketdogam/data/vision/field_coverage_gap.csv"
+  },
+  "collection": {
+    "schema_version": 1,
+    "collection": "open_licensed_user_photography_candidates",
+    "created_at": "2026-08-03T01:13:38+00:00",
+    "status": "visual_and_license_review_required_before_benchmark",
+    "discovered_candidate_count": 115,
+    "downloaded_candidate_count": 101,
+    "covered_species_count": 36,
+    "fan_page_context_count": 2,
+    "species_sample_counts": {
+      "1": 1,
+      "4": 8,
+      "5": 8,
+      "6": 2,
+      "12": 1,
+      "25": 6,
+      "43": 1,
+      "58": 2,
+      "59": 8,
+      "71": 8,
+      "76": 8,
+      "77": 1,
+      "93": 1,
+      "98": 1,
+      "109": 8,
+      "125": 1,
+      "129": 1,
+      "133": 1,
+      "137": 1,
+      "140": 8,
+      "145": 8,
+      "150": 2,
+      "151": 2,
+      "175": 1,
+      "196": 1,
+      "364": 1,
+      "388": 1,
+      "448": 1,
+      "470": 1,
+      "487": 1,
+      "644": 1,
+      "647": 1,
+      "654": 1,
+      "656": 1,
+      "707": 1,
+      "727": 1
+    },
+    "object_kind_counts": {
+      "card": 5,
+      "figure_or_toy": 78,
+      "goods": 1,
+      "plush": 7,
+      "user_screenshot": 10
+    },
+    "provider_counts": {
+      "flickr": 99,
+      "sketchfab": 1,
+      "wikimedia_commons": 1
+    },
+    "license_counts": {
+      "by": 70,
+      "by-nc": 9,
+      "by-nc-sa": 12,
+      "by-sa": 8,
+      "cc0": 1,
+      "pdm": 1
+    },
+    "rejected_counts": {},
+    "raw_media_committed": false,
+    "benchmark_eligible_count": 91,
+    "interpretation": "Downloaded items are open-license candidate photographs, including fan-page/collection photography when enabled. Human visual labels, visible-person rejection, and source-page license checks are still required."
+  },
+  "next_contributor_targets": [
+    {
+      "pokemon_id": 2,
+      "name_en": "Ivysaur",
+      "name_ko": "이상해풀",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 3,
+      "name_en": "Venusaur",
+      "name_ko": "이상해꽃",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 7,
+      "name_en": "Squirtle",
+      "name_ko": "꼬부기",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 8,
+      "name_en": "Wartortle",
+      "name_ko": "어니부기",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 9,
+      "name_en": "Blastoise",
+      "name_ko": "거북왕",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 10,
+      "name_en": "Caterpie",
+      "name_ko": "캐터피",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 11,
+      "name_en": "Metapod",
+      "name_ko": "단데기",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 12,
+      "name_en": "Butterfree",
+      "name_ko": "버터플",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 13,
+      "name_en": "Weedle",
+      "name_ko": "뿔충이",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 14,
+      "name_en": "Kakuna",
+      "name_ko": "딱충이",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 15,
+      "name_en": "Beedrill",
+      "name_ko": "독침붕",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 16,
+      "name_en": "Pidgey",
+      "name_ko": "구구",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 17,
+      "name_en": "Pidgeotto",
+      "name_ko": "피죤",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 18,
+      "name_en": "Pidgeot",
+      "name_ko": "피죤투",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 19,
+      "name_en": "Rattata",
+      "name_ko": "꼬렛",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 20,
+      "name_en": "Raticate",
+      "name_ko": "레트라",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 21,
+      "name_en": "Spearow",
+      "name_ko": "깨비참",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 22,
+      "name_en": "Fearow",
+      "name_ko": "깨비드릴조",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 23,
+      "name_en": "Ekans",
+      "name_ko": "아보",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 24,
+      "name_en": "Arbok",
+      "name_ko": "아보크",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 26,
+      "name_en": "Raichu",
+      "name_ko": "라이츄",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 27,
+      "name_en": "Sandshrew",
+      "name_ko": "모래두지",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 28,
+      "name_en": "Sandslash",
+      "name_ko": "고지",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 29,
+      "name_en": "Nidoran♀",
+      "name_ko": "니드런♀",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    },
+    {
+      "pokemon_id": 30,
+      "name_en": "Nidorina",
+      "name_ko": "니드리나",
+      "generation": 1,
+      "sample_count": 0,
+      "in_game_embedded": true,
+      "status": "in_game_only"
+    }
+  ],
+  "next_actions": [
+    "Review new downloads with scripts/review_field_photo_manifest.py",
+    "Reject privacy/mislabels, then rebuild_wild_accuracy_artifacts.sh",
+    "For stubborn gaps, ingest owner-granted photos via scripts/ingest_field_contribution.py"
+  ]
+}

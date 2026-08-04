@@ -3,6 +3,8 @@ package com.twentyflags.poketdogam
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.speech.tts.TextToSpeech
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -20,6 +22,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -53,6 +56,9 @@ import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
 import java.io.File
 import java.util.Locale
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
+
+private const val SCAN_TIMEOUT_MS = 15_000L
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,6 +103,7 @@ private fun PoketdogamScreen() {
     }
     var candidates by remember { mutableStateOf(emptyList<DexCandidate>()) }
     var detail by remember { mutableStateOf<DexDetail?>(null) }
+    var scanInFlight by remember { mutableStateOf(false) }
     var status by remember { mutableStateOf("카드·인형·캐릭터가 화면에 잘 보이도록 맞춰주세요.") }
     val cameraController = remember {
         LifecycleCameraController(context).apply {
@@ -133,6 +140,7 @@ private fun PoketdogamScreen() {
         item {
             Text("포켓도감 PoC", style = MaterialTheme.typography.headlineMedium)
             Text("1세대 151종·238폼 외형 후보 · 전체 세대 도감 · 이미지 원본 미저장", color = Color(0xFF765A59))
+            Text("실물 인식은 파일럿 검증 중 · 후보 점수는 확률이 아닙니다", color = Color(0xFF8A4B00))
         }
         item {
             if (!hasPermission) {
@@ -165,12 +173,27 @@ private fun PoketdogamScreen() {
                     Box(
                         modifier = Modifier
                             .align(Alignment.Center)
-                            .fillMaxWidth(0.56f)
-                            .aspectRatio(1f)
+                            .fillMaxWidth(0.72f)
+                            .aspectRatio(1.62f)
                             .border(3.dp, Color(0xFFFFD54F)),
-                    )
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.TopCenter)
+                                .fillMaxWidth(0.8f)
+                                .fillMaxHeight(0.18f)
+                                .padding(top = 10.dp)
+                                .border(2.dp, Color(0xFFFFF59D)),
+                        ) {
+                            Text(
+                                "카드명 영역",
+                                color = Color.White,
+                                modifier = Modifier.align(Alignment.Center),
+                            )
+                        }
+                    }
                     Text(
-                        "인형·캐릭터를 노란 프레임의 70% 이상 채워주세요",
+                        "대상을 70% 이상 채우세요. 카드는 위쪽 카드명 영역에 이름을 맞추세요",
                         color = Color.White,
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
@@ -183,8 +206,9 @@ private fun PoketdogamScreen() {
         item {
             Text(status)
             Button(
-                enabled = hasPermission,
+                enabled = hasPermission && !scanInFlight,
                 onClick = {
+                    scanInFlight = true
                     status = "OCR과 외형 임베딩을 결합하는 중…"
                     captureAndRecognize(
                         activity = activity,
@@ -192,22 +216,26 @@ private fun PoketdogamScreen() {
                         repository = repository,
                         visualMatcher = visualMatcher,
                         onCandidates = { result ->
+                            scanInFlight = false
                             candidates = result
                             detail = null
                             status = if (candidates.isEmpty()) {
-                                "후보를 찾지 못했습니다. 다시 촬영해 주세요."
+                                "후보를 찾지 못했습니다. 조명을 밝게 하고 대상을 70% 이상 채우세요. 카드는 이름을 카드명 영역에 맞추세요."
                             } else {
                                 "Top-${candidates.size} 후보입니다. 정확한 폼을 선택해 주세요."
                             }
                         },
-                        onError = { message -> status = message },
+                        onError = { message ->
+                            scanInFlight = false
+                            status = message
+                        },
                     )
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .testTag("capture_button"),
             ) {
-                Text("촬영하고 이름+외형 분석")
+                Text(if (scanInFlight) "분석 중…" else "촬영하고 이름+외형 분석")
             }
         }
         items(candidates) { candidate ->
@@ -228,7 +256,7 @@ private fun PoketdogamScreen() {
                 Text(
                     "$number ${candidate.nameKo} · ${candidate.formName} · " +
                         "${candidate.types.joinToString("/")} · $evidence " +
-                        "후보 점수 ${(candidate.confidence * 100).toInt()}/100"
+                        "후보 비교 점수 ${(candidate.confidence * 100).toInt()}/100(확률 아님)"
                 )
             }
         }
@@ -284,53 +312,115 @@ private fun captureAndRecognize(
     onCandidates: (List<DexCandidate>) -> Unit,
     onError: (String) -> Unit,
 ) {
-    val temporaryImage = File.createTempFile("poketdogam-", ".jpg", activity.cacheDir)
+    val temporaryImage = runCatching {
+        File.createTempFile("poketdogam-", ".jpg", activity.cacheDir)
+    }.getOrElse {
+        onError("임시 촬영 파일을 준비하지 못했습니다. 저장 공간을 확인해 주세요.")
+        return
+    }
     val output = ImageCapture.OutputFileOptions.Builder(temporaryImage).build()
-    controller.takePicture(
-        output,
-        ContextCompat.getMainExecutor(activity),
-        object : ImageCapture.OnImageSavedCallback {
-            override fun onImageSaved(result: ImageCapture.OutputFileResults) {
-                val recognizer = TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
-                val executor = Executors.newSingleThreadExecutor()
+    try {
+        controller.takePicture(
+            output,
+            ContextCompat.getMainExecutor(activity),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(result: ImageCapture.OutputFileResults) {
+                val recognizer = runCatching {
+                    TextRecognition.getClient(KoreanTextRecognizerOptions.Builder().build())
+                }.getOrElse {
+                    temporaryImage.delete()
+                    onError("문자 인식기를 시작하지 못했습니다. 앱을 다시 실행해 주세요.")
+                    return
+                }
+                val executor = runCatching { Executors.newSingleThreadExecutor() }.getOrElse {
+                    recognizer.close()
+                    temporaryImage.delete()
+                    onError("이미지 분석 작업을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.")
+                    return
+                }
+                val completed = AtomicBoolean(false)
+                val recognizerClosed = AtomicBoolean(false)
+                val timeoutHandler = Handler(Looper.getMainLooper())
                 var ocrCandidates: List<DexCandidate>? = null
                 var visualCandidates: List<DexCandidate>? = null
+
+                fun closeRecognizer() {
+                    if (recognizerClosed.compareAndSet(false, true)) {
+                        recognizer.close()
+                    }
+                }
 
                 fun finishIfReady() {
                     val ocr = ocrCandidates ?: return
                     val visual = visualCandidates ?: return
+                    if (!completed.compareAndSet(false, true)) return
+                    timeoutHandler.removeCallbacksAndMessages(null)
                     temporaryImage.delete()
                     executor.shutdown()
                     onCandidates(repository.fuse(ocr, visual, limit = 3))
                 }
 
-                executor.execute {
-                    val visual = runCatching { visualMatcher.match(temporaryImage, limit = 5) }
-                        .getOrDefault(emptyList())
-                    ContextCompat.getMainExecutor(activity).execute {
-                        visualCandidates = visual
-                        finishIfReady()
+                timeoutHandler.postDelayed(
+                    {
+                        if (completed.compareAndSet(false, true)) {
+                            temporaryImage.delete()
+                            executor.shutdownNow()
+                            closeRecognizer()
+                            onError("이미지 분석 시간이 초과되었습니다. 앱을 다시 실행한 뒤 재시도해 주세요.")
+                        }
+                    },
+                    SCAN_TIMEOUT_MS,
+                )
+
+                runCatching {
+                    executor.execute {
+                        val visual = runCatching { visualMatcher.match(temporaryImage, limit = 5) }
+                            .getOrDefault(emptyList())
+                        ContextCompat.getMainExecutor(activity).execute {
+                            visualCandidates = visual
+                            finishIfReady()
+                        }
                     }
+                }.onFailure {
+                    visualCandidates = emptyList()
+                    finishIfReady()
                 }
 
-                val input = InputImage.fromFilePath(activity, android.net.Uri.fromFile(temporaryImage))
-                recognizer.process(input)
-                    .addOnSuccessListener { result ->
-                        ocrCandidates = repository.match(result.text, limit = 5)
-                    }
-                    .addOnFailureListener {
-                        ocrCandidates = emptyList()
-                    }
-                    .addOnCompleteListener {
-                        recognizer.close()
-                        finishIfReady()
-                    }
-            }
+                val input = runCatching {
+                    InputImage.fromFilePath(activity, android.net.Uri.fromFile(temporaryImage))
+                }.getOrElse {
+                    closeRecognizer()
+                    ocrCandidates = emptyList()
+                    finishIfReady()
+                    return
+                }
+                runCatching {
+                    recognizer.process(input)
+                        .addOnSuccessListener { result ->
+                            ocrCandidates = repository.match(result.text, limit = 5)
+                        }
+                        .addOnFailureListener {
+                            ocrCandidates = emptyList()
+                        }
+                        .addOnCompleteListener {
+                            closeRecognizer()
+                            finishIfReady()
+                        }
+                }.onFailure {
+                    closeRecognizer()
+                    ocrCandidates = emptyList()
+                    finishIfReady()
+                }
+                }
 
-            override fun onError(exception: ImageCaptureException) {
-                temporaryImage.delete()
-                onError("촬영에 실패했습니다. 카메라 상태를 확인해 주세요.")
-            }
-        },
-    )
+                override fun onError(exception: ImageCaptureException) {
+                    temporaryImage.delete()
+                    onError("촬영에 실패했습니다. 카메라 권한·조명·초점을 확인하고 배경을 단순하게 만든 뒤 다시 시도하세요.")
+                }
+            },
+        )
+    } catch (_: Exception) {
+        temporaryImage.delete()
+        onError("촬영을 시작하지 못했습니다. 카메라 상태를 확인한 뒤 다시 시도하세요.")
+    }
 }

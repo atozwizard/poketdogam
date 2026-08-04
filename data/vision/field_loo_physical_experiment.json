@@ -1,0 +1,1016 @@
+{
+  "schema_version": 1,
+  "experiment": "licensed_field_photo_leave_one_out",
+  "created_at": "2026-08-01T01:50:40+00:00",
+  "model_id": "mediapipe-mobilenet-v3-small-float32",
+  "sample_count": 91,
+  "species_count": 28,
+  "creator_count": 20,
+  "recall_at_1": 0.6044,
+  "recall_at_3": 0.6923,
+  "generation_wide_90_percent_claimable": false,
+  "interpretation": "LOO physical prototypes estimate an upper bound for species that already have licensed photos. They do not satisfy the 151/30/453 wild gate.",
+  "cases": [
+    {
+      "sample_id": "59075102-781",
+      "expected_pokemon_id": 25,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        5,
+        145,
+        43
+      ]
+    },
+    {
+      "sample_id": "068a79d0-99b",
+      "expected_pokemon_id": 25,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        145,
+        656,
+        388
+      ]
+    },
+    {
+      "sample_id": "7dbc31c3-bee",
+      "expected_pokemon_id": 59,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        59,
+        71,
+        76
+      ]
+    },
+    {
+      "sample_id": "e1450848-460",
+      "expected_pokemon_id": 59,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        59,
+        4
+      ]
+    },
+    {
+      "sample_id": "a6acd3ca-5db",
+      "expected_pokemon_id": 59,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        59,
+        71,
+        4
+      ]
+    },
+    {
+      "sample_id": "eaf37309-a94",
+      "expected_pokemon_id": 59,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        59,
+        145,
+        4
+      ]
+    },
+    {
+      "sample_id": "fe04e331-0ec",
+      "expected_pokemon_id": 59,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        59,
+        656,
+        145
+      ]
+    },
+    {
+      "sample_id": "4618dbaf-718",
+      "expected_pokemon_id": 59,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        59,
+        71,
+        145
+      ]
+    },
+    {
+      "sample_id": "adc553d0-0a2",
+      "expected_pokemon_id": 59,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        59,
+        133
+      ]
+    },
+    {
+      "sample_id": "556886cf-992",
+      "expected_pokemon_id": 59,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        59,
+        71,
+        145
+      ]
+    },
+    {
+      "sample_id": "76a93958-59a",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        59,
+        109
+      ]
+    },
+    {
+      "sample_id": "e89260cc-360",
+      "expected_pokemon_id": 5,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        5,
+        4,
+        71
+      ]
+    },
+    {
+      "sample_id": "348ce05b-f6f",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        71,
+        5
+      ]
+    },
+    {
+      "sample_id": "a7aa6c13-d10",
+      "expected_pokemon_id": 5,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        5,
+        4,
+        145
+      ]
+    },
+    {
+      "sample_id": "2e4db19c-d93",
+      "expected_pokemon_id": 25,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        1,
+        58,
+        470
+      ]
+    },
+    {
+      "sample_id": "cb4e7519-dc7",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        71,
+        5
+      ]
+    },
+    {
+      "sample_id": "96bbdd06-6e7",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        145,
+        71
+      ]
+    },
+    {
+      "sample_id": "23fba29e-d25",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        71,
+        145
+      ]
+    },
+    {
+      "sample_id": "6211061b-5ed",
+      "expected_pokemon_id": 4,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        5,
+        4,
+        59
+      ]
+    },
+    {
+      "sample_id": "0b55ad15-573",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        5,
+        145
+      ]
+    },
+    {
+      "sample_id": "f025ba9e-cca",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        5,
+        140
+      ]
+    },
+    {
+      "sample_id": "f6aaeacc-dc2",
+      "expected_pokemon_id": 4,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        5,
+        71
+      ]
+    },
+    {
+      "sample_id": "0d94b775-ead",
+      "expected_pokemon_id": 5,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        5,
+        4,
+        140
+      ]
+    },
+    {
+      "sample_id": "a66ada89-b31",
+      "expected_pokemon_id": 5,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        5,
+        98
+      ]
+    },
+    {
+      "sample_id": "3491fba4-2d7",
+      "expected_pokemon_id": 5,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        109,
+        4,
+        5
+      ]
+    },
+    {
+      "sample_id": "c29dadb3-f30",
+      "expected_pokemon_id": 5,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        4,
+        5,
+        76
+      ]
+    },
+    {
+      "sample_id": "d616b3cb-d79",
+      "expected_pokemon_id": 5,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        5,
+        4,
+        145
+      ]
+    },
+    {
+      "sample_id": "5e9ad5b8-a26",
+      "expected_pokemon_id": 5,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        5,
+        4,
+        71
+      ]
+    },
+    {
+      "sample_id": "002e7a22-b32",
+      "expected_pokemon_id": 25,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        5,
+        145,
+        4
+      ]
+    },
+    {
+      "sample_id": "24d2e243-a28",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        59,
+        145
+      ]
+    },
+    {
+      "sample_id": "7afb6e72-4af",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        59,
+        109
+      ]
+    },
+    {
+      "sample_id": "1e0a1345-2c6",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        109,
+        76
+      ]
+    },
+    {
+      "sample_id": "91f60a47-75f",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        145,
+        109
+      ]
+    },
+    {
+      "sample_id": "db8e591a-20e",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        145,
+        59
+      ]
+    },
+    {
+      "sample_id": "2538a1c6-0b6",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        145,
+        59
+      ]
+    },
+    {
+      "sample_id": "1000cadf-cdd",
+      "expected_pokemon_id": 71,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        145,
+        4
+      ]
+    },
+    {
+      "sample_id": "cba40d95-77e",
+      "expected_pokemon_id": 76,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        71,
+        140,
+        109
+      ]
+    },
+    {
+      "sample_id": "03c1953e-aa1",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        109,
+        5
+      ]
+    },
+    {
+      "sample_id": "4954a95f-a76",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        71,
+        109
+      ]
+    },
+    {
+      "sample_id": "86b615d8-a62",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "007a6c85-b31",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "ee53e84b-eef",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        59,
+        707
+      ]
+    },
+    {
+      "sample_id": "c5b0f4b7-b09",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        59,
+        140
+      ]
+    },
+    {
+      "sample_id": "f458b043-c0f",
+      "expected_pokemon_id": 76,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        76,
+        145,
+        109
+      ]
+    },
+    {
+      "sample_id": "fce7a72b-853",
+      "expected_pokemon_id": 109,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        109,
+        76,
+        5
+      ]
+    },
+    {
+      "sample_id": "1abfde11-8a5",
+      "expected_pokemon_id": 109,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        71,
+        109,
+        98
+      ]
+    },
+    {
+      "sample_id": "72d6fe00-5c6",
+      "expected_pokemon_id": 109,
+      "top1": false,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "8dc695df-5c4",
+      "expected_pokemon_id": 109,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        109,
+        145,
+        71
+      ]
+    },
+    {
+      "sample_id": "2171cf0a-f8e",
+      "expected_pokemon_id": 109,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        109,
+        76,
+        5
+      ]
+    },
+    {
+      "sample_id": "9d12b978-0ae",
+      "expected_pokemon_id": 109,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        109,
+        5,
+        76
+      ]
+    },
+    {
+      "sample_id": "939e6cb9-c24",
+      "expected_pokemon_id": 109,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        109,
+        71,
+        140
+      ]
+    },
+    {
+      "sample_id": "da392b69-c9a",
+      "expected_pokemon_id": 109,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        145,
+        140,
+        71
+      ]
+    },
+    {
+      "sample_id": "15d8b1de-d65",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        145,
+        71
+      ]
+    },
+    {
+      "sample_id": "adc6f9f2-c53",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "a11d8d5a-d11",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        4
+      ]
+    },
+    {
+      "sample_id": "316fc4be-628",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "02949685-acb",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        4,
+        109
+      ]
+    },
+    {
+      "sample_id": "09eae415-fb4",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        145
+      ]
+    },
+    {
+      "sample_id": "956999c5-368",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "5a64d3bd-5bd",
+      "expected_pokemon_id": 140,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        140,
+        109,
+        76
+      ]
+    },
+    {
+      "sample_id": "e8001ed5-9a2",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        71,
+        109
+      ]
+    },
+    {
+      "sample_id": "25f97f68-55e",
+      "expected_pokemon_id": 145,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        76,
+        109,
+        59
+      ]
+    },
+    {
+      "sample_id": "c79971ab-028",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        71,
+        4
+      ]
+    },
+    {
+      "sample_id": "6cdc179a-cf3",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        71,
+        4
+      ]
+    },
+    {
+      "sample_id": "cc61128a-ace",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        59,
+        140
+      ]
+    },
+    {
+      "sample_id": "973945e9-c4f",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        109,
+        71
+      ]
+    },
+    {
+      "sample_id": "c65c9c89-01a",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        71,
+        59
+      ]
+    },
+    {
+      "sample_id": "99296217-202",
+      "expected_pokemon_id": 145,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        145,
+        71,
+        4
+      ]
+    },
+    {
+      "sample_id": "71464b02-79a",
+      "expected_pokemon_id": 6,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        25,
+        151,
+        5
+      ]
+    },
+    {
+      "sample_id": "ca62ea38-d4e",
+      "expected_pokemon_id": 151,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        25,
+        6,
+        93
+      ]
+    },
+    {
+      "sample_id": "27a02eb1-0fc",
+      "expected_pokemon_id": 151,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        93,
+        6,
+        133
+      ]
+    },
+    {
+      "sample_id": "181880c1-145",
+      "expected_pokemon_id": 25,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        6,
+        151,
+        145
+      ]
+    },
+    {
+      "sample_id": "d009393d-580",
+      "expected_pokemon_id": 93,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        5,
+        151,
+        129
+      ]
+    },
+    {
+      "sample_id": "a9ddccac-b37",
+      "expected_pokemon_id": 654,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        77,
+        5,
+        4
+      ]
+    },
+    {
+      "sample_id": "f5070e4f-4d0",
+      "expected_pokemon_id": 656,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        133,
+        25,
+        5
+      ]
+    },
+    {
+      "sample_id": "bc500c9a-1a1",
+      "expected_pokemon_id": 58,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        58,
+        647,
+        4
+      ]
+    },
+    {
+      "sample_id": "312066ec-fae",
+      "expected_pokemon_id": 647,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        1,
+        77,
+        58
+      ]
+    },
+    {
+      "sample_id": "1f885fb2-f2f",
+      "expected_pokemon_id": 58,
+      "top1": true,
+      "top3": true,
+      "candidate_ids": [
+        58,
+        25,
+        140
+      ]
+    },
+    {
+      "sample_id": "e9693441-0d6",
+      "expected_pokemon_id": 388,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        25,
+        1,
+        5
+      ]
+    },
+    {
+      "sample_id": "52e9aa59-04a",
+      "expected_pokemon_id": 727,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        133,
+        656,
+        388
+      ]
+    },
+    {
+      "sample_id": "64368d41-3ee",
+      "expected_pokemon_id": 470,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        77,
+        25,
+        1
+      ]
+    },
+    {
+      "sample_id": "d351a962-f99",
+      "expected_pokemon_id": 487,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        4,
+        25,
+        58
+      ]
+    },
+    {
+      "sample_id": "b1bcbd1e-173",
+      "expected_pokemon_id": 77,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        4,
+        59,
+        647
+      ]
+    },
+    {
+      "sample_id": "e3dba018-f33",
+      "expected_pokemon_id": 43,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        25,
+        77,
+        6
+      ]
+    },
+    {
+      "sample_id": "859ec91f-475",
+      "expected_pokemon_id": 6,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        43,
+        151,
+        1
+      ]
+    },
+    {
+      "sample_id": "087ab693-f16",
+      "expected_pokemon_id": 707,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        76,
+        59,
+        93
+      ]
+    },
+    {
+      "sample_id": "05f58458-4be",
+      "expected_pokemon_id": 150,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        93,
+        25,
+        4
+      ]
+    },
+    {
+      "sample_id": "ae58a808-e89",
+      "expected_pokemon_id": 133,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        656,
+        25,
+        59
+      ]
+    },
+    {
+      "sample_id": "f9da4594-25c",
+      "expected_pokemon_id": 1,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        647,
+        25,
+        5
+      ]
+    },
+    {
+      "sample_id": "0190842d-da4",
+      "expected_pokemon_id": 98,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        4,
+        5,
+        71
+      ]
+    },
+    {
+      "sample_id": "2a238777-a74",
+      "expected_pokemon_id": 129,
+      "top1": false,
+      "top3": false,
+      "candidate_ids": [
+        77,
+        145,
+        140
+      ]
+    }
+  ]
+}

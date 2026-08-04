@@ -55,11 +55,23 @@
     }
     return {
       state: "ready",
-      message: "밝기와 선명도가 좋습니다. 대상을 프레임의 70% 이상 채우고 촬영하세요.",
+      message:
+        "밝기와 선명도가 좋습니다. 대상을 70% 이상 채우고, 카드는 위쪽 카드명 영역에 이름을 맞춘 뒤 촬영하세요.",
       brightness,
       edgeScore,
     };
   }
 
-  return { analyzeRgba };
+  function nameBandCropBox(width, height) {
+    const w = Math.max(1, Number(width) || 0);
+    const h = Math.max(1, Number(height) || 0);
+    return {
+      left: Math.round(w * 0.1),
+      top: Math.round(h * 0.08),
+      width: Math.max(1, Math.round(w * 0.8)),
+      height: Math.max(1, Math.round(h * 0.18)),
+    };
+  }
+
+  return { analyzeRgba, nameBandCropBox };
 });

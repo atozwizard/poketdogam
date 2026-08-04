@@ -42,10 +42,26 @@ def review_manifest(
             raise ValueError("existing manifest has incomplete license reviews")
     else:
         verifications = {}
+        pending_items = []
+        for item in items:
+            source_id = str(item["source_id"])
+            existing = item.get("license_review")
+            if (
+                isinstance(existing, dict)
+                and "verified" in existing
+                and item.get("benchmark_eligible") is True
+            ):
+                verifications[source_id] = {
+                    key: value
+                    for key, value in existing.items()
+                    if key != "reviewed_at"
+                }
+            else:
+                pending_items.append(item)
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = {
                 executor.submit(_verify_source_license, item): str(item["source_id"])
-                for item in items
+                for item in pending_items
             }
             for future in as_completed(futures):
                 source_id = futures[future]
@@ -57,7 +73,9 @@ def review_manifest(
                         "reason": f"{type(exc).__name__}: {exc}",
                     }
                 print(
-                    f"verified licenses {len(verifications)}/{len(items)}",
+                    f"verified licenses "
+                    f"{len(verifications)}/{len(items)} "
+                    f"(reused={len(items) - len(pending_items)})",
                     file=sys.stderr,
                 )
 
@@ -71,6 +89,10 @@ def review_manifest(
             "method": "source_landing_page_contains_declared_license_url",
         }
         rejection_reason = rejected_source_ids.get(source_id)
+        if rejection_reason is None and item.get("visual_review_status") == "rejected":
+            rejection_reason = str(
+                item.get("visual_review_reason") or "previously rejected"
+            )
         if rejection_reason:
             item["visual_review_status"] = "rejected"
             item["visual_review_reason"] = rejection_reason
@@ -162,7 +184,8 @@ def _review_summary(payload: dict[str, object]) -> dict[str, object]:
     unverified = [
         item
         for item in items
-        if not (item.get("license_review") or {}).get("verified")
+        if item.get("visual_review_status") != "rejected"
+        and not (item.get("license_review") or {}).get("verified")
     ]
     species_counts = Counter(
         str(item["expected_pokemon_id"]) for item in eligible

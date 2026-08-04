@@ -22,10 +22,10 @@
             <img class="rotom-device" src="/ui/assets/rotom-core.svg" alt="">
           </div>
           <div class="lid-copy">
-            <p class="eyebrow">Local Scan PoC</p>
+            <p class="eyebrow">Local Scan PoC · 1–9세대</p>
             <h1>포켓도감</h1>
-            <p id="rotomLine" class="rotom-line">이름이나 캐릭터 외형이 선명한 이미지를 준비해줘-로.</p>
-            <span class="poc-badge">비상업 PoC · 정식 라이선스 신청 전</span>
+            <p id="rotomLine" class="rotom-line">카드·인형·굿즈·스크린샷, 어떤 세대든 선명하게 보여줘-로.</p>
+            <span class="poc-badge">비상업 PoC · 정식 라이선스 신청 전 · 공식 미디어 미포함</span>
           </div>
           <dl class="system-meta">
             <div>
@@ -58,11 +58,11 @@
             <div class="panel-heading">
               <div>
                 <p class="eyebrow">1 · 이미지 스캔</p>
-                <h2 id="scanTitle">카드·인형·캐릭터 찾기</h2>
+                <h2 id="scanTitle">카드·인형·굿즈·스크린샷 찾기</h2>
               </div>
               <span class="status-pill">원본 미저장</span>
             </div>
-            <p class="panel-lead">대상을 화면 중앙에 크게 두고, 카드라면 이름도 선명하게 촬영하세요.</p>
+            <p class="panel-lead">1–9세대 전종을 대상으로, 대상을 안내선 안에 70% 이상 채우세요. 카드는 위쪽 ‘카드명 영역’에 한글·영문 이름이 들어오게 맞춘 뒤 촬영하세요.</p>
 
             <div class="lens" id="lens">
               <video
@@ -76,8 +76,11 @@
               ></video>
               <img id="scanPreview" class="scan-preview" alt="선택한 포켓몬 이미지 미리보기" hidden>
               <div class="scan-beam"></div>
-              <div class="reticle">
+              <div class="reticle" aria-hidden="true">
                 <span></span><span></span><span></span><span></span>
+                <div class="name-band" title="카드명 영역">
+                  <small>카드명 영역</small>
+                </div>
               </div>
               <div class="lens-readout" aria-live="polite">
                 <strong id="lensState">준비</strong>
@@ -102,7 +105,7 @@
 
             <label class="field-label" for="searchInput">이름으로 바로 찾기</label>
             <div class="search-row">
-              <input id="searchInput" type="search" placeholder="예: 피카츄, 알로라 라이츄" autocomplete="off">
+              <input id="searchInput" type="search" placeholder="예: 피카츄, 이브이, 냐오부, 이상해씨" autocomplete="off">
               <button id="searchButton" class="secondary-command" type="button">검색</button>
             </div>
 
@@ -127,6 +130,26 @@
               <div id="candidateList" class="candidate-list"></div>
               <p id="scanGuidance" class="save-hint" aria-live="polite">이미지를 선택하거나 이름을 검색하면 후보가 표시됩니다.</p>
             </div>
+
+            <aside class="recognition-evidence" aria-labelledby="recognitionEvidenceTitle">
+              <strong id="recognitionEvidenceTitle">인식 근거를 섞지 않고 보여드려요</strong>
+              <p>파생 이미지 실험과 실물 필드 결과는 다른 지표입니다. 아래 수치는 확률이 아니라 검증 세트의 Top-3 재현율입니다.</p>
+              <dl class="evidence-grid">
+                <div>
+                  <dt>제품 기본 경로</dt>
+                  <dd id="productEvidence">전세대 공개 탐색 · 확인 중</dd>
+                </div>
+                <div>
+                  <dt>세대 힌트 실험</dt>
+                  <dd id="labEvidence">파생 이미지 랩 지표 · 제품 성능 아님</dd>
+                </div>
+                <div>
+                  <dt>실물 필드 파일럿</dt>
+                  <dd id="fieldEvidence">표본 범위 확인 중</dd>
+                </div>
+              </dl>
+              <small>공식 미디어는 제품 UI에 포함하지 않습니다.</small>
+            </aside>
           </section>
 
           <section id="detailPanel" class="tool-panel detail-panel" aria-labelledby="detailTitle">
@@ -251,6 +274,13 @@
               </div>
               <span id="collectionCount" class="status-pill">0종</span>
             </div>
+            <section class="generation-progress-section" aria-labelledby="generationProgressTitle">
+              <div class="panel-heading compact">
+                <p class="eyebrow">내가 만든 전세대 도감</p>
+                <h3 id="generationProgressTitle">세대별 수집률</h3>
+              </div>
+              <div id="generationProgress" class="generation-progress" aria-live="polite"></div>
+            </section>
             <div class="collection-tools">
               <input id="collectionFilter" type="search" placeholder="저장한 이름·타입 검색" aria-label="컬렉션 검색">
               <button id="exportButton" class="secondary-command" type="button">내보내기</button>

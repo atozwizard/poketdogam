@@ -4,6 +4,7 @@ from array import array
 from contextlib import closing
 from io import BytesIO
 from pathlib import Path
+import json
 import math
 import sqlite3
 from threading import Lock
@@ -29,8 +30,9 @@ class VisualDexMatcher:
             str(model_path or settings.visual_embedding_model_path)
         )
         self._embedder = None
-        self._reference_cache: list[sqlite3.Row] | None = None
+        self._reference_cache: dict[str, list[sqlite3.Row]] = {}
         self._lock = Lock()
+        self._cache_lock = Lock()
 
     def is_available(self) -> bool:
         if not self.db_path.exists() or not self.model_path.exists():
@@ -56,11 +58,23 @@ class VisualDexMatcher:
                 ).fetchone()[0]
             )
 
-    def match(self, image_bytes: bytes, *, top_k: int = 5) -> list[ScanCandidate]:
+    def match(
+        self,
+        image_bytes: bytes,
+        *,
+        top_k: int = 5,
+        generation: int | None = None,
+        include_physical: bool = True,
+    ) -> list[ScanCandidate]:
         if not image_bytes or not self.is_available():
             return []
         try:
-            ranked = self._rank_rows(image_bytes, top_k=top_k)
+            ranked = self._rank_rows(
+                image_bytes,
+                top_k=top_k,
+                generation=generation,
+                include_physical=include_physical,
+            )
         except (ImportError, RuntimeError, ValueError, OSError):
             return []
         return self._candidates_from_ranked(ranked)
@@ -70,10 +84,17 @@ class VisualDexMatcher:
         image_bytes: bytes,
         *,
         top_k: int = 5,
+        generation: int | None = None,
+        include_physical: bool = True,
     ) -> tuple[list[ScanCandidate], list[dict[str, object]]]:
         if not image_bytes or not self.is_available():
             return [], []
-        ranked = self._rank_rows(image_bytes, top_k=top_k)
+        ranked = self._rank_rows(
+            image_bytes,
+            top_k=top_k,
+            generation=generation,
+            include_physical=include_physical,
+        )
         return self._candidates_from_ranked(ranked), self._raw_rank_payload(ranked)
 
     def _candidates_from_ranked(
@@ -106,10 +127,22 @@ class VisualDexMatcher:
             )
         return candidates
 
-    def raw_rank(self, image_bytes: bytes, *, top_k: int = 5) -> list[dict[str, object]]:
+    def raw_rank(
+        self,
+        image_bytes: bytes,
+        *,
+        top_k: int = 5,
+        generation: int | None = None,
+        include_physical: bool = True,
+    ) -> list[dict[str, object]]:
         if not image_bytes or not self.is_available():
             return []
-        ranked = self._rank_rows(image_bytes, top_k=top_k)
+        ranked = self._rank_rows(
+            image_bytes,
+            top_k=top_k,
+            generation=generation,
+            include_physical=include_physical,
+        )
         return self._raw_rank_payload(ranked)
 
     def _raw_rank_payload(
@@ -130,16 +163,49 @@ class VisualDexMatcher:
         image_bytes: bytes,
         *,
         top_k: int,
+        generation: int | None = None,
+        include_physical: bool = True,
     ) -> list[tuple[float, sqlite3.Row]]:
         queries = self._embed_views(image_bytes, include_grid=True)
         if not queries:
             return []
-        rows = self._reference_rows()
+        if generation is not None:
+            return self._rank_rows_for_reference_set(
+                queries,
+                self._reference_rows(
+                    generation=generation,
+                    include_physical=include_physical,
+                ),
+                top_k=top_k,
+            )
+        # The product does not know the target generation before recognition.
+        # Rank once against the same flat, all-generation reference set used by
+        # the cross-generation benchmark. Splitting by generation and merging
+        # the same cosine scores does not improve ranking and can misleadingly
+        # suggest that a generation hint was used.
+        return self._rank_rows_for_reference_set(
+            queries,
+            self._reference_rows(
+                generation=None,
+                include_physical=include_physical,
+            ),
+            top_k=top_k,
+        )
+
+    def _rank_rows_for_reference_set(
+        self,
+        queries: list[list[float]],
+        rows: list[sqlite3.Row],
+        *,
+        top_k: int,
+    ) -> list[tuple[float, sqlite3.Row]]:
         best_by_form: dict[str, tuple[float, sqlite3.Row]] = {}
         for row in rows:
             reference = array("f")
             reference.frombytes(row["embedding_blob"])
-            compatible_queries = [query for query in queries if len(reference) == len(query)]
+            compatible_queries = [
+                query for query in queries if len(reference) == len(query)
+            ]
             if not compatible_queries:
                 continue
             similarity = max(
@@ -198,31 +264,84 @@ class VisualDexMatcher:
                     embeddings.append([value / norm for value in values])
         return embeddings
 
-    def _reference_rows(self) -> list[sqlite3.Row]:
-        if self._reference_cache is not None:
-            return self._reference_cache
+    def _reference_rows(
+        self,
+        *,
+        generation: int | None = None,
+        include_physical: bool = True,
+    ) -> list[sqlite3.Row]:
+        try:
+            stat = self.db_path.stat()
+        except OSError:
+            return []
+        db_fingerprint = (stat.st_dev, stat.st_ino, stat.st_size, stat.st_mtime_ns)
+        cache_key = (
+            f"{'all' if generation is None else generation}:phys={include_physical}:"
+            f"db={db_fingerprint}"
+        )
+        with self._cache_lock:
+            cached = self._reference_cache.get(cache_key)
+        if cached is not None:
+            return cached
+        physical_filter = "" if include_physical else " and v.reference_kind != 'open_license_field_photo_derived'"
         with closing(sqlite3.connect(self.db_path)) as conn:
             conn.row_factory = sqlite3.Row
-            rows = conn.execute(
-                """
-                select
-                    v.form_id,
-                    v.embedding_blob,
-                    f.pokemon_id,
-                    f.form_name,
-                    f.type1,
-                    f.type2,
-                    s.name_ko,
-                    s.name_en
-                from visual_reference_embeddings v
-                join pokemon_forms f on f.form_id = v.form_id
-                join pokemon_species s on s.pokemon_id = f.pokemon_id
-                where v.model_id = ? and s.generation = 1
-                """,
-                (MODEL_ID,),
-            ).fetchall()
-        self._reference_cache = rows
-        return rows
+            if generation is None:
+                rows = conn.execute(
+                    f"""
+                    select
+                        v.form_id,
+                        v.embedding_blob,
+                        f.pokemon_id,
+                        f.form_name,
+                        f.type1,
+                        f.type2,
+                        s.name_ko,
+                        s.name_en
+                    from visual_reference_embeddings v
+                    join pokemon_forms f on f.form_id = v.form_id
+                    join pokemon_species s on s.pokemon_id = f.pokemon_id
+                    where v.model_id = ?{physical_filter}
+                    """,
+                    (MODEL_ID,),
+                ).fetchall()
+            else:
+                rows = conn.execute(
+                    f"""
+                    select
+                        v.form_id,
+                        v.embedding_blob,
+                        f.pokemon_id,
+                        f.form_name,
+                        f.type1,
+                        f.type2,
+                        s.name_ko,
+                        s.name_en
+                    from visual_reference_embeddings v
+                    join pokemon_forms f on f.form_id = v.form_id
+                    join pokemon_species s on s.pokemon_id = f.pokemon_id
+                    where v.model_id = ? and s.generation = ?{physical_filter}
+                    """,
+                    (MODEL_ID, generation),
+                ).fetchall()
+        with self._cache_lock:
+            try:
+                current = self.db_path.stat()
+                current_fingerprint = (
+                    current.st_dev,
+                    current.st_ino,
+                    current.st_size,
+                    current.st_mtime_ns,
+                )
+            except OSError:
+                return rows
+            if current_fingerprint != db_fingerprint:
+                # The atomic publisher replaced the Dex while this request was
+                # loading. These rows are valid for the in-flight request but
+                # must never poison the cache for the new artifact.
+                return rows
+            self._reference_cache = {cache_key: rows}
+            return rows
 
     def _embed(self, image_bytes: bytes) -> list[float]:
         embeddings = self._embed_views(image_bytes)
@@ -265,20 +384,108 @@ def _calibrate_similarity(similarity: float) -> float:
 
 
 _VISUAL_MATCHER: VisualDexMatcher | None = None
+_VISUAL_MATCHER_LOCK = Lock()
 
 
 def get_visual_matcher() -> VisualDexMatcher:
     global _VISUAL_MATCHER
     if _VISUAL_MATCHER is None:
-        _VISUAL_MATCHER = VisualDexMatcher()
+        with _VISUAL_MATCHER_LOCK:
+            if _VISUAL_MATCHER is None:
+                _VISUAL_MATCHER = VisualDexMatcher()
     return _VISUAL_MATCHER
 
 
 def visual_runtime_status() -> dict[str, object]:
     matcher = get_visual_matcher()
+    generations: set[int] = set()
+    gen1_forms = 0
+    if matcher.is_available():
+        with closing(sqlite3.connect(matcher.db_path)) as conn:
+            generations = {
+                int(row[0])
+                for row in conn.execute(
+                    "select distinct generation_scope from visual_reference_embeddings where model_id = ?",
+                    (MODEL_ID,),
+                )
+            }
+            gen1_forms = int(
+                conn.execute(
+                    """
+                    select count(distinct v.form_id)
+                    from visual_reference_embeddings v
+                    join pokemon_forms f on f.form_id = v.form_id
+                    join pokemon_species s on s.pokemon_id = f.pokemon_id
+                    where v.model_id = ? and s.generation = 1
+                    """,
+                    (MODEL_ID,),
+                ).fetchone()[0]
+            )
+    if generations == {1}:
+        scope = "generation_1_all_forms"
+    elif generations:
+        scope = "all_generations_all_forms"
+    else:
+        scope = "unavailable"
     return {
         "engine": MODEL_ID,
         "available": matcher.is_available(),
         "reference_count": matcher.reference_count(),
-        "scope": "generation_1_all_forms",
+        "gen1_form_count": gen1_forms,
+        "scope": scope,
+        "scan_default_generation": None,
+        "generation_scopes": sorted(generations),
+        "recognition_evidence": _recognition_evidence(matcher.db_path),
     }
+
+
+def _recognition_evidence(db_path: Path) -> dict[str, object]:
+    vision_dir = db_path.parent / "vision"
+    universal = _read_json_object(vision_dir / "universal_recognition_cert.json")
+    field = _read_json_object(vision_dir / "field_benchmark.json")
+    field_scope = field.get("scope") if isinstance(field.get("scope"), dict) else {}
+    field_aggregate = (
+        field.get("aggregate") if isinstance(field.get("aggregate"), dict) else {}
+    )
+    product_recall = float(
+        universal.get("product_open_search_species_recall_at_3")
+        or universal.get("cross_generation_species_recall_at_3")
+        or 0.0
+    )
+    generation_aided_recall = float(
+        universal.get("generation_scoped_lab_species_recall_at_3")
+        or universal.get("species_recall_at_3")
+        or 0.0
+    )
+    return {
+        "product_open_search": {
+            "species_recall_at_3": product_recall,
+            "certified": bool(universal.get("certified")) and product_recall >= 0.90,
+            "generation_hint_used": False,
+        },
+        "generation_aided_lab": {
+            "species_recall_at_3": generation_aided_recall,
+            "generation_hint_used": True,
+            "product_claimable": False,
+        },
+        "field_pilot": {
+            "species_recall_at_3": float(
+                field_aggregate.get("fused_species_recall_at_3") or 0.0
+            ),
+            "species": int(field_scope.get("covered_species_count") or 0),
+            "samples": int(field_scope.get("sample_count") or 0),
+            "creators": int(field_scope.get("covered_creator_count") or 0),
+            "generation_wide_claimable": bool(
+                field.get("generation_wide_90_percent_claimable")
+            ),
+        },
+        "official_media_in_product_ui": False,
+    }
+
+
+def _read_json_object(path: Path) -> dict[str, object]:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}

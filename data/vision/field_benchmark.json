@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "benchmark": "open_license_user_photography_field_pilot",
-  "created_at": "2026-07-30T06:13:25+00:00",
+  "created_at": "2026-08-01T01:50:38+00:00",
   "scope": {
-    "sample_count": 68,
-    "covered_species_count": 9,
-    "covered_creator_count": 5,
+    "sample_count": 91,
+    "covered_species_count": 28,
+    "covered_creator_count": 20,
     "generation_1_species_target": 151,
     "raw_media_committed": false,
     "license_verified_for_every_sample": true
@@ -20,36 +20,135 @@
     }
   },
   "aggregate": {
-    "sample_count": 68,
-    "visual_species_recall_at_1": 0.1324,
-    "visual_species_recall_at_3": 0.1765,
-    "raw_visual_species_recall_at_1": 0.1324,
-    "raw_visual_species_recall_at_3": 0.1765,
-    "fused_species_recall_at_1": 0.1324,
-    "fused_species_recall_at_3": 0.1618
+    "sample_count": 91,
+    "visual_species_recall_at_1": 0.011,
+    "visual_species_recall_at_3": 0.022,
+    "raw_visual_species_recall_at_1": 0.011,
+    "raw_visual_species_recall_at_3": 0.022,
+    "fused_species_recall_at_1": 0.0879,
+    "fused_species_recall_at_3": 0.0989
   },
   "by_object_kind": {
     "card": {
-      "sample_count": 1,
-      "visual_species_recall_at_1": 1.0,
-      "visual_species_recall_at_3": 1.0,
-      "raw_visual_species_recall_at_1": 1.0,
-      "raw_visual_species_recall_at_3": 1.0,
+      "sample_count": 2,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
       "fused_species_recall_at_1": 1.0,
       "fused_species_recall_at_3": 1.0
     },
     "figure_or_toy": {
-      "sample_count": 67,
-      "visual_species_recall_at_1": 0.1194,
-      "visual_species_recall_at_3": 0.1642,
-      "raw_visual_species_recall_at_1": 0.1194,
-      "raw_visual_species_recall_at_3": 0.1642,
-      "fused_species_recall_at_1": 0.1194,
-      "fused_species_recall_at_3": 0.1493
+      "sample_count": 76,
+      "visual_species_recall_at_1": 0.0132,
+      "visual_species_recall_at_3": 0.0263,
+      "raw_visual_species_recall_at_1": 0.0132,
+      "raw_visual_species_recall_at_3": 0.0263,
+      "fused_species_recall_at_1": 0.0395,
+      "fused_species_recall_at_3": 0.0526
+    },
+    "goods": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "plush": {
+      "sample_count": 7,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "user_screenshot": {
+      "sample_count": 5,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.6,
+      "fused_species_recall_at_3": 0.6
     }
   },
   "by_creator": {
+    "0375a2a99f4e": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "148798786d4e": {
+      "sample_count": 2,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "17cecf038468": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 1.0,
+      "fused_species_recall_at_3": 1.0
+    },
+    "2dfba6aabbf7": {
+      "sample_count": 5,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.2,
+      "fused_species_recall_at_3": 0.2
+    },
+    "4389e835a519": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 1.0,
+      "fused_species_recall_at_3": 1.0
+    },
+    "5dfa7363a3d0": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
     "6325ae12fa63": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "6aa9d85ebcdf": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 1.0,
+      "fused_species_recall_at_3": 1.0
+    },
+    "6b0e602241f7": {
       "sample_count": 1,
       "visual_species_recall_at_1": 0.0,
       "visual_species_recall_at_3": 0.0,
@@ -60,67 +159,130 @@
     },
     "70bd1f796b5f": {
       "sample_count": 64,
-      "visual_species_recall_at_1": 0.1094,
-      "visual_species_recall_at_3": 0.1406,
-      "raw_visual_species_recall_at_1": 0.1094,
-      "raw_visual_species_recall_at_3": 0.1406,
-      "fused_species_recall_at_1": 0.1094,
-      "fused_species_recall_at_3": 0.1406
+      "visual_species_recall_at_1": 0.0156,
+      "visual_species_recall_at_3": 0.0312,
+      "raw_visual_species_recall_at_1": 0.0156,
+      "raw_visual_species_recall_at_3": 0.0312,
+      "fused_species_recall_at_1": 0.0156,
+      "fused_species_recall_at_3": 0.0312
+    },
+    "958716d23228": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "99f467784ca7": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "a9f55544c206": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "b0fd34979881": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
     },
     "dddd629b8d6e": {
       "sample_count": 1,
-      "visual_species_recall_at_1": 1.0,
-      "visual_species_recall_at_3": 1.0,
-      "raw_visual_species_recall_at_1": 1.0,
-      "raw_visual_species_recall_at_3": 1.0,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
       "fused_species_recall_at_1": 1.0,
       "fused_species_recall_at_3": 1.0
     },
-    "f4540aecc350": {
+    "e1cd16a03714": {
       "sample_count": 1,
-      "visual_species_recall_at_1": 1.0,
-      "visual_species_recall_at_3": 1.0,
-      "raw_visual_species_recall_at_1": 1.0,
-      "raw_visual_species_recall_at_3": 1.0,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
       "fused_species_recall_at_1": 1.0,
       "fused_species_recall_at_3": 1.0
+    },
+    "e6375fe594f3": {
+      "sample_count": 3,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "e98ef960ed5d": {
+      "sample_count": 1,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.0,
+      "fused_species_recall_at_3": 0.0
+    },
+    "f4540aecc350": {
+      "sample_count": 2,
+      "visual_species_recall_at_1": 0.0,
+      "visual_species_recall_at_3": 0.0,
+      "raw_visual_species_recall_at_1": 0.0,
+      "raw_visual_species_recall_at_3": 0.0,
+      "fused_species_recall_at_1": 0.5,
+      "fused_species_recall_at_3": 0.5
     },
     "f62e7ddd8bd1": {
       "sample_count": 1,
       "visual_species_recall_at_1": 0.0,
-      "visual_species_recall_at_3": 1.0,
+      "visual_species_recall_at_3": 0.0,
       "raw_visual_species_recall_at_1": 0.0,
-      "raw_visual_species_recall_at_3": 1.0,
+      "raw_visual_species_recall_at_3": 0.0,
       "fused_species_recall_at_1": 0.0,
       "fused_species_recall_at_3": 0.0
     }
   },
   "latency_ms": {
-    "mean": 664.44,
-    "p95": 862.91
+    "mean": 2292.28,
+    "p95": 3397.03
   },
   "sample_recall_target_met": false,
   "generation_wide_90_percent_claimable": false,
-  "failure_count": 57,
+  "failure_count": 82,
   "failure_samples": [
     {
       "sample_id": "59075102-781",
       "expected_pokemon_id": 25,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        71,
-        6,
-        51
+        174,
+        890,
+        255
       ],
       "raw_visual_candidate_ids": [
-        71,
-        6,
-        51
+        174,
+        890,
+        255
       ],
       "fused_candidate_ids": [
-        71,
-        6,
-        51
+        174,
+        890,
+        255
       ]
     },
     {
@@ -129,13 +291,13 @@
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
         100,
-        25,
-        52
+        202,
+        853
       ],
       "raw_visual_candidate_ids": [
         100,
-        25,
-        52
+        202,
+        853
       ],
       "fused_candidate_ids": [
         80,
@@ -148,19 +310,19 @@
       "expected_pokemon_id": 59,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        146,
-        110
+        818,
+        1002,
+        849
       ],
       "raw_visual_candidate_ids": [
-        145,
-        146,
-        110
+        818,
+        1002,
+        849
       ],
       "fused_candidate_ids": [
-        145,
-        146,
-        110
+        818,
+        1002,
+        849
       ]
     },
     {
@@ -168,19 +330,19 @@
       "expected_pokemon_id": 59,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        2,
-        64,
-        145
+        640,
+        248,
+        907
       ],
       "raw_visual_candidate_ids": [
-        2,
-        64,
-        145
+        640,
+        248,
+        907
       ],
       "fused_candidate_ids": [
-        2,
-        64,
-        145
+        640,
+        248,
+        907
       ]
     },
     {
@@ -188,19 +350,19 @@
       "expected_pokemon_id": 59,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        6,
-        146,
-        25
+        222,
+        800,
+        1002
       ],
       "raw_visual_candidate_ids": [
-        6,
-        146,
-        25
+        222,
+        800,
+        1002
       ],
       "fused_candidate_ids": [
-        6,
-        146,
-        25
+        222,
+        800,
+        1002
       ]
     },
     {
@@ -208,19 +370,39 @@
       "expected_pokemon_id": 59,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        6,
-        74,
-        77
+        795,
+        222,
+        864
       ],
       "raw_visual_candidate_ids": [
-        6,
-        74,
-        77
+        795,
+        222,
+        864
       ],
       "fused_candidate_ids": [
-        6,
-        74,
-        77
+        795,
+        222,
+        864
+      ]
+    },
+    {
+      "sample_id": "fe04e331-0ec",
+      "expected_pokemon_id": 59,
+      "object_kind": "figure_or_toy",
+      "visual_candidate_ids": [
+        222,
+        278,
+        795
+      ],
+      "raw_visual_candidate_ids": [
+        222,
+        278,
+        795
+      ],
+      "fused_candidate_ids": [
+        222,
+        278,
+        795
       ]
     },
     {
@@ -228,19 +410,19 @@
       "expected_pokemon_id": 59,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        17,
-        25
+        540,
+        834,
+        724
       ],
       "raw_visual_candidate_ids": [
-        145,
-        17,
-        25
+        540,
+        834,
+        724
       ],
       "fused_candidate_ids": [
-        145,
-        17,
-        25
+        540,
+        834,
+        724
       ]
     },
     {
@@ -249,18 +431,18 @@
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
         103,
-        6,
-        52
+        978,
+        203
       ],
       "raw_visual_candidate_ids": [
         103,
-        6,
-        52
+        978,
+        203
       ],
       "fused_candidate_ids": [
         103,
-        6,
-        52
+        978,
+        203
       ]
     },
     {
@@ -268,18 +450,19 @@
       "expected_pokemon_id": 59,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        146,
-        25
+        818,
+        1002,
+        849
       ],
       "raw_visual_candidate_ids": [
-        145,
-        146,
-        25
+        818,
+        1002,
+        849
       ],
       "fused_candidate_ids": [
-        145,
-        146
+        818,
+        1002,
+        849
       ]
     },
     {
@@ -287,19 +470,19 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        111,
-        27,
-        36
+        620,
+        229,
+        266
       ],
       "raw_visual_candidate_ids": [
-        111,
-        27,
-        36
+        620,
+        229,
+        266
       ],
       "fused_candidate_ids": [
-        111,
-        27,
-        36
+        620,
+        229,
+        266
       ]
     },
     {
@@ -307,19 +490,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        6,
-        25,
-        38
+        485,
+        741,
+        978
       ],
       "raw_visual_candidate_ids": [
-        6,
-        25,
-        38
+        485,
+        741,
+        978
       ],
       "fused_candidate_ids": [
-        6,
-        25,
-        38
+        485,
+        741,
+        978
       ]
     },
     {
@@ -327,19 +510,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        6,
-        52
+        898,
+        896,
+        678
       ],
       "raw_visual_candidate_ids": [
-        145,
-        6,
-        52
+        898,
+        896,
+        678
       ],
       "fused_candidate_ids": [
-        145,
-        6,
-        52
+        898,
+        896,
+        678
       ]
     },
     {
@@ -347,19 +530,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        26,
-        126,
-        25
+        978,
+        845,
+        177
       ],
       "raw_visual_candidate_ids": [
-        26,
-        126,
-        25
+        978,
+        845,
+        177
       ],
       "fused_candidate_ids": [
-        26,
-        126,
-        25
+        978,
+        845,
+        177
       ]
     },
     {
@@ -367,19 +550,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        143,
-        25,
-        26
+        1024,
+        421,
+        978
       ],
       "raw_visual_candidate_ids": [
-        143,
-        25,
-        26
+        1024,
+        421,
+        978
       ],
       "fused_candidate_ids": [
-        143,
-        25,
-        26
+        1024,
+        421,
+        978
       ]
     },
     {
@@ -387,19 +570,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        25,
-        6,
-        27
+        617,
+        248,
+        646
       ],
       "raw_visual_candidate_ids": [
-        25,
-        6,
-        27
+        617,
+        248,
+        646
       ],
       "fused_candidate_ids": [
-        25,
-        6,
-        27
+        617,
+        248,
+        646
       ]
     },
     {
@@ -407,19 +590,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        94,
-        130,
-        77
+        248,
+        978,
+        602
       ],
       "raw_visual_candidate_ids": [
-        94,
-        130,
-        77
+        248,
+        978,
+        602
       ],
       "fused_candidate_ids": [
-        94,
-        130,
-        77
+        248,
+        978,
+        602
       ]
     },
     {
@@ -427,19 +610,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        146,
-        25
+        222,
+        960,
+        1002
       ],
       "raw_visual_candidate_ids": [
-        145,
-        146,
-        25
+        222,
+        960,
+        1002
       ],
       "fused_candidate_ids": [
-        145,
-        146,
-        25
+        222,
+        960,
+        1002
       ]
     },
     {
@@ -447,19 +630,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        77,
-        6,
-        146
+        278,
+        795,
+        222
       ],
       "raw_visual_candidate_ids": [
-        77,
-        6,
-        146
+        278,
+        795,
+        222
       ],
       "fused_candidate_ids": [
-        77,
-        6,
-        146
+        278,
+        795,
+        222
       ]
     },
     {
@@ -467,19 +650,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        138,
-        119,
-        114
+        557,
+        774,
+        615
       ],
       "raw_visual_candidate_ids": [
-        138,
-        119,
-        114
+        557,
+        774,
+        615
       ],
       "fused_candidate_ids": [
-        138,
-        119,
-        114
+        557,
+        774,
+        615
       ]
     },
     {
@@ -487,19 +670,19 @@
       "expected_pokemon_id": 4,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        119,
-        25,
-        146
+        248,
+        852,
+        542
       ],
       "raw_visual_candidate_ids": [
-        119,
-        25,
-        146
+        248,
+        852,
+        542
       ],
       "fused_candidate_ids": [
-        119,
-        25,
-        146
+        248,
+        852,
+        542
       ]
     },
     {
@@ -507,19 +690,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        2,
-        6,
-        111
+        658,
+        806,
+        266
       ],
       "raw_visual_candidate_ids": [
-        2,
-        6,
-        111
+        658,
+        806,
+        266
       ],
       "fused_candidate_ids": [
-        2,
-        6,
-        111
+        658,
+        806,
+        266
       ]
     },
     {
@@ -527,19 +710,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        25,
-        6,
-        52
+        978,
+        258,
+        789
       ],
       "raw_visual_candidate_ids": [
-        25,
-        6,
-        52
+        978,
+        258,
+        789
       ],
       "fused_candidate_ids": [
-        25,
-        6,
-        52
+        978,
+        258,
+        789
       ]
     },
     {
@@ -547,19 +730,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        146,
-        22,
-        103
+        248,
+        929,
+        542
       ],
       "raw_visual_candidate_ids": [
-        146,
-        22,
-        103
+        248,
+        929,
+        542
       ],
       "fused_candidate_ids": [
-        146,
-        22,
-        103
+        248,
+        929,
+        542
       ]
     },
     {
@@ -567,18 +750,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        25,
-        107,
-        52
+        633,
+        248,
+        907
       ],
       "raw_visual_candidate_ids": [
-        25,
-        107,
-        52
+        633,
+        248,
+        907
       ],
       "fused_candidate_ids": [
-        25,
-        107
+        633,
+        248,
+        907
       ]
     },
     {
@@ -586,19 +770,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        33,
-        78,
-        123
+        556,
+        412,
+        929
       ],
       "raw_visual_candidate_ids": [
-        33,
-        78,
-        123
+        556,
+        412,
+        929
       ],
       "fused_candidate_ids": [
-        33,
-        78,
-        123
+        556,
+        412,
+        929
       ]
     },
     {
@@ -606,19 +790,19 @@
       "expected_pokemon_id": 5,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        65,
-        146,
-        52
+        929,
+        272,
+        549
       ],
       "raw_visual_candidate_ids": [
-        65,
-        146,
-        52
+        929,
+        272,
+        549
       ],
       "fused_candidate_ids": [
-        65,
-        146,
-        52
+        929,
+        272,
+        549
       ]
     },
     {
@@ -626,19 +810,19 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        143,
-        110,
-        43
+        222,
+        960,
+        818
       ],
       "raw_visual_candidate_ids": [
-        143,
-        110,
-        43
+        222,
+        960,
+        818
       ],
       "fused_candidate_ids": [
-        143,
-        110,
-        43
+        222,
+        960,
+        818
       ]
     },
     {
@@ -646,19 +830,19 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        22,
-        9,
-        135
+        222,
+        248,
+        745
       ],
       "raw_visual_candidate_ids": [
-        22,
-        9,
-        135
+        222,
+        248,
+        745
       ],
       "fused_candidate_ids": [
-        22,
-        9,
-        135
+        222,
+        248,
+        745
       ]
     },
     {
@@ -666,19 +850,19 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        2,
-        111,
-        27
+        654,
+        248,
+        929
       ],
       "raw_visual_candidate_ids": [
-        2,
-        111,
-        27
+        654,
+        248,
+        929
       ],
       "fused_candidate_ids": [
-        2,
-        111,
-        27
+        654,
+        248,
+        929
       ]
     },
     {
@@ -686,18 +870,19 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        26,
-        52,
-        106
+        248,
+        806,
+        929
       ],
       "raw_visual_candidate_ids": [
-        26,
-        52,
-        106
+        248,
+        806,
+        929
       ],
       "fused_candidate_ids": [
-        26,
-        52
+        248,
+        806,
+        929
       ]
     },
     {
@@ -705,19 +890,39 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        110,
-        52,
-        26
+        248,
+        806,
+        620
       ],
       "raw_visual_candidate_ids": [
-        110,
-        52,
-        26
+        248,
+        806,
+        620
       ],
       "fused_candidate_ids": [
-        110,
-        52,
-        26
+        248,
+        806,
+        620
+      ]
+    },
+    {
+      "sample_id": "2538a1c6-0b6",
+      "expected_pokemon_id": 71,
+      "object_kind": "figure_or_toy",
+      "visual_candidate_ids": [
+        849,
+        1002,
+        896
+      ],
+      "raw_visual_candidate_ids": [
+        849,
+        1002,
+        896
+      ],
+      "fused_candidate_ids": [
+        849,
+        1002,
+        896
       ]
     },
     {
@@ -725,19 +930,19 @@
       "expected_pokemon_id": 71,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        52,
-        6,
-        26
+        248,
+        806,
+        929
       ],
       "raw_visual_candidate_ids": [
-        52,
-        6,
-        26
+        248,
+        806,
+        929
       ],
       "fused_candidate_ids": [
-        52,
-        6,
-        26
+        248,
+        806,
+        929
       ]
     },
     {
@@ -745,19 +950,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        77,
-        137,
-        2
+        248,
+        907,
+        542
       ],
       "raw_visual_candidate_ids": [
-        77,
-        137,
-        2
+        248,
+        907,
+        542
       ],
       "fused_candidate_ids": [
-        77,
-        137,
-        2
+        248,
+        907,
+        542
       ]
     },
     {
@@ -765,19 +970,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        22,
-        110,
-        145
+        248,
+        542,
+        818
       ],
       "raw_visual_candidate_ids": [
-        22,
-        110,
-        145
+        248,
+        542,
+        818
       ],
       "fused_candidate_ids": [
-        22,
-        110,
-        145
+        248,
+        542,
+        818
       ]
     },
     {
@@ -785,18 +990,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        105,
-        36,
-        110
+        928,
+        406,
+        938
       ],
       "raw_visual_candidate_ids": [
-        105,
-        36,
-        110
+        928,
+        406,
+        938
       ],
       "fused_candidate_ids": [
-        105,
-        36
+        928,
+        406,
+        938
       ]
     },
     {
@@ -804,19 +1010,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        22,
-        94,
-        144
+        381,
+        248,
+        823
       ],
       "raw_visual_candidate_ids": [
-        22,
-        94,
-        144
+        381,
+        248,
+        823
       ],
       "fused_candidate_ids": [
-        22,
-        94,
-        144
+        381,
+        248,
+        823
       ]
     },
     {
@@ -824,19 +1030,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        22,
-        111,
-        123
+        248,
+        633,
+        542
       ],
       "raw_visual_candidate_ids": [
-        22,
-        111,
-        123
+        248,
+        633,
+        542
       ],
       "fused_candidate_ids": [
-        22,
-        111,
-        123
+        248,
+        633,
+        542
       ]
     },
     {
@@ -844,19 +1050,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        3,
-        148,
-        143
+        677,
+        970,
+        747
       ],
       "raw_visual_candidate_ids": [
-        3,
-        148,
-        143
+        677,
+        970,
+        747
       ],
       "fused_candidate_ids": [
-        3,
-        148,
-        143
+        677,
+        970,
+        747
       ]
     },
     {
@@ -864,19 +1070,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        9,
-        22,
-        123
+        805,
+        644,
+        746
       ],
       "raw_visual_candidate_ids": [
-        9,
-        22,
-        123
+        805,
+        644,
+        746
       ],
       "fused_candidate_ids": [
-        9,
-        22,
-        123
+        805,
+        644,
+        746
       ]
     },
     {
@@ -884,19 +1090,19 @@
       "expected_pokemon_id": 76,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        147,
-        145,
-        11
+        248,
+        745,
+        869
       ],
       "raw_visual_candidate_ids": [
-        147,
-        145,
-        11
+        248,
+        745,
+        869
       ],
       "fused_candidate_ids": [
-        147,
-        145,
-        11
+        248,
+        745,
+        869
       ]
     },
     {
@@ -904,19 +1110,19 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        73,
-        6,
-        139
+        248,
+        806,
+        929
       ],
       "raw_visual_candidate_ids": [
-        73,
-        6,
-        139
+        248,
+        806,
+        929
       ],
       "fused_candidate_ids": [
-        73,
-        6,
-        139
+        248,
+        806,
+        929
       ]
     },
     {
@@ -924,19 +1130,18 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        59,
-        73,
-        89
+        248,
+        806,
+        542
       ],
       "raw_visual_candidate_ids": [
-        59,
-        73,
-        89
+        248,
+        806,
+        542
       ],
       "fused_candidate_ids": [
-        59,
-        73,
-        89
+        248,
+        806
       ]
     },
     {
@@ -944,19 +1149,19 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        26,
-        15,
-        147
+        248,
+        907,
+        929
       ],
       "raw_visual_candidate_ids": [
-        26,
-        15,
-        147
+        248,
+        907,
+        929
       ],
       "fused_candidate_ids": [
-        26,
-        15,
-        147
+        248,
+        907,
+        929
       ]
     },
     {
@@ -964,19 +1169,19 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        146,
-        135
+        248,
+        806,
+        542
       ],
       "raw_visual_candidate_ids": [
-        145,
-        146,
-        135
+        248,
+        806,
+        542
       ],
       "fused_candidate_ids": [
-        145,
-        146,
-        135
+        248,
+        806,
+        542
       ]
     },
     {
@@ -984,19 +1189,19 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        128,
-        22,
-        105
+        222,
+        818,
+        1002
       ],
       "raw_visual_candidate_ids": [
-        128,
-        22,
-        105
+        222,
+        818,
+        1002
       ],
       "fused_candidate_ids": [
-        128,
-        22,
-        105
+        222,
+        818,
+        1002
       ]
     },
     {
@@ -1004,19 +1209,19 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        74,
-        127,
-        144
+        201,
+        903,
+        891
       ],
       "raw_visual_candidate_ids": [
-        74,
-        127,
-        144
+        201,
+        903,
+        891
       ],
       "fused_candidate_ids": [
-        74,
-        127,
-        144
+        201,
+        903,
+        891
       ]
     },
     {
@@ -1024,19 +1229,18 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        145,
-        111,
-        9
+        248,
+        806,
+        998
       ],
       "raw_visual_candidate_ids": [
-        145,
-        111,
-        9
+        248,
+        806,
+        998
       ],
       "fused_candidate_ids": [
-        145,
-        111,
-        9
+        248,
+        806
       ]
     },
     {
@@ -1044,59 +1248,19 @@
       "expected_pokemon_id": 109,
       "object_kind": "figure_or_toy",
       "visual_candidate_ids": [
-        26,
-        25,
-        94
+        818,
+        960,
+        707
       ],
       "raw_visual_candidate_ids": [
-        26,
-        25,
-        94
+        818,
+        960,
+        707
       ],
       "fused_candidate_ids": [
-        26,
-        25,
-        94
-      ]
-    },
-    {
-      "sample_id": "15d8b1de-d65",
-      "expected_pokemon_id": 140,
-      "object_kind": "figure_or_toy",
-      "visual_candidate_ids": [
-        47,
-        5,
-        7
-      ],
-      "raw_visual_candidate_ids": [
-        47,
-        5,
-        7
-      ],
-      "fused_candidate_ids": [
-        47,
-        5,
-        7
-      ]
-    },
-    {
-      "sample_id": "adc6f9f2-c53",
-      "expected_pokemon_id": 140,
-      "object_kind": "figure_or_toy",
-      "visual_candidate_ids": [
-        94,
-        46,
-        10
-      ],
-      "raw_visual_candidate_ids": [
-        94,
-        46,
-        10
-      ],
-      "fused_candidate_ids": [
-        94,
-        46,
-        10
+        818,
+        960,
+        707
       ]
     }
   ],

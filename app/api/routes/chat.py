@@ -19,7 +19,7 @@ from app.agents.pokedex_agent.nodes.ingest_input import run as ingest_input
 from app.agents.pokedex_agent.nodes.persist_trace import run as persist_trace
 from app.agents.pokedex_agent.nodes.retrieve_local_dex import run as retrieve_context
 from app.agents.pokedex_agent.session.carryover import apply_carryover
-from app.agents.pokedex_agent.session.store import FlowState, SessionStore
+from app.agents.pokedex_agent.session.store import FlowState, SessionRecord, SessionStore
 from app.agents.pokedex_agent.state import AgentState
 from app.agents.pokedex_agent.tools.tool_local_llm import stream_local_answer
 from app.schemas.api import ChatRequest, ChatResponse
@@ -56,7 +56,7 @@ def chat(request: ChatRequest) -> ChatResponse:
     state, session, flow_state, analysis = _prepare_chat_state(request)
     compose_answer(state)
     persist_trace(state)
-    _persist_session(session.session_id, request.message, state, flow_state, analysis.facet)
+    _persist_session(session, request.message, state, flow_state, analysis.facet)
     citations = _citations(state)
     return ChatResponse(
         answer=state.response_text,
@@ -104,7 +104,7 @@ def chat_stream(request: ChatRequest) -> StreamingResponse:
                     "suggested_actions": _suggested_actions(state),
                 }
             )
-            _persist_session(session.session_id, request.message, state, flow_state, analysis.facet)
+            _persist_session(session, request.message, state, flow_state, analysis.facet)
             persist_trace(state)
             return
 
@@ -138,7 +138,7 @@ def chat_stream(request: ChatRequest) -> StreamingResponse:
                     "citations": _citations(state),
                 }
             )
-            _persist_session(session.session_id, request.message, state, flow_state, analysis.facet)
+            _persist_session(session, request.message, state, flow_state, analysis.facet)
             persist_trace(state)
             return
         for event in stream_local_answer(state.input_text, detail, template_answer):
@@ -158,7 +158,7 @@ def chat_stream(request: ChatRequest) -> StreamingResponse:
                 yield _sse(payload)
             else:
                 yield _sse({**event, "trace_id": state.trace_id, "session_id": session.session_id})
-        _persist_session(session.session_id, request.message, state, flow_state, analysis.facet)
+        _persist_session(session, request.message, state, flow_state, analysis.facet)
         persist_trace(state)
 
     return StreamingResponse(events(), media_type="text/event-stream", headers={"Cache-Control": "no-cache"})
@@ -181,12 +181,12 @@ def _prepare_chat_state(request: ChatRequest):
 
 
 def _persist_session(
-    session_id: str,
+    session: SessionRecord,
     user_message: str,
     state: AgentState,
     flow_state: FlowState,
     facet: str,
-) -> None:
+) -> bool:
     detail = state.retrieval_context.get("detail") if state.retrieval_context else None
     if isinstance(detail, dict):
         flow_state.active_form_id = str(detail.get("form_id") or flow_state.active_form_id)
@@ -195,8 +195,8 @@ def _persist_session(
     passages = state.retrieval_context.get("passages") if isinstance(state.retrieval_context, dict) else []
     if isinstance(passages, list):
         flow_state.evidence_ids = [str(item.get("passage_id")) for item in passages[:5] if isinstance(item, dict)]
-    sessions.append_exchange(
-        session_id,
+    return sessions.append_exchange(
+        session.session_id,
         user_content=user_message,
         assistant_content=state.response_text,
         assistant_metadata={
@@ -206,6 +206,7 @@ def _persist_session(
             "form_id": flow_state.active_form_id,
         },
         flow_state=flow_state,
+        expected_turn_count=session.turn_count,
     )
 
 

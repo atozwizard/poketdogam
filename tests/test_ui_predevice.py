@@ -192,6 +192,13 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertIn("captureCameraFrame", script)
         self.assertIn("PoketdogamCameraQuality", script)
         self.assertIn("확률이 아닌 비교 점수", script)
+        self.assertIn('id="productEvidence"', index)
+        self.assertIn('id="labEvidence"', index)
+        self.assertIn('id="fieldEvidence"', index)
+        self.assertIn('id="generationProgress"', index)
+        self.assertIn("renderGenerationProgress", script)
+        self.assertIn("data-remove-form", script)
+        self.assertIn("실물 Top-3", script)
         self.assertTrue(script.rstrip().endswith("loadHealth();"))
 
     def test_health_and_privacy_delete_contract(self) -> None:
@@ -207,6 +214,11 @@ class PreDeviceUITest(unittest.TestCase):
         privacy = self.client.get("/v1/privacy/status")
         self.assertEqual(privacy.status_code, 200)
         self.assertFalse(privacy.json()["raw_images_stored"])
+        evidence = health.json()["visual_recognition"]["recognition_evidence"]
+        self.assertFalse(evidence["product_open_search"]["certified"])
+        self.assertFalse(evidence["product_open_search"]["generation_hint_used"])
+        self.assertFalse(evidence["generation_aided_lab"]["product_claimable"])
+        self.assertFalse(evidence["field_pilot"]["generation_wide_claimable"])
         deleted = self.client.delete(f"/v1/sessions/{session_id}")
         self.assertEqual(deleted.status_code, 204)
         self.assertEqual(self.client.delete("/v1/sessions/not.valid").status_code, 422)
@@ -260,6 +272,24 @@ class PreDeviceUITest(unittest.TestCase):
         self.assertEqual(payload["runtime"], "browser_speech_synthesis")
         self.assertEqual(payload["style"], "machine_pulse")
         self.assertIn("분석 완료", payload["preview_text"])
+
+    def test_android_capture_has_overlap_and_timeout_guards(self) -> None:
+        android = (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/MainActivity.kt"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("scanInFlight", android)
+        self.assertIn("SCAN_TIMEOUT_MS", android)
+        self.assertIn("AtomicBoolean", android)
+
+        matcher = (
+            PROJECT_ROOT
+            / "android/app/src/main/java/com/twentyflags/poketdogam/VisualMatcher.kt"
+        ).read_text(encoding="utf-8")
+        self.assertIn("lifecycleLock", matcher)
+        self.assertIn("closeRequested", matcher)
+        self.assertIn("tryLock()", matcher)
 
 
 if __name__ == "__main__":

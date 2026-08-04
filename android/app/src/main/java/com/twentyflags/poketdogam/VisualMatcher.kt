@@ -14,7 +14,9 @@ import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.charset.StandardCharsets
+import java.util.concurrent.locks.ReentrantLock
 import kotlin.math.sqrt
+import kotlin.concurrent.withLock
 import org.json.JSONObject
 
 private data class VisualReference(
@@ -29,6 +31,9 @@ class VisualMatcher(
     private val assetIntegrity = AssetIntegrity(context)
     private val references: List<VisualReference> by lazy { loadReferences() }
     private var embedderInstance: ImageEmbedder? = null
+    private val lifecycleLock = ReentrantLock()
+    @Volatile private var closeRequested = false
+
     private fun getEmbedder(): ImageEmbedder {
         embedderInstance?.let { return it }
         assetIntegrity.requireVerified("mobilenet_v3_small.tflite")
@@ -43,7 +48,16 @@ class VisualMatcher(
         return ImageEmbedder.createFromOptions(context, options).also { embedderInstance = it }
     }
 
-    fun match(imageFile: File, limit: Int = 5): List<DexCandidate> {
+    fun match(imageFile: File, limit: Int = 5): List<DexCandidate> = lifecycleLock.withLock {
+        if (closeRequested) return@withLock emptyList()
+        try {
+            matchLocked(imageFile, limit)
+        } finally {
+            if (closeRequested) closeEmbedderLocked()
+        }
+    }
+
+    private fun matchLocked(imageFile: File, limit: Int): List<DexCandidate> {
         val decoded = BitmapFactory.decodeFile(imageFile.path) ?: return emptyList()
         val oriented = orientBitmap(decoded, imageFile)
         val bitmap = downscaleForEmbedding(oriented).also {
@@ -99,6 +113,17 @@ class VisualMatcher(
     }
 
     override fun close() {
+        closeRequested = true
+        if (lifecycleLock.tryLock()) {
+            try {
+                closeEmbedderLocked()
+            } finally {
+                lifecycleLock.unlock()
+            }
+        }
+    }
+
+    private fun closeEmbedderLocked() {
         embedderInstance?.close()
         embedderInstance = null
     }

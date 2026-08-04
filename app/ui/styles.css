@@ -570,6 +570,23 @@ dd {
   border-radius: 8px;
 }
 
+.reticle .name-band {
+  position: absolute;
+  top: 8%;
+  left: 10%;
+  right: 10%;
+  height: 18%;
+  border: 2px dashed rgba(255, 213, 79, 0.92);
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 213, 79, 0.08);
+  color: rgba(255, 248, 239, 0.92);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
 .reticle span {
   position: absolute;
   width: 34px;
@@ -802,7 +819,7 @@ input:focus {
 .collection-item {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 8px;
   align-items: center;
   padding: 4px;
@@ -831,6 +848,18 @@ input:focus {
 .favorite-button.is-favorite {
   color: #c48000;
   background: rgba(255, 212, 71, 0.2);
+}
+
+.remove-collection-button {
+  min-width: 48px;
+  min-height: 42px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 7px;
+  color: #8b1515;
+  background: rgba(255, 235, 232, 0.9);
+  font-size: 0.76rem;
+  font-weight: 800;
 }
 
 .candidate-item.is-selected {
@@ -1003,6 +1032,101 @@ input:focus {
 
 .privacy-card p {
   margin: 0;
+}
+
+.recognition-evidence {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid rgba(196, 128, 0, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 213, 79, 0.1);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.recognition-evidence > strong,
+.evidence-grid dd {
+  color: var(--text);
+}
+
+.recognition-evidence p,
+.recognition-evidence dl {
+  margin: 0;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.evidence-grid div {
+  padding: 8px;
+  border: 1px solid rgba(46, 28, 29, 0.1);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.evidence-grid dt {
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.evidence-grid dd {
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.generation-progress-section {
+  margin-bottom: 12px;
+}
+
+.generation-progress {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.generation-progress-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 8px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid rgba(233, 59, 84, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.56);
+  font-size: 0.76rem;
+}
+
+.generation-progress-item > span:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.generation-progress-item small,
+.generation-progress-item b {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.generation-progress-track {
+  grid-column: 1 / -1;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(46, 28, 29, 0.1);
+}
+
+.generation-progress-track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
 }
 
 .collection-tools {
@@ -1477,6 +1601,11 @@ input:focus {
   .search-row,
   .evolution-item,
   .collection-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-grid,
+  .generation-progress {
     grid-template-columns: 1fr;
   }
 

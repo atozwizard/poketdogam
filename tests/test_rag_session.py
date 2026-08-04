@@ -1,6 +1,7 @@
 # Run: python -m unittest tests/test_rag_session.py
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
 from contextlib import closing
 from pathlib import Path
 import tempfile
@@ -78,6 +79,69 @@ class RagSessionTest(unittest.TestCase):
                 conn.commit()
 
             store.ensure(session.session_id)
+            self.assertEqual(store.recent_turns(session.session_id), [])
+
+    def test_concurrent_first_requests_create_one_session(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SessionStore(Path(temp_dir) / "sessions.sqlite")
+            session_id = "shared-session"
+            with ThreadPoolExecutor(max_workers=8) as executor:
+                records = list(executor.map(lambda _: store.ensure(session_id), range(16)))
+
+            self.assertEqual({record.session_id for record in records}, {session_id})
+            with closing(store._connect()) as conn:
+                count = conn.execute(
+                    "select count(*) from sessions where session_id = ?", (session_id,)
+                ).fetchone()[0]
+            self.assertEqual(count, 1)
+
+    def test_stale_exchange_cannot_overwrite_newer_flow_state(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SessionStore(Path(temp_dir) / "sessions.sqlite")
+            first = store.ensure("shared-session")
+            stale = store.ensure("shared-session")
+            first_state = FlowState(active_form_id="f1", active_name_ko="피카츄")
+            stale_state = FlowState(active_form_id="f2", active_name_ko="이브이")
+
+            self.assertTrue(
+                store.append_exchange(
+                    first.session_id,
+                    user_content="첫 요청",
+                    assistant_content="첫 답변",
+                    flow_state=first_state,
+                    expected_turn_count=first.turn_count,
+                )
+            )
+            self.assertFalse(
+                store.append_exchange(
+                    stale.session_id,
+                    user_content="경합 요청",
+                    assistant_content="늦은 답변",
+                    flow_state=stale_state,
+                    expected_turn_count=stale.turn_count,
+                )
+            )
+            current = store.ensure(first.session_id)
+            self.assertEqual(current.flow_state.active_name_ko, "피카츄")
+            history = store.recent_turns(first.session_id, limit=10)
+            self.assertEqual(len(history), 4)
+            self.assertEqual({turn["content"] for turn in history}, {"첫 요청", "첫 답변", "경합 요청", "늦은 답변"})
+
+    def test_session_deletion_wins_over_late_stream_persist(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            store = SessionStore(Path(temp_dir) / "sessions.sqlite")
+            session = store.ensure("delete-race")
+            self.assertTrue(store.delete(session.session_id))
+
+            persisted = store.append_exchange(
+                session.session_id,
+                user_content="삭제 직전 요청",
+                assistant_content="늦은 답변",
+                flow_state=FlowState(active_name_ko="피카츄"),
+                expected_turn_count=session.turn_count,
+            )
+
+            self.assertFalse(persisted)
             self.assertEqual(store.recent_turns(session.session_id), [])
 
 

@@ -52,9 +52,51 @@ def extract_ondevice_text(
     if suffix not in IMAGE_SUFFIXES:
         return {"text": "", "blocks": [], "provider": "os_ocr_adapter", "engine": "unsupported_image"}
 
+    full = _ocr_image_bytes(image_bytes, suffix)
+    name_band_bytes = _crop_name_band(image_bytes)
+    name_band = (
+        _ocr_image_bytes(name_band_bytes, ".jpg")
+        if name_band_bytes
+        else {"text": "", "engine": "name_band_unavailable"}
+    )
+    merged = _merge_ocr_texts(str(full.get("text") or ""), str(name_band.get("text") or ""))
+    engine = str(full.get("engine") or "ocr_unavailable")
+    if name_band.get("text"):
+        engine = f"{engine}+name_band"
+    if merged:
+        return {
+            "text": merged,
+            "blocks": [],
+            "provider": "os_ocr_adapter",
+            "engine": engine,
+            "name_band_used": bool(name_band.get("text")),
+        }
+    return {
+        "text": "",
+        "blocks": [],
+        "provider": "os_ocr_adapter",
+        "engine": engine if engine != "ocr_unavailable" else f"{engine}_empty",
+        "name_band_used": False,
+    }
+
+
+def name_band_crop_box(width: int, height: int) -> dict[str, int]:
+    width = max(1, int(width))
+    height = max(1, int(height))
+    return {
+        "left": round(width * 0.1),
+        "top": round(height * 0.08),
+        "width": max(1, round(width * 0.8)),
+        "height": max(1, round(height * 0.18)),
+    }
+
+
+def _ocr_image_bytes(image_bytes: bytes, suffix: str) -> dict[str, str]:
     backend_results = []
     if platform.system() == "Darwin" and shutil.which("swift") and MACOS_VISION_SCRIPT.exists():
-        backend_results.append(("vision_macos", _run_ocr_command(image_bytes, suffix, ["swift", str(MACOS_VISION_SCRIPT)])))
+        backend_results.append(
+            ("vision_macos", _run_ocr_command(image_bytes, suffix, ["swift", str(MACOS_VISION_SCRIPT)]))
+        )
 
     tesseract = shutil.which("tesseract")
     if tesseract:
@@ -71,21 +113,47 @@ def extract_ondevice_text(
 
     for engine, text in backend_results:
         if text:
-            return {
-                "text": text,
-                "blocks": [],
-                "provider": "os_ocr_adapter",
-                "engine": engine,
-            }
-
+            return {"text": text, "engine": engine}
     if backend_results:
-        return {
-            "text": "",
-            "blocks": [],
-            "provider": "os_ocr_adapter",
-            "engine": f"{backend_results[0][0]}_empty",
-        }
-    return {"text": "", "blocks": [], "provider": "os_ocr_adapter", "engine": "ocr_unavailable"}
+        return {"text": "", "engine": f"{backend_results[0][0]}_empty"}
+    return {"text": "", "engine": "ocr_unavailable"}
+
+
+def _crop_name_band(image_bytes: bytes) -> bytes | None:
+    try:
+        from io import BytesIO
+
+        from PIL import Image
+    except ImportError:
+        return None
+    try:
+        with Image.open(BytesIO(image_bytes)) as image:
+            rgb = image.convert("RGB")
+            box = name_band_crop_box(rgb.width, rgb.height)
+            cropped = rgb.crop(
+                (
+                    box["left"],
+                    box["top"],
+                    box["left"] + box["width"],
+                    box["top"] + box["height"],
+                )
+            )
+            buffer = BytesIO()
+            cropped.save(buffer, format="JPEG", quality=92)
+            return buffer.getvalue()
+    except OSError:
+        return None
+
+
+def _merge_ocr_texts(full_text: str, name_band_text: str) -> str:
+    parts = [part.strip() for part in (full_text, name_band_text) if part and part.strip()]
+    if not parts:
+        return ""
+    if len(parts) == 1:
+        return parts[0]
+    if parts[1].casefold() in parts[0].casefold():
+        return parts[0]
+    return f"{parts[0]}\n{parts[1]}"
 
 
 def _is_fixture_input(suffix: str, content_type: str | None) -> bool:

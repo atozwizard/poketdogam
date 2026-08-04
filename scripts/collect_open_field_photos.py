@@ -27,42 +27,133 @@ DEFAULT_QUERIES = (
     "Pokemon figure",
     "Pokemon plush",
     "Pokemon card",
+    "Pokemon TCG",
+    "Pokemon merch",
+    "Pokemon merchandise",
+    "Pokemon collection",
+    "Pokemon fan collection",
+    "Pokemon fan merch",
+    "Pokemon display shelf",
+    "Pokemon statue",
+    "Pokemon nendoroid",
+    "Pokemon funko",
+    "Pokemon keychain",
+    "Pokemon sticker",
+    "Pokemon goods",
+    "Pokemon acrylic stand",
+    "Pokemon amiibo",
+)
+FAN_PAGE_QUERIES = (
+    "Pokemon fan page merch",
+    "Pokemon fan photography",
+    "Pokemon collector shelf",
+    "Pokemon room collection",
+    "Pokemon desk figure",
+    "Pokemon acrylic stand",
+    "my Pokemon collection",
+    "Pokemon haul unboxing",
+)
+SCREENSHOT_QUERIES = (
+    "Pokemon game screenshot",
+    "Pokemon Switch screenshot",
+    "Pokemon Scarlet Violet screenshot",
+    "Pokemon GO screenshot",
+    "Pokemon in-game screenshot",
 )
 ALLOWED_LICENSES = {"by", "by-sa", "by-nc", "by-nc-sa", "cc0", "pdm"}
 PHYSICAL_TERMS = {
+    "acrylic",
+    "amiibo",
+    "badge",
     "card",
     "cards",
+    "collection",
+    "collector",
+    "display",
     "doll",
+    "fanmerch",
     "figure",
     "figurine",
+    "funko",
+    "goods",
+    "keychain",
+    "merch",
     "merchandise",
+    "nendoroid",
     "pillow",
+    "pin",
     "plush",
     "plushes",
     "plushie",
+    "shelf",
+    "shelfie",
+    "standee",
+    "statue",
+    "sticker",
+    "stickers",
     "stuffed",
     "tcg",
     "toy",
     "toys",
+}
+SCREENSHOT_TERMS = {
+    "screenshot",
+    "screenshots",
+    "game capture",
+    "game screenshot",
+    "switch screenshot",
+    "in game",
+    "ingame",
+    "pokemon go",
+    "pokemongo",
+}
+FAN_CONTEXT_TERMS = {
+    "fan",
+    "fanart photo",
+    "fanmade",
+    "fanmerch",
+    "fanpage",
+    "fan page",
+    "fandom",
+    "collector",
+    "collection",
+    "haul",
+    "shelfie",
+    "my pokemon",
+    "display case",
 }
 EXCLUDED_TERMS = {
     "augmented reality",
     "cosplay",
     "cosplayer",
     "costume",
-    "digital art",
-    "drawing",
+    "episode",
     "graffiti",
-    "illustration",
     "manhole",
     "mural",
+    "tattoo",
+    "title card",
+    "titlecard",
+    "broadcast",
+}
+# Soft excludes: only reject when fan-context / screenshot / in-game scope is absent.
+ART_ONLY_TERMS = {
+    "digital art",
+    "drawing",
+    "illustration",
     "painting",
+    "anime",
+    "wallpaper",
+}
+SCREENSHOT_HARD_EXCLUDES_WHEN_DISABLED = {
     "pokemon go",
     "pokemongo",
     "screenshot",
-    "tattoo",
+    "game capture",
+    "game screenshot",
 }
-PERSON_TERMS = {"child", "children", "cosplayer", "people", "person"}
+PERSON_TERMS = {"child", "children", "cosplayer"}
+PERSON_SOFT_TERMS = {"people", "person"}
 
 
 def collect_open_field_photos(
@@ -77,14 +168,32 @@ def collect_open_field_photos(
     max_downloads: int = 200,
     queries: tuple[str, ...] = DEFAULT_QUERIES,
     include_species_search: bool = False,
+    allow_fan_pages: bool = False,
+    allow_screenshots: bool = False,
+    all_generations: bool = False,
+    license_type: str = "modification",
+    require_photograph_category: bool = True,
 ) -> dict[str, object]:
-    species = _generation_one_species(db_path)
+    species = (
+        _all_generation_species(db_path)
+        if all_generations
+        else _generation_one_species(db_path)
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
+    search_queries = tuple(queries)
+    if allow_fan_pages:
+        search_queries = tuple(dict.fromkeys([*search_queries, *FAN_PAGE_QUERIES]))
+    if allow_screenshots:
+        search_queries = tuple(dict.fromkeys([*search_queries, *SCREENSHOT_QUERIES]))
     candidates = _discover_candidates(
         species,
-        queries=queries,
+        queries=search_queries,
         max_pages=max_pages,
         include_species_search=include_species_search,
+        allow_fan_pages=allow_fan_pages,
+        allow_screenshots=allow_screenshots,
+        license_type=license_type,
+        require_photograph_category=require_photograph_category,
     )
 
     selected = _existing_items(manifest_path)
@@ -158,16 +267,26 @@ def collect_open_field_photos(
                 file=sys.stderr,
             )
 
+    existing_source = {}
+    if manifest_path.exists():
+        existing_source = (
+            json.loads(manifest_path.read_text(encoding="utf-8")).get("source") or {}
+        )
     manifest = {
         "schema_version": 1,
         "collection": "open_licensed_user_photography_candidates",
         "created_at": _utc_timestamp(),
         "source": {
+            **existing_source,
             "name": "Openverse API",
             "endpoint": OPENVERSE_ENDPOINT,
+            "allow_fan_pages": allow_fan_pages,
+            "license_type": license_type,
             "policy": (
                 "Openverse indexes open-license metadata but does not guarantee its "
-                "accuracy; every item requires source-page license verification."
+                "accuracy; every item requires source-page license verification. "
+                "Fan-page/collection photography is permitted when allow_fan_pages "
+                "is enabled."
             ),
         },
         "usage_scope": "local_noncommercial_poc_quality_assurance_only",
@@ -175,8 +294,9 @@ def collect_open_field_photos(
             "Git-ignored QA input; never bundled in web, Android, Dex, or product assets"
         ),
         "privacy_policy": (
-            "Search metadata with person/cosplay terms is excluded; EXIF is stripped. "
-            "A human must still reject visible people or personal data."
+            "Search metadata with child/cosplay terms is excluded; EXIF is stripped. "
+            "Fan-page soft filters may allow collection context; a human must still "
+            "reject visible people or personal data."
         ),
         "items": selected,
     }
@@ -199,27 +319,51 @@ def collect_open_field_photos(
 
 
 def _generation_one_species(db_path: Path) -> list[dict[str, object]]:
+    return _species_scope(db_path, generations=(1,), expected_count=151)
+
+
+def _all_generation_species(db_path: Path) -> list[dict[str, object]]:
+    return _species_scope(
+        db_path,
+        generations=tuple(range(1, 10)),
+        expected_count=1025,
+    )
+
+
+def _species_scope(
+    db_path: Path,
+    *,
+    generations: tuple[int, ...],
+    expected_count: int | None,
+) -> list[dict[str, object]]:
+    placeholders = ",".join("?" for _ in generations)
     with closing(sqlite3.connect(db_path)) as conn:
         conn.row_factory = sqlite3.Row
         rows = conn.execute(
-            """
+            f"""
             select
                 s.pokemon_id,
                 s.name_en,
+                s.generation,
                 f.form_id
             from pokemon_species s
             join pokemon_forms f
               on f.pokemon_id = s.pokemon_id and f.form_name = 'base'
-            where s.generation = 1
+            where s.generation in ({placeholders})
             order by s.pokemon_id
-            """
+            """,
+            generations,
         ).fetchall()
-    if len(rows) != 151:
-        raise ValueError(f"Generation 1 species scope must be 151, got {len(rows)}")
+    if expected_count is not None and len(rows) != expected_count:
+        raise ValueError(
+            f"species scope for generations {generations} must be "
+            f"{expected_count}, got {len(rows)}"
+        )
     return [
         {
             "pokemon_id": int(row["pokemon_id"]),
             "name_en": str(row["name_en"]),
+            "generation": int(row["generation"]),
             "form_id": str(row["form_id"]),
             "aliases": _species_aliases(str(row["name_en"])),
         }
@@ -233,6 +377,10 @@ def _discover_candidates(
     queries: tuple[str, ...],
     max_pages: int,
     include_species_search: bool,
+    allow_fan_pages: bool = False,
+    allow_screenshots: bool = False,
+    license_type: str = "modification",
+    require_photograph_category: bool = True,
 ) -> list[dict[str, object]]:
     candidates: list[dict[str, object]] = []
     with httpx.Client(
@@ -242,7 +390,13 @@ def _discover_candidates(
     ) as client:
         for query in queries:
             for page in range(1, max_pages + 1):
-                payload = _openverse_page(client, query=query, page=page)
+                payload = _openverse_page(
+                    client,
+                    query=query,
+                    page=page,
+                    license_type=license_type,
+                    require_photograph_category=require_photograph_category,
+                )
                 results = payload.get("results") or []
                 if not isinstance(results, list):
                     break
@@ -251,6 +405,8 @@ def _discover_candidates(
                         item,
                         species=species,
                         query=query,
+                        allow_fan_pages=allow_fan_pages,
+                        allow_screenshots=allow_screenshots,
                     )
                     if candidate is not None:
                         candidates.append(candidate)
@@ -264,10 +420,26 @@ def _discover_candidates(
                     break
                 time.sleep(0.25)
         if include_species_search:
+            object_terms = [
+                "toy figure",
+                "plush",
+                "card",
+                "sticker",
+                "merch collection",
+                "fan collection",
+            ]
+            if allow_screenshots:
+                object_terms.extend(["game screenshot", "switch screenshot"])
             for index, item in enumerate(species, start=1):
-                for object_term in ("toy figure", "plush", "card"):
+                for object_term in object_terms:
                     query = f"{item['name_en']} Pokemon {object_term}"
-                    payload = _openverse_page(client, query=query, page=1)
+                    payload = _openverse_page(
+                        client,
+                        query=query,
+                        page=1,
+                        license_type=license_type,
+                        require_photograph_category=require_photograph_category,
+                    )
                     results = payload.get("results") or []
                     if isinstance(results, list):
                         for result in results:
@@ -275,11 +447,13 @@ def _discover_candidates(
                                 result,
                                 species=species,
                                 query=query,
+                                allow_fan_pages=allow_fan_pages,
+                                allow_screenshots=allow_screenshots,
                             )
                             if candidate is not None:
                                 candidates.append(candidate)
-                    time.sleep(0.2)
-                if index % 10 == 0 or index == len(species):
+                    time.sleep(0.15)
+                if index % 25 == 0 or index == len(species):
                     print(
                         f"species searches {index}/{len(species)}: "
                         f"{len(candidates)} total candidates",
@@ -308,15 +482,18 @@ def _openverse_page(
     *,
     query: str,
     page: int,
+    license_type: str = "modification",
+    require_photograph_category: bool = True,
 ) -> dict[str, object]:
     params = {
         "q": query,
-        "license_type": "modification",
-        "category": "photograph",
+        "license_type": license_type,
         "mature": "false",
         "page_size": 20,
         "page": page,
     }
+    if require_photograph_category:
+        params["category"] = "photograph"
     for attempt in range(4):
         response = client.get(OPENVERSE_ENDPOINT, params=params)
         if response.status_code != 429:
@@ -339,6 +516,8 @@ def _candidate_from_result(
     *,
     species: list[dict[str, object]],
     query: str,
+    allow_fan_pages: bool = False,
+    allow_screenshots: bool = False,
 ) -> dict[str, object] | None:
     if not isinstance(item, dict):
         return None
@@ -360,19 +539,71 @@ def _candidate_from_result(
         for tag in (item.get("tags") or [])
         if isinstance(tag, dict) and tag.get("name")
     ]
-    searchable = _normalize_text(" ".join([title, *tags]))
+    landing = str(item.get("foreign_landing_url") or "").casefold()
+    provider = str(item.get("source") or item.get("provider") or "").casefold()
+    searchable = _normalize_text(" ".join([title, *tags, query, provider]))
     terms = set(searchable.split())
-    if not terms.intersection(PHYSICAL_TERMS):
+    fan_context = allow_fan_pages and (
+        any(term in searchable for term in FAN_CONTEXT_TERMS)
+        or "fan" in landing
+        or "fandom" in landing
+        or "deviantart" in landing
+        or "tumblr" in landing
+        or "/blog/" in landing
+        or "fanpage" in landing
+        or "fan-page" in landing
+        or "fan_page" in landing
+    )
+    screenshot_context = allow_screenshots and (
+        any(term in searchable for term in SCREENSHOT_TERMS)
+        or "screenshot" in landing
+    )
+    has_physical = bool(terms.intersection(PHYSICAL_TERMS))
+    if not has_physical and not fan_context and not screenshot_context:
         return None
     if any(term in searchable for term in EXCLUDED_TERMS):
         return None
+    if not allow_screenshots and any(
+        term in searchable for term in SCREENSHOT_HARD_EXCLUDES_WHEN_DISABLED
+    ):
+        return None
+    if (
+        not fan_context
+        and not screenshot_context
+        and any(term in searchable for term in ART_ONLY_TERMS)
+    ):
+        return None
     if terms.intersection(PERSON_TERMS):
         return None
-    matches = _detect_species(searchable, species)
-    if len(matches) != 1:
+    if (
+        not fan_context
+        and not screenshot_context
+        and terms.intersection(PERSON_SOFT_TERMS)
+    ):
         return None
-    match = matches[0]
-    kind = _object_kind(searchable)
+    matches = _detect_species(searchable, species)
+    if not matches:
+        return None
+    if len(matches) > 1:
+        if not fan_context and not screenshot_context:
+            return None
+        title_norm = _normalize_text(title)
+        match = sorted(
+            matches,
+            key=lambda item: min(
+                (
+                    title_norm.find(alias)
+                    for alias in item["aliases"]
+                    if alias in title_norm
+                ),
+                default=10_000,
+            ),
+        )[0]
+        label_basis = "multi_species_primary_token_in_title_or_tags"
+    else:
+        match = matches[0]
+        label_basis = "single exact species token in title_or_tags"
+    kind = _object_kind(searchable, screenshot_context=screenshot_context)
     width = int(item.get("width") or 0)
     height = int(item.get("height") or 0)
     if width < 320 or height < 320:
@@ -400,7 +631,10 @@ def _candidate_from_result(
         "expected_pokemon_id": int(match["pokemon_id"]),
         "expected_name_en": str(match["name_en"]),
         "expected_form_id": str(match["form_id"]),
-        "label_basis": "single exact Generation 1 species token in title_or_tags",
+        "expected_generation": int(match.get("generation") or 0) or None,
+        "label_basis": label_basis,
+        "fan_page_context": bool(fan_context),
+        "screenshot_context": bool(screenshot_context),
     }
 
 
@@ -443,8 +677,14 @@ def _normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", value)).strip()
 
 
-def _object_kind(searchable: str) -> str:
+def _object_kind(searchable: str, *, screenshot_context: bool = False) -> str:
     terms = set(searchable.split())
+    if screenshot_context or terms.intersection(SCREENSHOT_TERMS):
+        return "user_screenshot"
+    if terms.intersection({"sticker", "stickers"}):
+        return "sticker"
+    if terms.intersection({"goods", "amiibo", "keychain", "badge", "pin"}):
+        return "goods"
     if terms.intersection({"card", "cards", "tcg"}):
         return "card"
     if terms.intersection({"plush", "plushes", "plushie", "stuffed", "pillow"}):
@@ -492,6 +732,7 @@ def _collection_summary(
     kind_counts = Counter(str(item["object_kind"]) for item in items)
     provider_counts = Counter(str(item["source_provider"]) for item in items)
     license_counts = Counter(str(item["license_code"]) for item in items)
+    fan_count = sum(1 for item in items if item.get("fan_page_context") is True)
     return {
         "schema_version": 1,
         "collection": manifest["collection"],
@@ -500,6 +741,7 @@ def _collection_summary(
         "discovered_candidate_count": discovered_count,
         "downloaded_candidate_count": len(items),
         "covered_species_count": len(species_counts),
+        "fan_page_context_count": fan_count,
         "species_sample_counts": dict(sorted(species_counts.items(), key=lambda pair: int(pair[0]))),
         "object_kind_counts": dict(sorted(kind_counts.items())),
         "provider_counts": dict(sorted(provider_counts.items())),
@@ -508,9 +750,9 @@ def _collection_summary(
         "raw_media_committed": False,
         "benchmark_eligible_count": len(eligible),
         "interpretation": (
-            "Downloaded items are open-license candidate photographs, not a validated "
-            "field benchmark. Human visual labels, visible-person rejection, and "
-            "source-page license checks are still required."
+            "Downloaded items are open-license candidate photographs, including "
+            "fan-page/collection photography when enabled. Human visual labels, "
+            "visible-person rejection, and source-page license checks are still required."
         ),
     }
 
@@ -538,17 +780,47 @@ def main() -> None:
     parser.add_argument("--max-per-creator", type=int, default=8)
     parser.add_argument("--max-downloads", type=int, default=200)
     parser.add_argument("--species-search", action="store_true")
+    parser.add_argument(
+        "--allow-fan-pages",
+        action="store_true",
+        help="Permit fan-page/collection photography and broader merch queries",
+    )
+    parser.add_argument(
+        "--allow-screenshots",
+        action="store_true",
+        help="Permit user/in-game screenshot photography in open collection",
+    )
+    parser.add_argument(
+        "--all-generations",
+        action="store_true",
+        help="Label/search across Generation 1–9 (1025 species) instead of Gen1 only",
+    )
+    parser.add_argument(
+        "--license-type",
+        default="modification",
+        choices=["modification", "commercial", "all"],
+    )
+    parser.add_argument(
+        "--allow-non-photograph-category",
+        action="store_true",
+        help="Do not restrict Openverse results to category=photograph",
+    )
     args = parser.parse_args()
     result = collect_open_field_photos(
         db_path=PROJECT_ROOT / args.db_path,
         output_dir=PROJECT_ROOT / args.output_dir,
         manifest_path=PROJECT_ROOT / args.manifest_path,
         summary_path=PROJECT_ROOT / args.summary_path,
-        max_pages=max(1, min(args.max_pages, 12)),
+        max_pages=max(1, min(args.max_pages, 20)),
         max_per_species=max(1, args.max_per_species),
         max_per_creator=max(1, args.max_per_creator),
         max_downloads=max(1, args.max_downloads),
         include_species_search=args.species_search,
+        allow_fan_pages=args.allow_fan_pages,
+        allow_screenshots=args.allow_screenshots,
+        all_generations=args.all_generations,
+        license_type=args.license_type,
+        require_photograph_category=not args.allow_non_photograph_category,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2))
 

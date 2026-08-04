@@ -1,6 +1,8 @@
 # Run: python app/main.py
 from pathlib import Path
+import asyncio
 from collections import defaultdict
+from contextlib import asynccontextmanager, suppress
 from threading import Lock
 from time import perf_counter
 
@@ -10,7 +12,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.agents.pokedex_agent.tools.tool_local_dex import get_local_dex
 from app.agents.pokedex_agent.tools.tool_ocr_ondevice import available_ocr_engines
-from app.api.routes.chat import router as chat_router
+from app.api.routes.chat import router as chat_router, sessions as chat_sessions
 from app.api.routes.pokedex import router as pokedex_router
 from app.api.routes.scan import router as scan_router
 from app.api.routes.voice import router as voice_router
@@ -28,12 +30,48 @@ REQUEST_METRICS: dict[str, object] = {
 }
 
 
+def _record_request_metric(method: str, path: str, status_code: int, latency_ms: float) -> None:
+    with METRICS_LOCK:
+        REQUEST_METRICS["requests_total"] = int(REQUEST_METRICS["requests_total"]) + 1
+        REQUEST_METRICS["latency_ms_total"] = (
+            float(REQUEST_METRICS["latency_ms_total"]) + latency_ms
+        )
+        if status_code >= 500:
+            REQUEST_METRICS["errors_total"] = int(REQUEST_METRICS["errors_total"]) + 1
+        routes = REQUEST_METRICS["routes"]
+        if isinstance(routes, defaultdict):
+            routes[f"{method} {path} {status_code}"] += 1
+
+
+async def _session_cleanup_loop() -> None:
+    while True:
+        await asyncio.sleep(60)
+        try:
+            await asyncio.to_thread(chat_sessions.cleanup_expired)
+        except Exception:
+            # Cleanup is retried on the next interval. Request paths also delete
+            # expired sessions, so a transient SQLite lock must not stop the app.
+            continue
+
+
+@asynccontextmanager
+async def _lifespan(_app: FastAPI):
+    cleanup_task = asyncio.create_task(_session_cleanup_loop())
+    try:
+        yield
+    finally:
+        cleanup_task.cancel()
+        with suppress(asyncio.CancelledError):
+            await cleanup_task
+
+
 def create_app() -> FastAPI:
     settings = get_settings()
     docs_enabled = settings.environment != "production"
     app = FastAPI(
         title="Poketdogam API",
         version="0.1.0",
+        lifespan=_lifespan,
         docs_url="/docs" if docs_enabled else None,
         redoc_url="/redoc" if docs_enabled else None,
         openapi_url="/openapi.json" if docs_enabled else None,
@@ -47,18 +85,19 @@ def create_app() -> FastAPI:
     @app.middleware("http")
     async def security_headers(request, call_next) -> Response:
         started_at = perf_counter()
-        response = await call_next(request)
+        try:
+            response = await call_next(request)
+        except Exception:
+            latency_ms = (perf_counter() - started_at) * 1000
+            _record_request_metric(request.method, request.url.path, 500, latency_ms)
+            raise
         latency_ms = (perf_counter() - started_at) * 1000
-        with METRICS_LOCK:
-            REQUEST_METRICS["requests_total"] = int(REQUEST_METRICS["requests_total"]) + 1
-            REQUEST_METRICS["latency_ms_total"] = (
-                float(REQUEST_METRICS["latency_ms_total"]) + latency_ms
-            )
-            if response.status_code >= 500:
-                REQUEST_METRICS["errors_total"] = int(REQUEST_METRICS["errors_total"]) + 1
-            routes = REQUEST_METRICS["routes"]
-            if isinstance(routes, defaultdict):
-                routes[f"{request.method} {request.url.path} {response.status_code}"] += 1
+        _record_request_metric(
+            request.method,
+            request.url.path,
+            response.status_code,
+            latency_ms,
+        )
         response.headers["X-Process-Time-Ms"] = f"{latency_ms:.2f}"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"

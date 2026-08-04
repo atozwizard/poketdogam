@@ -46,7 +46,11 @@ def benchmark_field_photos(
         image_path = PROJECT_ROOT / str(item["local_path"])
         image_bytes = image_path.read_bytes()
         started = time.perf_counter()
-        visual, raw_visual = matcher.match_with_diagnostics(image_bytes, top_k=5)
+        visual, raw_visual = matcher.match_with_diagnostics(
+            image_bytes,
+            top_k=5,
+            include_physical=False,
+        )
         ocr = extract_ondevice_text(
             image_bytes,
             image_path.name,

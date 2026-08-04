@@ -45,6 +45,7 @@
 
 | 수정일자 | 수정자 | 변경 대상 문서 | 수정 요약 | 반영 상태 |
 | :-- | :-- | :-- | :-- | :-- |
+| 2026-08-04 09:45 +09:00 | Codex | `docs/specs/PO_95_품질게이트.md`, `docs/specs/public_love_반영_계획.md`, `docs/reviews/2026-08-04-deep-system-fanclub-review.md`, `docs/logs/2026-08-04.md` | 실험/제품/필드 증거 분리, 과거 PASS 정정, 팬클럽 관점 UX·시스템 통합 반영 | 완료 |
 | 2026-07-29 09:41 +09:00 | Codex | `docs/specs/PO_95_품질게이트.md`, `docs/specs/prod_단계별_작업계획.md`, `docs/specs/implementation_plan_phase10.md`, `docs/logs/2026-07-29.md` | PoC 95점 품질 게이트, UI/UX·데이터 라이선스 경계, 최신 구현도 반영 | 완료 |
 | 2026-07-28 18:04 +09:00 | Codex | `docs/specs/prod_단계별_작업계획.md`, `docs/specs/implementation_plan_phase10.md`, `docs/logs/2026-07-28.md` | 구현도 스냅샷, P0/P1 완료 근거, P2 5/30 현황, 웹 MVP 보완 및 Dex 용량 최적화 이력 반영 | 완료 |
 | 2026-07-28 17:47 +09:00 | Cursor | `docs/specs/음성_STS_실시간대화_및_Omni2실험_계획.md`, `OpenS2S_감정STS_및_멀티턴메모리_서베이.md`, `prod_단계별_작업계획.md`, `구현_아키텍처_확정안.md`, `온디바이스_무료티어_계획.md`, `implementation_plan_phase10.md`, `data/rotom_character.md`, `app/agents/pokedex_agent/prompts/rotom.py`, `docs/logs/2026-07-28.md` | Moshi/소형STS/Cascaded실시간/Omni2실험 전량 문서화 + 한국어 로토무 연기 추상화 프롬프트 반영 | 완료 |

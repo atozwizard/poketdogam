@@ -92,10 +92,17 @@ def _scan_response(state: AgentState, candidates: list[ScanCandidate], started_a
         guidance = "후보가 맞는지 확인한 뒤 컬렉션에 저장하세요."
     elif not state.scan_text:
         scan_status = "no_text"
-        guidance = "카드 이름 영역이 선명하게 보이도록 다시 촬영하거나 이름으로 검색하세요."
+        guidance = (
+            "조명을 밝게 하고 대상을 70% 이상 채운 뒤 다시 촬영하세요. "
+            "카드는 이름을 위쪽 카드명 영역에 맞추고, 인형·굿즈는 배경을 "
+            "단순하게 만드세요. 계속 실패하면 이름으로 검색하세요."
+        )
     else:
         scan_status = "no_match"
-        guidance = "읽힌 이름과 일치하는 후보가 없습니다. 이름을 직접 검색하세요."
+        guidance = (
+            "읽힌 이름과 일치하는 후보가 없습니다. 카드명 영역과 초점을 "
+            "확인해 다시 찍거나 이름을 직접 검색하세요."
+        )
     return ScanResponse(
         event_id=str(uuid4()),
         top_candidates=candidates,

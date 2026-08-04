@@ -69,39 +69,56 @@ class SessionStore:
         sid = session_id or str(uuid4())
         now = time.time()
         with closing(self._connect()) as conn:
-            self._delete_expired(conn, now=now, exclude_session_id=sid)
-            row = conn.execute(
-                "select session_id, flow_state_json, turn_count, last_active_at from sessions where session_id = ?",
-                (sid,),
-            ).fetchone()
-            if row is None:
-                state = FlowState()
+            try:
+                # Serialize create/reset for a caller-supplied session id. Without
+                # this transaction, two first requests can both observe no row and
+                # race on the primary key.
+                conn.execute("begin immediate")
+                self._delete_expired(conn, now=now, exclude_session_id=sid)
+                row = conn.execute(
+                    "select session_id, flow_state_json, turn_count, last_active_at from sessions where session_id = ?",
+                    (sid,),
+                ).fetchone()
+                if row is None:
+                    state = FlowState()
+                    conn.execute(
+                        """
+                        insert into sessions(session_id, flow_state_json, turn_count, created_at, last_active_at)
+                        values (?, ?, 0, ?, ?)
+                        """,
+                        (sid, json.dumps(state.to_dict(), ensure_ascii=False), now, now),
+                    )
+                    conn.commit()
+                    return SessionRecord(session_id=sid, flow_state=state, turn_count=0, last_active_at=now)
+
+                if now - float(row["last_active_at"]) > TTL_SECONDS:
+                    state = FlowState()
+                    conn.execute("delete from turns where session_id = ?", (sid,))
+                    conn.execute(
+                        "update sessions set flow_state_json = ?, turn_count = 0, last_active_at = ? where session_id = ?",
+                        (json.dumps(state.to_dict(), ensure_ascii=False), now, sid),
+                    )
+                    conn.commit()
+                    return SessionRecord(session_id=sid, flow_state=state, turn_count=0, last_active_at=now)
+
+                record = SessionRecord(
+                    session_id=sid,
+                    flow_state=FlowState.from_dict(json.loads(row["flow_state_json"] or "{}")),
+                    turn_count=int(row["turn_count"]),
+                    last_active_at=now,
+                )
+                # A request that starts close to the TTL boundary is active even
+                # before its answer is persisted. Refreshing here prevents the
+                # periodic cleanup task from deleting an in-flight session.
                 conn.execute(
-                    """
-                    insert into sessions(session_id, flow_state_json, turn_count, created_at, last_active_at)
-                    values (?, ?, 0, ?, ?)
-                    """,
-                    (sid, json.dumps(state.to_dict(), ensure_ascii=False), now, now),
+                    "update sessions set last_active_at = ? where session_id = ?",
+                    (now, sid),
                 )
                 conn.commit()
-                return SessionRecord(session_id=sid, flow_state=state, turn_count=0, last_active_at=now)
-
-            if now - float(row["last_active_at"]) > TTL_SECONDS:
-                state = FlowState()
-                conn.execute("delete from turns where session_id = ?", (sid,))
-                conn.execute(
-                    "update sessions set flow_state_json = ?, turn_count = 0, last_active_at = ? where session_id = ?",
-                    (json.dumps(state.to_dict(), ensure_ascii=False), now, sid),
-                )
-                conn.commit()
-                return SessionRecord(session_id=sid, flow_state=state, turn_count=0, last_active_at=now)
-
-            return SessionRecord(
-                session_id=sid,
-                flow_state=FlowState.from_dict(json.loads(row["flow_state_json"] or "{}")),
-                turn_count=int(row["turn_count"]),
-                last_active_at=float(row["last_active_at"]),
-            )
+                return record
+            except Exception:
+                conn.rollback()
+                raise
 
     def append_turn(
         self,
@@ -111,48 +128,50 @@ class SessionStore:
         content: str,
         metadata: dict[str, object] | None = None,
         flow_state: FlowState | None = None,
-    ) -> None:
+    ) -> bool:
         now = time.time()
         with closing(self._connect()) as conn:
-            conn.execute(
-                """
-                insert into turns(turn_id, session_id, role, content, metadata_json, created_at)
-                values (?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    str(uuid4()),
-                    session_id,
-                    role,
-                    content,
-                    json.dumps(metadata or {}, ensure_ascii=False),
-                    now,
-                ),
-            )
-            if flow_state is not None:
+            try:
+                conn.execute("begin immediate")
+                if conn.execute(
+                    "select 1 from sessions where session_id = ?", (session_id,)
+                ).fetchone() is None:
+                    conn.rollback()
+                    return False
                 conn.execute(
                     """
-                    update sessions
-                    set flow_state_json = ?, turn_count = turn_count + 1, last_active_at = ?
-                    where session_id = ?
+                    insert into turns(turn_id, session_id, role, content, metadata_json, created_at)
+                    values (?, ?, ?, ?, ?, ?)
                     """,
-                    (json.dumps(flow_state.to_dict(), ensure_ascii=False), now, session_id),
+                    (
+                        str(uuid4()),
+                        session_id,
+                        role,
+                        content,
+                        json.dumps(metadata or {}, ensure_ascii=False),
+                        now,
+                    ),
                 )
-            else:
-                conn.execute(
-                    "update sessions set turn_count = turn_count + 1, last_active_at = ? where session_id = ?",
-                    (now, session_id),
-                )
-            # Cap history
-            ids = [
-                row["turn_id"]
-                for row in conn.execute(
-                    "select turn_id from turns where session_id = ? order by created_at desc",
-                    (session_id,),
-                ).fetchall()
-            ]
-            for stale in ids[MAX_TURNS:]:
-                conn.execute("delete from turns where turn_id = ?", (stale,))
-            conn.commit()
+                if flow_state is not None:
+                    conn.execute(
+                        """
+                        update sessions
+                        set flow_state_json = ?, turn_count = turn_count + 1, last_active_at = ?
+                        where session_id = ?
+                        """,
+                        (json.dumps(flow_state.to_dict(), ensure_ascii=False), now, session_id),
+                    )
+                else:
+                    conn.execute(
+                        "update sessions set turn_count = turn_count + 1, last_active_at = ? where session_id = ?",
+                        (now, session_id),
+                    )
+                self._cap_history(conn, session_id)
+                conn.commit()
+                return True
+            except Exception:
+                conn.rollback()
+                raise
 
     def append_exchange(
         self,
@@ -162,11 +181,24 @@ class SessionStore:
         assistant_content: str,
         assistant_metadata: dict[str, object] | None = None,
         flow_state: FlowState,
-    ) -> None:
+        expected_turn_count: int | None = None,
+    ) -> bool:
         now = time.time()
         with closing(self._connect()) as conn:
             try:
                 conn.execute("begin immediate")
+                row = conn.execute(
+                    "select turn_count from sessions where session_id = ?",
+                    (session_id,),
+                ).fetchone()
+                if row is None:
+                    # A deletion wins over a late stream completion. Do not
+                    # recreate a session the user explicitly removed.
+                    conn.rollback()
+                    return False
+                apply_flow_state = expected_turn_count is None or (
+                    int(row["turn_count"]) == expected_turn_count
+                )
                 for role, content, metadata in (
                     ("user", user_content, {}),
                     ("assistant", assistant_content, assistant_metadata or {}),
@@ -185,24 +217,30 @@ class SessionStore:
                             now,
                         ),
                     )
-                conn.execute(
-                    """
-                    update sessions
-                    set flow_state_json = ?, turn_count = turn_count + 2, last_active_at = ?
-                    where session_id = ?
-                    """,
-                    (json.dumps(flow_state.to_dict(), ensure_ascii=False), now, session_id),
-                )
-                ids = [
-                    row["turn_id"]
-                    for row in conn.execute(
-                        "select turn_id from turns where session_id = ? order by created_at desc, rowid desc",
-                        (session_id,),
-                    ).fetchall()
-                ]
-                for stale in ids[MAX_TURNS:]:
-                    conn.execute("delete from turns where turn_id = ?", (stale,))
+                if apply_flow_state:
+                    conn.execute(
+                        """
+                        update sessions
+                        set flow_state_json = ?, turn_count = turn_count + 2, last_active_at = ?
+                        where session_id = ?
+                        """,
+                        (json.dumps(flow_state.to_dict(), ensure_ascii=False), now, session_id),
+                    )
+                else:
+                    # Preserve both turns from a concurrent request while keeping
+                    # the newer flow state. The False return tells the caller that
+                    # its stale state was deliberately not applied.
+                    conn.execute(
+                        """
+                        update sessions
+                        set turn_count = turn_count + 2, last_active_at = ?
+                        where session_id = ?
+                        """,
+                        (now, session_id),
+                    )
+                self._cap_history(conn, session_id)
                 conn.commit()
+                return apply_flow_state
             except Exception:
                 conn.rollback()
                 raise
@@ -214,7 +252,7 @@ class SessionStore:
                 select role, content, metadata_json, created_at
                 from turns
                 where session_id = ?
-                order by created_at desc
+                order by created_at desc, rowid desc
                 limit ?
                 """,
                 (session_id, limit),
@@ -233,14 +271,24 @@ class SessionStore:
 
     def delete(self, session_id: str) -> bool:
         with closing(self._connect()) as conn:
-            conn.execute("delete from turns where session_id = ?", (session_id,))
-            deleted = conn.execute("delete from sessions where session_id = ?", (session_id,)).rowcount
-            conn.commit()
+            try:
+                conn.execute("begin immediate")
+                conn.execute("delete from turns where session_id = ?", (session_id,))
+                deleted = conn.execute(
+                    "delete from sessions where session_id = ?", (session_id,)
+                ).rowcount
+                conn.commit()
+            except Exception:
+                conn.rollback()
+                raise
         return bool(deleted)
 
     def cleanup_expired(self, now: float | None = None) -> int:
         with closing(self._connect()) as conn:
-            deleted = self._delete_expired(conn, now=now or time.time())
+            deleted = self._delete_expired(
+                conn,
+                now=time.time() if now is None else now,
+            )
             conn.commit()
         return deleted
 
@@ -265,6 +313,7 @@ class SessionStore:
 
     def _ensure_schema(self) -> None:
         with closing(self._connect()) as conn:
+            conn.execute("pragma journal_mode = wal")
             conn.executescript(
                 """
                 create table if not exists sessions (
@@ -288,10 +337,23 @@ class SessionStore:
             conn.commit()
 
     def _connect(self) -> sqlite3.Connection:
-        conn = sqlite3.connect(self.db_path)
+        conn = sqlite3.connect(self.db_path, timeout=5.0)
         conn.execute("pragma foreign_keys = on")
+        conn.execute("pragma busy_timeout = 5000")
         conn.row_factory = sqlite3.Row
         return conn
+
+    @staticmethod
+    def _cap_history(conn: sqlite3.Connection, session_id: str) -> None:
+        ids = [
+            row["turn_id"]
+            for row in conn.execute(
+                "select turn_id from turns where session_id = ? order by created_at desc, rowid desc",
+                (session_id,),
+            ).fetchall()
+        ]
+        for stale in ids[MAX_TURNS:]:
+            conn.execute("delete from turns where turn_id = ?", (stale,))
 
 
 def main() -> None:

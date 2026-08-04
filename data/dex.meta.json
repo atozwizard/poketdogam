@@ -17,10 +17,12 @@
   "visual_index": {
     "model_id": "mediapipe-mobilenet-v3-small-float32",
     "model_sha256": "bbbb4c51a55a53905af1daec995ca1aae355046f8839bb8c9f5ce9271394bc40",
-    "generation": 1,
-    "species_count": 151,
-    "form_count": 238,
-    "reference_count": 238,
+    "generation_coverage": "1-9",
+    "species_count": 1025,
+    "form_count": 1343,
+    "reference_count": 4969,
+    "android_export_scope": "generation_1_all_forms",
+    "scan_default_generation": null,
     "policy": "derived numeric embeddings only; source images are temporary and excluded"
   },
   "sources": [
@@ -52,8 +54,8 @@
   "schema_version": 1,
   "artifacts": {
     "dex.sqlite": {
-      "sha256": "a0879f17902f8d83ea5ac797eb512094f58a2979d36e2f85080fd0320d831115",
-      "size_bytes": 10465280
+      "sha256": "b0f7572b63f670ccad6434d152c6295bb8d20a39c83bd8b693be5968d6ff7936",
+      "size_bytes": 78794752
     },
     "gen1_visual_index.json": {
       "sha256": "ffea6054b4d292582747eeab11d2a23691d14b28c7de3d50b3cf50dea30a9c3b",

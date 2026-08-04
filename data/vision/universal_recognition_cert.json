@@ -1,0 +1,76 @@
+{
+  "schema_version": 3,
+  "certification": "product_open_search_derived_recognition",
+  "created_at": "2026-08-02T01:49:02+00:00",
+  "score": 61.7,
+  "target": 95.0,
+  "certified": false,
+  "species_recall_at_3": 0.6963,
+  "product_open_search_species_recall_at_3": 0.6963,
+  "generation_scoped_lab_species_recall_at_3": 0.918,
+  "generation_scoped_lab_gate_met": true,
+  "min_per_generation_species_recall_at_3": 0.8667,
+  "per_generation_species_recall_at_3": {
+    "1": 0.9669,
+    "2": 0.9167,
+    "3": 0.9506,
+    "4": 0.9065,
+    "5": 0.9295,
+    "6": 0.9398,
+    "7": 0.8864,
+    "8": 0.8681,
+    "9": 0.8667
+  },
+  "weak_generations": {
+    "7": 0.8864,
+    "8": 0.8681,
+    "9": 0.8667
+  },
+  "generations_below_floor": {},
+  "per_generation_stretch_met": false,
+  "covered_species": 1025,
+  "recognizable_samples": 3075,
+  "evaluated_media_kind_count": 1,
+  "evaluated_media_kinds": [
+    "in_game_transform"
+  ],
+  "corpus_media_kind_count": 7,
+  "corpus_media_kinds_present": [
+    "card",
+    "figure_or_toy",
+    "goods",
+    "in_game_sprite_or_artwork",
+    "open_license_field_photo",
+    "plush",
+    "user_screenshot"
+  ],
+  "derived_reference_count": 4969,
+  "requirements": {
+    "species": 1025,
+    "samples": 1025,
+    "evaluated_media_kinds": 4,
+    "top3_recall": 0.9,
+    "per_generation_floor": 0.85,
+    "per_generation_stretch": 0.9
+  },
+  "gaps": {
+    "species": 0,
+    "samples": 0,
+    "evaluated_media_kinds": 3,
+    "recall": 0.2037,
+    "per_generation_to_floor": {},
+    "per_generation_to_stretch": {
+      "7": 0.0136,
+      "8": 0.0319,
+      "9": 0.0333
+    }
+  },
+  "benchmark_path": "data/vision/universal_benchmark.json",
+  "field_pilot": {
+    "species": 28,
+    "samples": 91,
+    "creators": 20
+  },
+  "cross_generation_species_recall_at_3": 0.6963,
+  "interpretation": "Certified only when the no-hint, flat all-generation product path reaches Top-3 90% and at least 4 media kinds have actually been evaluated. Generation-scoped scores are laboratory diagnostics and corpus media-kind labels are coverage inventory, not accuracy evidence. Physical field accuracy remains a separate gate."
+}
