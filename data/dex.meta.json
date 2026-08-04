@@ -54,8 +54,8 @@
   "schema_version": 1,
   "artifacts": {
     "dex.sqlite": {
-      "sha256": "b0f7572b63f670ccad6434d152c6295bb8d20a39c83bd8b693be5968d6ff7936",
-      "size_bytes": 78794752
+      "sha256": "57ce14607b04c7c429c699c3498aa79d7ac2cf55707edf6976b069d13c778d45",
+      "size_bytes": 32763904
     },
     "gen1_visual_index.json": {
       "sha256": "ffea6054b4d292582747eeab11d2a23691d14b28c7de3d50b3cf50dea30a9c3b",

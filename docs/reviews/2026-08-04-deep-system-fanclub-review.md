@@ -147,6 +147,7 @@ commit-only context를 명시적 close로 바꾸고 경고를 오류로 승격�
 | Android 연속 탭 | 여러 executor·recognizer와 역순 UI 덮어쓰기 | in-flight 버튼 잠금, 15초 watchdog, 단일 완료 CAS | Kotlin compile·lint 및 정적 계약 PASS |
 | Android 종료 대 추론 | `ImageEmbedder.close()`와 `embed()`가 충돌 | lifecycle lock, non-blocking close 요청, 추론 종료 시 자원 회수 | Kotlin compile·lint PASS |
 | SQLite 스크립트 연결 | context manager가 commit만 하고 close하지 않음 | `contextlib.closing`으로 세 수집 스크립트 명시 종료 | `ResourceWarning` 오류 승격 회귀 PASS |
+| Dex 아티팩트 비대 | 삭제된 참조 페이지 45.6MB가 freelist에 잔존 | 무결성 확인 후 `VACUUM`, manifest SHA-256 재발급 | 78.8MB→32.8MB, quick/manifest PASS |
 
 잔여 스레드 한계는 네이티브 MediaPipe/OCR 호출 자체가 OS 수준에서 무한
 정지할 경우 Python 스레드를 강제 종료할 수 없다는 점이다. 서버는 bounded
